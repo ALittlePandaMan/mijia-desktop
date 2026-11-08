@@ -1,0 +1,72 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "米家Desktop",
+  "version": "0.1.0",
+  "identifier": "io.mijiadesktop.client",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "visible": false,
+        "title": "米家Desktop",
+        "width": 1280,
+        "height": 720,
+        "minWidth": 720,
+        "minHeight": 420,
+        "decorations": false,
+        "resizable": true,
+        "maximizable": true,
+        "center": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; connect-src ipc: http://ipc.localhost; img-src 'self' data: https:; media-src 'self' blob: https://cnbj2.fds.api.xiaomi.com; style-src 'self' 'unsafe-inline'; script-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "nsis"
+    ],
+    "shortDescription": "米家跨平台桌面客户端",
+    "category": "Utility",
+    "resources": {
+      "../licenses/": "licenses/",
+      "../docs/THIRD_PARTY_NOTICES.md": "docs/THIRD_PARTY_NOTICES.md",
+      "../docs/DEPENDENCY_LICENSES.md": "docs/DEPENDENCY_LICENSES.md",
+      "../docs/PLATFORMS.md": "docs/PLATFORMS.md",
+      "../LICENSE": "LICENSE"
+    },
+    "windows": {
+      "nsis": {
+        "languages": [
+          "SimpChinese",
+          "English"
+        ],
+        "displayLanguageSelector": true,
+        "installerIcon": "icons/mijia.ico",
+        "uninstallerIcon": "icons/mijia.ico",
+        "installMode": "currentUser"
+      }
+    },
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/mijia.ico"
+    ],
+    "macOS": {
+      "minimumSystemVersion": "12.0",
+      "signingIdentity": "-",
+      "entitlements": "Entitlements.plist",
+      "infoPlist": "Info.plist"
+    }
+  }
+}

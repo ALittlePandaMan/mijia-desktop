@@ -1,0 +1,57 @@
+/* Shared UI primitives. Device-specific color, geometry and original assets stay local. */
+:root {
+  --surface: #fff; --text: #171717; --secondary: #777; --border: #e8e8e8;
+  --radius-small: 8px; --radius-card: 14px; --radius-dialog: 18px;
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-6: 24px;
+  --shadow-float: 0 8px 30px #18374c30;
+  --motion-fast: 130ms; --motion-medium: 190ms; --motion-page: 220ms;
+  --ease-feedback: cubic-bezier(.2,.7,.2,1); --ease-enter: cubic-bezier(.2,.8,.2,1);
+  --focus-ring: #50c0df;
+  --on-color: #fff; --control-thumb: #fff;
+  --chart-text: #999; --chart-grid: #ededed; --chart-tip: #fff;
+}
+:root[data-theme="dark"] {
+  --surface: #202427; --text: #edf0f2; --secondary: #adb5bb; --border: #363c40;
+  --surface-page: #141719; --surface-card: #202427; --surface-raised: #2a2f33;
+  --surface-subtle: #2b3034; --surface-input: #191d20; --surface-hover: #353c41;
+  --surface-disabled: #3a4146; --surface-selected: #214959; --surface-tint: #24323c;
+  --text-primary: #edf0f2; --text-secondary: #adb5bb; --text-muted: #99a3ab;
+  --border-subtle: #363c40; --status-error: #ff8c85; --status-error-bg: #3d2627;
+  --shadow-float: 0 8px 30px #0008;
+  --chart-text: #adb5bb; --chart-grid: #3c4349; --chart-tip: #2a2f33;
+  --home-background: radial-gradient(ellipse at 15% 95%,#183d4e,transparent 55%),linear-gradient(135deg,#142d40,#1b3b50 52%,#21434e);
+  --washer-background: linear-gradient(#1e4176 0,#233b59 160px,#141719 270px);
+  --sensor-background: linear-gradient(#163e6f,#203a50);
+  --curtain-background: linear-gradient(#073965,#15557c 62%,#246681);
+  --airer-background: linear-gradient(#26364d,#141719);
+  --fridge-sky: #2a3245;
+  --purifier-background: linear-gradient(#243947,#23333e 65%,#141719);
+  --bath-hot-background: linear-gradient(#703d13,#49321f 43%,#29241e);
+  --bath-cold-background: linear-gradient(#154b50,#243e40 50%,#202e30);
+  --ceiling-background: linear-gradient(#214b7e,#223c58 50%,#213a52);
+  --home-card: #232e36ed; --home-card-offline: #202a31d9;
+  --disabled-veil: #141719b3;
+  --water-layer-0: #324957; --water-layer-1: #2b4252; --water-layer-2: #243947;
+  --muted: #adb5bb; --line: #363c40;
+  --status-warning: #e5c576; --status-warning-bg: #393322;
+  --status-success: #69d5ab; --status-success-bg: #20382f;
+}
+/* Original light declarations supply the fallback palette. The semantic variables
+   above are resolved in-place throughout existing sheets, without priority overrides. */
+body { background:var(--surface-page,#f6f8f7); }
+.device-context-menu,.account-menu,.home-menu { box-shadow:var(--shadow-float); }
+button { transition:background-color var(--motion-fast) var(--ease-feedback),color var(--motion-fast) var(--ease-feedback),border-color var(--motion-fast) var(--ease-feedback); }
+/* Transient entrance classes are applied only when the logical navigation key changes. */
+.motion-page-enter { animation:ui-page-enter var(--motion-page) var(--ease-enter) both; }
+.motion-popup-enter { animation:ui-popup-enter var(--motion-medium) var(--ease-enter) both; }
+@keyframes ui-page-enter { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:none; } }
+@keyframes ui-popup-enter { from { opacity:0; transform:translateY(4px) scale(.985); } to { opacity:1; transform:none; } }
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after { animation:none !important; transition-duration:0ms !important; scroll-behavior:auto !important; }
+  .motion-page-enter,.motion-popup-enter { opacity:1; transform:none; }
+  .device-loading-compact { opacity:1; }
+  .washer-program:active .washer-glyph,
+  .fridge-mode:not(:disabled):active .fridge-mode-circle,
+  .fridge-temperature-step:not(:disabled):active,
+  body .device-card.device-drag-ghost { transform:none; }
+}

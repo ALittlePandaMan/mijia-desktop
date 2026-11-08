@@ -1,0 +1,14 @@
+{
+  "provenance": "Independent Java synthetic vector following static APK algorithm, no account data; not live cloud verification",
+  "ssecurity": "AAAAAAAAAAAAAAAAAAAAAA==",
+  "nonce": "AAECAwQFBgcAAAAB",
+  "method": "POST",
+  "path": "/v2/homeroom/gethome_merged",
+  "data": "{\"fetch_share\":true,\"limit\":300}",
+  "signed_nonce": "/b4Dx72XRYpoTirqu2CpJq622eW/ehJiDeRavaQ6DsE=",
+  "rc4_hash": "7JerD1cvGMFxpRm5cAGQTOjtdc8=",
+  "encrypted_data": "rZYErFIKp4Ng1UA/DySKJSl5PqwB/2qnBumg/O/NaaM=",
+  "encrypted_hash_continuous": "E6ZkkJKWCmM6TzYdS8sQmBSKd9zXD33mcYCU3w==",
+  "encrypted_hash_reset": "4f4Hu2JYrKpU8Gc1GlTdZDhNHNF33Gm+C/66+w==",
+  "signature_continuous": "30v3KGs80IFrZEAfDDxX0V8iySE="
+}

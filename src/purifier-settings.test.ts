@@ -1,0 +1,12 @@
+import {describe,expect,it} from 'vitest';
+import fixture from './fixtures/purifier-page.json';
+import type {Device,DevicePanel} from './types';
+import {purifierSetting,purifierSettingReason,isPurifierSetting} from './purifier-settings';
+const panel=()=>structuredClone(fixture)as DevicePanel;
+const device={did:fixture.did,model:fixture.model,name:'fixture',online:true}as Device;
+describe('lx32厂家设置属性绑定',()=>{
+ it('只接受精确型号、服务、属性、名称和格式，重复绑定拒绝',()=>{const p=panel();expect(purifierSetting(p,'pipeline')?.value).toBe(true);const binding=purifierSetting(p,'pipeline')!;expect(isPurifierSetting(binding)).toBe(true);binding.piid=7;expect(purifierSetting(p,'pipeline')).toBeUndefined();p.model='other';expect(purifierSetting(p,'water-mode')).toBeUndefined();const duplicate=panel();duplicate.services[0].properties.push({...purifierSetting(duplicate,'pipeline')!});expect(purifierSetting(duplicate,'pipeline')).toBeUndefined();});
+ it('离线、缓存、共享只读、错误类型和未确认读取不能启用设置',()=>{const p=panel();expect(purifierSettingReason(p,{...device,online:false},'water-mode',false,false)).toContain('离线');expect(purifierSettingReason(p,device,'pipeline',true,false)).toContain('读取');expect(purifierSettingReason(p,{...device,sharedReadOnly:true},'pipeline',false,false)).toContain('查看');purifierSetting(p,'pipeline')!.value=1;expect(purifierSettingReason(p,device,'pipeline',false,false)).toBeDefined();purifierSetting(p,'water-mode')!.code=undefined;expect(purifierSettingReason(p,device,'water-mode',false,false)).toBeDefined();purifierSetting(p,'water-mode')!.code=-1;expect(purifierSettingReason(p,device,'water-mode',false,false)).toBeDefined();});
+ it('制水中禁止管线机与默认杯量，TDS等待不额外禁用设置',()=>{const p=panel(),status=p.services.flatMap(s=>s.properties).find(p=>p.siid===2&&p.piid===2)!;status.value=2;p.purifier!.status='busy';expect(purifierSettingReason(p,device,'pipeline',false,false)).toContain('制水');expect(purifierSettingReason(p,device,'default-cup',false,false)).toContain('制水');expect(purifierSettingReason(p,device,'water-mode',false,false)).toBeUndefined();status.value=1;p.purifier!.status='waiting';expect(purifierSettingReason(p,device,'pipeline',false,false)).toBeUndefined();});
+ it('未确认操作和设备身份不匹配不能重复提交',()=>{const p=panel();purifierSetting(p,'pipeline')!.pending='uncertain';expect(purifierSettingReason(p,device,'pipeline',false,false)).toBeDefined();expect(purifierSettingReason(p,{...device,did:'other'},'water-mode',false,false)).toContain('不匹配');});
+});

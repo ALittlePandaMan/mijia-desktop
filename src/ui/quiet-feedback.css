@@ -1,0 +1,5 @@
+/* User preference: suppress notification prose, including delayed updates.
+   Explicit data ownership avoids hiding readings, controls or dialog contents. */
+[data-quiet-feedback=prose]:not(:has([data-device-loading])){display:none}
+[data-quiet-feedback=actions]{border:0;background:transparent;padding:0}
+[data-quiet-feedback=actions]>:not(button){display:none}

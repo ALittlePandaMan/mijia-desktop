@@ -1,0 +1,4181 @@
+{
+  "version": 1,
+  "connectionPolicy": "Xiaomi cloud only. No phone-only BLE discovery, pairing or connection; gateway-synced cloud abilities remain eligible.",
+  "source": {
+    "kind": "user-supplied-category-screenshot",
+    "sha256": "6be219728177f1cdbb7431c1cc6a81200dde1e0ed1444362e93943816ca74542",
+    "groups": 16
+  },
+  "canonicalTypes": [
+    {
+      "label": "洗衣/烘干机",
+      "categories": [
+        "washer",
+        "clothes-dryer"
+      ],
+      "sourceEntries": [
+        {
+          "group": "清洁电器",
+          "label": "洗衣/烘干机"
+        }
+      ]
+    },
+    {
+      "label": "扫地机器人",
+      "categories": [
+        "vacuum"
+      ],
+      "sourceEntries": [
+        {
+          "group": "清洁电器",
+          "label": "扫地机器人"
+        }
+      ]
+    },
+    {
+      "label": "晾衣架",
+      "categories": [
+        "airer"
+      ],
+      "sourceEntries": [
+        {
+          "group": "清洁电器",
+          "label": "晾衣架"
+        }
+      ]
+    },
+    {
+      "label": "擦地机",
+      "categories": [
+        "mopping-machine"
+      ],
+      "sourceEntries": [
+        {
+          "group": "清洁电器",
+          "label": "擦地机"
+        }
+      ]
+    },
+    {
+      "label": "吸尘器",
+      "categories": [
+        "vacuum-cleaner"
+      ],
+      "sourceEntries": [
+        {
+          "group": "清洁电器",
+          "label": "吸尘器"
+        }
+      ]
+    },
+    {
+      "label": "摄像机",
+      "categories": [
+        "camera"
+      ],
+      "sourceEntries": [
+        {
+          "group": "安防",
+          "label": "摄像机"
+        }
+      ]
+    },
+    {
+      "label": "猫眼门铃",
+      "categories": [
+        "video-doorbell",
+        "doorbell"
+      ],
+      "sourceEntries": [
+        {
+          "group": "安防",
+          "label": "猫眼门铃"
+        }
+      ]
+    },
+    {
+      "label": "门锁",
+      "categories": [
+        "lock"
+      ],
+      "sourceEntries": [
+        {
+          "group": "安防",
+          "label": "门锁"
+        }
+      ]
+    },
+    {
+      "label": "保险箱",
+      "categories": [
+        "safe-box"
+      ],
+      "sourceEntries": [
+        {
+          "group": "安防",
+          "label": "保险箱"
+        }
+      ]
+    },
+    {
+      "label": "报警器",
+      "categories": [
+        "alertor"
+      ],
+      "sourceEntries": [
+        {
+          "group": "安防",
+          "label": "报警器"
+        }
+      ]
+    },
+    {
+      "label": "智能门",
+      "categories": [
+        "door"
+      ],
+      "sourceEntries": [
+        {
+          "group": "安防",
+          "label": "智能门"
+        }
+      ]
+    },
+    {
+      "label": "防丢器",
+      "categories": [
+        "tracker"
+      ],
+      "sourceEntries": [
+        {
+          "group": "安防",
+          "label": "防丢器"
+        }
+      ]
+    },
+    {
+      "label": "对讲机",
+      "categories": [
+        "intercom"
+      ],
+      "sourceEntries": [
+        {
+          "group": "安防",
+          "label": "对讲机"
+        }
+      ]
+    },
+    {
+      "label": "温湿度传感器",
+      "categories": [
+        "temperature-humidity-sensor"
+      ],
+      "sourceEntries": [
+        {
+          "group": "传感器",
+          "label": "温湿度传感器"
+        }
+      ]
+    },
+    {
+      "label": "人体传感器",
+      "categories": [
+        "motion-sensor"
+      ],
+      "sourceEntries": [
+        {
+          "group": "传感器",
+          "label": "人体传感器"
+        }
+      ]
+    },
+    {
+      "label": "烟雾传感器",
+      "categories": [
+        "smoke-sensor"
+      ],
+      "sourceEntries": [
+        {
+          "group": "传感器",
+          "label": "烟雾传感器"
+        }
+      ]
+    },
+    {
+      "label": "燃气传感器",
+      "categories": [
+        "gas-sensor"
+      ],
+      "sourceEntries": [
+        {
+          "group": "传感器",
+          "label": "燃气传感器"
+        }
+      ]
+    },
+    {
+      "label": "门窗传感器",
+      "categories": [
+        "magnet-sensor"
+      ],
+      "sourceEntries": [
+        {
+          "group": "传感器",
+          "label": "门窗传感器"
+        }
+      ]
+    },
+    {
+      "label": "水浸传感器",
+      "categories": [
+        "submersion-sensor"
+      ],
+      "sourceEntries": [
+        {
+          "group": "传感器",
+          "label": "水浸传感器"
+        }
+      ]
+    },
+    {
+      "label": "光照度传感器",
+      "categories": [
+        "illumination-sensor"
+      ],
+      "sourceEntries": [
+        {
+          "group": "传感器",
+          "label": "光照度传感器"
+        }
+      ]
+    },
+    {
+      "label": "有人无人传感器",
+      "categories": [
+        "occupancy-sensor"
+      ],
+      "sourceEntries": [
+        {
+          "group": "传感器",
+          "label": "有人无人传感器"
+        }
+      ]
+    },
+    {
+      "label": "气象传感器",
+      "categories": [
+        "weather-sensor"
+      ],
+      "sourceEntries": [
+        {
+          "group": "传感器",
+          "label": "气象传感器"
+        }
+      ]
+    },
+    {
+      "label": "动静传感器",
+      "categories": [
+        "vibration-sensor"
+      ],
+      "sourceEntries": [
+        {
+          "group": "传感器",
+          "label": "动静传感器"
+        }
+      ]
+    },
+    {
+      "label": "压力传感器",
+      "categories": [
+        "pressure-sensor"
+      ],
+      "sourceEntries": [
+        {
+          "group": "传感器",
+          "label": "压力传感器"
+        }
+      ]
+    },
+    {
+      "label": "音箱",
+      "categories": [
+        "speaker"
+      ],
+      "sourceEntries": [
+        {
+          "group": "影音娱乐",
+          "label": "音箱"
+        }
+      ]
+    },
+    {
+      "label": "蓝牙音箱",
+      "categories": [
+        "ble-speaker"
+      ],
+      "sourceEntries": [
+        {
+          "group": "影音娱乐",
+          "label": "蓝牙音箱"
+        }
+      ]
+    },
+    {
+      "label": "投影仪",
+      "categories": [
+        "projector"
+      ],
+      "sourceEntries": [
+        {
+          "group": "影音娱乐",
+          "label": "投影仪"
+        }
+      ]
+    },
+    {
+      "label": "电视/盒子",
+      "categories": [
+        "television",
+        "stb",
+        "tv-box"
+      ],
+      "sourceEntries": [
+        {
+          "group": "影音娱乐",
+          "label": "电视/盒子"
+        }
+      ]
+    },
+    {
+      "label": "故事机",
+      "categories": [
+        "story-machine"
+      ],
+      "sourceEntries": [
+        {
+          "group": "影音娱乐",
+          "label": "故事机"
+        }
+      ]
+    },
+    {
+      "label": "收音机",
+      "categories": [
+        "radio"
+      ],
+      "sourceEntries": [
+        {
+          "group": "影音娱乐",
+          "label": "收音机"
+        }
+      ]
+    },
+    {
+      "label": "机器人",
+      "categories": [
+        "robot"
+      ],
+      "sourceEntries": [
+        {
+          "group": "影音娱乐",
+          "label": "机器人"
+        }
+      ]
+    },
+    {
+      "label": "时钟",
+      "categories": [
+        "clock"
+      ],
+      "sourceEntries": [
+        {
+          "group": "影音娱乐",
+          "label": "时钟"
+        }
+      ]
+    },
+    {
+      "label": "雕刻机",
+      "categories": [
+        "engraving-machine"
+      ],
+      "sourceEntries": [
+        {
+          "group": "影音娱乐",
+          "label": "雕刻机"
+        }
+      ]
+    },
+    {
+      "label": "手写板",
+      "categories": [],
+      "sourceEntries": [
+        {
+          "group": "影音娱乐",
+          "label": "手写板"
+        }
+      ]
+    },
+    {
+      "label": "麦克风",
+      "categories": [
+        "microphone"
+      ],
+      "sourceEntries": [
+        {
+          "group": "影音娱乐",
+          "label": "麦克风"
+        }
+      ]
+    },
+    {
+      "label": "音视频功放",
+      "categories": [
+        "audio-video-amplifier"
+      ],
+      "sourceEntries": [
+        {
+          "group": "影音娱乐",
+          "label": "音视频功放"
+        }
+      ]
+    },
+    {
+      "label": "散热器",
+      "categories": [
+        "cooler"
+      ],
+      "sourceEntries": [
+        {
+          "group": "影音娱乐",
+          "label": "散热器"
+        }
+      ]
+    },
+    {
+      "label": "显示器",
+      "categories": [],
+      "sourceEntries": [
+        {
+          "group": "影音娱乐",
+          "label": "显示器"
+        }
+      ]
+    },
+    {
+      "label": "新风机",
+      "categories": [
+        "air-fresh"
+      ],
+      "sourceEntries": [
+        {
+          "group": "环境电器",
+          "label": "新风机"
+        }
+      ]
+    },
+    {
+      "label": "加湿器",
+      "categories": [
+        "humidifier"
+      ],
+      "sourceEntries": [
+        {
+          "group": "环境电器",
+          "label": "加湿器"
+        }
+      ]
+    },
+    {
+      "label": "空调插座",
+      "categories": [
+        "air-condition-outlet"
+      ],
+      "sourceEntries": [
+        {
+          "group": "环境电器",
+          "label": "空调插座"
+        }
+      ]
+    },
+    {
+      "label": "电暖器",
+      "categories": [
+        "heater"
+      ],
+      "sourceEntries": [
+        {
+          "group": "环境电器",
+          "label": "电暖器"
+        }
+      ]
+    },
+    {
+      "label": "香薰机",
+      "categories": [
+        "diffuser"
+      ],
+      "sourceEntries": [
+        {
+          "group": "环境电器",
+          "label": "香薰机"
+        }
+      ]
+    },
+    {
+      "label": "空调",
+      "categories": [
+        "air-conditioner"
+      ],
+      "sourceEntries": [
+        {
+          "group": "环境电器",
+          "label": "空调"
+        }
+      ]
+    },
+    {
+      "label": "风扇",
+      "categories": [
+        "fan"
+      ],
+      "sourceEntries": [
+        {
+          "group": "环境电器",
+          "label": "风扇"
+        }
+      ]
+    },
+    {
+      "label": "温控器",
+      "categories": [
+        "thermostat"
+      ],
+      "sourceEntries": [
+        {
+          "group": "环境电器",
+          "label": "温控器"
+        }
+      ]
+    },
+    {
+      "label": "空气检测仪",
+      "categories": [
+        "air-monitor"
+      ],
+      "sourceEntries": [
+        {
+          "group": "环境电器",
+          "label": "空气检测仪"
+        }
+      ]
+    },
+    {
+      "label": "空气净化器",
+      "categories": [
+        "air-purifier"
+      ],
+      "sourceEntries": [
+        {
+          "group": "环境电器",
+          "label": "空气净化器"
+        }
+      ]
+    },
+    {
+      "label": "除湿机",
+      "categories": [
+        "dehumidifier"
+      ],
+      "sourceEntries": [
+        {
+          "group": "环境电器",
+          "label": "除湿机"
+        }
+      ]
+    },
+    {
+      "label": "风扇灯",
+      "categories": [
+        "ceiling-fan"
+      ],
+      "sourceEntries": [
+        {
+          "group": "环境电器",
+          "label": "风扇灯"
+        },
+        {
+          "group": "照明",
+          "label": "风扇灯"
+        }
+      ]
+    },
+    {
+      "label": "水质检测",
+      "categories": [
+        "watermon"
+      ],
+      "sourceEntries": [
+        {
+          "group": "环境电器",
+          "label": "水质检测"
+        }
+      ]
+    },
+    {
+      "label": "路由器",
+      "categories": [
+        "router"
+      ],
+      "sourceEntries": [
+        {
+          "group": "路由网关",
+          "label": "路由器"
+        }
+      ]
+    },
+    {
+      "label": "网关",
+      "categories": [
+        "gateway"
+      ],
+      "sourceEntries": [
+        {
+          "group": "路由网关",
+          "label": "网关"
+        }
+      ]
+    },
+    {
+      "label": "Wi-Fi信号放大器",
+      "categories": [
+        "repeater"
+      ],
+      "sourceEntries": [
+        {
+          "group": "路由网关",
+          "label": "Wi-Fi信号放大器"
+        }
+      ]
+    },
+    {
+      "label": "智能存储",
+      "categories": [
+        "nas"
+      ],
+      "sourceEntries": [
+        {
+          "group": "路由网关",
+          "label": "智能存储"
+        }
+      ]
+    },
+    {
+      "label": "灯带",
+      "categories": [
+        "light"
+      ],
+      "sourceEntries": [
+        {
+          "group": "照明",
+          "label": "灯带"
+        }
+      ]
+    },
+    {
+      "label": "台灯",
+      "categories": [
+        "light"
+      ],
+      "sourceEntries": [
+        {
+          "group": "照明",
+          "label": "台灯"
+        }
+      ]
+    },
+    {
+      "label": "床头灯",
+      "categories": [
+        "light"
+      ],
+      "sourceEntries": [
+        {
+          "group": "照明",
+          "label": "床头灯"
+        }
+      ]
+    },
+    {
+      "label": "吸顶灯",
+      "categories": [
+        "light"
+      ],
+      "sourceEntries": [
+        {
+          "group": "照明",
+          "label": "吸顶灯"
+        }
+      ]
+    },
+    {
+      "label": "筒射灯",
+      "categories": [
+        "light"
+      ],
+      "sourceEntries": [
+        {
+          "group": "照明",
+          "label": "筒射灯"
+        }
+      ]
+    },
+    {
+      "label": "吊灯",
+      "categories": [
+        "light"
+      ],
+      "sourceEntries": [
+        {
+          "group": "照明",
+          "label": "吊灯"
+        }
+      ]
+    },
+    {
+      "label": "灯泡",
+      "categories": [
+        "light"
+      ],
+      "sourceEntries": [
+        {
+          "group": "照明",
+          "label": "灯泡"
+        }
+      ]
+    },
+    {
+      "label": "夜灯",
+      "categories": [
+        "night-light",
+        "light"
+      ],
+      "sourceEntries": [
+        {
+          "group": "照明",
+          "label": "夜灯"
+        }
+      ]
+    },
+    {
+      "label": "灯组",
+      "categories": [
+        "light"
+      ],
+      "sourceEntries": [
+        {
+          "group": "照明",
+          "label": "灯组"
+        }
+      ]
+    },
+    {
+      "label": "轨道灯",
+      "categories": [
+        "light"
+      ],
+      "sourceEntries": [
+        {
+          "group": "照明",
+          "label": "轨道灯"
+        }
+      ]
+    },
+    {
+      "label": "其他灯",
+      "categories": [
+        "light"
+      ],
+      "sourceEntries": [
+        {
+          "group": "照明",
+          "label": "其他灯"
+        }
+      ]
+    },
+    {
+      "label": "LED点阵屏",
+      "categories": [],
+      "sourceEntries": [
+        {
+          "group": "照明",
+          "label": "LED点阵屏"
+        }
+      ]
+    },
+    {
+      "label": "显示器挂灯",
+      "categories": [
+        "light"
+      ],
+      "sourceEntries": [
+        {
+          "group": "照明",
+          "label": "显示器挂灯"
+        }
+      ]
+    },
+    {
+      "label": "立式学习灯",
+      "categories": [
+        "light"
+      ],
+      "sourceEntries": [
+        {
+          "group": "照明",
+          "label": "立式学习灯"
+        }
+      ]
+    },
+    {
+      "label": "面板灯",
+      "categories": [
+        "light"
+      ],
+      "sourceEntries": [
+        {
+          "group": "照明",
+          "label": "面板灯"
+        }
+      ]
+    },
+    {
+      "label": "落地灯",
+      "categories": [
+        "light"
+      ],
+      "sourceEntries": [
+        {
+          "group": "照明",
+          "label": "落地灯"
+        }
+      ]
+    },
+    {
+      "label": "插座/插排",
+      "categories": [
+        "outlet"
+      ],
+      "sourceEntries": [
+        {
+          "group": "插座开关",
+          "label": "插座/插排"
+        }
+      ]
+    },
+    {
+      "label": "开关",
+      "categories": [
+        "switch"
+      ],
+      "sourceEntries": [
+        {
+          "group": "插座开关",
+          "label": "开关"
+        }
+      ]
+    },
+    {
+      "label": "无线开关",
+      "categories": [
+        "remote-control"
+      ],
+      "sourceEntries": [
+        {
+          "group": "插座开关",
+          "label": "无线开关"
+        }
+      ]
+    },
+    {
+      "label": "插卡取电器",
+      "categories": [
+        "card-switch"
+      ],
+      "sourceEntries": [
+        {
+          "group": "插座开关",
+          "label": "插卡取电器"
+        }
+      ]
+    },
+    {
+      "label": "继电器控制模块",
+      "categories": [
+        "relay"
+      ],
+      "sourceEntries": [
+        {
+          "group": "插座开关",
+          "label": "继电器控制模块"
+        }
+      ]
+    },
+    {
+      "label": "控制面板",
+      "categories": [
+        "control-panel"
+      ],
+      "sourceEntries": [
+        {
+          "group": "插座开关",
+          "label": "控制面板"
+        }
+      ]
+    },
+    {
+      "label": "调光控制器",
+      "categories": [
+        "dimmer"
+      ],
+      "sourceEntries": [
+        {
+          "group": "插座开关",
+          "label": "调光控制器"
+        }
+      ]
+    },
+    {
+      "label": "集成灶",
+      "categories": [
+        "integrated-stove"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "集成灶"
+        }
+      ]
+    },
+    {
+      "label": "恒温酒柜",
+      "categories": [
+        "wine-tank"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "恒温酒柜"
+        }
+      ]
+    },
+    {
+      "label": "炒菜机",
+      "categories": [
+        "cooking-machine"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "炒菜机"
+        }
+      ]
+    },
+    {
+      "label": "凉霸",
+      "categories": [
+        "fan"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "凉霸"
+        }
+      ]
+    },
+    {
+      "label": "果蔬净化机",
+      "categories": [
+        "fruit-vegetable-purifier"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "果蔬净化机"
+        }
+      ]
+    },
+    {
+      "label": "软水机",
+      "categories": [
+        "water-softener"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "软水机"
+        }
+      ]
+    },
+    {
+      "label": "饮水机",
+      "categories": [
+        "water-dispenser"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "饮水机"
+        }
+      ]
+    },
+    {
+      "label": "空气炸锅",
+      "categories": [
+        "air-fryer"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "空气炸锅"
+        }
+      ]
+    },
+    {
+      "label": "多功能料理锅",
+      "categories": [
+        "multifunction-cooking-pot"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "多功能料理锅"
+        }
+      ]
+    },
+    {
+      "label": "冰箱",
+      "categories": [
+        "fridge"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "冰箱"
+        }
+      ]
+    },
+    {
+      "label": "微蒸烤炉",
+      "categories": [
+        "microwave-oven"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "微蒸烤炉"
+        }
+      ]
+    },
+    {
+      "label": "电热水壶",
+      "categories": [
+        "kettle"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "电热水壶"
+        }
+      ]
+    },
+    {
+      "label": "净水机",
+      "categories": [
+        "water-purifier"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "净水机"
+        }
+      ]
+    },
+    {
+      "label": "咖啡机",
+      "categories": [
+        "coffee-machine"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "咖啡机"
+        }
+      ]
+    },
+    {
+      "label": "电饭煲",
+      "categories": [
+        "cooker"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "电饭煲"
+        }
+      ]
+    },
+    {
+      "label": "抽油烟机",
+      "categories": [
+        "hood"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "抽油烟机"
+        }
+      ]
+    },
+    {
+      "label": "电磁炉",
+      "categories": [
+        "induction-cooker"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "电磁炉"
+        }
+      ]
+    },
+    {
+      "label": "压力锅",
+      "categories": [
+        "pressure-cooker"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "压力锅"
+        }
+      ]
+    },
+    {
+      "label": "洗碗机",
+      "categories": [
+        "dishwasher"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "洗碗机"
+        }
+      ]
+    },
+    {
+      "label": "榨汁机",
+      "categories": [
+        "juicer"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "榨汁机"
+        }
+      ]
+    },
+    {
+      "label": "蒸烤箱",
+      "categories": [
+        "oven"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "蒸烤箱"
+        }
+      ]
+    },
+    {
+      "label": "消毒柜",
+      "categories": [
+        "sterilizer"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "消毒柜"
+        }
+      ]
+    },
+    {
+      "label": "养生壶",
+      "categories": [
+        "health-pot"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "养生壶"
+        }
+      ]
+    },
+    {
+      "label": "厨房秤",
+      "categories": [
+        "kitchen-scale"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "厨房秤"
+        }
+      ]
+    },
+    {
+      "label": "热水器",
+      "categories": [
+        "water-heater"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "热水器"
+        },
+        {
+          "group": "卫浴",
+          "label": "热水器"
+        }
+      ]
+    },
+    {
+      "label": "暖奶器",
+      "categories": [
+        "baby-bottle-warmer"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "暖奶器"
+        }
+      ]
+    },
+    {
+      "label": "垃圾处理器",
+      "categories": [
+        "garbage-disposal"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "垃圾处理器"
+        }
+      ]
+    },
+    {
+      "label": "计时器",
+      "categories": [
+        "timer"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "计时器"
+        }
+      ]
+    },
+    {
+      "label": "制冰机",
+      "categories": [
+        "ice-maker"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "制冰机"
+        }
+      ]
+    },
+    {
+      "label": "电蒸锅",
+      "categories": [
+        "electric-steamer"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "电蒸锅"
+        }
+      ]
+    },
+    {
+      "label": "杯垫",
+      "categories": [],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "杯垫"
+        }
+      ]
+    },
+    {
+      "label": "壁挂炉",
+      "categories": [
+        "boiler"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "壁挂炉"
+        }
+      ]
+    },
+    {
+      "label": "茶吧机",
+      "categories": [
+        "teabar"
+      ],
+      "sourceEntries": [
+        {
+          "group": "厨房电器",
+          "label": "茶吧机"
+        }
+      ]
+    },
+    {
+      "label": "马桶（盖）",
+      "categories": [
+        "toilet"
+      ],
+      "sourceEntries": [
+        {
+          "group": "卫浴",
+          "label": "马桶（盖）"
+        }
+      ]
+    },
+    {
+      "label": "浴霸",
+      "categories": [
+        "bath-heater"
+      ],
+      "sourceEntries": [
+        {
+          "group": "卫浴",
+          "label": "浴霸"
+        }
+      ]
+    },
+    {
+      "label": "毛巾架",
+      "categories": [
+        "towel-rack"
+      ],
+      "sourceEntries": [
+        {
+          "group": "卫浴",
+          "label": "毛巾架"
+        }
+      ]
+    },
+    {
+      "label": "水龙头",
+      "categories": [
+        "water-faucet"
+      ],
+      "sourceEntries": [
+        {
+          "group": "卫浴",
+          "label": "水龙头"
+        }
+      ]
+    },
+    {
+      "label": "淋浴器",
+      "categories": [
+        "shower"
+      ],
+      "sourceEntries": [
+        {
+          "group": "卫浴",
+          "label": "淋浴器"
+        }
+      ]
+    },
+    {
+      "label": "智能床",
+      "categories": [
+        "bed"
+      ],
+      "sourceEntries": [
+        {
+          "group": "个护与起居",
+          "label": "智能床"
+        }
+      ]
+    },
+    {
+      "label": "智能床垫",
+      "categories": [
+        "mattress"
+      ],
+      "sourceEntries": [
+        {
+          "group": "个护与起居",
+          "label": "智能床垫"
+        }
+      ]
+    },
+    {
+      "label": "洁面仪",
+      "categories": [],
+      "sourceEntries": [
+        {
+          "group": "个护与起居",
+          "label": "洁面仪"
+        }
+      ]
+    },
+    {
+      "label": "美容仪",
+      "categories": [
+        "beauty-instrument"
+      ],
+      "sourceEntries": [
+        {
+          "group": "个护与起居",
+          "label": "美容仪"
+        }
+      ]
+    },
+    {
+      "label": "牙刷",
+      "categories": [
+        "toothbrush"
+      ],
+      "sourceEntries": [
+        {
+          "group": "个护与起居",
+          "label": "牙刷"
+        }
+      ]
+    },
+    {
+      "label": "干衣/鞋机",
+      "categories": [
+        "dryer"
+      ],
+      "sourceEntries": [
+        {
+          "group": "个护与起居",
+          "label": "干衣/鞋机"
+        }
+      ]
+    },
+    {
+      "label": "智能枕头",
+      "categories": [
+        "pillow"
+      ],
+      "sourceEntries": [
+        {
+          "group": "个护与起居",
+          "label": "智能枕头"
+        }
+      ]
+    },
+    {
+      "label": "智能镜",
+      "categories": [
+        "mirror"
+      ],
+      "sourceEntries": [
+        {
+          "group": "个护与起居",
+          "label": "智能镜"
+        }
+      ]
+    },
+    {
+      "label": "驱蚊器",
+      "categories": [
+        "mosquito-dispeller"
+      ],
+      "sourceEntries": [
+        {
+          "group": "个护与起居",
+          "label": "驱蚊器"
+        }
+      ]
+    },
+    {
+      "label": "电热毯",
+      "categories": [
+        "electric-blanket"
+      ],
+      "sourceEntries": [
+        {
+          "group": "个护与起居",
+          "label": "电热毯"
+        }
+      ]
+    },
+    {
+      "label": "开窗器",
+      "categories": [
+        "window-opener"
+      ],
+      "sourceEntries": [
+        {
+          "group": "个护与起居",
+          "label": "开窗器"
+        }
+      ]
+    },
+    {
+      "label": "窗帘电机",
+      "categories": [
+        "curtain"
+      ],
+      "sourceEntries": [
+        {
+          "group": "个护与起居",
+          "label": "窗帘电机"
+        }
+      ]
+    },
+    {
+      "label": "卷帘电机",
+      "categories": [
+        "roller-shutter"
+      ],
+      "sourceEntries": [
+        {
+          "group": "个护与起居",
+          "label": "卷帘电机"
+        }
+      ]
+    },
+    {
+      "label": "电子阀门",
+      "categories": [
+        "electronic-valve"
+      ],
+      "sourceEntries": [
+        {
+          "group": "个护与起居",
+          "label": "电子阀门"
+        }
+      ]
+    },
+    {
+      "label": "电机控制器",
+      "categories": [
+        "motor-controller"
+      ],
+      "sourceEntries": [
+        {
+          "group": "个护与起居",
+          "label": "电机控制器"
+        }
+      ]
+    },
+    {
+      "label": "沙发",
+      "categories": [
+        "sofa"
+      ],
+      "sourceEntries": [
+        {
+          "group": "个护与起居",
+          "label": "沙发"
+        }
+      ]
+    },
+    {
+      "label": "蒸汽眼罩",
+      "categories": [],
+      "sourceEntries": [
+        {
+          "group": "个护与起居",
+          "label": "蒸汽眼罩"
+        }
+      ]
+    },
+    {
+      "label": "剃须刀",
+      "categories": [
+        "shaver"
+      ],
+      "sourceEntries": [
+        {
+          "group": "个护与起居",
+          "label": "剃须刀"
+        }
+      ]
+    },
+    {
+      "label": "吹风机",
+      "categories": [
+        "hair-drier"
+      ],
+      "sourceEntries": [
+        {
+          "group": "个护与起居",
+          "label": "吹风机"
+        }
+      ]
+    },
+    {
+      "label": "冲牙器",
+      "categories": [
+        "oral-irrigator"
+      ],
+      "sourceEntries": [
+        {
+          "group": "个护与起居",
+          "label": "冲牙器"
+        }
+      ]
+    },
+    {
+      "label": "吸奶器",
+      "categories": [
+        "breast-pump"
+      ],
+      "sourceEntries": [
+        {
+          "group": "个护与起居",
+          "label": "吸奶器"
+        }
+      ]
+    },
+    {
+      "label": "智能床头柜",
+      "categories": [
+        "bedstand"
+      ],
+      "sourceEntries": [
+        {
+          "group": "个护与起居",
+          "label": "智能床头柜"
+        }
+      ]
+    },
+    {
+      "label": "冲奶器",
+      "categories": [],
+      "sourceEntries": [
+        {
+          "group": "个护与起居",
+          "label": "冲奶器"
+        }
+      ]
+    },
+    {
+      "label": "猫砂盆",
+      "categories": [
+        "cat-litter-box"
+      ],
+      "sourceEntries": [
+        {
+          "group": "宠物与植物",
+          "label": "猫砂盆"
+        }
+      ]
+    },
+    {
+      "label": "生态箱",
+      "categories": [],
+      "sourceEntries": [
+        {
+          "group": "宠物与植物",
+          "label": "生态箱"
+        }
+      ]
+    },
+    {
+      "label": "宠物喂食器",
+      "categories": [
+        "pet-feeder"
+      ],
+      "sourceEntries": [
+        {
+          "group": "宠物与植物",
+          "label": "宠物喂食器"
+        }
+      ]
+    },
+    {
+      "label": "宠物玩具",
+      "categories": [
+        "pet-toy"
+      ],
+      "sourceEntries": [
+        {
+          "group": "宠物与植物",
+          "label": "宠物玩具"
+        }
+      ]
+    },
+    {
+      "label": "杀菌灯",
+      "categories": [
+        "germicidal-lamp"
+      ],
+      "sourceEntries": [
+        {
+          "group": "宠物与植物",
+          "label": "杀菌灯"
+        }
+      ]
+    },
+    {
+      "label": "智能种植器",
+      "categories": [
+        "flowerpot"
+      ],
+      "sourceEntries": [
+        {
+          "group": "宠物与植物",
+          "label": "智能种植器"
+        }
+      ]
+    },
+    {
+      "label": "植物监测仪",
+      "categories": [
+        "plant-monitor"
+      ],
+      "sourceEntries": [
+        {
+          "group": "宠物与植物",
+          "label": "植物监测仪"
+        }
+      ]
+    },
+    {
+      "label": "宠物饮水机",
+      "categories": [
+        "pet-drinking-fountain"
+      ],
+      "sourceEntries": [
+        {
+          "group": "宠物与植物",
+          "label": "宠物饮水机"
+        }
+      ]
+    },
+    {
+      "label": "智能鱼缸",
+      "categories": [
+        "fish-tank"
+      ],
+      "sourceEntries": [
+        {
+          "group": "宠物与植物",
+          "label": "智能鱼缸"
+        }
+      ]
+    },
+    {
+      "label": "血压计",
+      "categories": [
+        "sphygmomanometer"
+      ],
+      "sourceEntries": [
+        {
+          "group": "运动健康",
+          "label": "血压计"
+        }
+      ]
+    },
+    {
+      "label": "手表",
+      "categories": [
+        "watch"
+      ],
+      "sourceEntries": [
+        {
+          "group": "运动健康",
+          "label": "手表"
+        }
+      ]
+    },
+    {
+      "label": "体重/体脂秤",
+      "categories": [
+        "scale"
+      ],
+      "sourceEntries": [
+        {
+          "group": "运动健康",
+          "label": "体重/体脂秤"
+        }
+      ]
+    },
+    {
+      "label": "体温计",
+      "categories": [
+        "thermometer"
+      ],
+      "sourceEntries": [
+        {
+          "group": "运动健康",
+          "label": "体温计"
+        }
+      ]
+    },
+    {
+      "label": "睡眠监测仪",
+      "categories": [
+        "sleep-monitor"
+      ],
+      "sourceEntries": [
+        {
+          "group": "运动健康",
+          "label": "睡眠监测仪"
+        }
+      ]
+    },
+    {
+      "label": "智能鞋",
+      "categories": [
+        "shoes"
+      ],
+      "sourceEntries": [
+        {
+          "group": "运动健康",
+          "label": "智能鞋"
+        }
+      ]
+    },
+    {
+      "label": "手环",
+      "categories": [
+        "bracelet"
+      ],
+      "sourceEntries": [
+        {
+          "group": "运动健康",
+          "label": "手环"
+        }
+      ]
+    },
+    {
+      "label": "智能水杯",
+      "categories": [
+        "cup"
+      ],
+      "sourceEntries": [
+        {
+          "group": "运动健康",
+          "label": "智能水杯"
+        }
+      ]
+    },
+    {
+      "label": "走步机",
+      "categories": [
+        "walking-pad"
+      ],
+      "sourceEntries": [
+        {
+          "group": "运动健康",
+          "label": "走步机"
+        }
+      ]
+    },
+    {
+      "label": "健身车",
+      "categories": [
+        "stationary-bicycle"
+      ],
+      "sourceEntries": [
+        {
+          "group": "运动健康",
+          "label": "健身车"
+        }
+      ]
+    },
+    {
+      "label": "跑步机",
+      "categories": [
+        "treadmill"
+      ],
+      "sourceEntries": [
+        {
+          "group": "运动健康",
+          "label": "跑步机"
+        }
+      ]
+    },
+    {
+      "label": "艾灸器",
+      "categories": [
+        "moxibustion"
+      ],
+      "sourceEntries": [
+        {
+          "group": "运动健康",
+          "label": "艾灸器"
+        }
+      ]
+    },
+    {
+      "label": "足浴器",
+      "categories": [
+        "foot-bath"
+      ],
+      "sourceEntries": [
+        {
+          "group": "运动健康",
+          "label": "足浴器"
+        }
+      ]
+    },
+    {
+      "label": "暖宫带",
+      "categories": [],
+      "sourceEntries": [
+        {
+          "group": "运动健康",
+          "label": "暖宫带"
+        }
+      ]
+    },
+    {
+      "label": "按摩器/椅",
+      "categories": [
+        "massager",
+        "massage"
+      ],
+      "sourceEntries": [
+        {
+          "group": "运动健康",
+          "label": "按摩器/椅"
+        }
+      ]
+    },
+    {
+      "label": "跳绳",
+      "categories": [
+        "jump-rope"
+      ],
+      "sourceEntries": [
+        {
+          "group": "运动健康",
+          "label": "跳绳"
+        }
+      ]
+    },
+    {
+      "label": "分析仪",
+      "categories": [
+        "analyzer"
+      ],
+      "sourceEntries": [
+        {
+          "group": "运动健康",
+          "label": "分析仪"
+        }
+      ]
+    },
+    {
+      "label": "健腹轮",
+      "categories": [
+        "ab-wheel"
+      ],
+      "sourceEntries": [
+        {
+          "group": "运动健康",
+          "label": "健腹轮"
+        }
+      ]
+    },
+    {
+      "label": "哑铃",
+      "categories": [
+        "dumbbell"
+      ],
+      "sourceEntries": [
+        {
+          "group": "运动健康",
+          "label": "哑铃"
+        }
+      ]
+    },
+    {
+      "label": "车载音箱",
+      "categories": [],
+      "sourceEntries": [
+        {
+          "group": "出行车载",
+          "label": "车载音箱"
+        }
+      ]
+    },
+    {
+      "label": "平衡车",
+      "categories": [],
+      "sourceEntries": [
+        {
+          "group": "出行车载",
+          "label": "平衡车"
+        }
+      ]
+    },
+    {
+      "label": "旅行箱",
+      "categories": [
+        "suitcase"
+      ],
+      "sourceEntries": [
+        {
+          "group": "出行车载",
+          "label": "旅行箱"
+        }
+      ]
+    },
+    {
+      "label": "自行车",
+      "categories": [
+        "bike"
+      ],
+      "sourceEntries": [
+        {
+          "group": "出行车载",
+          "label": "自行车"
+        }
+      ]
+    },
+    {
+      "label": "车载空气净化器",
+      "categories": [
+        "car-air-purifier"
+      ],
+      "sourceEntries": [
+        {
+          "group": "出行车载",
+          "label": "车载空气净化器"
+        }
+      ]
+    },
+    {
+      "label": "行车记录仪",
+      "categories": [
+        "driving-recorder"
+      ],
+      "sourceEntries": [
+        {
+          "group": "出行车载",
+          "label": "行车记录仪"
+        }
+      ]
+    },
+    {
+      "label": "滑板车",
+      "categories": [
+        "scooter"
+      ],
+      "sourceEntries": [
+        {
+          "group": "出行车载",
+          "label": "滑板车"
+        }
+      ]
+    },
+    {
+      "label": "智能后视镜",
+      "categories": [
+        "rearview-mirror"
+      ],
+      "sourceEntries": [
+        {
+          "group": "出行车载",
+          "label": "智能后视镜"
+        }
+      ]
+    },
+    {
+      "label": "平视显示器",
+      "categories": [
+        "head-up-display"
+      ],
+      "sourceEntries": [
+        {
+          "group": "出行车载",
+          "label": "平视显示器"
+        }
+      ]
+    },
+    {
+      "label": "储能电源",
+      "categories": [
+        "electric-power"
+      ],
+      "sourceEntries": [
+        {
+          "group": "出行车载",
+          "label": "储能电源"
+        }
+      ]
+    },
+    {
+      "label": "汽车氛围灯",
+      "categories": [
+        "carlight"
+      ],
+      "sourceEntries": [
+        {
+          "group": "出行车载",
+          "label": "汽车氛围灯"
+        }
+      ]
+    },
+    {
+      "label": "安全座椅",
+      "categories": [
+        "safety-seat"
+      ],
+      "sourceEntries": [
+        {
+          "group": "出行车载",
+          "label": "安全座椅"
+        }
+      ]
+    },
+    {
+      "label": "充电桩",
+      "categories": [
+        "charging-pile"
+      ],
+      "sourceEntries": [
+        {
+          "group": "出行车载",
+          "label": "充电桩"
+        }
+      ]
+    },
+    {
+      "label": "智能桌",
+      "categories": [
+        "table"
+      ],
+      "sourceEntries": [
+        {
+          "group": "办公学习",
+          "label": "智能桌"
+        }
+      ]
+    },
+    {
+      "label": "办公椅",
+      "categories": [
+        "chair"
+      ],
+      "sourceEntries": [
+        {
+          "group": "办公学习",
+          "label": "办公椅"
+        }
+      ]
+    },
+    {
+      "label": "打印机",
+      "categories": [
+        "printer"
+      ],
+      "sourceEntries": [
+        {
+          "group": "办公学习",
+          "label": "打印机"
+        }
+      ]
+    },
+    {
+      "label": "笔记本",
+      "categories": [
+        "laptop"
+      ],
+      "sourceEntries": [
+        {
+          "group": "办公学习",
+          "label": "笔记本"
+        }
+      ]
+    },
+    {
+      "label": "家居工具",
+      "categories": [
+        "rangefinder"
+      ],
+      "sourceEntries": [
+        {
+          "group": "其他",
+          "label": "家居工具"
+        }
+      ]
+    },
+    {
+      "label": "泵",
+      "categories": [
+        "pump"
+      ],
+      "sourceEntries": [
+        {
+          "group": "其他",
+          "label": "泵"
+        }
+      ]
+    },
+    {
+      "label": "红外遥控",
+      "categories": [
+        "ir-remote-control"
+      ],
+      "sourceEntries": [
+        {
+          "group": "其他",
+          "label": "红外遥控"
+        },
+        {
+          "group": "其他",
+          "label": "红外遥控器"
+        }
+      ]
+    },
+    {
+      "label": "配件",
+      "categories": [
+        "fitting"
+      ],
+      "sourceEntries": [
+        {
+          "group": "其他",
+          "label": "配件"
+        }
+      ]
+    },
+    {
+      "label": "其他",
+      "categories": [
+        "other"
+      ],
+      "sourceEntries": [
+        {
+          "group": "其他",
+          "label": "其他"
+        }
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "group": "清洁电器",
+      "label": "洗衣/烘干机",
+      "categories": [
+        "washer",
+        "clothes-dryer"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "洗衣/烘干机"
+    },
+    {
+      "group": "清洁电器",
+      "label": "扫地机器人",
+      "categories": [
+        "vacuum"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "扫地机器人"
+    },
+    {
+      "group": "清洁电器",
+      "label": "晾衣架",
+      "categories": [
+        "airer"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "晾衣架"
+    },
+    {
+      "group": "清洁电器",
+      "label": "擦地机",
+      "categories": [
+        "mopping-machine"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "擦地机"
+    },
+    {
+      "group": "清洁电器",
+      "label": "吸尘器",
+      "categories": [
+        "vacuum-cleaner"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "吸尘器"
+    },
+    {
+      "group": "安防",
+      "label": "摄像机",
+      "categories": [
+        "camera"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "摄像机"
+    },
+    {
+      "group": "安防",
+      "label": "猫眼门铃",
+      "categories": [
+        "video-doorbell",
+        "doorbell"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "猫眼门铃"
+    },
+    {
+      "group": "安防",
+      "label": "门锁",
+      "categories": [
+        "lock"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "门锁"
+    },
+    {
+      "group": "安防",
+      "label": "保险箱",
+      "categories": [
+        "safe-box"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "保险箱"
+    },
+    {
+      "group": "安防",
+      "label": "报警器",
+      "categories": [
+        "alertor"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "报警器"
+    },
+    {
+      "group": "安防",
+      "label": "智能门",
+      "categories": [
+        "door"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "智能门"
+    },
+    {
+      "group": "安防",
+      "label": "防丢器",
+      "categories": [
+        "tracker"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "防丢器"
+    },
+    {
+      "group": "安防",
+      "label": "对讲机",
+      "categories": [
+        "intercom"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "对讲机"
+    },
+    {
+      "group": "传感器",
+      "label": "温湿度传感器",
+      "categories": [
+        "temperature-humidity-sensor"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "温湿度传感器"
+    },
+    {
+      "group": "传感器",
+      "label": "人体传感器",
+      "categories": [
+        "motion-sensor"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "人体传感器"
+    },
+    {
+      "group": "传感器",
+      "label": "烟雾传感器",
+      "categories": [
+        "smoke-sensor"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "烟雾传感器"
+    },
+    {
+      "group": "传感器",
+      "label": "燃气传感器",
+      "categories": [
+        "gas-sensor"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "燃气传感器"
+    },
+    {
+      "group": "传感器",
+      "label": "门窗传感器",
+      "categories": [
+        "magnet-sensor"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "门窗传感器"
+    },
+    {
+      "group": "传感器",
+      "label": "水浸传感器",
+      "categories": [
+        "submersion-sensor"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "水浸传感器"
+    },
+    {
+      "group": "传感器",
+      "label": "光照度传感器",
+      "categories": [
+        "illumination-sensor"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "光照度传感器"
+    },
+    {
+      "group": "传感器",
+      "label": "有人无人传感器",
+      "categories": [
+        "occupancy-sensor"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "有人无人传感器"
+    },
+    {
+      "group": "传感器",
+      "label": "气象传感器",
+      "categories": [
+        "weather-sensor"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "气象传感器"
+    },
+    {
+      "group": "传感器",
+      "label": "动静传感器",
+      "categories": [
+        "vibration-sensor"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "动静传感器"
+    },
+    {
+      "group": "传感器",
+      "label": "压力传感器",
+      "categories": [
+        "pressure-sensor"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "压力传感器"
+    },
+    {
+      "group": "影音娱乐",
+      "label": "音箱",
+      "categories": [
+        "speaker"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "音箱"
+    },
+    {
+      "group": "影音娱乐",
+      "label": "蓝牙音箱",
+      "categories": [
+        "ble-speaker"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "蓝牙音箱"
+    },
+    {
+      "group": "影音娱乐",
+      "label": "投影仪",
+      "categories": [
+        "projector"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "投影仪"
+    },
+    {
+      "group": "影音娱乐",
+      "label": "电视/盒子",
+      "categories": [
+        "television",
+        "stb",
+        "tv-box"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "电视/盒子"
+    },
+    {
+      "group": "影音娱乐",
+      "label": "故事机",
+      "categories": [
+        "story-machine"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "故事机"
+    },
+    {
+      "group": "影音娱乐",
+      "label": "收音机",
+      "categories": [
+        "radio"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "收音机"
+    },
+    {
+      "group": "影音娱乐",
+      "label": "机器人",
+      "categories": [
+        "robot"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "机器人"
+    },
+    {
+      "group": "影音娱乐",
+      "label": "时钟",
+      "categories": [
+        "clock"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "时钟"
+    },
+    {
+      "group": "影音娱乐",
+      "label": "雕刻机",
+      "categories": [
+        "engraving-machine"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "雕刻机"
+    },
+    {
+      "group": "影音娱乐",
+      "label": "手写板",
+      "categories": [],
+      "mapping": "unresolved",
+      "note": "No independent released category was established; retain a read-only fallback until model metadata proves a mapping.",
+      "canonicalType": "手写板"
+    },
+    {
+      "group": "影音娱乐",
+      "label": "麦克风",
+      "categories": [
+        "microphone"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "麦克风"
+    },
+    {
+      "group": "影音娱乐",
+      "label": "音视频功放",
+      "categories": [
+        "audio-video-amplifier"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "音视频功放"
+    },
+    {
+      "group": "影音娱乐",
+      "label": "散热器",
+      "categories": [
+        "cooler"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "散热器"
+    },
+    {
+      "group": "影音娱乐",
+      "label": "显示器",
+      "categories": [],
+      "mapping": "unresolved",
+      "note": "No independent released category was established; retain a read-only fallback until model metadata proves a mapping.",
+      "canonicalType": "显示器"
+    },
+    {
+      "group": "环境电器",
+      "label": "新风机",
+      "categories": [
+        "air-fresh"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "新风机"
+    },
+    {
+      "group": "环境电器",
+      "label": "加湿器",
+      "categories": [
+        "humidifier"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "加湿器"
+    },
+    {
+      "group": "环境电器",
+      "label": "空调插座",
+      "categories": [
+        "air-condition-outlet"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "空调插座"
+    },
+    {
+      "group": "环境电器",
+      "label": "电暖器",
+      "categories": [
+        "heater"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "电暖器"
+    },
+    {
+      "group": "环境电器",
+      "label": "香薰机",
+      "categories": [
+        "diffuser"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "香薰机"
+    },
+    {
+      "group": "环境电器",
+      "label": "空调",
+      "categories": [
+        "air-conditioner"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "空调"
+    },
+    {
+      "group": "环境电器",
+      "label": "风扇",
+      "categories": [
+        "fan"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "风扇"
+    },
+    {
+      "group": "环境电器",
+      "label": "温控器",
+      "categories": [
+        "thermostat"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "温控器"
+    },
+    {
+      "group": "环境电器",
+      "label": "空气检测仪",
+      "categories": [
+        "air-monitor"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "空气检测仪"
+    },
+    {
+      "group": "环境电器",
+      "label": "空气净化器",
+      "categories": [
+        "air-purifier"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "空气净化器"
+    },
+    {
+      "group": "环境电器",
+      "label": "除湿机",
+      "categories": [
+        "dehumidifier"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "除湿机"
+    },
+    {
+      "group": "环境电器",
+      "label": "风扇灯",
+      "categories": [
+        "ceiling-fan"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "风扇灯"
+    },
+    {
+      "group": "环境电器",
+      "label": "水质检测",
+      "categories": [
+        "watermon"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "水质检测"
+    },
+    {
+      "group": "路由网关",
+      "label": "路由器",
+      "categories": [
+        "router"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "路由器"
+    },
+    {
+      "group": "路由网关",
+      "label": "网关",
+      "categories": [
+        "gateway"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "网关"
+    },
+    {
+      "group": "路由网关",
+      "label": "Wi-Fi信号放大器",
+      "categories": [
+        "repeater"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "Wi-Fi信号放大器"
+    },
+    {
+      "group": "路由网关",
+      "label": "智能存储",
+      "categories": [
+        "nas"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "智能存储"
+    },
+    {
+      "group": "照明",
+      "label": "灯带",
+      "categories": [
+        "light"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "灯带"
+    },
+    {
+      "group": "照明",
+      "label": "台灯",
+      "categories": [
+        "light"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "台灯"
+    },
+    {
+      "group": "照明",
+      "label": "床头灯",
+      "categories": [
+        "light"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "床头灯"
+    },
+    {
+      "group": "照明",
+      "label": "吸顶灯",
+      "categories": [
+        "light"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "吸顶灯"
+    },
+    {
+      "group": "照明",
+      "label": "筒射灯",
+      "categories": [
+        "light"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "筒射灯"
+    },
+    {
+      "group": "照明",
+      "label": "吊灯",
+      "categories": [
+        "light"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "吊灯"
+    },
+    {
+      "group": "照明",
+      "label": "灯泡",
+      "categories": [
+        "light"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "灯泡"
+    },
+    {
+      "group": "照明",
+      "label": "夜灯",
+      "categories": [
+        "night-light",
+        "light"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "夜灯"
+    },
+    {
+      "group": "照明",
+      "label": "灯组",
+      "categories": [
+        "light"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "灯组"
+    },
+    {
+      "group": "照明",
+      "label": "轨道灯",
+      "categories": [
+        "light"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "轨道灯"
+    },
+    {
+      "group": "照明",
+      "label": "风扇灯",
+      "categories": [
+        "ceiling-fan"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "风扇灯"
+    },
+    {
+      "group": "照明",
+      "label": "其他灯",
+      "categories": [
+        "light"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "其他灯"
+    },
+    {
+      "group": "照明",
+      "label": "LED点阵屏",
+      "categories": [],
+      "mapping": "unresolved",
+      "note": "No independent released category was established; retain a read-only fallback until model metadata proves a mapping.",
+      "canonicalType": "LED点阵屏"
+    },
+    {
+      "group": "照明",
+      "label": "显示器挂灯",
+      "categories": [
+        "light"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "显示器挂灯"
+    },
+    {
+      "group": "照明",
+      "label": "立式学习灯",
+      "categories": [
+        "light"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "立式学习灯"
+    },
+    {
+      "group": "照明",
+      "label": "面板灯",
+      "categories": [
+        "light"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "面板灯"
+    },
+    {
+      "group": "照明",
+      "label": "落地灯",
+      "categories": [
+        "light"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "落地灯"
+    },
+    {
+      "group": "插座开关",
+      "label": "插座/插排",
+      "categories": [
+        "outlet"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "插座/插排"
+    },
+    {
+      "group": "插座开关",
+      "label": "开关",
+      "categories": [
+        "switch"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "开关"
+    },
+    {
+      "group": "插座开关",
+      "label": "无线开关",
+      "categories": [
+        "remote-control"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "无线开关"
+    },
+    {
+      "group": "插座开关",
+      "label": "插卡取电器",
+      "categories": [
+        "card-switch"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "插卡取电器"
+    },
+    {
+      "group": "插座开关",
+      "label": "继电器控制模块",
+      "categories": [
+        "relay"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "继电器控制模块"
+    },
+    {
+      "group": "插座开关",
+      "label": "控制面板",
+      "categories": [
+        "control-panel"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "控制面板"
+    },
+    {
+      "group": "插座开关",
+      "label": "调光控制器",
+      "categories": [
+        "dimmer"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "调光控制器"
+    },
+    {
+      "group": "厨房电器",
+      "label": "集成灶",
+      "categories": [
+        "integrated-stove"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "集成灶"
+    },
+    {
+      "group": "厨房电器",
+      "label": "恒温酒柜",
+      "categories": [
+        "wine-tank"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "恒温酒柜"
+    },
+    {
+      "group": "厨房电器",
+      "label": "炒菜机",
+      "categories": [
+        "cooking-machine"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "炒菜机"
+    },
+    {
+      "group": "厨房电器",
+      "label": "凉霸",
+      "categories": [
+        "fan"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "凉霸"
+    },
+    {
+      "group": "厨房电器",
+      "label": "果蔬净化机",
+      "categories": [
+        "fruit-vegetable-purifier"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "果蔬净化机"
+    },
+    {
+      "group": "厨房电器",
+      "label": "软水机",
+      "categories": [
+        "water-softener"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "软水机"
+    },
+    {
+      "group": "厨房电器",
+      "label": "饮水机",
+      "categories": [
+        "water-dispenser"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "饮水机"
+    },
+    {
+      "group": "厨房电器",
+      "label": "空气炸锅",
+      "categories": [
+        "air-fryer"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "空气炸锅"
+    },
+    {
+      "group": "厨房电器",
+      "label": "多功能料理锅",
+      "categories": [
+        "multifunction-cooking-pot"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "多功能料理锅"
+    },
+    {
+      "group": "厨房电器",
+      "label": "冰箱",
+      "categories": [
+        "fridge"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "冰箱"
+    },
+    {
+      "group": "厨房电器",
+      "label": "微蒸烤炉",
+      "categories": [
+        "microwave-oven"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "微蒸烤炉"
+    },
+    {
+      "group": "厨房电器",
+      "label": "电热水壶",
+      "categories": [
+        "kettle"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "电热水壶"
+    },
+    {
+      "group": "厨房电器",
+      "label": "净水机",
+      "categories": [
+        "water-purifier"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "净水机"
+    },
+    {
+      "group": "厨房电器",
+      "label": "咖啡机",
+      "categories": [
+        "coffee-machine"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "咖啡机"
+    },
+    {
+      "group": "厨房电器",
+      "label": "电饭煲",
+      "categories": [
+        "cooker"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "电饭煲"
+    },
+    {
+      "group": "厨房电器",
+      "label": "抽油烟机",
+      "categories": [
+        "hood"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "抽油烟机"
+    },
+    {
+      "group": "厨房电器",
+      "label": "电磁炉",
+      "categories": [
+        "induction-cooker"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "电磁炉"
+    },
+    {
+      "group": "厨房电器",
+      "label": "压力锅",
+      "categories": [
+        "pressure-cooker"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "压力锅"
+    },
+    {
+      "group": "厨房电器",
+      "label": "洗碗机",
+      "categories": [
+        "dishwasher"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "洗碗机"
+    },
+    {
+      "group": "厨房电器",
+      "label": "榨汁机",
+      "categories": [
+        "juicer"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "榨汁机"
+    },
+    {
+      "group": "厨房电器",
+      "label": "蒸烤箱",
+      "categories": [
+        "oven"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "蒸烤箱"
+    },
+    {
+      "group": "厨房电器",
+      "label": "消毒柜",
+      "categories": [
+        "sterilizer"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "消毒柜"
+    },
+    {
+      "group": "厨房电器",
+      "label": "养生壶",
+      "categories": [
+        "health-pot"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "养生壶"
+    },
+    {
+      "group": "厨房电器",
+      "label": "厨房秤",
+      "categories": [
+        "kitchen-scale"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "厨房秤"
+    },
+    {
+      "group": "厨房电器",
+      "label": "热水器",
+      "categories": [
+        "water-heater"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "热水器"
+    },
+    {
+      "group": "厨房电器",
+      "label": "暖奶器",
+      "categories": [
+        "baby-bottle-warmer"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "暖奶器"
+    },
+    {
+      "group": "厨房电器",
+      "label": "垃圾处理器",
+      "categories": [
+        "garbage-disposal"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "垃圾处理器"
+    },
+    {
+      "group": "厨房电器",
+      "label": "计时器",
+      "categories": [
+        "timer"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "计时器"
+    },
+    {
+      "group": "厨房电器",
+      "label": "制冰机",
+      "categories": [
+        "ice-maker"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "制冰机"
+    },
+    {
+      "group": "厨房电器",
+      "label": "电蒸锅",
+      "categories": [
+        "electric-steamer"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "电蒸锅"
+    },
+    {
+      "group": "厨房电器",
+      "label": "杯垫",
+      "categories": [],
+      "mapping": "unresolved",
+      "note": "No independent released category was established; retain a read-only fallback until model metadata proves a mapping.",
+      "canonicalType": "杯垫"
+    },
+    {
+      "group": "厨房电器",
+      "label": "壁挂炉",
+      "categories": [
+        "boiler"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "壁挂炉"
+    },
+    {
+      "group": "厨房电器",
+      "label": "茶吧机",
+      "categories": [
+        "teabar"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "茶吧机"
+    },
+    {
+      "group": "卫浴",
+      "label": "马桶（盖）",
+      "categories": [
+        "toilet"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "马桶（盖）"
+    },
+    {
+      "group": "卫浴",
+      "label": "浴霸",
+      "categories": [
+        "bath-heater"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "浴霸"
+    },
+    {
+      "group": "卫浴",
+      "label": "毛巾架",
+      "categories": [
+        "towel-rack"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "毛巾架"
+    },
+    {
+      "group": "卫浴",
+      "label": "水龙头",
+      "categories": [
+        "water-faucet"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "水龙头"
+    },
+    {
+      "group": "卫浴",
+      "label": "淋浴器",
+      "categories": [
+        "shower"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "淋浴器"
+    },
+    {
+      "group": "卫浴",
+      "label": "热水器",
+      "categories": [
+        "water-heater"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "热水器"
+    },
+    {
+      "group": "个护与起居",
+      "label": "智能床",
+      "categories": [
+        "bed"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "智能床"
+    },
+    {
+      "group": "个护与起居",
+      "label": "智能床垫",
+      "categories": [
+        "mattress"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "智能床垫"
+    },
+    {
+      "group": "个护与起居",
+      "label": "洁面仪",
+      "categories": [],
+      "mapping": "unresolved",
+      "note": "No independent released category was established; retain a read-only fallback until model metadata proves a mapping.",
+      "canonicalType": "洁面仪"
+    },
+    {
+      "group": "个护与起居",
+      "label": "美容仪",
+      "categories": [
+        "beauty-instrument"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "美容仪"
+    },
+    {
+      "group": "个护与起居",
+      "label": "牙刷",
+      "categories": [
+        "toothbrush"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "牙刷"
+    },
+    {
+      "group": "个护与起居",
+      "label": "干衣/鞋机",
+      "categories": [
+        "dryer"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "干衣/鞋机"
+    },
+    {
+      "group": "个护与起居",
+      "label": "智能枕头",
+      "categories": [
+        "pillow"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "智能枕头"
+    },
+    {
+      "group": "个护与起居",
+      "label": "智能镜",
+      "categories": [
+        "mirror"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "智能镜"
+    },
+    {
+      "group": "个护与起居",
+      "label": "驱蚊器",
+      "categories": [
+        "mosquito-dispeller"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "驱蚊器"
+    },
+    {
+      "group": "个护与起居",
+      "label": "电热毯",
+      "categories": [
+        "electric-blanket"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "电热毯"
+    },
+    {
+      "group": "个护与起居",
+      "label": "开窗器",
+      "categories": [
+        "window-opener"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "开窗器"
+    },
+    {
+      "group": "个护与起居",
+      "label": "窗帘电机",
+      "categories": [
+        "curtain"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "窗帘电机"
+    },
+    {
+      "group": "个护与起居",
+      "label": "卷帘电机",
+      "categories": [
+        "roller-shutter"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "卷帘电机"
+    },
+    {
+      "group": "个护与起居",
+      "label": "电子阀门",
+      "categories": [
+        "electronic-valve"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "电子阀门"
+    },
+    {
+      "group": "个护与起居",
+      "label": "电机控制器",
+      "categories": [
+        "motor-controller"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "电机控制器"
+    },
+    {
+      "group": "个护与起居",
+      "label": "沙发",
+      "categories": [
+        "sofa"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "沙发"
+    },
+    {
+      "group": "个护与起居",
+      "label": "蒸汽眼罩",
+      "categories": [],
+      "mapping": "unresolved",
+      "note": "No independent released category was established; retain a read-only fallback until model metadata proves a mapping.",
+      "canonicalType": "蒸汽眼罩"
+    },
+    {
+      "group": "个护与起居",
+      "label": "剃须刀",
+      "categories": [
+        "shaver"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "剃须刀"
+    },
+    {
+      "group": "个护与起居",
+      "label": "吹风机",
+      "categories": [
+        "hair-drier"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "吹风机"
+    },
+    {
+      "group": "个护与起居",
+      "label": "冲牙器",
+      "categories": [
+        "oral-irrigator"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "冲牙器"
+    },
+    {
+      "group": "个护与起居",
+      "label": "吸奶器",
+      "categories": [
+        "breast-pump"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "吸奶器"
+    },
+    {
+      "group": "个护与起居",
+      "label": "智能床头柜",
+      "categories": [
+        "bedstand"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "智能床头柜"
+    },
+    {
+      "group": "个护与起居",
+      "label": "冲奶器",
+      "categories": [],
+      "mapping": "unresolved",
+      "note": "No independent released category was established; retain a read-only fallback until model metadata proves a mapping.",
+      "canonicalType": "冲奶器"
+    },
+    {
+      "group": "宠物与植物",
+      "label": "猫砂盆",
+      "categories": [
+        "cat-litter-box"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "猫砂盆"
+    },
+    {
+      "group": "宠物与植物",
+      "label": "生态箱",
+      "categories": [],
+      "mapping": "unresolved",
+      "note": "No independent released category was established; retain a read-only fallback until model metadata proves a mapping.",
+      "canonicalType": "生态箱"
+    },
+    {
+      "group": "宠物与植物",
+      "label": "宠物喂食器",
+      "categories": [
+        "pet-feeder"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "宠物喂食器"
+    },
+    {
+      "group": "宠物与植物",
+      "label": "宠物玩具",
+      "categories": [
+        "pet-toy"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "宠物玩具"
+    },
+    {
+      "group": "宠物与植物",
+      "label": "杀菌灯",
+      "categories": [
+        "germicidal-lamp"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "杀菌灯"
+    },
+    {
+      "group": "宠物与植物",
+      "label": "智能种植器",
+      "categories": [
+        "flowerpot"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "智能种植器"
+    },
+    {
+      "group": "宠物与植物",
+      "label": "植物监测仪",
+      "categories": [
+        "plant-monitor"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "植物监测仪"
+    },
+    {
+      "group": "宠物与植物",
+      "label": "宠物饮水机",
+      "categories": [
+        "pet-drinking-fountain"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "宠物饮水机"
+    },
+    {
+      "group": "宠物与植物",
+      "label": "智能鱼缸",
+      "categories": [
+        "fish-tank"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "智能鱼缸"
+    },
+    {
+      "group": "运动健康",
+      "label": "血压计",
+      "categories": [
+        "sphygmomanometer"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "血压计"
+    },
+    {
+      "group": "运动健康",
+      "label": "手表",
+      "categories": [
+        "watch"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "手表"
+    },
+    {
+      "group": "运动健康",
+      "label": "体重/体脂秤",
+      "categories": [
+        "scale"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "体重/体脂秤"
+    },
+    {
+      "group": "运动健康",
+      "label": "体温计",
+      "categories": [
+        "thermometer"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "体温计"
+    },
+    {
+      "group": "运动健康",
+      "label": "睡眠监测仪",
+      "categories": [
+        "sleep-monitor"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "睡眠监测仪"
+    },
+    {
+      "group": "运动健康",
+      "label": "智能鞋",
+      "categories": [
+        "shoes"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "智能鞋"
+    },
+    {
+      "group": "运动健康",
+      "label": "手环",
+      "categories": [
+        "bracelet"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "手环"
+    },
+    {
+      "group": "运动健康",
+      "label": "智能水杯",
+      "categories": [
+        "cup"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "智能水杯"
+    },
+    {
+      "group": "运动健康",
+      "label": "走步机",
+      "categories": [
+        "walking-pad"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "走步机"
+    },
+    {
+      "group": "运动健康",
+      "label": "健身车",
+      "categories": [
+        "stationary-bicycle"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "健身车"
+    },
+    {
+      "group": "运动健康",
+      "label": "跑步机",
+      "categories": [
+        "treadmill"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "跑步机"
+    },
+    {
+      "group": "运动健康",
+      "label": "艾灸器",
+      "categories": [
+        "moxibustion"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "艾灸器"
+    },
+    {
+      "group": "运动健康",
+      "label": "足浴器",
+      "categories": [
+        "foot-bath"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "足浴器"
+    },
+    {
+      "group": "运动健康",
+      "label": "暖宫带",
+      "categories": [],
+      "mapping": "unresolved",
+      "note": "No independent released category was established; retain a read-only fallback until model metadata proves a mapping.",
+      "canonicalType": "暖宫带"
+    },
+    {
+      "group": "运动健康",
+      "label": "按摩器/椅",
+      "categories": [
+        "massager",
+        "massage"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "按摩器/椅"
+    },
+    {
+      "group": "运动健康",
+      "label": "跳绳",
+      "categories": [
+        "jump-rope"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "跳绳"
+    },
+    {
+      "group": "运动健康",
+      "label": "分析仪",
+      "categories": [
+        "analyzer"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "分析仪"
+    },
+    {
+      "group": "运动健康",
+      "label": "健腹轮",
+      "categories": [
+        "ab-wheel"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "健腹轮"
+    },
+    {
+      "group": "运动健康",
+      "label": "哑铃",
+      "categories": [
+        "dumbbell"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "哑铃"
+    },
+    {
+      "group": "出行车载",
+      "label": "车载音箱",
+      "categories": [],
+      "mapping": "unresolved",
+      "note": "No independent released category was established; retain a read-only fallback until model metadata proves a mapping.",
+      "canonicalType": "车载音箱"
+    },
+    {
+      "group": "出行车载",
+      "label": "平衡车",
+      "categories": [],
+      "mapping": "unresolved",
+      "note": "No independent released category was established; retain a read-only fallback until model metadata proves a mapping.",
+      "canonicalType": "平衡车"
+    },
+    {
+      "group": "出行车载",
+      "label": "旅行箱",
+      "categories": [
+        "suitcase"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "旅行箱"
+    },
+    {
+      "group": "出行车载",
+      "label": "自行车",
+      "categories": [
+        "bike"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "自行车"
+    },
+    {
+      "group": "出行车载",
+      "label": "车载空气净化器",
+      "categories": [
+        "car-air-purifier"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "车载空气净化器"
+    },
+    {
+      "group": "出行车载",
+      "label": "行车记录仪",
+      "categories": [
+        "driving-recorder"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "行车记录仪"
+    },
+    {
+      "group": "出行车载",
+      "label": "滑板车",
+      "categories": [
+        "scooter"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "滑板车"
+    },
+    {
+      "group": "出行车载",
+      "label": "智能后视镜",
+      "categories": [
+        "rearview-mirror"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "智能后视镜"
+    },
+    {
+      "group": "出行车载",
+      "label": "平视显示器",
+      "categories": [
+        "head-up-display"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "平视显示器"
+    },
+    {
+      "group": "出行车载",
+      "label": "储能电源",
+      "categories": [
+        "electric-power"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "储能电源"
+    },
+    {
+      "group": "出行车载",
+      "label": "汽车氛围灯",
+      "categories": [
+        "carlight"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "汽车氛围灯"
+    },
+    {
+      "group": "出行车载",
+      "label": "安全座椅",
+      "categories": [
+        "safety-seat"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "安全座椅"
+    },
+    {
+      "group": "出行车载",
+      "label": "充电桩",
+      "categories": [
+        "charging-pile"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "充电桩"
+    },
+    {
+      "group": "办公学习",
+      "label": "智能桌",
+      "categories": [
+        "table"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "智能桌"
+    },
+    {
+      "group": "办公学习",
+      "label": "办公椅",
+      "categories": [
+        "chair"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "办公椅"
+    },
+    {
+      "group": "办公学习",
+      "label": "打印机",
+      "categories": [
+        "printer"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "打印机"
+    },
+    {
+      "group": "办公学习",
+      "label": "笔记本",
+      "categories": [
+        "laptop"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "笔记本"
+    },
+    {
+      "group": "其他",
+      "label": "家居工具",
+      "categories": [
+        "rangefinder"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "家居工具"
+    },
+    {
+      "group": "其他",
+      "label": "泵",
+      "categories": [
+        "pump"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "泵"
+    },
+    {
+      "group": "其他",
+      "label": "红外遥控",
+      "categories": [
+        "ir-remote-control"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "红外遥控"
+    },
+    {
+      "group": "其他",
+      "label": "红外遥控器",
+      "categories": [
+        "ir-remote-control"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "红外遥控"
+    },
+    {
+      "group": "其他",
+      "label": "配件",
+      "categories": [
+        "fitting"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "配件"
+    },
+    {
+      "group": "其他",
+      "label": "其他",
+      "categories": [
+        "other"
+      ],
+      "mapping": "public-category",
+      "note": "Only the actual descriptor chooses a device UI; catalog labels do not authorize controls.",
+      "canonicalType": "其他"
+    }
+  ]
+}

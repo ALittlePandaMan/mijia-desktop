@@ -1,0 +1,6417 @@
+{
+  "generatedAt": "2026-11-06T13:10:54.979Z",
+  "passed": true,
+  "verificationScope": "Public real model structure and daily capability binding only; no physical device claims.",
+  "policySha256": "ff48024ff3d68d27d4a7b3077b17cea569c3ec4a190f6f783ab3bce1c3eb1e62",
+  "resolverSha256": "3d6ebb6565910554df5c1372c10c8d3dba3a7981e66ec46211d14853357857c5",
+  "models": 74,
+  "categories": [
+    {
+      "category": "air-condition-outlet",
+      "models": 2,
+      "standard": 2,
+      "controls": 10,
+      "readings": 6,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "air-conditioner",
+      "models": 2,
+      "standard": 2,
+      "controls": 23,
+      "readings": 7,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "air-fresh",
+      "models": 2,
+      "standard": 2,
+      "controls": 5,
+      "readings": 8,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "air-fryer",
+      "models": 2,
+      "standard": 2,
+      "controls": 4,
+      "readings": 6,
+      "actions": 6,
+      "limitedModels": []
+    },
+    {
+      "category": "air-purifier",
+      "models": 2,
+      "standard": 2,
+      "controls": 11,
+      "readings": 5,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "airer",
+      "models": 2,
+      "standard": 2,
+      "controls": 7,
+      "readings": 4,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "bath-heater",
+      "models": 2,
+      "standard": 2,
+      "controls": 6,
+      "readings": 3,
+      "actions": 1,
+      "limitedModels": []
+    },
+    {
+      "category": "camera",
+      "models": 2,
+      "standard": 2,
+      "controls": 2,
+      "readings": 0,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "ceiling-fan",
+      "models": 2,
+      "standard": 2,
+      "controls": 6,
+      "readings": 0,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "control-panel",
+      "models": 2,
+      "standard": 2,
+      "controls": 5,
+      "readings": 0,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "curtain",
+      "models": 2,
+      "standard": 2,
+      "controls": 3,
+      "readings": 6,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "dehumidifier",
+      "models": 2,
+      "standard": 2,
+      "controls": 9,
+      "readings": 6,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "fan",
+      "models": 2,
+      "standard": 2,
+      "controls": 10,
+      "readings": 0,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "fridge",
+      "models": 2,
+      "standard": 2,
+      "controls": 10,
+      "readings": 8,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "gas-sensor",
+      "models": 2,
+      "standard": 2,
+      "controls": 0,
+      "readings": 4,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "humidifier",
+      "models": 2,
+      "standard": 1,
+      "controls": 1,
+      "readings": 2,
+      "actions": 0,
+      "limitedModels": [
+        "als1.humidifier.js03"
+      ]
+    },
+    {
+      "category": "ir-remote-control",
+      "models": 1,
+      "standard": 0,
+      "controls": 0,
+      "readings": 0,
+      "actions": 0,
+      "limitedModels": [
+        "bymiot.ir.wlv1"
+      ]
+    },
+    {
+      "category": "light",
+      "models": 2,
+      "standard": 2,
+      "controls": 9,
+      "readings": 0,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "magnet-sensor",
+      "models": 2,
+      "standard": 2,
+      "controls": 0,
+      "readings": 3,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "occupancy-sensor",
+      "models": 2,
+      "standard": 2,
+      "controls": 0,
+      "readings": 105,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "outlet",
+      "models": 2,
+      "standard": 2,
+      "controls": 2,
+      "readings": 5,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "projector",
+      "models": 2,
+      "standard": 2,
+      "controls": 6,
+      "readings": 4,
+      "actions": 6,
+      "limitedModels": []
+    },
+    {
+      "category": "relay",
+      "models": 2,
+      "standard": 2,
+      "controls": 18,
+      "readings": 0,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "roller-shutter",
+      "models": 1,
+      "standard": 0,
+      "controls": 0,
+      "readings": 0,
+      "actions": 0,
+      "limitedModels": [
+        "shuse.roller.sr01"
+      ]
+    },
+    {
+      "category": "router",
+      "models": 2,
+      "standard": 2,
+      "controls": 0,
+      "readings": 6,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "scale",
+      "models": 2,
+      "standard": 0,
+      "controls": 0,
+      "readings": 0,
+      "actions": 0,
+      "limitedModels": [
+        "xiaomi.scales.ms110",
+        "yunmai.scales.ms104"
+      ]
+    },
+    {
+      "category": "smoke-sensor",
+      "models": 2,
+      "standard": 1,
+      "controls": 0,
+      "readings": 1,
+      "actions": 0,
+      "limitedModels": [
+        "lumi.sensor_smoke.acn01"
+      ]
+    },
+    {
+      "category": "speaker",
+      "models": 2,
+      "standard": 2,
+      "controls": 3,
+      "readings": 1,
+      "actions": 6,
+      "limitedModels": []
+    },
+    {
+      "category": "sphygmomanometer",
+      "models": 1,
+      "standard": 1,
+      "controls": 0,
+      "readings": 1,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "stb",
+      "models": 2,
+      "standard": 0,
+      "controls": 0,
+      "readings": 0,
+      "actions": 0,
+      "limitedModels": [
+        "coolki.stb.yk0001",
+        "heiman.stb.rc1"
+      ]
+    },
+    {
+      "category": "switch",
+      "models": 2,
+      "standard": 2,
+      "controls": 4,
+      "readings": 0,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "television",
+      "models": 2,
+      "standard": 1,
+      "controls": 2,
+      "readings": 0,
+      "actions": 1,
+      "limitedModels": [
+        "orvibo.tv.ltv1"
+      ]
+    },
+    {
+      "category": "temperature-humidity-sensor",
+      "models": 3,
+      "standard": 3,
+      "controls": 0,
+      "readings": 9,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "vacuum",
+      "models": 2,
+      "standard": 2,
+      "controls": 0,
+      "readings": 8,
+      "actions": 6,
+      "limitedModels": []
+    },
+    {
+      "category": "video-doorbell",
+      "models": 2,
+      "standard": 2,
+      "controls": 0,
+      "readings": 2,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "washer",
+      "models": 2,
+      "standard": 2,
+      "controls": 4,
+      "readings": 5,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "water-dispenser",
+      "models": 2,
+      "standard": 2,
+      "controls": 3,
+      "readings": 10,
+      "actions": 0,
+      "limitedModels": []
+    },
+    {
+      "category": "water-purifier",
+      "models": 2,
+      "standard": 2,
+      "controls": 3,
+      "readings": 10,
+      "actions": 0,
+      "limitedModels": []
+    }
+  ],
+  "issues": [],
+  "records": [
+    {
+      "model": "cuco.acpartner.ap2a",
+      "category": "air-condition-outlet",
+      "file": "air-condition-outlet--cuco.acpartner.ap2a.json",
+      "type": "urn:miot-spec-v2:device:air-condition-outlet:0000A045:cuco-ap2a:1",
+      "sha256": "5f545a474424a2481dcdf79fb7a83cdfd47ac3da131b15628c192cc4350a283c",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "air-condition-outlet",
+        "profile": "standard",
+        "family": "climate",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "air-condition-outlet.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "air-condition-outlet",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.on",
+            "siid": 3,
+            "piid": 1,
+            "service": "air-conditioner",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.mode",
+            "siid": 3,
+            "piid": 2,
+            "service": "air-conditioner",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.fault",
+            "siid": 3,
+            "piid": 3,
+            "service": "air-conditioner",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.target-temperature",
+            "siid": 3,
+            "piid": 4,
+            "service": "air-conditioner",
+            "name": "target-temperature",
+            "label": "目标温度",
+            "kind": "range",
+            "unit": "celsius"
+          },
+          {
+            "role": "fan-control.fan-level",
+            "siid": 4,
+            "piid": 2,
+            "service": "fan-control",
+            "name": "fan-level",
+            "label": "风速",
+            "kind": "enum",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "ir-setup",
+            "reason": "红外配码与型号配置不在桌面端日常功能范围；仅使用已有配置下公开的基础空调能力。"
+          }
+        ],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "lumi.acpartner.mcn04",
+      "category": "air-condition-outlet",
+      "file": "air-condition-outlet--lumi.acpartner.mcn04.json",
+      "type": "urn:miot-spec-v2:device:air-condition-outlet:0000A045:lumi-mcn04:1",
+      "sha256": "3c6435d7dd6881c59fb46b3a9dcb8b334f361f71f6cc3511442e9176301631a0",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "air-condition-outlet",
+        "profile": "standard",
+        "family": "climate",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "air-conditioner.on",
+            "siid": 3,
+            "piid": 1,
+            "service": "air-conditioner",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.mode",
+            "siid": 3,
+            "piid": 2,
+            "service": "air-conditioner",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.fault",
+            "siid": 3,
+            "piid": 3,
+            "service": "air-conditioner",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.target-temperature",
+            "siid": 3,
+            "piid": 4,
+            "service": "air-conditioner",
+            "name": "target-temperature",
+            "label": "目标温度",
+            "kind": "range",
+            "unit": "celsius"
+          },
+          {
+            "role": "fan-control.fan-level",
+            "siid": 4,
+            "piid": 2,
+            "service": "fan-control",
+            "name": "fan-level",
+            "label": "风速",
+            "kind": "enum",
+            "unit": "none"
+          },
+          {
+            "role": "fan-control.vertical-swing",
+            "siid": 4,
+            "piid": 4,
+            "service": "fan-control",
+            "name": "vertical-swing",
+            "label": "上下摇头",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "power-consumption.power-consumption",
+            "siid": 7,
+            "piid": 1,
+            "service": "power-consumption",
+            "name": "power-consumption",
+            "label": "用电量",
+            "kind": "reading",
+            "unit": "none"
+          },
+          {
+            "role": "power-consumption.electric-power",
+            "siid": 7,
+            "piid": 2,
+            "service": "power-consumption",
+            "name": "electric-power",
+            "label": "功率",
+            "kind": "reading",
+            "unit": "watt"
+          },
+          {
+            "role": "power-consumption.power-consumption",
+            "siid": 7,
+            "piid": 3,
+            "service": "power-consumption",
+            "name": "power-consumption",
+            "label": "用电量",
+            "kind": "reading",
+            "unit": "none"
+          },
+          {
+            "role": "power-consumption.electric-power",
+            "siid": 7,
+            "piid": 4,
+            "service": "power-consumption",
+            "name": "electric-power",
+            "label": "功率",
+            "kind": "reading",
+            "unit": "watt"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "ir-setup",
+            "reason": "红外配码与型号配置不在桌面端日常功能范围；仅使用已有配置下公开的基础空调能力。"
+          }
+        ],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "viomi.airc.m1",
+      "category": "air-conditioner",
+      "file": "air-conditioner--viomi.airc.m1.json",
+      "type": "urn:miot-spec-v2:device:air-conditioner:0000A004:viomi-m1:1",
+      "sha256": "94162a7428fe46af0c55273e4d079a51dc4be549ad2011b8f83c18df989150fe",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "air-conditioner",
+        "profile": "standard",
+        "family": "climate",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "air-conditioner.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "air-conditioner",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.mode",
+            "siid": 2,
+            "piid": 2,
+            "service": "air-conditioner",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": "none"
+          },
+          {
+            "role": "air-conditioner.fault",
+            "siid": 2,
+            "piid": 3,
+            "service": "air-conditioner",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": "none"
+          },
+          {
+            "role": "air-conditioner.target-temperature",
+            "siid": 2,
+            "piid": 4,
+            "service": "air-conditioner",
+            "name": "target-temperature",
+            "label": "目标温度",
+            "kind": "range",
+            "unit": "celsius"
+          },
+          {
+            "role": "air-conditioner.eco",
+            "siid": 2,
+            "piid": 7,
+            "service": "air-conditioner",
+            "name": "eco",
+            "label": "节能模式",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.sleep-mode",
+            "siid": 2,
+            "piid": 13,
+            "service": "air-conditioner",
+            "name": "sleep-mode",
+            "label": "睡眠模式",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "fan-control.fan-level",
+            "siid": 3,
+            "piid": 2,
+            "service": "fan-control",
+            "name": "fan-level",
+            "label": "风速",
+            "kind": "enum",
+            "unit": "none"
+          },
+          {
+            "role": "fan-control.vertical-swing",
+            "siid": 3,
+            "piid": 4,
+            "service": "fan-control",
+            "name": "vertical-swing",
+            "label": "上下摇头",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "environment.temperature",
+            "siid": 4,
+            "piid": 7,
+            "service": "environment",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          },
+          {
+            "role": "indicator-light.on",
+            "siid": 6,
+            "piid": 1,
+            "service": "indicator-light",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "xiaomi.airc.1r04r1",
+      "category": "air-conditioner",
+      "file": "air-conditioner--xiaomi.airc.1r04r1.json",
+      "type": "urn:miot-spec-v2:device:air-conditioner:0000A004:xiaomi-1r04r1:2",
+      "sha256": "b2f42d39b245340d9e6ac09ec4d5a29d2d602c26507161ab2a7efc50e0c38035",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "air-conditioner",
+        "profile": "standard",
+        "family": "climate",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "air-conditioner.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "air-conditioner",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.mode",
+            "siid": 2,
+            "piid": 2,
+            "service": "air-conditioner",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.fault",
+            "siid": 2,
+            "piid": 3,
+            "service": "air-conditioner",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.target-temperature",
+            "siid": 2,
+            "piid": 4,
+            "service": "air-conditioner",
+            "name": "target-temperature",
+            "label": "目标温度",
+            "kind": "range",
+            "unit": "celsius"
+          },
+          {
+            "role": "air-conditioner.eco",
+            "siid": 2,
+            "piid": 7,
+            "service": "air-conditioner",
+            "name": "eco",
+            "label": "节能模式",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.heater",
+            "siid": 2,
+            "piid": 9,
+            "service": "air-conditioner",
+            "name": "heater",
+            "label": "辅助加热",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.dryer",
+            "siid": 2,
+            "piid": 10,
+            "service": "air-conditioner",
+            "name": "dryer",
+            "label": "干燥",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.sleep-mode",
+            "siid": 2,
+            "piid": 11,
+            "service": "air-conditioner",
+            "name": "sleep-mode",
+            "label": "睡眠模式",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "fan-control.fan-level",
+            "siid": 3,
+            "piid": 2,
+            "service": "fan-control",
+            "name": "fan-level",
+            "label": "风速",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "fan-control.horizontal-swing",
+            "siid": 3,
+            "piid": 3,
+            "service": "fan-control",
+            "name": "horizontal-swing",
+            "label": "左右摇头",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "fan-control.vertical-swing",
+            "siid": 3,
+            "piid": 4,
+            "service": "fan-control",
+            "name": "vertical-swing",
+            "label": "上下摇头",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "environment.temperature",
+            "siid": 4,
+            "piid": 7,
+            "service": "environment",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          },
+          {
+            "role": "alarm.alarm",
+            "siid": 5,
+            "piid": 1,
+            "service": "alarm",
+            "name": "alarm",
+            "label": "提示音",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "power-consumption.power-consumption",
+            "siid": 20,
+            "piid": 1,
+            "service": "power-consumption",
+            "name": "power-consumption",
+            "label": "用电量",
+            "kind": "reading",
+            "unit": "kWh"
+          },
+          {
+            "role": "indicator-light.on",
+            "siid": 36,
+            "piid": 1,
+            "service": "indicator-light",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "indicator-light.brightness",
+            "siid": 36,
+            "piid": 2,
+            "service": "indicator-light",
+            "name": "brightness",
+            "label": "亮度",
+            "kind": "enum",
+            "unit": "percentage"
+          },
+          {
+            "role": "filter.filter-used-time",
+            "siid": 38,
+            "piid": 2,
+            "service": "filter",
+            "name": "filter-used-time",
+            "label": "滤芯使用时间",
+            "kind": "reading",
+            "unit": "days"
+          },
+          {
+            "role": "filter.filter-life-level",
+            "siid": 24,
+            "piid": 1,
+            "service": "filter",
+            "name": "filter-life-level",
+            "label": "滤芯剩余",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "fan-control.horizontal-swing",
+            "siid": 42,
+            "piid": 2,
+            "service": "fan-control",
+            "name": "horizontal-swing",
+            "label": "左右摇头",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "fan-control.vertical-swing",
+            "siid": 42,
+            "piid": 1,
+            "service": "fan-control",
+            "name": "vertical-swing",
+            "label": "上下摇头",
+            "kind": "toggle",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "dmaker.airfresh.a1",
+      "category": "air-fresh",
+      "file": "air-fresh--dmaker.airfresh.a1.json",
+      "type": "urn:miot-spec-v2:device:air-fresh:0000A012:dmaker-a1:3",
+      "sha256": "4e6d25f89350f4cc70f7fd7795bbff480d721d5918afde144418e8bdb061035c",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "fresh-air",
+        "profile": "standard",
+        "family": "other",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "air-fresh.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "air-fresh",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "air-fresh.mode",
+            "siid": 2,
+            "piid": 2,
+            "service": "air-fresh",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "environment.pm2.5-density",
+            "siid": 3,
+            "piid": 1,
+            "service": "environment",
+            "name": "pm2.5-density",
+            "label": "PM2.5",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "environment.co2-density",
+            "siid": 3,
+            "piid": 2,
+            "service": "environment",
+            "name": "co2-density",
+            "label": "二氧化碳",
+            "kind": "reading",
+            "unit": "ppm"
+          },
+          {
+            "role": "filter.filter-life-level",
+            "siid": 4,
+            "piid": 1,
+            "service": "filter",
+            "name": "filter-life-level",
+            "label": "滤芯剩余",
+            "kind": "reading",
+            "unit": "percentage"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "zhimi.airfresh.va2",
+      "category": "air-fresh",
+      "file": "air-fresh--zhimi.airfresh.va2.json",
+      "type": "urn:miot-spec-v2:device:air-fresh:0000A012:zhimi-va2:2",
+      "sha256": "7f447c42647f28a5785df758ca5c0f962b1f9404045d0f0183eb348f779856c9",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "fresh-air",
+        "profile": "standard",
+        "family": "other",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "air-fresh.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "air-fresh",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "air-fresh.fan-level",
+            "siid": 2,
+            "piid": 2,
+            "service": "air-fresh",
+            "name": "fan-level",
+            "label": "风速",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "air-fresh.mode",
+            "siid": 2,
+            "piid": 3,
+            "service": "air-fresh",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "environment.relative-humidity",
+            "siid": 3,
+            "piid": 1,
+            "service": "environment",
+            "name": "relative-humidity",
+            "label": "湿度",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "environment.pm2.5-density",
+            "siid": 3,
+            "piid": 2,
+            "service": "environment",
+            "name": "pm2.5-density",
+            "label": "PM2.5",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "environment.temperature",
+            "siid": 3,
+            "piid": 3,
+            "service": "environment",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          },
+          {
+            "role": "environment.co2-density",
+            "siid": 3,
+            "piid": 4,
+            "service": "environment",
+            "name": "co2-density",
+            "label": "二氧化碳",
+            "kind": "reading",
+            "unit": "ppm"
+          },
+          {
+            "role": "filter.filter-used-time",
+            "siid": 4,
+            "piid": 1,
+            "service": "filter",
+            "name": "filter-used-time",
+            "label": "滤芯使用时间",
+            "kind": "reading",
+            "unit": "hours"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "careli.fryer.maf01",
+      "category": "air-fryer",
+      "file": "air-fryer--careli.fryer.maf01.json",
+      "type": "urn:miot-spec-v2:device:air-fryer:0000A0A4:careli-maf01:1",
+      "sha256": "fb456d8f7473a5cd6b0f28cc6c35938284fb0255bc71b0361bccee71f5429751",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "air-fryer",
+        "profile": "standard",
+        "family": "cooking",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "air-fryer.status",
+            "siid": 2,
+            "piid": 1,
+            "service": "air-fryer",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": "none"
+          },
+          {
+            "role": "air-fryer.fault",
+            "siid": 2,
+            "piid": 2,
+            "service": "air-fryer",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": "none"
+          },
+          {
+            "role": "air-fryer.target-time",
+            "siid": 2,
+            "piid": 3,
+            "service": "air-fryer",
+            "name": "target-time",
+            "label": "烹饪时间",
+            "kind": "range",
+            "unit": "minutes"
+          },
+          {
+            "role": "air-fryer.target-temperature",
+            "siid": 2,
+            "piid": 4,
+            "service": "air-fryer",
+            "name": "target-temperature",
+            "label": "目标温度",
+            "kind": "range",
+            "unit": "celsius"
+          },
+          {
+            "role": "air-fryer.left-time",
+            "siid": 2,
+            "piid": 5,
+            "service": "air-fryer",
+            "name": "left-time",
+            "label": "剩余时间",
+            "kind": "reading",
+            "unit": "minutes"
+          }
+        ],
+        "actions": [
+          {
+            "role": "air-fryer.start-cook",
+            "siid": 2,
+            "aiid": 1,
+            "service": "air-fryer",
+            "name": "start-cook",
+            "label": "开始"
+          },
+          {
+            "role": "air-fryer.cancel-cooking",
+            "siid": 2,
+            "aiid": 2,
+            "service": "air-fryer",
+            "name": "cancel-cooking",
+            "label": "停止"
+          },
+          {
+            "role": "air-fryer.pause",
+            "siid": 2,
+            "aiid": 3,
+            "service": "air-fryer",
+            "name": "pause",
+            "label": "暂停"
+          }
+        ],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "viomi.fryer.v2",
+      "category": "air-fryer",
+      "file": "air-fryer--viomi.fryer.v2.json",
+      "type": "urn:miot-spec-v2:device:air-fryer:0000A0A4:viomi-v2:1",
+      "sha256": "f5d33ed1f6577acc89ee9e6cd59ee42d87e4fc5e05898e0544b76b3e1bb6c699",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "air-fryer",
+        "profile": "standard",
+        "family": "cooking",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "air-fryer.status",
+            "siid": 2,
+            "piid": 1,
+            "service": "air-fryer",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "air-fryer.fault",
+            "siid": 2,
+            "piid": 2,
+            "service": "air-fryer",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "air-fryer.target-time",
+            "siid": 2,
+            "piid": 3,
+            "service": "air-fryer",
+            "name": "target-time",
+            "label": "烹饪时间",
+            "kind": "range",
+            "unit": "minutes"
+          },
+          {
+            "role": "air-fryer.target-temperature",
+            "siid": 2,
+            "piid": 4,
+            "service": "air-fryer",
+            "name": "target-temperature",
+            "label": "目标温度",
+            "kind": "range",
+            "unit": "celsius"
+          },
+          {
+            "role": "air-fryer.left-time",
+            "siid": 2,
+            "piid": 7,
+            "service": "air-fryer",
+            "name": "left-time",
+            "label": "剩余时间",
+            "kind": "reading",
+            "unit": "minutes"
+          }
+        ],
+        "actions": [
+          {
+            "role": "air-fryer.start-cook",
+            "siid": 2,
+            "aiid": 1,
+            "service": "air-fryer",
+            "name": "start-cook",
+            "label": "开始"
+          },
+          {
+            "role": "air-fryer.pause",
+            "siid": 2,
+            "aiid": 2,
+            "service": "air-fryer",
+            "name": "pause",
+            "label": "暂停"
+          },
+          {
+            "role": "air-fryer.cancel-cooking",
+            "siid": 2,
+            "aiid": 3,
+            "service": "air-fryer",
+            "name": "cancel-cooking",
+            "label": "停止"
+          }
+        ],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "1245.airpurifier.dl01",
+      "category": "air-purifier",
+      "file": "air-purifier--1245.airpurifier.dl01.json",
+      "type": "urn:miot-spec-v2:device:air-purifier:0000A007:1245-dl01:1",
+      "sha256": "7ab0db0bc841106e88b9a7f23fb9eb47755cec54558104398881f170045e635e",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "air-purifier",
+        "profile": "standard",
+        "family": "climate",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "air-purifier.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "air-purifier",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "air-purifier.fan-level",
+            "siid": 2,
+            "piid": 2,
+            "service": "air-purifier",
+            "name": "fan-level",
+            "label": "风速",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "indicator-light.on",
+            "siid": 3,
+            "piid": 1,
+            "service": "indicator-light",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "physical-controls-locked.physical-controls-locked",
+            "siid": 4,
+            "piid": 1,
+            "service": "physical-controls-locked",
+            "name": "physical-controls-locked",
+            "label": "童锁",
+            "kind": "toggle",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "zhimi.airpurifier.ma2",
+      "category": "air-purifier",
+      "file": "air-purifier--zhimi.airpurifier.ma2.json",
+      "type": "urn:miot-spec-v2:device:air-purifier:0000A007:zhimi-ma2:1",
+      "sha256": "bc8ca40e3337ec68ae84448ffc86ec7c40a72dc35690cd5d64de9e0cefb64b21",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "air-purifier",
+        "profile": "standard",
+        "family": "climate",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "air-purifier.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "air-purifier",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "air-purifier.fan-level",
+            "siid": 2,
+            "piid": 2,
+            "service": "air-purifier",
+            "name": "fan-level",
+            "label": "风速",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "air-purifier.mode",
+            "siid": 2,
+            "piid": 3,
+            "service": "air-purifier",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "environment.relative-humidity",
+            "siid": 3,
+            "piid": 1,
+            "service": "environment",
+            "name": "relative-humidity",
+            "label": "湿度",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "environment.pm2.5-density",
+            "siid": 3,
+            "piid": 2,
+            "service": "environment",
+            "name": "pm2.5-density",
+            "label": "PM2.5",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "environment.temperature",
+            "siid": 3,
+            "piid": 3,
+            "service": "environment",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          },
+          {
+            "role": "filter.filter-life-level",
+            "siid": 4,
+            "piid": 1,
+            "service": "filter",
+            "name": "filter-life-level",
+            "label": "滤芯剩余",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "filter.filter-used-time",
+            "siid": 4,
+            "piid": 2,
+            "service": "filter",
+            "name": "filter-used-time",
+            "label": "滤芯使用时间",
+            "kind": "reading",
+            "unit": "hours"
+          },
+          {
+            "role": "indicator-light.on",
+            "siid": 5,
+            "piid": 1,
+            "service": "indicator-light",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "alarm.alarm",
+            "siid": 6,
+            "piid": 1,
+            "service": "alarm",
+            "name": "alarm",
+            "label": "提示音",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "physical-controls-locked.physical-controls-locked",
+            "siid": 7,
+            "piid": 1,
+            "service": "physical-controls-locked",
+            "name": "physical-controls-locked",
+            "label": "童锁",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "air-purifier-favorite.favorite-fan-level",
+            "siid": 8,
+            "piid": 1,
+            "service": "air-purifier-favorite",
+            "name": "favorite-fan-level",
+            "label": "喜爱风速",
+            "kind": "range",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "dooya.airer.2m",
+      "category": "airer",
+      "file": "airer--dooya.airer.2m.json",
+      "type": "urn:miot-spec-v2:device:airer:0000A00D:dooya-2m:1:0000C831",
+      "sha256": "fa918a26f7db01e619dce3acdd003531fa1b4f1730a8e0212adee2534fa64f5f",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "airer",
+        "profile": "standard",
+        "family": "cleaning",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "airer.fault",
+            "siid": 2,
+            "piid": 1,
+            "service": "airer",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "airer.motor-control",
+            "siid": 2,
+            "piid": 2,
+            "service": "airer",
+            "name": "motor-control",
+            "label": "开合控制",
+            "kind": "command",
+            "unit": null
+          },
+          {
+            "role": "airer.status",
+            "siid": 2,
+            "piid": 3,
+            "service": "airer",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "light.on",
+            "siid": 3,
+            "piid": 1,
+            "service": "light",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "light.brightness",
+            "siid": 3,
+            "piid": 3,
+            "service": "light",
+            "name": "brightness",
+            "label": "亮度",
+            "kind": "range",
+            "unit": "percentage"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "night-schedule",
+            "reason": "此型号的定时夜灯需插件专用协议，当前仅提供设备描述中已公开的日常控制。"
+          }
+        ],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "hyd.airer.1s1",
+      "category": "airer",
+      "file": "airer--hyd.airer.1s1.json",
+      "type": "urn:miot-spec-v2:device:airer:0000A00D:hyd-1s1:1",
+      "sha256": "004cd2f7a04639e89ce64ad3ac1e2910b5bc5ad36896a2bb4319a0b63f5c5293",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "airer",
+        "profile": "standard",
+        "family": "cleaning",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "airer.fault",
+            "siid": 2,
+            "piid": 1,
+            "service": "airer",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "airer.motor-control",
+            "siid": 2,
+            "piid": 2,
+            "service": "airer",
+            "name": "motor-control",
+            "label": "开合控制",
+            "kind": "command",
+            "unit": null
+          },
+          {
+            "role": "airer.status",
+            "siid": 2,
+            "piid": 4,
+            "service": "airer",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "airer.target-position",
+            "siid": 2,
+            "piid": 6,
+            "service": "airer",
+            "name": "target-position",
+            "label": "目标位置",
+            "kind": "range",
+            "unit": "percentage"
+          },
+          {
+            "role": "light.on",
+            "siid": 3,
+            "piid": 1,
+            "service": "light",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "light.brightness",
+            "siid": 3,
+            "piid": 3,
+            "service": "light",
+            "name": "brightness",
+            "label": "亮度",
+            "kind": "range",
+            "unit": "percentage"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "night-schedule",
+            "reason": "此型号的定时夜灯需插件专用协议，当前仅提供设备描述中已公开的日常控制。"
+          }
+        ],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "aupu.bhf_light.360ap",
+      "category": "bath-heater",
+      "file": "bath-heater--aupu.bhf_light.360ap.json",
+      "type": "urn:miot-spec-v2:device:bath-heater:0000A028:aupu-360ap:1",
+      "sha256": "17f730fd51a6aa63749887aff2ffdb874234a5f1ee6ab4f18a969564a422f0eb",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "bath-heater",
+        "profile": "standard",
+        "family": "water",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "light.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "light",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "ptc-bath-heater.mode",
+            "siid": 4,
+            "piid": 2,
+            "service": "ptc-bath-heater",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "yeelink.bhf_light.v1",
+      "category": "bath-heater",
+      "file": "bath-heater--yeelink.bhf_light.v1.json",
+      "type": "urn:miot-spec-v2:device:bath-heater:0000A028:yeelink-v1:1",
+      "sha256": "6a00a6b06824a44f3aa967b1daa767458a304d1d668338c00835eaec2a4e1e9f",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "bath-heater",
+        "profile": "standard",
+        "family": "water",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "light.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "light",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "light.brightness",
+            "siid": 2,
+            "piid": 2,
+            "service": "light",
+            "name": "brightness",
+            "label": "亮度",
+            "kind": "range",
+            "unit": "percentage"
+          },
+          {
+            "role": "light.color-temperature",
+            "siid": 2,
+            "piid": 3,
+            "service": "light",
+            "name": "color-temperature",
+            "label": "色温",
+            "kind": "range",
+            "unit": "kelvin"
+          },
+          {
+            "role": "ptc-bath-heater.mode",
+            "siid": 3,
+            "piid": 1,
+            "service": "ptc-bath-heater",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "ptc-bath-heater.temperature",
+            "siid": 3,
+            "piid": 2,
+            "service": "ptc-bath-heater",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          },
+          {
+            "role": "environment.temperature",
+            "siid": 5,
+            "piid": 1,
+            "service": "environment",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          },
+          {
+            "role": "environment.relative-humidity",
+            "siid": 5,
+            "piid": 2,
+            "service": "environment",
+            "name": "relative-humidity",
+            "label": "湿度",
+            "kind": "reading",
+            "unit": "percentage"
+          }
+        ],
+        "actions": [
+          {
+            "role": "ptc-bath-heater.stop-working",
+            "siid": 3,
+            "aiid": 1,
+            "service": "ptc-bath-heater",
+            "name": "stop-working",
+            "label": "停止"
+          }
+        ],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "chuangmi.camera.019e04",
+      "category": "camera",
+      "file": "camera--chuangmi.camera.019e04.json",
+      "type": "urn:miot-spec-v2:device:camera:0000A01C:chuangmi-019e04:1",
+      "sha256": "97e7288ac0472d8c1ef28b237c092f715f6e4ffa5b25ba4a2bb08b9ce0dace92",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "camera",
+        "profile": "standard",
+        "family": "security",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "camera-control.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "camera-control",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "lumi.camera.aq1",
+      "category": "camera",
+      "file": "camera--lumi.camera.aq1.json",
+      "type": "urn:miot-spec-v2:device:camera:0000A01C:lumi-aq1:1",
+      "sha256": "660d18cfcb259da14710f6b9b47a28a6e79a1a0bec854fc28d1ad661de77cbf6",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "camera",
+        "profile": "standard",
+        "family": "security",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "camera-control.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "camera-control",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "opple.ven_fan.liba",
+      "category": "ceiling-fan",
+      "file": "ceiling-fan--opple.ven_fan.liba.json",
+      "type": "urn:miot-spec-v2:device:ceiling-fan:0000A059:opple-liba:1",
+      "sha256": "fe1e827b6d796a8bdaedff42e72499203c26bf838b1e792ca494ee7fd18169d9",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "ceiling-fan",
+        "profile": "standard",
+        "family": "climate",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "ceiling-fan.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "ceiling-fan",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "ceiling-fan.fan-level",
+            "siid": 2,
+            "piid": 2,
+            "service": "ceiling-fan",
+            "name": "fan-level",
+            "label": "风速",
+            "kind": "range",
+            "unit": null
+          },
+          {
+            "role": "ceiling-fan.mode",
+            "siid": 2,
+            "piid": 4,
+            "service": "ceiling-fan",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "yeelink.ven_fan.vf1",
+      "category": "ceiling-fan",
+      "file": "ceiling-fan--yeelink.ven_fan.vf1.json",
+      "type": "urn:miot-spec-v2:device:ceiling-fan:0000A059:yeelink-vf1:1",
+      "sha256": "76d992074520d4b2fe7776be0d54bdf0229df1b3463bfc9b07b0575202385e91",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "ceiling-fan",
+        "profile": "standard",
+        "family": "climate",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "ceiling-fan.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "ceiling-fan",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "ceiling-fan.fan-level",
+            "siid": 2,
+            "piid": 2,
+            "service": "ceiling-fan",
+            "name": "fan-level",
+            "label": "风速",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "ceiling-fan.horizontal-swing",
+            "siid": 2,
+            "piid": 3,
+            "service": "ceiling-fan",
+            "name": "horizontal-swing",
+            "label": "左右摇头",
+            "kind": "toggle",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "xiaomi.controller.oh10p",
+      "category": "control-panel",
+      "file": "control-panel--xiaomi.controller.oh10p.json",
+      "type": "urn:miot-spec-v2:device:control-panel:0000A099:xiaomi-oh10p:1",
+      "sha256": "01d43df3ad53cd6cce5ba426dd0dad71ec268863a85f9f30451cb45e05e06c47",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "switch",
+        "profile": "standard",
+        "family": "switch",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "switch.on",
+            "siid": 10,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "switch.on",
+            "siid": 11,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "switch.on",
+            "siid": 12,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "yeelink.controller.v2",
+      "category": "control-panel",
+      "file": "control-panel--yeelink.controller.v2.json",
+      "type": "urn:miot-spec-v2:device:control-panel:0000A099:yeelink-v2:2",
+      "sha256": "56fb0d82d4c92700ed9c82bad466e70680874a951d3c15dbb743d31762367edb",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "switch",
+        "profile": "standard",
+        "family": "switch",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "switch.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": "none"
+          },
+          {
+            "role": "switch.on",
+            "siid": 3,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": "none"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "dooya.curtain.230x5",
+      "category": "curtain",
+      "file": "curtain--dooya.curtain.230x5.json",
+      "type": "urn:miot-spec-v2:device:curtain:0000A00C:dooya-230x5:1",
+      "sha256": "4f9e6e722a0f8ba28dbdbe07cc4fc1c6d242bd224554f9a26dd64c8bacb5cb11",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "curtain",
+        "profile": "standard",
+        "family": "personal",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "curtain.fault",
+            "siid": 2,
+            "piid": 1,
+            "service": "curtain",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "curtain.motor-control",
+            "siid": 2,
+            "piid": 2,
+            "service": "curtain",
+            "name": "motor-control",
+            "label": "开合控制",
+            "kind": "command",
+            "unit": "none"
+          },
+          {
+            "role": "curtain.status",
+            "siid": 2,
+            "piid": 4,
+            "service": "curtain",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "curtain.current-position",
+            "siid": 2,
+            "piid": 6,
+            "service": "curtain",
+            "name": "current-position",
+            "label": "当前位置",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "curtain.target-position",
+            "siid": 2,
+            "piid": 7,
+            "service": "curtain",
+            "name": "target-position",
+            "label": "目标位置",
+            "kind": "range",
+            "unit": "percentage"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "lumi.curtain.acn002",
+      "category": "curtain",
+      "file": "curtain--lumi.curtain.acn002.json",
+      "type": "urn:miot-spec-v2:device:curtain:0000A00C:lumi-acn002:1",
+      "sha256": "9c26b8bb86f124314d3fd4f3a14ec265859aed91e8df51f540ac872b0c5d3833",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "curtain",
+        "profile": "standard",
+        "family": "personal",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "curtain.fault",
+            "siid": 2,
+            "piid": 1,
+            "service": "curtain",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "curtain.target-position",
+            "siid": 2,
+            "piid": 4,
+            "service": "curtain",
+            "name": "target-position",
+            "label": "目标位置",
+            "kind": "range",
+            "unit": "percentage"
+          },
+          {
+            "role": "curtain.current-position",
+            "siid": 2,
+            "piid": 5,
+            "service": "curtain",
+            "name": "current-position",
+            "label": "当前位置",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "curtain.status",
+            "siid": 2,
+            "piid": 6,
+            "service": "curtain",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "movement-readback",
+            "reason": "此型号的升降或开合指令没有属性回读能力；需验证独立运动状态后才能提供可靠控制。"
+          }
+        ],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "deye.derh.612s",
+      "category": "dehumidifier",
+      "file": "dehumidifier--deye.derh.612s.json",
+      "type": "urn:miot-spec-v2:device:dehumidifier:0000A02D:deye-612s:1",
+      "sha256": "1d7f6eb1a76fec1159617e9bad3916bb4cdd259182e1ee5515d53b8d399afbf6",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "dehumidifier",
+        "profile": "standard",
+        "family": "climate",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "dehumidifier.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "dehumidifier",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "dehumidifier.fault",
+            "siid": 2,
+            "piid": 2,
+            "service": "dehumidifier",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "dehumidifier.mode",
+            "siid": 2,
+            "piid": 3,
+            "service": "dehumidifier",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "dehumidifier.target-humidity",
+            "siid": 2,
+            "piid": 5,
+            "service": "dehumidifier",
+            "name": "target-humidity",
+            "label": "目标湿度",
+            "kind": "enum",
+            "unit": "percentage"
+          },
+          {
+            "role": "dehumidifier.fan-level",
+            "siid": 2,
+            "piid": 7,
+            "service": "dehumidifier",
+            "name": "fan-level",
+            "label": "风速",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "environment.relative-humidity",
+            "siid": 3,
+            "piid": 1,
+            "service": "environment",
+            "name": "relative-humidity",
+            "label": "湿度",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "environment.temperature",
+            "siid": 3,
+            "piid": 7,
+            "service": "environment",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          },
+          {
+            "role": "physical-controls-locked.physical-controls-locked",
+            "siid": 6,
+            "piid": 1,
+            "service": "physical-controls-locked",
+            "name": "physical-controls-locked",
+            "label": "童锁",
+            "kind": "toggle",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "dmaker.derh.22l",
+      "category": "dehumidifier",
+      "file": "dehumidifier--dmaker.derh.22l.json",
+      "type": "urn:miot-spec-v2:device:dehumidifier:0000A02D:dmaker-22l:1",
+      "sha256": "92b95821edb5d2ea5cf81a656100d5bd2f3df027cd6fff00ab36bcc34a7f9300",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "dehumidifier",
+        "profile": "standard",
+        "family": "climate",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "dehumidifier.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "dehumidifier",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "dehumidifier.fault",
+            "siid": 2,
+            "piid": 2,
+            "service": "dehumidifier",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "dehumidifier.mode",
+            "siid": 2,
+            "piid": 3,
+            "service": "dehumidifier",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "dehumidifier.target-humidity",
+            "siid": 2,
+            "piid": 5,
+            "service": "dehumidifier",
+            "name": "target-humidity",
+            "label": "目标湿度",
+            "kind": "range",
+            "unit": "percentage"
+          },
+          {
+            "role": "environment.relative-humidity",
+            "siid": 3,
+            "piid": 1,
+            "service": "environment",
+            "name": "relative-humidity",
+            "label": "湿度",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "environment.temperature",
+            "siid": 3,
+            "piid": 2,
+            "service": "environment",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          },
+          {
+            "role": "physical-controls-locked.physical-controls-locked",
+            "siid": 6,
+            "piid": 1,
+            "service": "physical-controls-locked",
+            "name": "physical-controls-locked",
+            "label": "童锁",
+            "kind": "toggle",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "dmaker.fan.1c",
+      "category": "fan",
+      "file": "fan--dmaker.fan.1c.json",
+      "type": "urn:miot-spec-v2:device:fan:0000A005:dmaker-1c:1",
+      "sha256": "530bc4bbd8370c20197270fc6b4963456b5e321d710de2e3fb07e4828dfd4d1d",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "fan",
+        "profile": "standard",
+        "family": "climate",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "fan.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "fan",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "fan.fan-level",
+            "siid": 2,
+            "piid": 2,
+            "service": "fan",
+            "name": "fan-level",
+            "label": "风速",
+            "kind": "enum",
+            "unit": "none"
+          },
+          {
+            "role": "fan.horizontal-swing",
+            "siid": 2,
+            "piid": 3,
+            "service": "fan",
+            "name": "horizontal-swing",
+            "label": "左右摇头",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "fan.mode",
+            "siid": 2,
+            "piid": 7,
+            "service": "fan",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": "none"
+          },
+          {
+            "role": "fan.off-delay-time",
+            "siid": 2,
+            "piid": 10,
+            "service": "fan",
+            "name": "off-delay-time",
+            "label": "延时关闭",
+            "kind": "range",
+            "unit": "minutes"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "zhimi.fan.za1",
+      "category": "fan",
+      "file": "fan--zhimi.fan.za1.json",
+      "type": "urn:miot-spec-v2:device:fan:0000A005:zhimi-za1:1",
+      "sha256": "a50409c6764a5bf5f794796f97cfed2535b4c6b828e0bd72848e0c98fc512965",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "fan",
+        "profile": "standard",
+        "family": "climate",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "fan.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "fan",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "fan.fan-level",
+            "siid": 2,
+            "piid": 2,
+            "service": "fan",
+            "name": "fan-level",
+            "label": "风速",
+            "kind": "range",
+            "unit": null
+          },
+          {
+            "role": "fan.horizontal-swing",
+            "siid": 2,
+            "piid": 3,
+            "service": "fan",
+            "name": "horizontal-swing",
+            "label": "左右摇头",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "fan.horizontal-angle",
+            "siid": 2,
+            "piid": 4,
+            "service": "fan",
+            "name": "horizontal-angle",
+            "label": "左右角度",
+            "kind": "range",
+            "unit": null
+          },
+          {
+            "role": "fan.mode",
+            "siid": 2,
+            "piid": 5,
+            "service": "fan",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "minij.fridge.448w",
+      "category": "fridge",
+      "file": "fridge--minij.fridge.448w.json",
+      "type": "urn:miot-spec-v2:device:fridge:0000A00F:minij-448w:1",
+      "sha256": "c688d8ab66ff7be65c9d647273c277f668cdaaf7f33390d20b1a2e0ab4303497",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "fridge",
+        "profile": "standard",
+        "family": "cooking",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "fridge.fault",
+            "siid": 2,
+            "piid": 1,
+            "service": "fridge",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "fridge.mode",
+            "siid": 2,
+            "piid": 4,
+            "service": "fridge",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "fridge.on",
+            "siid": 2,
+            "piid": 5,
+            "service": "fridge",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "fridge.fault",
+            "siid": 2,
+            "piid": 6,
+            "service": "fridge",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "fridge-chamber.temperature",
+            "siid": 3,
+            "piid": 1,
+            "service": "fridge-chamber",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          },
+          {
+            "role": "fridge-chamber.target-temperature",
+            "siid": 3,
+            "piid": 2,
+            "service": "fridge-chamber",
+            "name": "target-temperature",
+            "label": "目标温度",
+            "kind": "range",
+            "unit": "celsius"
+          },
+          {
+            "role": "fridge-chamber.temperature",
+            "siid": 4,
+            "piid": 1,
+            "service": "fridge-chamber",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          },
+          {
+            "role": "fridge-chamber.target-temperature",
+            "siid": 4,
+            "piid": 2,
+            "service": "fridge-chamber",
+            "name": "target-temperature",
+            "label": "目标温度",
+            "kind": "range",
+            "unit": "celsius"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "viomi.fridge.b1",
+      "category": "fridge",
+      "file": "fridge--viomi.fridge.b1.json",
+      "type": "urn:miot-spec-v2:device:fridge:0000A00F:viomi-b1:1",
+      "sha256": "d0c7bd887049d8b63a489c5279d1603460fa471307acf55ccb291eb7181a98f4",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "fridge",
+        "profile": "standard",
+        "family": "cooking",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "fridge.fault",
+            "siid": 2,
+            "piid": 1,
+            "service": "fridge",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "fridge.mode",
+            "siid": 2,
+            "piid": 4,
+            "service": "fridge",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": "none"
+          },
+          {
+            "role": "fridge-chamber.temperature",
+            "siid": 3,
+            "piid": 1,
+            "service": "fridge-chamber",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          },
+          {
+            "role": "fridge-chamber.target-temperature",
+            "siid": 3,
+            "piid": 2,
+            "service": "fridge-chamber",
+            "name": "target-temperature",
+            "label": "目标温度",
+            "kind": "range",
+            "unit": "celsius"
+          },
+          {
+            "role": "fridge-chamber.on",
+            "siid": 3,
+            "piid": 3,
+            "service": "fridge-chamber",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "fridge-chamber.mode",
+            "siid": 3,
+            "piid": 4,
+            "service": "fridge-chamber",
+            "name": "mode",
+            "label": "模式",
+            "kind": "toggle",
+            "unit": "none"
+          },
+          {
+            "role": "fridge-chamber.temperature",
+            "siid": 4,
+            "piid": 1,
+            "service": "fridge-chamber",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          },
+          {
+            "role": "fridge-chamber.target-temperature",
+            "siid": 4,
+            "piid": 2,
+            "service": "fridge-chamber",
+            "name": "target-temperature",
+            "label": "目标温度",
+            "kind": "range",
+            "unit": "celsius"
+          },
+          {
+            "role": "fridge-chamber.mode",
+            "siid": 4,
+            "piid": 4,
+            "service": "fridge-chamber",
+            "name": "mode",
+            "label": "模式",
+            "kind": "toggle",
+            "unit": "none"
+          },
+          {
+            "role": "fault.fault",
+            "siid": 5,
+            "piid": 1,
+            "service": "fault",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "bkxh.sensor_gas.s2",
+      "category": "gas-sensor",
+      "file": "gas-sensor--bkxh.sensor_gas.s2.json",
+      "type": "urn:miot-spec-v2:device:gas-sensor:0000A022:bkxh-s2:1",
+      "sha256": "37d9e790ce347fb398e1faa5417480fd2b8eb8ef4b816630462bfe3c1b07961a",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "gas-sensor",
+        "profile": "standard",
+        "family": "sensor",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "gas-sensor.status",
+            "siid": 2,
+            "piid": 1001,
+            "service": "gas-sensor",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "lumi.sensor_gas.acn02",
+      "category": "gas-sensor",
+      "file": "gas-sensor--lumi.sensor_gas.acn02.json",
+      "type": "urn:miot-spec-v2:device:gas-sensor:0000A022:lumi-acn02:1",
+      "sha256": "6debe22ab159e82666780bff345dd372a5b1060f1659635d0e20f68e27f06694",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "gas-sensor",
+        "profile": "standard",
+        "family": "sensor",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "gas-sensor.status",
+            "siid": 2,
+            "piid": 1,
+            "service": "gas-sensor",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "gas-sensor.fault",
+            "siid": 2,
+            "piid": 2,
+            "service": "gas-sensor",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "gas-sensor.gas-concentration",
+            "siid": 2,
+            "piid": 3,
+            "service": "gas-sensor",
+            "name": "gas-concentration",
+            "label": "燃气浓度",
+            "kind": "reading",
+            "unit": "percentage"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "als1.humidifier.js03",
+      "category": "humidifier",
+      "file": "humidifier--als1.humidifier.js03.json",
+      "type": "urn:miot-spec-v2:device:humidifier:0000A00E:als1-js03:1",
+      "sha256": "49398b7f5dbecbf4235bf7e15bff217fb315a6c0b63a3b84734e1f39b9dd96e4",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "humidifier",
+        "profile": "none",
+        "family": "climate",
+        "readOnly": false,
+        "properties": [],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": "No matching public daily abilities; no private support inferred."
+    },
+    {
+      "model": "deerma.humidifier.jsq",
+      "category": "humidifier",
+      "file": "humidifier--deerma.humidifier.jsq.json",
+      "type": "urn:miot-spec-v2:device:humidifier:0000A00E:deerma-jsq:1",
+      "sha256": "bf01f4a4064391fc0f24170e4c7be255cf7a83e0752f4e3c59d3634bf45ac2af",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "humidifier",
+        "profile": "standard",
+        "family": "climate",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "humidifier.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "humidifier",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "environment.relative-humidity",
+            "siid": 3,
+            "piid": 1,
+            "service": "environment",
+            "name": "relative-humidity",
+            "label": "湿度",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "environment.temperature",
+            "siid": 3,
+            "piid": 2,
+            "service": "environment",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "bymiot.ir.wlv1",
+      "category": "ir-remote-control",
+      "file": "ir-remote-control--bymiot.ir.wlv1.json",
+      "type": "urn:miot-spec-v2:device:ir-remote-control:0000A025:bymiot-wlv1:1",
+      "sha256": "be20e6985198e3e00f87f2589af035df67bffde6347b15f485417e6a70c52a74",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "ir-remote-control",
+        "profile": "none",
+        "family": "other",
+        "readOnly": false,
+        "properties": [],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "ir-remote",
+            "reason": "红外码库与指令封装使用厂家专用协议；此型号尚无经验证的适配器，不根据属性名称猜测控制编码。"
+          }
+        ],
+        "events": []
+      },
+      "limitation": "No matching public daily abilities; no private support inferred."
+    },
+    {
+      "model": "philips.light.bceil",
+      "category": "light",
+      "file": "light--philips.light.bceil.json",
+      "type": "urn:miot-spec-v2:device:light:0000A001:philips-bceil:1",
+      "sha256": "13d369be3852d0da59bf9405cba9186e16dad45bea9c9aa042d5f5317f8d5460",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "light",
+        "profile": "standard",
+        "family": "lighting",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "light.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "light",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": "none"
+          },
+          {
+            "role": "light.mode",
+            "siid": 2,
+            "piid": 2,
+            "service": "light",
+            "name": "mode",
+            "label": "模式",
+            "kind": "range",
+            "unit": "none"
+          },
+          {
+            "role": "light.brightness",
+            "siid": 2,
+            "piid": 3,
+            "service": "light",
+            "name": "brightness",
+            "label": "亮度",
+            "kind": "range",
+            "unit": "percentage"
+          },
+          {
+            "role": "light.color-temperature",
+            "siid": 2,
+            "piid": 4,
+            "service": "light",
+            "name": "color-temperature",
+            "label": "色温",
+            "kind": "range",
+            "unit": "kelvin"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "yeelink.light.bslamp2",
+      "category": "light",
+      "file": "light--yeelink.light.bslamp2.json",
+      "type": "urn:miot-spec-v2:device:light:0000A001:yeelink-bslamp2:2",
+      "sha256": "258ea9d541b388acd47deefc51d58a5a094d4a825a1995dca43237f6636b9b56",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "light",
+        "profile": "standard",
+        "family": "lighting",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "light.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "light",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "light.brightness",
+            "siid": 2,
+            "piid": 2,
+            "service": "light",
+            "name": "brightness",
+            "label": "亮度",
+            "kind": "range",
+            "unit": "percentage"
+          },
+          {
+            "role": "light.color-temperature",
+            "siid": 2,
+            "piid": 3,
+            "service": "light",
+            "name": "color-temperature",
+            "label": "色温",
+            "kind": "range",
+            "unit": "kelvin"
+          },
+          {
+            "role": "light.color",
+            "siid": 2,
+            "piid": 4,
+            "service": "light",
+            "name": "color",
+            "label": "颜色",
+            "kind": "range",
+            "unit": "rgb"
+          },
+          {
+            "role": "light.mode",
+            "siid": 2,
+            "piid": 5,
+            "service": "light",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "cgllc.magnet.hodor",
+      "category": "magnet-sensor",
+      "file": "magnet-sensor--cgllc.magnet.hodor.json",
+      "type": "urn:miot-spec-v2:device:magnet-sensor:0000A016:cgllc-hodor:1",
+      "sha256": "c557bf1d9a3159003da53a249774e511f3a2884afb60c7fc8ebc58d6d47678c2",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "magnet-sensor",
+        "profile": "standard",
+        "family": "sensor",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "magnet-sensor.contact-state",
+            "siid": 2,
+            "piid": 1,
+            "service": "magnet-sensor",
+            "name": "contact-state",
+            "label": "开合状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "battery.battery-level",
+            "siid": 3,
+            "piid": 1,
+            "service": "battery",
+            "name": "battery-level",
+            "label": "电量",
+            "kind": "reading",
+            "unit": "percentage"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "lumi.magnet.acn001",
+      "category": "magnet-sensor",
+      "file": "magnet-sensor--lumi.magnet.acn001.json",
+      "type": "urn:miot-spec-v2:device:magnet-sensor:0000A016:lumi-acn001:1",
+      "sha256": "bf79fc9e929f5c59d4ef6034f1ee82c952016491127f14e5991ba0d9bdeeaed3",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "magnet-sensor",
+        "profile": "standard",
+        "family": "sensor",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "magnet-sensor.contact-state",
+            "siid": 2,
+            "piid": 1,
+            "service": "magnet-sensor",
+            "name": "contact-state",
+            "label": "开合状态",
+            "kind": "reading",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "linp.sensor_occupy.es2",
+      "category": "occupancy-sensor",
+      "file": "occupancy-sensor--linp.sensor_occupy.es2.json",
+      "type": "urn:miot-spec-v2:device:occupancy-sensor:0000A0BF:linp-es2:1",
+      "sha256": "83ff9dea90c386d597f39f5210c12f3a84e12327a6090b18f1c1dfbf015ac3d3",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "occupancy-sensor",
+        "profile": "standard",
+        "family": "sensor",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 2,
+            "piid": 1080,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "minutes"
+          },
+          {
+            "role": "occupancy-sensor.illumination",
+            "siid": 2,
+            "piid": 1005,
+            "service": "occupancy-sensor",
+            "name": "illumination",
+            "label": "光照",
+            "kind": "reading",
+            "unit": "lux"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 2,
+            "piid": 1079,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "minutes"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 2,
+            "piid": 1078,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "battery.battery-level",
+            "siid": 4,
+            "piid": 1003,
+            "service": "battery",
+            "name": "battery-level",
+            "label": "电量",
+            "kind": "reading",
+            "unit": "percentage"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "xiaomi.sensor_occupy.p1",
+      "category": "occupancy-sensor",
+      "file": "occupancy-sensor--xiaomi.sensor_occupy.p1.json",
+      "type": "urn:miot-spec-v2:device:occupancy-sensor:0000A0BF:xiaomi-p1:2",
+      "sha256": "ff6c06187d914c8947cad560fbf073a0364b74a29992e5f0719cfa60d66e340c",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "occupancy-sensor",
+        "profile": "standard",
+        "family": "sensor",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 2,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 2,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 2,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.illumination",
+            "siid": 2,
+            "piid": 5,
+            "service": "occupancy-sensor",
+            "name": "illumination",
+            "label": "光照",
+            "kind": "reading",
+            "unit": "lux"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 4,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 4,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 4,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 5,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 5,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 5,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 6,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 6,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 6,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 7,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 7,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 7,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 8,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 8,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 8,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 9,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 9,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 9,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 10,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 10,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 10,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 11,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 11,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 11,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 12,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 12,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 12,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 13,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 13,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 13,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 14,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 14,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 14,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 15,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 15,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 15,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 16,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 16,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 16,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 17,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 17,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 17,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 18,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 18,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 18,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 19,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 19,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 19,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 20,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 20,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 20,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 21,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 21,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 21,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 22,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 22,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 22,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 23,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 23,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 23,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 24,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 24,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 24,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 25,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 25,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 25,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 26,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 26,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 26,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 27,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 27,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 27,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 28,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 28,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 28,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 29,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 29,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 29,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 30,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 30,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 30,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 31,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 31,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 31,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 32,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 32,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 32,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 33,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 33,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 33,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 34,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 34,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 34,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.occupancy-status",
+            "siid": 35,
+            "piid": 1,
+            "service": "occupancy-sensor",
+            "name": "occupancy-status",
+            "label": "有人状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "occupancy-sensor.has-someone-duration",
+            "siid": 35,
+            "piid": 3,
+            "service": "occupancy-sensor",
+            "name": "has-someone-duration",
+            "label": "有人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          },
+          {
+            "role": "occupancy-sensor.no-one-duration",
+            "siid": 35,
+            "piid": 4,
+            "service": "occupancy-sensor",
+            "name": "no-one-duration",
+            "label": "无人时长",
+            "kind": "reading",
+            "unit": "seconds"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "chuangmi.plug.212a01",
+      "category": "outlet",
+      "file": "outlet--chuangmi.plug.212a01.json",
+      "type": "urn:miot-spec-v2:device:outlet:0000A002:chuangmi-212a01:3",
+      "sha256": "224f9efdde0af92a6888a8796162ce89a7d0d35c8de602b52fbec6b2236408c7",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "outlet",
+        "profile": "standard",
+        "family": "switch",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "switch.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "switch.temperature",
+            "siid": 2,
+            "piid": 6,
+            "service": "switch",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          },
+          {
+            "role": "power-consumption.power-consumption",
+            "siid": 5,
+            "piid": 1,
+            "service": "power-consumption",
+            "name": "power-consumption",
+            "label": "用电量",
+            "kind": "reading",
+            "unit": "none"
+          },
+          {
+            "role": "power-consumption.electric-current",
+            "siid": 5,
+            "piid": 2,
+            "service": "power-consumption",
+            "name": "electric-current",
+            "label": "电流",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "power-consumption.voltage",
+            "siid": 5,
+            "piid": 3,
+            "service": "power-consumption",
+            "name": "voltage",
+            "label": "电压",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "power-consumption.electric-power",
+            "siid": 5,
+            "piid": 6,
+            "service": "power-consumption",
+            "name": "electric-power",
+            "label": "功率",
+            "kind": "reading",
+            "unit": "watt"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "cuco.plug.cp1",
+      "category": "outlet",
+      "file": "outlet--cuco.plug.cp1.json",
+      "type": "urn:miot-spec-v2:device:outlet:0000A002:cuco-cp1:2",
+      "sha256": "56606f61b826f9a338764857bc964b349441a2c91877d1b6b617092aed0a7ece",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "outlet",
+        "profile": "standard",
+        "family": "switch",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "switch.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "fengmi.projector.015fc2",
+      "category": "projector",
+      "file": "projector--fengmi.projector.015fc2.json",
+      "type": "urn:miot-spec-v2:device:projector:0000A02C:fengmi-015fc2:1",
+      "sha256": "f0bf826872fdb2b9def310c68710089529e3b2b178ef47f2d7a769d92fc61358",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "projector",
+        "profile": "standard",
+        "family": "media",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "projector.input-control",
+            "siid": 2,
+            "piid": 1,
+            "service": "projector",
+            "name": "input-control",
+            "label": "输入源",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "play-control.playing-state",
+            "siid": 3,
+            "piid": 1,
+            "service": "play-control",
+            "name": "playing-state",
+            "label": "播放状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "speaker.volume",
+            "siid": 4,
+            "piid": 1,
+            "service": "speaker",
+            "name": "volume",
+            "label": "音量",
+            "kind": "range",
+            "unit": "percentage"
+          },
+          {
+            "role": "speaker.mute",
+            "siid": 4,
+            "piid": 2,
+            "service": "speaker",
+            "name": "mute",
+            "label": "静音",
+            "kind": "toggle",
+            "unit": null
+          }
+        ],
+        "actions": [
+          {
+            "role": "projector.turn-off",
+            "siid": 2,
+            "aiid": 1,
+            "service": "projector",
+            "name": "turn-off",
+            "label": "关闭"
+          },
+          {
+            "role": "play-control.play",
+            "siid": 3,
+            "aiid": 1,
+            "service": "play-control",
+            "name": "play",
+            "label": "播放"
+          },
+          {
+            "role": "play-control.pause",
+            "siid": 3,
+            "aiid": 2,
+            "service": "play-control",
+            "name": "pause",
+            "label": "暂停"
+          }
+        ],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "gimi.projector.fm01",
+      "category": "projector",
+      "file": "projector--gimi.projector.fm01.json",
+      "type": "urn:miot-spec-v2:device:projector:0000A02C:gimi-fm01:1",
+      "sha256": "4ea9329833794b8e26d6ea56e96786e9e80953a75d0a51eb0a63a6850120aa0a",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "projector",
+        "profile": "standard",
+        "family": "media",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "projector.status",
+            "siid": 2,
+            "piid": 1,
+            "service": "projector",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "projector.fault",
+            "siid": 2,
+            "piid": 3,
+            "service": "projector",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "projector.input-control",
+            "siid": 2,
+            "piid": 6,
+            "service": "projector",
+            "name": "input-control",
+            "label": "输入源",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "speaker.volume",
+            "siid": 3,
+            "piid": 1,
+            "service": "speaker",
+            "name": "volume",
+            "label": "音量",
+            "kind": "range",
+            "unit": "percentage"
+          },
+          {
+            "role": "speaker.mute",
+            "siid": 3,
+            "piid": 2,
+            "service": "speaker",
+            "name": "mute",
+            "label": "静音",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "play-control.playing-state",
+            "siid": 4,
+            "piid": 1,
+            "service": "play-control",
+            "name": "playing-state",
+            "label": "播放状态",
+            "kind": "reading",
+            "unit": null
+          }
+        ],
+        "actions": [
+          {
+            "role": "projector.turn-off",
+            "siid": 2,
+            "aiid": 1,
+            "service": "projector",
+            "name": "turn-off",
+            "label": "关闭"
+          },
+          {
+            "role": "play-control.play",
+            "siid": 4,
+            "aiid": 2,
+            "service": "play-control",
+            "name": "play",
+            "label": "播放"
+          },
+          {
+            "role": "play-control.pause",
+            "siid": 4,
+            "aiid": 3,
+            "service": "play-control",
+            "name": "pause",
+            "label": "暂停"
+          }
+        ],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "lumi.relay.c2acn01",
+      "category": "relay",
+      "file": "relay--lumi.relay.c2acn01.json",
+      "type": "urn:miot-spec-v2:device:relay:0000A03D:lumi-c2acn01:1",
+      "sha256": "0ad2c1967ccfabca5ee7defcbe80f4677123a3d612f9924ad11aca7fb162bb69",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "switch",
+        "profile": "standard",
+        "family": "switch",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "switch.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "switch.on",
+            "siid": 3,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "pwzn.relay.apple",
+      "category": "relay",
+      "file": "relay--pwzn.relay.apple.json",
+      "type": "urn:miot-spec-v2:device:relay:0000A03D:pwzn-apple:1",
+      "sha256": "81fb03647c04640b1c0e91d9f954c422f15a610294210abf4a920d5945354a7a",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "switch",
+        "profile": "standard",
+        "family": "switch",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "switch.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "switch.on",
+            "siid": 3,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "switch.on",
+            "siid": 4,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "switch.on",
+            "siid": 5,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "switch.on",
+            "siid": 6,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "switch.on",
+            "siid": 7,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "switch.on",
+            "siid": 8,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "switch.on",
+            "siid": 9,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "switch.on",
+            "siid": 10,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "switch.on",
+            "siid": 11,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "switch.on",
+            "siid": 12,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "switch.on",
+            "siid": 13,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "switch.on",
+            "siid": 14,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "switch.on",
+            "siid": 15,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "switch.on",
+            "siid": 16,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "switch.on",
+            "siid": 17,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "shuse.roller.sr01",
+      "category": "roller-shutter",
+      "file": "roller-shutter--shuse.roller.sr01.json",
+      "type": "urn:miot-spec-v2:device:roller-shutter:0000A0C2:shuse-sr01:1",
+      "sha256": "e65c5c43ec8a0103fb0af35e93b40b6bb53fc18daf92f9d7967598ff356bcf65",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "curtain",
+        "profile": "none",
+        "family": "personal",
+        "readOnly": false,
+        "properties": [],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": "No matching public daily abilities; no private support inferred."
+    },
+    {
+      "model": "isa.router.mr01hl",
+      "category": "router",
+      "file": "router--isa.router.mr01hl.json",
+      "type": "urn:miot-spec-v2:device:router:0000A036:isa-mr01hl:1",
+      "sha256": "385c34a4e2d9b53adfd8a6d9eb7864b1f71085c47ee34ab425d7fcc963cc1ed7",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "router",
+        "profile": "standard",
+        "family": "network",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "router.connected-device-number",
+            "siid": 2,
+            "piid": 3,
+            "service": "router",
+            "name": "connected-device-number",
+            "label": "连接设备数",
+            "kind": "reading",
+            "unit": "none"
+          },
+          {
+            "role": "router.status",
+            "siid": 2,
+            "piid": 6,
+            "service": "router",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": "none"
+          },
+          {
+            "role": "router.fault",
+            "siid": 2,
+            "piid": 7,
+            "service": "router",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "router-network",
+            "reason": "Wi-Fi 设置、设备列表、优化与测速使用厂家网络协议；此型号尚无经验证的网络适配器，不能套用其他路由器接口。"
+          }
+        ],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "xiaomi.router.cr5508",
+      "category": "router",
+      "file": "router--xiaomi.router.cr5508.json",
+      "type": "urn:miot-spec-v2:device:router:0000A036:xiaomi-cr5508:1",
+      "sha256": "82662d0200afa10b699058f3bccfcb357c4d6ba3814ce75928ee1faa5a2afcd0",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "router",
+        "profile": "standard",
+        "family": "network",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "router.connected-device-number",
+            "siid": 2,
+            "piid": 3,
+            "service": "router",
+            "name": "connected-device-number",
+            "label": "连接设备数",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "router.status",
+            "siid": 2,
+            "piid": 6,
+            "service": "router",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "router.fault",
+            "siid": 2,
+            "piid": 7,
+            "service": "router",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "router-network",
+            "reason": "Wi-Fi 设置、设备列表、优化与测速使用厂家网络协议；此型号尚无经验证的网络适配器，不能套用其他路由器接口。"
+          }
+        ],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "xiaomi.scales.ms110",
+      "category": "scale",
+      "file": "scale--xiaomi.scales.ms110.json",
+      "type": "urn:miot-spec-v2:device:scale:0000A07D:xiaomi-ms110:1",
+      "sha256": "53a51e0c2502e50e244491a7fbd6afc829d49400ad8d5783f9be16109c9c3913",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "scale",
+        "profile": "none",
+        "family": "health",
+        "readOnly": false,
+        "properties": [],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "scale-sync",
+            "reason": "仅显示设备公开到云端的测量值；未提供云端属性的称重与同步需在手机米家完成。"
+          }
+        ],
+        "events": []
+      },
+      "limitation": "No matching public daily abilities; no private support inferred."
+    },
+    {
+      "model": "yunmai.scales.ms104",
+      "category": "scale",
+      "file": "scale--yunmai.scales.ms104.json",
+      "type": "urn:miot-spec-v2:device:scale:0000A07D:yunmai-ms104:1",
+      "sha256": "8942c49248391bcd1fd22caa7381d99bffa254771b53af2444953b19e12a9a94",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "scale",
+        "profile": "none",
+        "family": "health",
+        "readOnly": false,
+        "properties": [],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "scale-sync",
+            "reason": "仅显示设备公开到云端的测量值；未提供云端属性的称重与同步需在手机米家完成。"
+          }
+        ],
+        "events": []
+      },
+      "limitation": "No matching public daily abilities; no private support inferred."
+    },
+    {
+      "model": "bkxh.sensor_smoke.s1",
+      "category": "smoke-sensor",
+      "file": "smoke-sensor--bkxh.sensor_smoke.s1.json",
+      "type": "urn:miot-spec-v2:device:smoke-sensor:0000A023:bkxh-s1:1:0000D020",
+      "sha256": "a07cd6c1b8a1504c482edd70ac3574b4874156a9700aaaec93261799ff28ad32",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "smoke-sensor",
+        "profile": "standard",
+        "family": "sensor",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "smoke-sensor.status",
+            "siid": 2,
+            "piid": 1004,
+            "service": "smoke-sensor",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "lumi.sensor_smoke.acn01",
+      "category": "smoke-sensor",
+      "file": "smoke-sensor--lumi.sensor_smoke.acn01.json",
+      "type": "urn:miot-spec-v2:device:smoke-sensor:0000A023:lumi-acn01:1",
+      "sha256": "7871d9eef1ed5c1d0543f15a065ce4f373d57c1e6b1cb9c3c2a3b17ca6f975df",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "smoke-sensor",
+        "profile": "none",
+        "family": "sensor",
+        "readOnly": false,
+        "properties": [],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": "No matching public daily abilities; no private support inferred."
+    },
+    {
+      "model": "onemore.wifispeaker.sm4",
+      "category": "speaker",
+      "file": "speaker--onemore.wifispeaker.sm4.json",
+      "type": "urn:miot-spec-v2:device:speaker:0000A015:onemore-sm4:1",
+      "sha256": "8eadce79cfa2d068ee0f64dfd26c89a2407b453bbbb286d17fed1d0890b84270",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "speaker",
+        "profile": "standard",
+        "family": "media",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "speaker.volume",
+            "siid": 2,
+            "piid": 1,
+            "service": "speaker",
+            "name": "volume",
+            "label": "音量",
+            "kind": "range",
+            "unit": "percentage"
+          },
+          {
+            "role": "play-control.playing-state",
+            "siid": 3,
+            "piid": 1,
+            "service": "play-control",
+            "name": "playing-state",
+            "label": "播放状态",
+            "kind": "reading",
+            "unit": null
+          }
+        ],
+        "actions": [
+          {
+            "role": "play-control.play",
+            "siid": 3,
+            "aiid": 1,
+            "service": "play-control",
+            "name": "play",
+            "label": "播放"
+          },
+          {
+            "role": "play-control.pause",
+            "siid": 3,
+            "aiid": 2,
+            "service": "play-control",
+            "name": "pause",
+            "label": "暂停"
+          }
+        ],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "xiaomi.wifispeaker.l04m",
+      "category": "speaker",
+      "file": "speaker--xiaomi.wifispeaker.l04m.json",
+      "type": "urn:miot-spec-v2:device:speaker:0000A015:xiaomi-l04m:2",
+      "sha256": "3e18834f91aaee97c5e99ba2d51addf0b8547ebb447fd892b568c2a8ece2b46e",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "speaker",
+        "profile": "standard",
+        "family": "media",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "speaker.volume",
+            "siid": 2,
+            "piid": 1,
+            "service": "speaker",
+            "name": "volume",
+            "label": "音量",
+            "kind": "range",
+            "unit": "percentage"
+          },
+          {
+            "role": "speaker.mute",
+            "siid": 2,
+            "piid": 2,
+            "service": "speaker",
+            "name": "mute",
+            "label": "静音",
+            "kind": "toggle",
+            "unit": null
+          }
+        ],
+        "actions": [
+          {
+            "role": "play-control.play",
+            "siid": 3,
+            "aiid": 1,
+            "service": "play-control",
+            "name": "play",
+            "label": "播放"
+          },
+          {
+            "role": "play-control.pause",
+            "siid": 3,
+            "aiid": 2,
+            "service": "play-control",
+            "name": "pause",
+            "label": "暂停"
+          },
+          {
+            "role": "play-control.next",
+            "siid": 3,
+            "aiid": 3,
+            "service": "play-control",
+            "name": "next",
+            "label": "下一首"
+          },
+          {
+            "role": "play-control.previous",
+            "siid": 3,
+            "aiid": 4,
+            "service": "play-control",
+            "name": "previous",
+            "label": "上一首"
+          }
+        ],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "ihealth.bp.bpm1",
+      "category": "sphygmomanometer",
+      "file": "sphygmomanometer--ihealth.bp.bpm1.json",
+      "type": "urn:miot-spec-v2:device:sphygmomanometer:0000A07B:ihealth-bpm1:1",
+      "sha256": "58b42612b63eda10a8d1346a5957cc77a2ae421120bc93b74861b46ab50c9f28",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "sphygmomanometer",
+        "profile": "standard",
+        "family": "health",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "battery.battery-level",
+            "siid": 3,
+            "piid": 1,
+            "service": "battery",
+            "name": "battery-level",
+            "label": "电量",
+            "kind": "reading",
+            "unit": "percentage"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "health-sync",
+            "reason": "测量结果仅在设备公开云端读取能力时显示；本地测量、用户档案与同步请使用手机米家。"
+          }
+        ],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "coolki.stb.yk0001",
+      "category": "stb",
+      "file": "stb--coolki.stb.yk0001.json",
+      "type": "urn:miot-spec-v2:device:stb:0000A011:coolki-yk0001:1",
+      "sha256": "d124bf1895c138510e7c035b7bb1d3ccce187ba129bbed16ff576d279bb6591b",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "stb",
+        "profile": "none",
+        "family": "media",
+        "readOnly": false,
+        "properties": [],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "ir-remote",
+            "reason": "红外按键和码库需此型号已验证的专用适配器，不根据公开动作名称猜测编码。"
+          }
+        ],
+        "events": []
+      },
+      "limitation": "No matching public daily abilities; no private support inferred."
+    },
+    {
+      "model": "heiman.stb.rc1",
+      "category": "stb",
+      "file": "stb--heiman.stb.rc1.json",
+      "type": "urn:miot-spec-v2:device:stb:0000A011:heiman-rc1:1",
+      "sha256": "218b8b8d8353e5d0074cd882186e9f230dd48db6395ab5705a47e4aa71b7858f",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "stb",
+        "profile": "none",
+        "family": "media",
+        "readOnly": false,
+        "properties": [],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "ir-remote",
+            "reason": "红外按键和码库需此型号已验证的专用适配器，不根据公开动作名称猜测编码。"
+          }
+        ],
+        "events": []
+      },
+      "limitation": "No matching public daily abilities; no private support inferred."
+    },
+    {
+      "model": "lumi.ctrl_ln2.aq1",
+      "category": "switch",
+      "file": "switch--lumi.ctrl_ln2.aq1.json",
+      "type": "urn:miot-spec-v2:device:switch:0000A003:lumi-ctrl-ln2-aq1:1",
+      "sha256": "0c5569cb137e4499a81e412f17fe4207ac9de4d20cbb08193b582610e2f9e61d",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "switch",
+        "profile": "standard",
+        "family": "switch",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "switch.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "switch.on",
+            "siid": 3,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "yeelink.switch.sw1",
+      "category": "switch",
+      "file": "switch--yeelink.switch.sw1.json",
+      "type": "urn:miot-spec-v2:device:switch:0000A003:yeelink-sw1:1:0000C809",
+      "sha256": "ee0374aa3d2c6c82b0b1643bd5ed8ba5ef9ea533e071fa66b1c111b1d4902c98",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "switch",
+        "profile": "standard",
+        "family": "switch",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "switch.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "switch.on",
+            "siid": 3,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "orvibo.tv.ltv1",
+      "category": "television",
+      "file": "television--orvibo.tv.ltv1.json",
+      "type": "urn:miot-spec-v2:device:television:0000A010:orvibo-ltv1:1",
+      "sha256": "00b4f4a403858d733fe845721ca1c0b05c1284f25d528af38e3d5943c8de57ff",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "television",
+        "profile": "none",
+        "family": "media",
+        "readOnly": false,
+        "properties": [],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "ir-remote",
+            "reason": "此型号的电视按键采用红外专用协议，需已验证的码库与编码适配器，不能套用其他电视指令。"
+          }
+        ],
+        "events": []
+      },
+      "limitation": "No matching public daily abilities; no private support inferred."
+    },
+    {
+      "model": "xiaomi.tv.4kh1",
+      "category": "television",
+      "file": "television--xiaomi.tv.4kh1.json",
+      "type": "urn:miot-spec-v2:device:television:0000A010:xiaomi-4kh1:1",
+      "sha256": "6c06dd7d0af20da3f51fd239b876f05beef0330279e91d811fd74b3b0998c9ab",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "television",
+        "profile": "standard",
+        "family": "media",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "speaker.volume",
+            "siid": 4,
+            "piid": 1,
+            "service": "speaker",
+            "name": "volume",
+            "label": "音量",
+            "kind": "range",
+            "unit": "percentage"
+          },
+          {
+            "role": "speaker.mute",
+            "siid": 4,
+            "piid": 2,
+            "service": "speaker",
+            "name": "mute",
+            "label": "静音",
+            "kind": "toggle",
+            "unit": null
+          }
+        ],
+        "actions": [
+          {
+            "role": "television.turn-off",
+            "siid": 2,
+            "aiid": 1,
+            "service": "television",
+            "name": "turn-off",
+            "label": "关闭"
+          }
+        ],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "cleargrass.sensor_ht.dk1",
+      "category": "temperature-humidity-sensor",
+      "file": "temperature-humidity-sensor--cleargrass.sensor_ht.dk1.json",
+      "type": "urn:miot-spec-v2:device:temperature-humidity-sensor:0000A00A:cleargrass-dk1:1",
+      "sha256": "db7dd45f55d3d3e44a1505400472a69ff91beb16fb48d025551d54f031ec9ab5",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "temperature-humidity-sensor",
+        "profile": "standard",
+        "family": "sensor",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "temperature-humidity-sensor.temperature",
+            "siid": 2,
+            "piid": 1,
+            "service": "temperature-humidity-sensor",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          },
+          {
+            "role": "temperature-humidity-sensor.relative-humidity",
+            "siid": 2,
+            "piid": 2,
+            "service": "temperature-humidity-sensor",
+            "name": "relative-humidity",
+            "label": "湿度",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "battery.battery-level",
+            "siid": 3,
+            "piid": 1,
+            "service": "battery",
+            "name": "battery-level",
+            "label": "电量",
+            "kind": "reading",
+            "unit": "percentage"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "miaomiaoce.sensor_ht.t1",
+      "category": "temperature-humidity-sensor",
+      "file": "temperature-humidity-sensor--miaomiaoce.sensor_ht.t1.json",
+      "type": "urn:miot-spec-v2:device:temperature-humidity-sensor:0000A00A:miaomiaoce-t1:1",
+      "sha256": "d2380449c38579e611838ab1e20e39dd33112dd6cd1a1ef1da812ba71837c643",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "temperature-humidity-sensor",
+        "profile": "standard",
+        "family": "sensor",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "temperature-humidity-sensor.temperature",
+            "siid": 2,
+            "piid": 1,
+            "service": "temperature-humidity-sensor",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          },
+          {
+            "role": "temperature-humidity-sensor.relative-humidity",
+            "siid": 2,
+            "piid": 2,
+            "service": "temperature-humidity-sensor",
+            "name": "relative-humidity",
+            "label": "湿度",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "battery.battery-level",
+            "siid": 3,
+            "piid": 1,
+            "service": "battery",
+            "name": "battery-level",
+            "label": "电量",
+            "kind": "reading",
+            "unit": "percentage"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "xiaomi.sensor_ht.minigl",
+      "category": "temperature-humidity-sensor",
+      "file": "temperature-humidity-sensor--xiaomi.sensor_ht.minigl.json",
+      "type": "urn:miot-spec-v2:device:temperature-humidity-sensor:0000A00A:xiaomi-minigl:1:0000D063",
+      "sha256": "ba97f41ce4ac2f3bf5014952911acc04530ffe92aa935a5e70839f1388451aed",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "temperature-humidity-sensor",
+        "profile": "standard",
+        "family": "sensor",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "temperature-humidity-sensor.relative-humidity",
+            "siid": 2,
+            "piid": 1002,
+            "service": "temperature-humidity-sensor",
+            "name": "relative-humidity",
+            "label": "湿度",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "temperature-humidity-sensor.temperature",
+            "siid": 2,
+            "piid": 1001,
+            "service": "temperature-humidity-sensor",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          },
+          {
+            "role": "battery.battery-level",
+            "siid": 3,
+            "piid": 1003,
+            "service": "battery",
+            "name": "battery-level",
+            "label": "电量",
+            "kind": "reading",
+            "unit": "percentage"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "360sdj.vacuum.s",
+      "category": "vacuum",
+      "file": "vacuum--360sdj.vacuum.s.json",
+      "type": "urn:miot-spec-v2:device:vacuum:0000A006:360sdj-s:1",
+      "sha256": "c40e17f89087b62491a6cd37ad92dd0819bf85855bd934a213b0e7223a43bdb3",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "vacuum",
+        "profile": "standard",
+        "family": "cleaning",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "battery.battery-level",
+            "siid": 1,
+            "piid": 1,
+            "service": "battery",
+            "name": "battery-level",
+            "label": "电量",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "vacuum.fault",
+            "siid": 3,
+            "piid": 1,
+            "service": "vacuum",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "vacuum.status",
+            "siid": 3,
+            "piid": 2,
+            "service": "vacuum",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          }
+        ],
+        "actions": [
+          {
+            "role": "battery.start-charge",
+            "siid": 1,
+            "aiid": 1,
+            "service": "battery",
+            "name": "start-charge",
+            "label": "回充"
+          },
+          {
+            "role": "vacuum.start-sweep",
+            "siid": 3,
+            "aiid": 1,
+            "service": "vacuum",
+            "name": "start-sweep",
+            "label": "开始清扫"
+          },
+          {
+            "role": "vacuum.stop-sweeping",
+            "siid": 3,
+            "aiid": 2,
+            "service": "vacuum",
+            "name": "stop-sweeping",
+            "label": "停止清扫"
+          }
+        ],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "dreame.vacuum.ma1808",
+      "category": "vacuum",
+      "file": "vacuum--dreame.vacuum.ma1808.json",
+      "type": "urn:miot-spec-v2:device:vacuum:0000A006:dreame-ma1808:1",
+      "sha256": "887b6eddf51c037bf3a25d01ae10e62450941ed8066bc703dd5f3558fbd786cb",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "vacuum",
+        "profile": "standard",
+        "family": "cleaning",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "battery.battery-level",
+            "siid": 2,
+            "piid": 1,
+            "service": "battery",
+            "name": "battery-level",
+            "label": "电量",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "battery.charging-state",
+            "siid": 2,
+            "piid": 2,
+            "service": "battery",
+            "name": "charging-state",
+            "label": "充电状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "vacuum.fault",
+            "siid": 3,
+            "piid": 1,
+            "service": "vacuum",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "vacuum.status",
+            "siid": 3,
+            "piid": 2,
+            "service": "vacuum",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "filter.filter-life-level",
+            "siid": 27,
+            "piid": 1,
+            "service": "filter",
+            "name": "filter-life-level",
+            "label": "滤芯剩余",
+            "kind": "reading",
+            "unit": "percentage"
+          }
+        ],
+        "actions": [
+          {
+            "role": "battery.start-charge",
+            "siid": 2,
+            "aiid": 1,
+            "service": "battery",
+            "name": "start-charge",
+            "label": "回充"
+          },
+          {
+            "role": "vacuum.start-sweep",
+            "siid": 3,
+            "aiid": 1,
+            "service": "vacuum",
+            "name": "start-sweep",
+            "label": "开始清扫"
+          },
+          {
+            "role": "vacuum.stop-sweeping",
+            "siid": 3,
+            "aiid": 2,
+            "service": "vacuum",
+            "name": "stop-sweeping",
+            "label": "停止清扫"
+          }
+        ],
+        "privateFeatures": [],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "chuangmi.cateye.ipc018",
+      "category": "video-doorbell",
+      "file": "video-doorbell--chuangmi.cateye.ipc018.json",
+      "type": "urn:miot-spec-v2:device:video-doorbell:0000A03A:chuangmi-ipc018:1",
+      "sha256": "54cfb275971336d33eee9a16490e6f66b346fe70a601fc3d8d1ca46e4be57e76",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "video-doorbell",
+        "profile": "standard",
+        "family": "security",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "battery.battery-level",
+            "siid": 2,
+            "piid": 1,
+            "service": "battery",
+            "name": "battery-level",
+            "label": "电量",
+            "kind": "reading",
+            "unit": "percentage"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "doorbell-video",
+            "reason": "视频和门铃事件需厂家专用协议，当前仅显示公开可读取的设备状态。"
+          }
+        ],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "loock.cateye.v01",
+      "category": "video-doorbell",
+      "file": "video-doorbell--loock.cateye.v01.json",
+      "type": "urn:miot-spec-v2:device:video-doorbell:0000A03A:loock-v01:1",
+      "sha256": "665f4579d96cb0f1c505217ab3d81e983f37555fbbefeed16c2bdd937cc298d3",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "video-doorbell",
+        "profile": "standard",
+        "family": "security",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "battery.battery-level",
+            "siid": 4,
+            "piid": 1,
+            "service": "battery",
+            "name": "battery-level",
+            "label": "电量",
+            "kind": "reading",
+            "unit": "percentage"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "doorbell-video",
+            "reason": "视频和门铃事件需厂家专用协议，当前仅显示公开可读取的设备状态。"
+          }
+        ],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "minij.washer.v1",
+      "category": "washer",
+      "file": "washer--minij.washer.v1.json",
+      "type": "urn:miot-spec-v2:device:washer:0000A01F:minij-v1:1",
+      "sha256": "58df2823622d23577b273a6e74e554f9baf9cfa6ebea2b9341200d41e992eb33",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "washer",
+        "profile": "standard",
+        "family": "cleaning",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "washer.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "washer",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "washer.status",
+            "siid": 2,
+            "piid": 2,
+            "service": "washer",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "washer.left-time",
+            "siid": 2,
+            "piid": 4,
+            "service": "washer",
+            "name": "left-time",
+            "label": "剩余时间",
+            "kind": "reading",
+            "unit": "minutes"
+          },
+          {
+            "role": "washer.temperature",
+            "siid": 2,
+            "piid": 5,
+            "service": "washer",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          },
+          {
+            "role": "physical-controls-locked.physical-controls-locked",
+            "siid": 3,
+            "piid": 1,
+            "service": "physical-controls-locked",
+            "name": "physical-controls-locked",
+            "label": "童锁",
+            "kind": "toggle",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "washer-program",
+            "reason": "洗涤程序及启动参数需此型号插件的完整程序约束；当前保留公开状态和电源，不套用其他型号的程序。"
+          },
+          {
+            "feature": "washer-history",
+            "reason": "洗涤历史需此型号经验证的记录协议。"
+          }
+        ],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "viomi.washer.s1",
+      "category": "washer",
+      "file": "washer--viomi.washer.s1.json",
+      "type": "urn:miot-spec-v2:device:washer:0000A01F:viomi-s1:1",
+      "sha256": "336e8a5e8dbf09589097499eb9c46970bdde0c01ce8cd330e10936dd9e8463df",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "washer",
+        "profile": "standard",
+        "family": "cleaning",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "washer.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "washer",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "washer.status",
+            "siid": 2,
+            "piid": 2,
+            "service": "washer",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "washer.left-time",
+            "siid": 2,
+            "piid": 4,
+            "service": "washer",
+            "name": "left-time",
+            "label": "剩余时间",
+            "kind": "reading",
+            "unit": "minutes"
+          },
+          {
+            "role": "physical-controls-locked.physical-controls-locked",
+            "siid": 3,
+            "piid": 1,
+            "service": "physical-controls-locked",
+            "name": "physical-controls-locked",
+            "label": "童锁",
+            "kind": "toggle",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "washer-program",
+            "reason": "洗涤程序及启动参数需此型号插件的完整程序约束；当前保留公开状态和电源，不套用其他型号的程序。"
+          },
+          {
+            "feature": "washer-history",
+            "reason": "洗涤历史需此型号经验证的记录协议。"
+          }
+        ],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "chunmi.ysj.tsa1",
+      "category": "water-dispenser",
+      "file": "water-dispenser--chunmi.ysj.tsa1.json",
+      "type": "urn:miot-spec-v2:device:water-dispenser:0000A0A1:chunmi-tsa1:3",
+      "sha256": "3608f80e59ec80132541ed6717416e92d03f45d5539961a2445619679749373b",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "water-dispenser",
+        "profile": "standard",
+        "family": "cooking",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "water-dispenser.fault",
+            "siid": 2,
+            "piid": 1,
+            "service": "water-dispenser",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": "none"
+          },
+          {
+            "role": "water-dispenser.status",
+            "siid": 2,
+            "piid": 3,
+            "service": "water-dispenser",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": "none"
+          },
+          {
+            "role": "water-dispenser.temperature",
+            "siid": 2,
+            "piid": 5,
+            "service": "water-dispenser",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          },
+          {
+            "role": "water-dispenser.target-temperature",
+            "siid": 2,
+            "piid": 6,
+            "service": "water-dispenser",
+            "name": "target-temperature",
+            "label": "目标温度",
+            "kind": "range",
+            "unit": "celsius"
+          },
+          {
+            "role": "tds-sensor.tds-in",
+            "siid": 3,
+            "piid": 1,
+            "service": "tds-sensor",
+            "name": "tds-in",
+            "label": "原水 TDS",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "tds-sensor.tds-out",
+            "siid": 3,
+            "piid": 2,
+            "service": "tds-sensor",
+            "name": "tds-out",
+            "label": "纯水 TDS",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "physical-controls-locked.physical-controls-locked",
+            "siid": 4,
+            "piid": 1,
+            "service": "physical-controls-locked",
+            "name": "physical-controls-locked",
+            "label": "童锁",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "filter.filter-life-level",
+            "siid": 5,
+            "piid": 1,
+            "service": "filter",
+            "name": "filter-life-level",
+            "label": "滤芯剩余",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "filter.filter-used-time",
+            "siid": 5,
+            "piid": 3,
+            "service": "filter",
+            "name": "filter-used-time",
+            "label": "滤芯使用时间",
+            "kind": "reading",
+            "unit": "hours"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "cup-volume",
+            "reason": "出水启动、杯量和饮水历史需此型号经验证的专用协议，当前仅提供公开状态和基础设置。"
+          }
+        ],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "yunmi.plmachine.mg2",
+      "category": "water-dispenser",
+      "file": "water-dispenser--yunmi.plmachine.mg2.json",
+      "type": "urn:miot-spec-v2:device:water-dispenser:0000A0A1:yunmi-mg2:1",
+      "sha256": "9faa2be4be26b63039f680f6eaa9af13af6733160beeeabb992d7f2c3d5b0b33",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "water-dispenser",
+        "profile": "standard",
+        "family": "cooking",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "water-dispenser.mode",
+            "siid": 2,
+            "piid": 4,
+            "service": "water-dispenser",
+            "name": "mode",
+            "label": "模式",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "water-dispenser.temperature",
+            "siid": 2,
+            "piid": 5,
+            "service": "water-dispenser",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          },
+          {
+            "role": "water-dispenser.target-temperature",
+            "siid": 2,
+            "piid": 6,
+            "service": "water-dispenser",
+            "name": "target-temperature",
+            "label": "目标温度",
+            "kind": "range",
+            "unit": "celsius"
+          },
+          {
+            "role": "tds-sensor.tds-in",
+            "siid": 3,
+            "piid": 1,
+            "service": "tds-sensor",
+            "name": "tds-in",
+            "label": "原水 TDS",
+            "kind": "reading",
+            "unit": "none"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "cup-volume",
+            "reason": "出水启动、杯量和饮水历史需此型号经验证的专用协议，当前仅提供公开状态和基础设置。"
+          }
+        ],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "bj352.waterpuri.k10",
+      "category": "water-purifier",
+      "file": "water-purifier--bj352.waterpuri.k10.json",
+      "type": "urn:miot-spec-v2:device:water-purifier:0000A013:bj352-k10:1",
+      "sha256": "3451592a39c74dd4095ceb4537fc3062fb3dd5f3ea94490ee9f5615e4bc02631",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "water-purifier",
+        "profile": "standard",
+        "family": "cooking",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "water-purifier.fault",
+            "siid": 2,
+            "piid": 1,
+            "service": "water-purifier",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": "none"
+          },
+          {
+            "role": "water-purifier.status",
+            "siid": 2,
+            "piid": 3,
+            "service": "water-purifier",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": "none"
+          },
+          {
+            "role": "water-purifier.temperature",
+            "siid": 2,
+            "piid": 5,
+            "service": "water-purifier",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          },
+          {
+            "role": "filter.filter-life-level",
+            "siid": 3,
+            "piid": 1,
+            "service": "filter",
+            "name": "filter-life-level",
+            "label": "滤芯剩余",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "tds-sensor.tds-out",
+            "siid": 4,
+            "piid": 2,
+            "service": "tds-sensor",
+            "name": "tds-out",
+            "label": "纯水 TDS",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "filter.filter-life-level",
+            "siid": 5,
+            "piid": 1,
+            "service": "filter",
+            "name": "filter-life-level",
+            "label": "滤芯剩余",
+            "kind": "reading",
+            "unit": "percentage"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "water-volume",
+            "reason": "定量出水及用水历史需此型号经验证的专用协议；滤芯与水质使用公开属性。"
+          }
+        ],
+        "events": []
+      },
+      "limitation": null
+    },
+    {
+      "model": "dmaker.waterpuri.600g",
+      "category": "water-purifier",
+      "file": "water-purifier--dmaker.waterpuri.600g.json",
+      "type": "urn:miot-spec-v2:device:water-purifier:0000A013:dmaker-600g:1",
+      "sha256": "51f5bdf42f7bd4a17c557664ef99f78f5b9ca4058f84524ee9cca5359c2c876c",
+      "registryStatus": "released",
+      "notInObservedAccountInventory": true,
+      "physicalDeviceVerified": false,
+      "capabilities": {
+        "version": 2,
+        "category": "water-purifier",
+        "profile": "standard",
+        "family": "cooking",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "water-purifier.fault",
+            "siid": 2,
+            "piid": 1,
+            "service": "water-purifier",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": "none"
+          },
+          {
+            "role": "water-purifier.on",
+            "siid": 2,
+            "piid": 2,
+            "service": "water-purifier",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "water-purifier.status",
+            "siid": 2,
+            "piid": 3,
+            "service": "water-purifier",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": "none"
+          },
+          {
+            "role": "water-purifier.mode",
+            "siid": 2,
+            "piid": 4,
+            "service": "water-purifier",
+            "name": "mode",
+            "label": "模式",
+            "kind": "range",
+            "unit": "none"
+          },
+          {
+            "role": "tds-sensor.tds-in",
+            "siid": 4,
+            "piid": 1,
+            "service": "tds-sensor",
+            "name": "tds-in",
+            "label": "原水 TDS",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "tds-sensor.tds-out",
+            "siid": 4,
+            "piid": 2,
+            "service": "tds-sensor",
+            "name": "tds-out",
+            "label": "纯水 TDS",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "physical-controls-locked.physical-controls-locked",
+            "siid": 5,
+            "piid": 1,
+            "service": "physical-controls-locked",
+            "name": "physical-controls-locked",
+            "label": "童锁",
+            "kind": "toggle",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "water-volume",
+            "reason": "定量出水及用水历史需此型号经验证的专用协议；滤芯与水质使用公开属性。"
+          }
+        ],
+        "events": []
+      },
+      "limitation": null
+    }
+  ],
+  "limitations": [
+    "Private network, IR codes, washer programs, water cup/history and write-only motion are not inferred from names.",
+    "Models with no matching public readable abilities remain limited, rather than being reported as supported.",
+    "Absence from account is relative to the observed inventory named by provenance.json; no current account inventory was queried."
+  ],
+  "physicalWrites": 0,
+  "nativeIpcCalls": 0
+}

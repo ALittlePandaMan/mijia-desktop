@@ -1,0 +1,103 @@
+name: Release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: read
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  package:
+    name: Package ${{ matrix.platform }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: windows-2022
+            platform: windows-x64
+            target: x86_64-pc-windows-msvc
+            bundles: nsis
+          - runner: ubuntu-22.04
+            platform: linux-x64
+            target: x86_64-unknown-linux-gnu
+            bundles: appimage,deb
+          - runner: macos-15
+            platform: macos-arm64
+            target: aarch64-apple-darwin
+            bundles: app,dmg
+          - runner: macos-15-intel
+            platform: macos-x64
+            target: x86_64-apple-darwin
+            bundles: app,dmg
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - name: Linux build dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential pkg-config libwebkit2gtk-4.1-dev libgtk-3-dev libappindicator3-dev librsvg2-dev libdbus-1-dev patchelf xdg-utils
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          toolchain: 1.98.1
+          targets: ${{ matrix.target }}
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2
+        with:
+          workspaces: src-tauri -> target
+          key: ${{ matrix.target }}
+      - run: npm ci
+      - run: npm run version:check
+      - run: npm run source:check
+      - name: Build native packages
+        uses: tauri-apps/tauri-action@1deb371b0cd8bd54025b384f1cd735e725c4060f # v1
+        with:
+          args: --target ${{ matrix.target }} --bundles ${{ matrix.bundles }} -- --locked
+      - name: Inspect architecture and collect distribution files
+        run: node scripts/package-artifacts.mjs ${{ matrix.platform }}
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: packages-${{ matrix.platform }}
+          path: artifacts/${{ matrix.platform }}/
+          if-no-files-found: error
+          include-hidden-files: false
+          overwrite: true
+          retention-days: 14
+  publish:
+    name: Publish complete release
+    needs: package
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: .node-version
+      - run: node scripts/version.mjs --check
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          pattern: packages-*
+          path: downloaded
+      - name: Arrange platform manifests
+        shell: bash
+        run: |
+          mkdir -p artifacts
+          for platform in windows-x64 linux-x64 macos-arm64 macos-x64; do
+            mv "downloaded/packages-$platform" "artifacts/$platform"
+          done
+      - run: node scripts/release-artifacts.mjs
+      - name: Publish only after all packages pass file checks
+        run: node scripts/publish-release.mjs
+        env:
+          GH_TOKEN: ${{ github.token }}

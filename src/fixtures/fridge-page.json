@@ -1,0 +1,637 @@
+{
+  "did": "offline-fridge-fixture",
+  "model": "midjd.fridge.f01",
+  "specType": "urn:miot-spec-v2:device:fridge:0000A00F:midjd-f01:1",
+  "services": [
+    {
+      "siid": 1,
+      "name": "device-information",
+      "description": "Device Information",
+      "properties": [
+        {
+          "siid": 1,
+          "piid": 1,
+          "name": "manufacturer",
+          "description": "Device Manufacturer",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 1,
+          "piid": 2,
+          "name": "model",
+          "description": "Device Model",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 1,
+          "piid": 3,
+          "name": "serial-number",
+          "description": "Device ID",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 1,
+          "piid": 4,
+          "name": "firmware-revision",
+          "description": "Current Firmware Version",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 1,
+          "piid": 5,
+          "name": "serial-no",
+          "description": "Serial Number",
+          "format": "string",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null,
+          "lastReported": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 2,
+      "name": "fridge",
+      "description": "Fridge",
+      "properties": [
+        {
+          "siid": 2,
+          "piid": 1,
+          "name": "fault",
+          "description": "Device Fault",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": 0,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0,
+            65535,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 2,
+          "piid": 2,
+          "name": "mode",
+          "description": "Mode",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": 1,
+          "code": 0,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "None"
+            },
+            {
+              "value": 1,
+              "description": "Smart"
+            },
+            {
+              "value": 2,
+              "description": "Quick Cooling"
+            },
+            {
+              "value": 3,
+              "description": "Quick Frozen"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 2,
+          "piid": 3,
+          "name": "door-not-close-remind",
+          "description": "Door Not Close Remind",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": 0,
+          "code": 0,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "None"
+            },
+            {
+              "value": 1,
+              "description": "Some"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null,
+          "lastReported": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 3,
+      "name": "fridge-chamber",
+      "description": "Refrigerating Chamber",
+      "properties": [
+        {
+          "siid": 3,
+          "piid": 1,
+          "name": "temperature",
+          "description": "Temperature",
+          "format": "int8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "celsius",
+          "value": 10,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            -50,
+            100,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 3,
+          "piid": 2,
+          "name": "target-temperature",
+          "description": "Target Temperature",
+          "format": "int8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": "celsius",
+          "value": 5,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            2,
+            8,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 4,
+      "name": "fridge-chamber",
+      "description": "Freezing Chamber",
+      "properties": [
+        {
+          "siid": 4,
+          "piid": 1,
+          "name": "temperature",
+          "description": "Temperature",
+          "format": "int8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "celsius",
+          "value": -19,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            -50,
+            100,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 4,
+          "piid": 2,
+          "name": "target-temperature",
+          "description": "Target Temperature",
+          "format": "int8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": "celsius",
+          "value": -18,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            -24,
+            -16,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 6,
+      "name": "fridge-chamber",
+      "description": "Maternal-infant Chamber",
+      "properties": [
+        {
+          "siid": 6,
+          "piid": 1,
+          "name": "temperature",
+          "description": "Temperature",
+          "format": "int8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "celsius",
+          "value": 6,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            -50,
+            100,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 6,
+          "piid": 3,
+          "name": "mode",
+          "description": "Mode",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": 0,
+          "code": 0,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "Premium"
+            },
+            {
+              "value": 1,
+              "description": "Maternal-infant Products"
+            },
+            {
+              "value": 2,
+              "description": "Zero Degree"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null,
+          "lastReported": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 7,
+      "name": "fridge-reset",
+      "description": "fridge-reset",
+      "properties": [],
+      "actions": [
+        {
+          "siid": 7,
+          "aiid": 1,
+          "name": "reset",
+          "description": "reset",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        }
+      ]
+    },
+    {
+      "siid": 10,
+      "name": "fridge-run-status",
+      "description": "fridge-run-status",
+      "properties": [
+        {
+          "siid": 10,
+          "piid": 1,
+          "name": "defrost-status",
+          "description": "defrost-status",
+          "format": "uint8",
+          "access": [
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "Off"
+            },
+            {
+              "value": 1,
+              "description": "On"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 10,
+          "piid": 2,
+          "name": "defrost-temperature",
+          "description": "defrost-temperature",
+          "format": "int8",
+          "access": [
+            "notify"
+          ],
+          "unit": "celsius",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            -50,
+            100,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 10,
+          "piid": 3,
+          "name": "refrigerating-damper",
+          "description": "refrigerating-damper",
+          "format": "uint8",
+          "access": [
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "Close"
+            },
+            {
+              "value": 1,
+              "description": "Open"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 10,
+          "piid": 4,
+          "name": "freezing-fan",
+          "description": "freezing-fan",
+          "format": "uint8",
+          "access": [
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0,
+            20,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 10,
+          "piid": 5,
+          "name": "compressor-speed",
+          "description": "compressor-speed",
+          "format": "uint16",
+          "access": [
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0,
+            10000,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 10,
+          "piid": 6,
+          "name": "condensation-fan",
+          "description": "condensation-fan",
+          "format": "uint8",
+          "access": [
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0,
+            20,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 10,
+          "piid": 7,
+          "name": "change-damper",
+          "description": "change-damper",
+          "format": "uint8",
+          "access": [
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "Close"
+            },
+            {
+              "value": 1,
+              "description": "Open"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 10,
+          "piid": 8,
+          "name": "mini-change-damper",
+          "description": "mini-change-damper",
+          "format": "uint8",
+          "access": [
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "Close"
+            },
+            {
+              "value": 1,
+              "description": "Open"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 10,
+          "piid": 9,
+          "name": "environment-temp",
+          "description": "",
+          "format": "int8",
+          "access": [
+            "notify"
+          ],
+          "unit": "celsius",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            -50,
+            100,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 10,
+          "piid": 10,
+          "name": "environment-humidity",
+          "description": "",
+          "format": "uint8",
+          "access": [
+            "notify"
+          ],
+          "unit": "percentage",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0,
+            100,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 10,
+          "piid": 11,
+          "name": "door-status",
+          "description": "",
+          "format": "uint16",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0,
+            65535,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        }
+      ],
+      "actions": []
+    }
+  ],
+  "unsupportedReason": null
+}

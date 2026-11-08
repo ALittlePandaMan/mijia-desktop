@@ -1,0 +1,24 @@
+import {element} from './dom';
+import history from '../assets/mijia/library/c5f148ed397645114a9688da7b0b9521a1710aff13f612bbe3f4b7815a964535.png?url&no-inline';
+import historyDark from '../assets/mijia/library/a9993cbbeae51c4417a7f31983ba71e5773a61a53190357fd0538e7698818e52.png?url&no-inline';
+import pending from '../assets/mijia/library/1677bef666d189931aef77848789c72ae6ed0dfd233d87053136902f692e6e51.png?url&no-inline';
+import pendingDark from '../assets/mijia/library/347f6981ae2d097c4c4e3f556d132a967ec5925b4baf4afaa5d6e01d4d1038e4.png?url&no-inline';
+import members from '../assets/mijia/library/3a9f449660381923c4d7b7644879ee828f8e92147720fc69c323b2780bcf192f.png?url&no-inline';
+import membersDark from '../assets/mijia/library/aab5edcc33550768aae64a7f05ef71d8e65c1f35ccc0e28766d565ed0ac4e4f7.png?url&no-inline';
+import empty from '../assets/mijia/library/4c66978b0889541ee9c452fd163db50a6af11c3837f807261f4baa82a819f0da.png?url&no-inline';
+import emptyDark from '../assets/mijia/library/53bef3bd9f97aff89db88f999dcfd066f4fdb556b115ce12477411795b24b4cd.png?url&no-inline';
+import avatar1 from '../assets/mijia/library/33b23f20d3f1901427be4de6c52701e089faf552680a9351178f23549ab72226.png?url&no-inline';
+import avatar1Dark from '../assets/mijia/library/90c400e49ae7b9d4f4c45dbb0cb653d9f52b0d26f7a7e5ad3a7fb4ee612b610d.png?url&no-inline';
+import avatar2 from '../assets/mijia/library/bb4cf03eefeadae8ba5992ddac17bd3436f5ac7bb591de3ad1831c26ce7198f5.png?url&no-inline';
+import avatar2Dark from '../assets/mijia/library/e498ea5bb3e6993296341071d07bb71733a2bb52a4d6d5804a2fc69c0b6ac676.png?url&no-inline';
+import avatar3 from '../assets/mijia/library/07912a0ac34734571774813b277453c1d440c8bd6ad5a31bb8f004912cd976c1.png?url&no-inline';
+import avatar3Dark from '../assets/mijia/library/6367d2ebd9faeeb7f78c2c6c0da9af3952fd8b384924279299f44b7870c9778c.png?url&no-inline';
+import avatar4 from '../assets/mijia/library/fcaf80dae160fb3375c18a55c7a07992b1679617cbc59bcfe2d27cb3c07a1567.png?url&no-inline';
+import avatar4Dark from '../assets/mijia/library/70d02792c0c573e943d58ddef9ea88acad91fd7b9ce555c5ae564eee3c4984d1.png?url&no-inline';
+import avatar5 from '../assets/mijia/library/6ea870df69d952adfb062586801516647fc85d4001c27a7396f1f906d43d99bd.png?url&no-inline';
+import avatar5Dark from '../assets/mijia/library/5eed8f40a358d1e9ac65c96bcda88fed32f598da48c8c157dd5d1041d62a4db3.png?url&no-inline';
+import avatar6 from '../assets/mijia/library/11fb1718e24c1c64efee3bd3d0a046d74fde933d2e370a2f67d806bb0f00c3b3.png?url&no-inline';
+import avatar6Dark from '../assets/mijia/library/ec9bb1f0703306a4b18672e2933a07d371f5d127ec2f1a1d2c43c631e61fdfd6.png?url&no-inline';
+const sources={history:[history,historyDark],pending:[pending,pendingDark],members:[members,membersDark],empty:[empty,emptyDark],avatar1:[avatar1,avatar1Dark],avatar2:[avatar2,avatar2Dark],avatar3:[avatar3,avatar3Dark],avatar4:[avatar4,avatar4Dark],avatar5:[avatar5,avatar5Dark],avatar6:[avatar6,avatar6Dark]} as const;
+export type ScalePicture=keyof typeof sources;
+export function scalePicture(key:ScalePicture,className=''):HTMLSpanElement{const node=element('span','scale-picture '+className);node.style.setProperty('--scale-image-light',`url("${sources[key][0]}")`);node.style.setProperty('--scale-image-dark',`url("${sources[key][1]}")`);node.setAttribute('aria-hidden','true');return node;}

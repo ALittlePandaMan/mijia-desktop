@@ -1,0 +1,2997 @@
+{
+  "version": 2,
+  "sd": [
+    {
+      "family": "standard",
+      "arrayPlayback": false,
+      "channels": [
+        0
+      ],
+      "models": [
+        "chuangmi.camera.021a04",
+        "chuangmi.camera.026c02",
+        "chuangmi.camera.026c05",
+        "chuangmi.camera.029a02",
+        "chuangmi.camera.029b06",
+        "chuangmi.camera.036a02",
+        "chuangmi.camera.039a01",
+        "chuangmi.camera.039a04",
+        "chuangmi.camera.039c01",
+        "chuangmi.camera.039c04",
+        "chuangmi.camera.046a01",
+        "chuangmi.camera.046c04",
+        "chuangmi.camera.046d02",
+        "chuangmi.camera.049a01",
+        "chuangmi.camera.051a01",
+        "chuangmi.camera.060a02",
+        "chuangmi.camera.061a01",
+        "chuangmi.camera.061a03",
+        "chuangmi.camera.069a01",
+        "chuangmi.camera.070a02",
+        "chuangmi.camera.077ac1",
+        "chuangmi.camera.079ac1",
+        "chuangmi.camera.079ae2",
+        "chuangmi.camera.081ae2",
+        "chuangmi.camera.112ae1",
+        "chuangmi.camera.120ae1",
+        "chuangmi.camera.46e01",
+        "chuangmi.camera.ip026c",
+        "chuangmi.camera.ip029a",
+        "chuangmi.camera.ipc009",
+        "chuangmi.camera.ipc019",
+        "chuangmi.camera.ipc021",
+        "chuangmi.camera.ipc022",
+        "dtwl.camera.dtz3m",
+        "fnk.camera.st001",
+        "isa.camera.hlc7",
+        "isa.camera.hlc9a",
+        "jooan.camera.548910",
+        "meijin.camera.3m01",
+        "mijia.camera.v1",
+        "mijia.camera.v3",
+        "mxiang.camera.c301",
+        "mxiang.camera.mod11",
+        "mxiang.camera.mod13",
+        "xiaomi.camera.080ao1",
+        "xiaomi.camera.083ac1",
+        "xiaomi.camera.083ae2",
+        "xiaomi.camera.090ac1",
+        "xiaomi.camera.091ac1",
+        "xiaomi.camera.093ac1",
+        "xiaomi.camera.096ac1",
+        "xiaomi.camera.92ac1",
+        "xiaomi.camera.c01a01",
+        "xiaomi.camera.c01a02",
+        "xiaomi.camera.c201",
+        "xiaomi.camera.c302n",
+        "xiaomi.camera.c302o",
+        "xiaomi.camera.c500a",
+        "xiaomi.camera.cw301",
+        "xiaomi.camera.pc02",
+        "xiaomi.camera.zrh",
+        "xiaovv.camera.fj13",
+        "xiaovv.camera.fj19",
+        "xiaovv.camera.fj21",
+        "xiaovv.camera.fj22",
+        "xiaovv.camera.fjcam8",
+        "xiaovv.camera.fjcam9",
+        "xiaovv.camera.ljcam1",
+        "xiaovv.camera.p124g",
+        "xiaovv.camera.q330",
+        "xiaovv.camera.q4",
+        "xiaovv.camera.q9",
+        "xiaovv.camera.xvvc08",
+        "xiaovv.camera.xvvc11",
+        "xiaovv.camera.xvvc14",
+        "xiaovv.camera.zrh111",
+        "yunmi.camera.cwb12b"
+      ],
+      "indexBytes": 24,
+      "indexDeclared": 0
+    },
+    {
+      "family": "hualai",
+      "arrayPlayback": false,
+      "channels": [
+        0
+      ],
+      "models": [
+        "isa.camera.hlzoom",
+        "isa.camera.cw500",
+        "isa.camera.cw501"
+      ],
+      "indexBytes": 32,
+      "indexDeclared": 0
+    },
+    {
+      "family": "hualai",
+      "arrayPlayback": true,
+      "channels": [
+        0,
+        10
+      ],
+      "models": [
+        "isa.camera.hlmax",
+        "isa.camera.500dh",
+        "isa.camera.cw300d",
+        "isa.camera.cw501d",
+        "xiaomi.camera.cw701",
+        "xiaomi.camera.hl4g",
+        "xiaomi.camera.501dh"
+      ],
+      "indexBytes": 32,
+      "indexDeclared": 0
+    },
+    {
+      "family": "standard",
+      "arrayPlayback": true,
+      "channels": [
+        0,
+        10
+      ],
+      "models": [
+        "xiaomi.camera.082ac1",
+        "xiaomi.camera.082ae2",
+        "xiaomi.camera.odc302",
+        "xiaomi.camera.odg301"
+      ],
+      "indexBytes": 24,
+      "indexDeclared": 0
+    },
+    {
+      "family": "standard",
+      "arrayPlayback": false,
+      "channels": [
+        0
+      ],
+      "indexBytes": 32,
+      "indexDeclared": 24,
+      "models": [
+        "chuangmi.camera.81ac1",
+        "xiaomi.camera.c302",
+        "xiaomi.camera.069a03"
+      ]
+    },
+    {
+      "family": "hualai",
+      "arrayPlayback": false,
+      "channels": [
+        0
+      ],
+      "indexBytes": 8,
+      "indexDeclared": 0,
+      "models": [
+        "isa.camera.hlc8"
+      ]
+    }
+  ],
+  "cloudDoorbells": [
+    {
+      "endpoint": "/common/app/get/eventlist",
+      "freeRetentionDays": 3,
+      "models": [
+        "madv.cateye.mi3iot"
+      ]
+    },
+    {
+      "endpoint": "/common/app/get/eventlist",
+      "freeRetentionDays": null,
+      "models": [
+        "chuangmi.cateye.i023a01",
+        "chuangmi.cateye.ipc018",
+        "chuangmi.cateye.ipc508",
+        "dun.cateye.nknk500",
+        "isa.cateye.hldb6",
+        "loock.cateye.v02",
+        "loock.cateye.v06",
+        "loock.cateye.v07",
+        "madv.cateye.dlc5jz",
+        "madv.cateye.dle3jz",
+        "madv.cateye.dle4jz",
+        "madv.cateye.dlowl",
+        "madv.cateye.dlowle",
+        "madv.cateye.dlowlplus",
+        "madv.cateye.dlowlse",
+        "madv.cateye.dlowlse2",
+        "madv.cateye.mic2jz",
+        "madv.cateye.miowl",
+        "madv.cateye.miowl3",
+        "madv.cateye.miowlv2",
+        "madv.cateye.miowlv2l",
+        "madv.cateye.miv2jz",
+        "midr.cateye.db400a",
+        "midr.cateye.ph300",
+        "midr.cateye.sd400",
+        "mxiang.cateye.mdb10",
+        "mxiang.cateye.xmcatt1"
+      ]
+    },
+    {
+      "endpoint": "/common/app/get/cloudlist",
+      "freeRetentionDays": null,
+      "models": [
+        "loock.cateye.v01"
+      ]
+    }
+  ],
+  "media": [
+    {
+      "models": [
+        "chuangmi.camera.021a04"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.026c02"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.026c05"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.029a02"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.029b06"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "2K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "360P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.036a02"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 8000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.039a01"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.039a04"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.039c01"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "2.5K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "480P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.039c04"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "2.5K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "480P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.046a01"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.046c04"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.046d02"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.049a01"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.051a01"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.060a02"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "2.5K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "480P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.061a01"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.061a03"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.069a01"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "uhd",
+          "label": "超清",
+          "value": 3
+        },
+        {
+          "id": "hd",
+          "label": "高清",
+          "value": 2
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.070a02"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "2.5K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "480P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.077ac1"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": false,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "2K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "480P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.079ac1"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "4K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "480P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.079ae2"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "4K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "480P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.081ae2"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "uhd",
+          "label": "4K",
+          "value": 3
+        },
+        {
+          "id": "hd",
+          "label": "1080P",
+          "value": 2
+        },
+        {
+          "id": "sd",
+          "label": "480P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.112ae1"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "uhd",
+          "label": "4K",
+          "value": 3
+        },
+        {
+          "id": "hd",
+          "label": "1080P",
+          "value": 2
+        },
+        {
+          "id": "sd",
+          "label": "480P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.120ae1"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "uhd",
+          "label": "4K",
+          "value": 3
+        },
+        {
+          "id": "hd",
+          "label": "1080P",
+          "value": 2
+        },
+        {
+          "id": "sd",
+          "label": "480P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.46e01"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.ip026c"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.ip029a"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.ipc009"
+      ],
+      "family": "miss",
+      "talk": null,
+      "ptz": false,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": "3.5.3_0399"
+    },
+    {
+      "models": [
+        "chuangmi.camera.ipc019"
+      ],
+      "family": "miss",
+      "talk": null,
+      "ptz": false,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": "3.5.5_0399"
+    },
+    {
+      "models": [
+        "chuangmi.camera.ipc021"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "chuangmi.camera.ipc022"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "dtwl.camera.dtz3m"
+      ],
+      "family": "miss",
+      "talk": null,
+      "ptz": false,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "2K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "360P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "fnk.camera.st001"
+      ],
+      "family": "miss",
+      "talk": null,
+      "ptz": false,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "2K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "360P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "isa.camera.hlc7"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 8000
+      },
+      "ptz": false,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "isa.camera.hlc9a"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": false,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "jooan.camera.548910"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 8000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "meijin.camera.3m01"
+      ],
+      "family": "miss",
+      "talk": null,
+      "ptz": false,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "2K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "360P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "mijia.camera.v1"
+      ],
+      "family": "miss",
+      "talk": null,
+      "ptz": false,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": "3.5.8_0999"
+    },
+    {
+      "models": [
+        "mijia.camera.v3"
+      ],
+      "family": "miss",
+      "talk": null,
+      "ptz": false,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": "3.5.1_0070"
+    },
+    {
+      "models": [
+        "mxiang.camera.c301"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "2K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "480P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "mxiang.camera.mod11"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": false,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "mxiang.camera.mod13"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": false,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaomi.camera.080ao1"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "2.5K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "360P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaomi.camera.083ac1"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "uhd",
+          "label": "4K",
+          "value": 3
+        },
+        {
+          "id": "hd",
+          "label": "1080P",
+          "value": 2
+        },
+        {
+          "id": "sd",
+          "label": "480P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaomi.camera.083ae2"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "uhd",
+          "label": "4K",
+          "value": 3
+        },
+        {
+          "id": "hd",
+          "label": "1080P",
+          "value": 2
+        },
+        {
+          "id": "sd",
+          "label": "480P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaomi.camera.090ac1"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "4K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "480P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaomi.camera.091ac1"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "uhd",
+          "label": "4K",
+          "value": 3
+        },
+        {
+          "id": "hd",
+          "label": "1080P",
+          "value": 2
+        },
+        {
+          "id": "sd",
+          "label": "480P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaomi.camera.093ac1"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "3K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "360P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaomi.camera.096ac1"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "4K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "480P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaomi.camera.92ac1"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "3K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "360P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaomi.camera.c01a01"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaomi.camera.c01a02"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaomi.camera.c201"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "1080P",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "480P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaomi.camera.c302n"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "2K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "480P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaomi.camera.c302o"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "3.5K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "480P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaomi.camera.c500a"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "3.5K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "360P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaomi.camera.cw301"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "3K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "480P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaomi.camera.pc02"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "4K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "720P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaomi.camera.zrh"
+      ],
+      "family": "miss",
+      "talk": null,
+      "ptz": false,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaovv.camera.fj13"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 8000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "3K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "360P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaovv.camera.fj19"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "4K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "360P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaovv.camera.fj21"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 8000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaovv.camera.fj22"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 16000
+      },
+      "ptz": false,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaovv.camera.fjcam8"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 8000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "2K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "360P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaovv.camera.fjcam9"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 8000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "2K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "360P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaovv.camera.ljcam1"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 8000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "2K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "360P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaovv.camera.p124g"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 8000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "1080P",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "360P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaovv.camera.q330"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 8000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaovv.camera.q4"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 8000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "2K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "360P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaovv.camera.q9"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 8000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "2K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "360P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaovv.camera.xvvc08"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 16000
+      },
+      "ptz": false,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "4K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "360P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaovv.camera.xvvc11"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaovv.camera.xvvc14"
+      ],
+      "family": "miss",
+      "talk": null,
+      "ptz": false,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaovv.camera.zrh111"
+      ],
+      "family": "miss",
+      "talk": null,
+      "ptz": false,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "yunmi.camera.cwb12b"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 8000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "isa.camera.hlzoom"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": false,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "isa.camera.cw500"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": false,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "isa.camera.cw501"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": false,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "isa.camera.hlmax"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": false,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "isa.camera.500dh"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": false,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "高清",
+          "value": 3
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null,
+      "lenses": [
+        {
+          "id": 0,
+          "label": "云台镜头",
+          "ptz": true,
+          "qualityField": "videoquality",
+          "defaultQuality": 1
+        },
+        {
+          "id": 10,
+          "label": "固定镜头",
+          "ptz": false,
+          "qualityField": "videoquality2",
+          "defaultQuality": 2
+        }
+      ],
+      "lensSource": "Official MISS frame_type=1,type=1; original standard plugin DualLayout channel 0/10 and two quality fields; MIStream flags bits 21..26."
+    },
+    {
+      "models": [
+        "isa.camera.cw300d"
+      ],
+      "family": "miss",
+      "talk": null,
+      "ptz": false,
+      "care": false,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "isa.camera.cw501d"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": false,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "高清",
+          "value": 3
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null,
+      "lenses": [
+        {
+          "id": 0,
+          "label": "云台镜头",
+          "ptz": true,
+          "qualityField": "videoquality",
+          "defaultQuality": 1
+        },
+        {
+          "id": 10,
+          "label": "固定镜头",
+          "ptz": false,
+          "qualityField": "videoquality2",
+          "defaultQuality": 1
+        }
+      ],
+      "lensSource": "Official MISS frame_type=1,type=1; original standard plugin DualLayout channel 0/10 and two quality fields; MIStream flags bits 21..26."
+    },
+    {
+      "models": [
+        "xiaomi.camera.cw701"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": false,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "高清",
+          "value": 3
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null,
+      "lenses": [
+        {
+          "id": 0,
+          "label": "云台镜头",
+          "ptz": true,
+          "qualityField": "videoquality",
+          "defaultQuality": 2
+        },
+        {
+          "id": 10,
+          "label": "固定镜头",
+          "ptz": false,
+          "qualityField": "videoquality2",
+          "defaultQuality": 2
+        }
+      ],
+      "lensSource": "Official MISS frame_type=1,type=1; original standard plugin DualLayout channel 0/10 and two quality fields; MIStream flags bits 21..26."
+    },
+    {
+      "models": [
+        "xiaomi.camera.hl4g"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+        "careSource": "Original HL4G 1031395-v52 module 10124 getEventList/requestEvents; /common/app/get/eventlist, business.smartcamera, thirdPartPlayUnits.",
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "高清",
+          "value": 3
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null,
+      "lenses": [
+        {
+          "id": 0,
+          "label": "云台镜头",
+          "ptz": true,
+          "qualityField": "videoquality",
+          "defaultQuality": 1
+        },
+        {
+          "id": 10,
+          "label": "固定镜头",
+          "ptz": false,
+          "qualityField": "videoquality2",
+          "defaultQuality": 1
+        }
+      ],
+      "lensSource": "Official MISS frame_type=1,type=1; original standard plugin DualLayout channel 0/10 and two quality fields; MIStream flags bits 21..26."
+    },
+    {
+      "models": [
+        "xiaomi.camera.501dh"
+      ],
+      "family": "miss",
+      "talk": null,
+      "ptz": false,
+      "care": false,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaomi.camera.082ac1"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "3K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "480P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null,
+      "lenses": [
+        {
+          "id": 0,
+          "label": "云台镜头",
+          "ptz": true,
+          "qualityField": "videoquality",
+          "defaultQuality": 1
+        },
+        {
+          "id": 10,
+          "label": "固定镜头",
+          "ptz": false,
+          "qualityField": "videoquality2",
+          "defaultQuality": 2
+        }
+      ],
+      "lensSource": "Official MISS frame_type=1,type=1; original standard plugin DualLayout channel 0/10 and two quality fields; MIStream flags bits 21..26."
+    },
+    {
+      "models": [
+        "xiaomi.camera.082ae2"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "高清",
+          "value": 3
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null,
+      "lenses": [
+        {
+          "id": 0,
+          "label": "云台镜头",
+          "ptz": true,
+          "qualityField": "videoquality",
+          "defaultQuality": 1
+        },
+        {
+          "id": 10,
+          "label": "固定镜头",
+          "ptz": false,
+          "qualityField": "videoquality2",
+          "defaultQuality": 1
+        }
+      ],
+      "lensSource": "Official MISS frame_type=1,type=1; original standard plugin DualLayout channel 0/10 and two quality fields; MIStream flags bits 21..26."
+    },
+    {
+      "models": [
+        "xiaomi.camera.odc302"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "高清",
+          "value": 3
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null,
+      "lenses": [
+        {
+          "id": 0,
+          "label": "云台镜头",
+          "ptz": true,
+          "qualityField": "videoquality",
+          "defaultQuality": 1
+        },
+        {
+          "id": 10,
+          "label": "固定镜头",
+          "ptz": false,
+          "qualityField": "videoquality2",
+          "defaultQuality": 1
+        }
+      ],
+      "lensSource": "Official MISS frame_type=1,type=1; original standard plugin DualLayout channel 0/10 and two quality fields; MIStream flags bits 21..26."
+    },
+    {
+      "models": [
+        "xiaomi.camera.odg301"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "2K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "360P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null,
+      "lenses": [
+        {
+          "id": 0,
+          "label": "云台镜头",
+          "ptz": true,
+          "qualityField": "videoquality",
+          "defaultQuality": 1
+        },
+        {
+          "id": 10,
+          "label": "固定镜头",
+          "ptz": false,
+          "qualityField": "videoquality2",
+          "defaultQuality": 1
+        }
+      ],
+      "lensSource": "Official MISS frame_type=1,type=1; original standard plugin DualLayout channel 0/10 and two quality fields; MIStream flags bits 21..26."
+    },
+    {
+      "models": [
+        "chuangmi.camera.81ac1"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "uhd",
+          "label": "4K",
+          "value": 3
+        },
+        {
+          "id": "hd",
+          "label": "1080P",
+          "value": 2
+        },
+        {
+          "id": "sd",
+          "label": "480P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaomi.camera.c302"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "hd",
+          "label": "3.5K",
+          "value": 3
+        },
+        {
+          "id": "sd",
+          "label": "480P",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "xiaomi.camera.069a03"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "uhd",
+          "label": "超清",
+          "value": 3
+        },
+        {
+          "id": "hd",
+          "label": "高清",
+          "value": 2
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        },
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        }
+      ],
+      "minimumFirmware": null
+    },
+    {
+      "models": [
+        "isa.camera.hlc8"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": true,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null
+    }
+  ],
+  "mediaSource": {
+    "officialConfigVersion": "6",
+    "officialConfigUpdated": "1792632642",
+    "officialConfigSha256": "784627f580dba4f8343a37669f0eb1c1b242e68f25124c560d731c99b331a428",
+    "standardPluginVersion": 4433,
+    "qualityAlgorithm": "original getQualityDisplayArray; positional MISS values; two non-auto profiles use 1 and 3"
+  }
+}

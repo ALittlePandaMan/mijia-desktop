@@ -1,0 +1,32 @@
+.page-vacuum{background:var(--surface-page,#f5f6f8);color:var(--text-primary,#111);position:relative}
+.page-vacuum .device-page-header{grid-template-columns:40px minmax(0,1fr) 40px;padding-inline:16px}
+.page-vacuum .device-page-title{align-self:center;position:relative}
+.vacuum-status{position:absolute;left:50%;top:100%;transform:translateX(-50%);font-size:var(--device-aux-size,12px);line-height:18px;color:var(--text-secondary,#999);white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.vacuum-content{padding:0 var(--device-edge,14px) var(--device-edge,14px);display:flex;flex-direction:column;gap:var(--device-gap,14px)}
+.vacuum-map{position:relative;height:clamp(250px,40dvh,360px);width:100%;display:grid;place-items:center;flex:none;min-width:0;overflow:hidden;touch-action:none;cursor:grab;user-select:none}
+.vacuum-map.dragging{cursor:grabbing}.vacuum-map:focus-visible{outline:2px solid var(--focus-ring,#5893ff);outline-offset:-2px;border-radius:8px}
+.vacuum-map-empty{cursor:default}
+.vacuum-map-canvas{position:absolute;inset:0;height:100%;width:100%;min-width:0;min-height:0;overflow:hidden}.vacuum-map-pixels{image-rendering:pixelated}
+.vacuum-room-name{fill:#222;paint-order:stroke;stroke:#f5f6f8;stroke-opacity:.65;font-family:inherit;font-weight:500}
+.vacuum-cleaning-path{fill:none;stroke:#f8f8f8;stroke-width:1.4px;stroke-linecap:round;stroke-linejoin:round}
+.vacuum-map-empty{font-size:var(--device-description-size,14px);color:var(--text-secondary,#999);text-align:center}
+.vacuum-main-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--device-gap,14px)}
+.vacuum-main-action{display:flex;align-items:center;justify-content:flex-start;gap:14px;width:100%;min-height:64px;padding:12px 18px;border:0;background:var(--surface-card,#fff);color:var(--text-primary,#333);border-radius:var(--device-card-radius,14px);font-size:var(--device-label-size,16px);line-height:24px;text-align:left}
+.vacuum-main-action>.vacuum-icon{width:32px;height:32px;object-fit:contain;flex:none}
+.vacuum-main-action>.vacuum-base-arrow{margin-left:auto;width:16px;height:16px;color:var(--text-muted,#b7b7b7);transform:rotate(-90deg)}
+.vacuum-main-action:hover:not(:disabled){background:var(--surface-hover,#fafafa)}.vacuum-main-action:disabled,.vacuum-choice:disabled{cursor:default;opacity:.45}
+.vacuum-settings-card{background:var(--surface-card,#fff);border-radius:var(--device-card-radius,14px);padding:0 var(--device-control-inset,23px);flex:none;min-width:0;overflow:hidden}
+.vacuum-settings-note{margin:14px 0 0;color:#b27b32;font-size:12px;line-height:18px}
+.vacuum-settings-card[data-settings-locked=true] .vacuum-choice:disabled{opacity:.3}
+.vacuum-settings-card[data-settings-locked=true] .vacuum-choice[data-vacuum-operation=mode][aria-pressed=true]{opacity:1}
+.vacuum-setting-group{padding:22px 0}.vacuum-setting-group+.vacuum-setting-group{border-top:1px solid var(--border-subtle,#f0f0f0)}
+.vacuum-setting-group h3{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;margin:0 0 18px;font-size:var(--device-label-size,16px);font-weight:400;line-height:24px}.vacuum-setting-group h3>span{font-size:var(--device-description-size,14px);color:var(--text-muted,#a6a6a6)}
+.vacuum-options{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.vacuum-choice{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;min-width:0;gap:10px;border:0;background:transparent;color:var(--text-secondary,#999);font-size:var(--device-description-size,14px);line-height:20px;padding:0;white-space:normal;text-align:center}
+.vacuum-choice>.vacuum-icon{width:var(--device-option-disc,54px);height:var(--device-option-disc,54px);object-fit:contain;flex:none}.vacuum-choice[aria-pressed=true]{color:#5893ff}
+.vacuum-feedback{background:var(--surface-card,#fff);border-radius:var(--device-card-radius,20px);padding:18px var(--device-control-inset,23px);font-size:14px;color:var(--text-secondary,#777)}.vacuum-feedback p{margin:0 0 10px}.vacuum-feedback p:only-child{margin:0}
+.vacuum-dialog-overlay{position:absolute;inset:0;z-index:30;display:grid;align-items:end;justify-items:center;background:#0003;padding:var(--device-edge,14px);overflow:auto}
+.vacuum-dialog{padding:var(--device-control-inset,23px);background:var(--surface-raised,#fff);border-radius:var(--device-card-radius,20px);width:100%;max-height:100%;overflow:auto;box-shadow:0 8px 40px #0001}
+.vacuum-dialog h3{font-size:18px;line-height:28px;font-weight:500;margin:0 0 16px;display:flex;justify-content:space-between}.vacuum-dialog-note{color:var(--text-secondary,#888);font-size:14px;line-height:22px}.vacuum-station-action{padding-inline:0;border-radius:0;min-height:64px}.vacuum-station-action+.vacuum-station-action{border-top:1px solid var(--border-subtle,#f1f1f1)}.vacuum-station-action>.vacuum-icon{width:32px;height:32px}
+.vacuum-dialog-close{height:48px;width:100%;border:0;border-radius:24px;color:var(--text-primary,#444);background:var(--surface-raised,#f5f5f5);font-size:16px;margin-top:12px}.vacuum-dialog footer{display:flex;gap:14px;margin-top:20px}.vacuum-dialog footer>*{flex:1}.vacuum-water-slider{width:100%;margin:12px 0;accent-color:#5893ff;height:36px}.vacuum-water-scale{display:flex;justify-content:space-between;color:var(--text-muted,#aaa);font-size:14px}
+@media(max-width:360px){.vacuum-settings-card{padding-inline:16px}.vacuum-options{gap:4px}.vacuum-choice{font-size:12px}.vacuum-choice>.vacuum-icon{width:48px;height:48px}.vacuum-main-action{padding-inline:16px;gap:8px}}

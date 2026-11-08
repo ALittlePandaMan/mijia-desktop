@@ -1,0 +1,922 @@
+{
+  "did": "outlet-fixture",
+  "model": "xiaomi.plug.04",
+  "specType": "urn:miot-spec-v2:device:outlet:0000A002:xiaomi-04:1:0000D032",
+  "services": [
+    {
+      "siid": 1,
+      "name": "device-information",
+      "description": "Device Information",
+      "properties": [
+        {
+          "siid": 1,
+          "piid": 1,
+          "name": "manufacturer",
+          "description": "Device Manufacturer",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 1,
+          "piid": 2,
+          "name": "model",
+          "description": "Device Model",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 1,
+          "piid": 3,
+          "name": "serial-number",
+          "description": "Device Serial Number",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 1,
+          "piid": 4,
+          "name": "firmware-revision",
+          "description": "Current Firmware Version",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [],
+      "events": []
+    },
+    {
+      "siid": 2,
+      "name": "switch",
+      "description": "Switch",
+      "properties": [
+        {
+          "siid": 2,
+          "piid": 1,
+          "name": "on",
+          "description": "Switch Status",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 2,
+          "name": "default-power-on-state",
+          "description": "Default Power On State",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "Default"
+            },
+            {
+              "value": 1,
+              "description": "Off"
+            },
+            {
+              "value": 2,
+              "description": "On"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 3,
+          "name": "fault",
+          "description": "Device Fault",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "No Fault"
+            },
+            {
+              "value": 1,
+              "description": "Over Temperature"
+            },
+            {
+              "value": 2,
+              "description": "Overload"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [
+        {
+          "siid": 2,
+          "aiid": 1,
+          "name": "toggle",
+          "description": "Toggle",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        }
+      ],
+      "events": []
+    },
+    {
+      "siid": 11,
+      "name": "power-consumption",
+      "description": "Power Consumption",
+      "properties": [
+        {
+          "siid": 11,
+          "piid": 1,
+          "name": "power-consumption",
+          "description": "Power Consumption",
+          "format": "float",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "kWh",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            65535.0,
+            0.01
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 11,
+          "piid": 2,
+          "name": "electric-power",
+          "description": "Electric Power",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "watt",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            10000.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 11,
+          "piid": 3,
+          "name": "power-consumption-accumulation-way",
+          "description": "Power Consumption Accumulate Way",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [],
+      "events": []
+    },
+    {
+      "siid": 7,
+      "name": "physical-controls-locked",
+      "description": "Physical Controls Locked",
+      "properties": [
+        {
+          "siid": 7,
+          "piid": 1,
+          "name": "physical-controls-locked",
+          "description": "Physical Controls Locked",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [],
+      "events": []
+    },
+    {
+      "siid": 13,
+      "name": "indicator-light",
+      "description": "Indicator Light",
+      "properties": [
+        {
+          "siid": 13,
+          "piid": 1,
+          "name": "on",
+          "description": "Switch Status",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [],
+      "events": []
+    },
+    {
+      "siid": 3,
+      "name": "indicator-light",
+      "description": "indicator-light",
+      "properties": [
+        {
+          "siid": 3,
+          "piid": 1,
+          "name": "mode",
+          "description": "",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 3,
+          "piid": 2,
+          "name": "start-time",
+          "description": "",
+          "format": "uint16",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": "minutes",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            1440.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 3,
+          "piid": 3,
+          "name": "end-time",
+          "description": "",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "unit": "minutes",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            1440.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [],
+      "events": []
+    },
+    {
+      "siid": 4,
+      "name": "charging-protection",
+      "description": "charging-protection",
+      "properties": [
+        {
+          "siid": 4,
+          "piid": 3,
+          "name": "protection-time",
+          "description": "protection-time",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "unit": "minutes",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            1439.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 4,
+          "piid": 4,
+          "name": "power-power",
+          "description": "",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "unit": "watt",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            1.0,
+            600.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 4,
+          "piid": 5,
+          "name": "protect-start-time",
+          "description": "protect-start-time",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "unit": "minutes",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            1439.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 4,
+          "piid": 6,
+          "name": "protect-end-time",
+          "description": "protect-end-time",
+          "format": "uint16",
+          "access": [
+            "write",
+            "notify",
+            "read"
+          ],
+          "unit": "minutes",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            1439.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 4,
+          "piid": 7,
+          "name": "period",
+          "description": "",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 4,
+          "piid": 8,
+          "name": "on-off",
+          "description": "",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [],
+      "events": []
+    },
+    {
+      "siid": 5,
+      "name": "cycle-cycle",
+      "description": "cycle-cycle",
+      "properties": [
+        {
+          "siid": 5,
+          "piid": 1,
+          "name": "status",
+          "description": "status",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 5,
+          "piid": 2,
+          "name": "data-value",
+          "description": "",
+          "format": "string",
+          "access": [
+            "notify",
+            "write",
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [],
+      "events": []
+    },
+    {
+      "siid": 8,
+      "name": "quick-countdown",
+      "description": "quick-countdown",
+      "properties": [
+        {
+          "siid": 8,
+          "piid": 1,
+          "name": "on-off",
+          "description": "",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 2,
+          "name": "duration",
+          "description": "duration",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "unit": "minutes",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            1439.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 4,
+          "name": "delay-on",
+          "description": "",
+          "format": "bool",
+          "access": [
+            "write",
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 5,
+          "name": "delay-on-timer",
+          "description": "",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "unit": "minutes",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            1.0,
+            1439.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 6,
+          "name": "delay-off",
+          "description": "",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 7,
+          "name": "delay-off-timer",
+          "description": "",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "unit": "minutes",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            1.0,
+            1439.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 8,
+          "name": "delay-on-left-timer",
+          "description": "",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "minutes",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            1439.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 9,
+          "name": "delay-off-left-timer",
+          "description": "",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "minutes",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            1439.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [],
+      "events": [
+        {
+          "siid": 8,
+          "eiid": 1,
+          "name": "open-event",
+          "description": "open-event",
+          "arguments": []
+        }
+      ]
+    },
+    {
+      "siid": 9,
+      "name": "max-power-limit",
+      "description": "max-power-limit",
+      "properties": [
+        {
+          "siid": 9,
+          "piid": 4,
+          "name": "power",
+          "description": "",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "unit": "watt",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            100.0,
+            2500.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 9,
+          "piid": 5,
+          "name": "switch",
+          "description": "",
+          "format": "bool",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [],
+      "events": []
+    },
+    {
+      "siid": 10,
+      "name": "over-use-ele-alert",
+      "description": "over-use-ele-alert",
+      "properties": [
+        {
+          "siid": 10,
+          "piid": 1,
+          "name": "on-off",
+          "description": "",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 10,
+          "piid": 2,
+          "name": "over-ele-day",
+          "description": "",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "unit": "kWh",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            1.0,
+            60.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 10,
+          "piid": 3,
+          "name": "over-ele-month",
+          "description": "over-ele-month",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "unit": "minutes",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            20.0,
+            1800.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [],
+      "events": [
+        {
+          "siid": 10,
+          "eiid": 1,
+          "name": "over-day-push",
+          "description": "over-day-push",
+          "arguments": []
+        },
+        {
+          "siid": 10,
+          "eiid": 2,
+          "name": "over-month-push",
+          "description": "over-month-push",
+          "arguments": []
+        }
+      ]
+    }
+  ],
+  "capabilities": {
+    "version": 2,
+    "family": "switch",
+    "readOnly": false,
+    "category": "outlet",
+    "profile": "standard",
+    "properties": [
+      {
+        "role": "switch.on",
+        "siid": 2,
+        "piid": 1,
+        "service": "switch",
+        "name": "on",
+        "label": "开关",
+        "kind": "power",
+        "unit": null
+      },
+      {
+        "role": "switch.fault",
+        "siid": 2,
+        "piid": 3,
+        "service": "switch",
+        "name": "fault",
+        "label": "故障状态",
+        "kind": "reading",
+        "unit": null
+      },
+      {
+        "role": "power-consumption.power-consumption",
+        "siid": 11,
+        "piid": 1,
+        "service": "power-consumption",
+        "name": "power-consumption",
+        "label": "用电量",
+        "kind": "reading",
+        "unit": "kWh"
+      },
+      {
+        "role": "power-consumption.electric-power",
+        "siid": 11,
+        "piid": 2,
+        "service": "power-consumption",
+        "name": "electric-power",
+        "label": "功率",
+        "kind": "reading",
+        "unit": "watt"
+      },
+      {
+        "role": "physical-controls-locked.physical-controls-locked",
+        "siid": 7,
+        "piid": 1,
+        "service": "physical-controls-locked",
+        "name": "physical-controls-locked",
+        "label": "童锁",
+        "kind": "toggle",
+        "unit": null
+      }
+    ],
+    "actions": [],
+    "privateFeatures": [],
+    "events": []
+  },
+  "unsupportedReason": null
+}

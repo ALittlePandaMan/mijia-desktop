@@ -1,0 +1,801 @@
+{
+  "did": "dispenser-fixture",
+  "model": "xiaomi.ysj.gxj",
+  "specType": "urn:miot-spec-v2:device:water-dispenser:0000A0A1:xiaomi-gxj:1",
+  "services": [
+    {
+      "siid": 1,
+      "name": "device-information",
+      "description": "Device Information",
+      "properties": [
+        {
+          "siid": 1,
+          "piid": 1,
+          "name": "manufacturer",
+          "description": "Device Manufacturer",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 1,
+          "piid": 2,
+          "name": "model",
+          "description": "Device Model",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 1,
+          "piid": 3,
+          "name": "serial-number",
+          "description": "Device ID",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 1,
+          "piid": 4,
+          "name": "firmware-revision",
+          "description": "Current Firmware Version",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 1,
+          "piid": 5,
+          "name": "serial-no",
+          "description": "Serial Number",
+          "format": "string",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 2,
+      "name": "water-dispenser",
+      "description": "Water Dispenser",
+      "properties": [
+        {
+          "siid": 2,
+          "piid": 1,
+          "name": "fault",
+          "description": "Device Fault",
+          "format": "uint32",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": 0,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            2147483647.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 2,
+          "name": "status",
+          "description": "Status",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": 1,
+          "code": 0,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "Fault"
+            },
+            {
+              "value": 1,
+              "description": "Idle"
+            },
+            {
+              "value": 2,
+              "description": "Water Coming Out"
+            },
+            {
+              "value": 3,
+              "description": "In Water Shortage"
+            },
+            {
+              "value": 4,
+              "description": "High Temperature Sterilization"
+            },
+            {
+              "value": 5,
+              "description": "High Temperature Sterilization Stop"
+            },
+            {
+              "value": 6,
+              "description": "High Temperature Sterilization Complete"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 3,
+          "name": "temperature",
+          "description": "Temperature",
+          "format": "float",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "celsius",
+          "value": 25.0,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            -5.0,
+            100.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 5,
+          "name": "mode",
+          "description": "Mode",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": 0,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            60.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 6,
+          "name": "tap-default-mode",
+          "description": "Tap Default Mode",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": 0,
+          "code": 0,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "Default Use Previous"
+            },
+            {
+              "value": 1,
+              "description": "Ordinary Temperature"
+            },
+            {
+              "value": 2,
+              "description": "Mix Milk"
+            },
+            {
+              "value": 3,
+              "description": "Make Tea"
+            },
+            {
+              "value": 4,
+              "description": "Boiling Water"
+            },
+            {
+              "value": 5,
+              "description": "Custom1"
+            },
+            {
+              "value": 6,
+              "description": "Custom2"
+            },
+            {
+              "value": 7,
+              "description": "Custom3"
+            },
+            {
+              "value": 8,
+              "description": "Custom4"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 7,
+          "name": "local-mode-config",
+          "description": "Local Mode Config",
+          "format": "string",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": "[[1,常温,25,150],[5,泡奶,45,150],[6,50度,50,150,350],[4,100℃沸水,100,150]]",
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 8,
+          "name": "progress",
+          "description": "Progress",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "percentage",
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            100.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 9,
+          "name": "sterilization-remind-cycle",
+          "description": "Sterilization Remind Cycle",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": "days",
+          "value": 60,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            60.0,
+            15.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 10,
+          "name": "interval-reminder-time",
+          "description": "Interval Reminder Time",
+          "format": "float",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": "hours",
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            24.0,
+            0.5
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 11,
+          "name": "interval-reminder-switch",
+          "description": "Interval Reminder Switch",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 12,
+          "name": "cloud-timing-id",
+          "description": "Cloud Timing Id",
+          "format": "uint32",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            2147483647.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 13,
+          "name": "target-temperature",
+          "description": "Target Temperature",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": "celsius",
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            100.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [
+        {
+          "siid": 2,
+          "aiid": 1,
+          "name": "set-default-mode",
+          "description": "Set Default Mode",
+          "in": [
+            6
+          ],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "aiid": 2,
+          "name": "start-sterilization",
+          "description": "Start Sterilization",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "aiid": 3,
+          "name": "stop-sterilization",
+          "description": "Stop Sterilization",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "aiid": 4,
+          "name": "set-drink-reminder",
+          "description": "Set Drink Reminder",
+          "in": [
+            10,
+            11,
+            12
+          ],
+          "out": [],
+          "unsupportedReason": null
+        }
+      ]
+    },
+    {
+      "siid": 3,
+      "name": "physical-controls-locked",
+      "description": "Physical Control Locked",
+      "properties": [
+        {
+          "siid": 3,
+          "piid": 1,
+          "name": "mode",
+          "description": "Mode",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": 2,
+          "code": 0,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "Above"
+            },
+            {
+              "value": 1,
+              "description": "On"
+            },
+            {
+              "value": 2,
+              "description": "Off"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 4,
+      "name": "screen",
+      "description": "Screen",
+      "properties": [
+        {
+          "siid": 4,
+          "piid": 1,
+          "name": "auto-screen-off-time",
+          "description": "Auto Screen Off Time",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": 0,
+          "code": 0,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "1 Minute"
+            },
+            {
+              "value": 1,
+              "description": "3 Minutes"
+            },
+            {
+              "value": 2,
+              "description": "5 Minutes"
+            },
+            {
+              "value": 4,
+              "description": "Off"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 5,
+      "name": "no-disturb",
+      "description": "No Disturb",
+      "properties": [
+        {
+          "siid": 5,
+          "piid": 1,
+          "name": "no-disturb",
+          "description": "No Disturb",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": false,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 5,
+          "piid": 2,
+          "name": "enable-time-period",
+          "description": "Enable Time Period",
+          "format": "string",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": "",
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 6,
+      "name": "water-use-details",
+      "description": "Water Use Details",
+      "properties": [
+        {
+          "siid": 6,
+          "piid": 1,
+          "name": "water-production-time",
+          "description": "Water Production Time",
+          "format": "uint32",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "seconds",
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            1000000000.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 6,
+          "piid": 2,
+          "name": "pure-water-output",
+          "description": "Pure Water Output",
+          "format": "uint32",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            1000000000.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 6,
+          "piid": 3,
+          "name": "temperature",
+          "description": "Temperature",
+          "format": "float",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "celsius",
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            -5.0,
+            100.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 7,
+      "name": "self-check",
+      "description": "Self Check",
+      "properties": [
+        {
+          "siid": 7,
+          "piid": 1,
+          "name": "self-check-items",
+          "description": "Self Check Items",
+          "format": "uint8",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": [
+            {
+              "value": 1,
+              "description": "Item1"
+            },
+            {
+              "value": 2,
+              "description": "Item2"
+            },
+            {
+              "value": 3,
+              "description": "Item3"
+            },
+            {
+              "value": 4,
+              "description": "Item4"
+            },
+            {
+              "value": 5,
+              "description": "Item5"
+            },
+            {
+              "value": 6,
+              "description": "Item6"
+            },
+            {
+              "value": 7,
+              "description": "Item7"
+            },
+            {
+              "value": 8,
+              "description": "Item8"
+            },
+            {
+              "value": 9,
+              "description": "Item9"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 7,
+          "piid": 2,
+          "name": "self-check-results",
+          "description": "Self Check Results",
+          "format": "string",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [
+        {
+          "siid": 7,
+          "aiid": 1,
+          "name": "start-check",
+          "description": "Start Check",
+          "in": [
+            1
+          ],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 7,
+          "aiid": 2,
+          "name": "stop-check",
+          "description": "Stop Check",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        }
+      ]
+    }
+  ],
+  "unsupportedReason": null,
+  "dispenser": {
+    "status": 1,
+    "fault": 0,
+    "temperature": 25.0,
+    "modes": [
+      {
+        "id": 1,
+        "name": "常温",
+        "temperature": 25,
+        "volumes": [
+          150
+        ]
+      },
+      {
+        "id": 5,
+        "name": "泡奶",
+        "temperature": 45,
+        "volumes": [
+          150
+        ]
+      },
+      {
+        "id": 6,
+        "name": "50度",
+        "temperature": 50,
+        "volumes": [
+          150,
+          350
+        ]
+      },
+      {
+        "id": 4,
+        "name": "100℃沸水",
+        "temperature": 100,
+        "volumes": [
+          150
+        ]
+      }
+    ],
+    "modeSource": "[[1,常温,25,150],[5,泡奶,45,150],[6,50度,50,150,350],[4,100℃沸水,100,150]]",
+    "modeError": null,
+    "childLock": 2,
+    "screen": 0,
+    "defaultMode": 0,
+    "dnd": false,
+    "dndPeriod": "",
+    "progress": null,
+    "sterilizationCycle": 60
+  }
+}

@@ -1,0 +1,114 @@
+/* Shared device control geometry, before the existing page theme rules. */
+:root {
+ --device-gap:14px; --device-edge:14px; --device-section-gap:24px;
+ --device-control-inset:23px; --device-text-row-height:64px; --device-row-height:80px; --device-row-gap:16px;
+ --device-function-disc:45px; --device-function-icon:26px; --device-arrow:16px;
+ --device-slider-height:154px; --device-track-height:46px; --device-slider-gap:24px;
+ --device-option-disc:54px; --device-option-icon:28px; --device-option-gap:10px;
+ --device-setting-height:64px; --device-action-height:48px;
+}
+.device-page.device-surfaces .device-controls-region { padding-inline:var(--device-edge); padding-bottom:var(--device-edge); }
+.device-page.device-surfaces .device-controls-region:not(.device-backdrop-offset) { padding-top:0; }
+.device-page.device-surfaces .device-nested-region { padding-inline:0; padding-bottom:0; }
+.device-page.device-surfaces .device-card-stack { display:flex; flex-direction:column; gap:var(--device-gap); min-width:0; padding-top:var(--device-edge); padding-bottom:0; }
+.device-page.device-surfaces .device-section-title { margin:var(--device-section-gap) 0 0; padding:0; line-height:24px; }
+.device-page.device-surfaces .device-controls-region > .device-card-stack:last-child { padding-bottom:0; }
+.device-page.device-surfaces .device-card-stack .device-card-stack { padding:0; }
+.device-page.device-surfaces .device-card-stack:not(:has(> :not([hidden]))) { display:none; }
+.device-page.device-surfaces .device-control-unit { min-width:0; max-width:100%; margin-block:0; flex-shrink:0; }
+.device-page.device-surfaces .device-control-unit.control-off::after { border-radius:inherit; }
+.device-page.device-surfaces .device-card-stack > .device-control-unit { width:100%; margin:0; border-radius:var(--device-card-radius); }
+.device-page.device-surfaces .light-power-row { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--device-gap); align-items:stretch; }
+.device-page.device-surfaces .light-power-row:has(> :only-child) { grid-template-columns:minmax(0,1fr); }
+.device-page.device-surfaces .light-power-row > * { width:100%; height:auto; margin:0; }
+.device-page.device-surfaces .light-power-row > .device-row-card { height:auto; flex-wrap:wrap; row-gap:10px; }
+.device-page.device-surfaces .light-power-row > .device-row-card > span { min-width:2em; max-width:100%; }
+.device-page.device-surfaces .daily-actions { gap:var(--device-gap); }
+.device-page.device-surfaces .device-row-card { display:flex; align-items:center; gap:var(--device-row-gap); min-height:var(--device-row-height); height:auto; padding:16px var(--device-control-inset); font-size:var(--device-label-size); line-height:24px; font-weight:400; text-align:left; }
+.device-page.device-surfaces [data-surface-row="text"] { min-height:var(--device-text-row-height); }
+.device-page.device-surfaces :is([data-surface-row="icon"],[data-surface-row="two-line"]) { min-height:var(--device-row-height); }
+.device-page.device-surfaces .device-list-row { display:flex; align-items:center; gap:var(--device-row-gap); height:auto; padding-block:14px; font-size:var(--device-label-size); line-height:24px; }
+.device-page.device-surfaces .device-row-inset { padding-inline:var(--device-control-inset); }
+.device-page.device-surfaces .device-row-copy { min-width:0; flex:1; overflow-wrap:anywhere; }
+.device-page.device-surfaces .device-row-copy > strong { display:block; font-size:var(--device-label-size); line-height:24px; font-weight:400; }
+.device-page.device-surfaces .device-row-copy > span { display:block; margin-top:2px; font-size:var(--device-description-size); line-height:20px; }
+.device-page.device-surfaces .device-row-card > :where(span,div,strong) { min-width:0; overflow-wrap:anywhere; }
+.device-page.device-surfaces .device-row-card > .icon { flex-shrink:0; }
+.device-page.device-surfaces .device-function-disc { flex:none; width:var(--device-function-disc); height:var(--device-function-disc); padding:0; margin:0; display:grid; place-items:center; }
+.device-page.device-surfaces .device-function-disc:not(.yeelight-flow-artwork) :is(.icon,svg) { width:var(--device-function-icon); height:var(--device-function-icon); stroke-width:2; }
+.device-page.device-surfaces .native-wide-power > .icon { flex:none; width:var(--device-function-disc); height:var(--device-function-disc); padding:9.5px; stroke-width:2; }
+.device-page.device-surfaces :is(.native-feature strong,.airer-night-link strong,.p69-setting-title) { font-size:var(--device-label-size); line-height:24px; font-weight:400; }
+.device-page.device-surfaces .device-row-card > .icon:last-child:not(:first-child) { width:var(--device-arrow); height:var(--device-arrow); padding:0; margin-left:auto; }
+.device-page.device-surfaces .native-feature-reason { margin-left:61px; }
+.device-page.device-surfaces .native-feature-arrow { flex:none; width:var(--device-arrow); height:var(--device-arrow); font-size:var(--device-arrow); line-height:var(--device-arrow); }
+.device-page.device-surfaces .device-slider-card { min-height:var(--device-slider-height); padding:23px var(--device-control-inset); }
+.device-page.device-surfaces .native-slider-heading { min-height:24px; height:auto; margin:0; line-height:24px; flex-wrap:wrap; }
+.device-page.device-surfaces .native-slider-heading strong { font-size:var(--device-label-size); line-height:24px; font-weight:400; }
+.device-page.device-surfaces .native-slider-heading > span { font-size:var(--device-description-size); line-height:24px; }
+.device-page.device-surfaces .native-slider { height:var(--device-track-height); margin:var(--device-slider-gap) 0 0; border-radius:50px; }
+.device-page.device-surfaces .brightness-track { height:var(--device-track-height); margin-top:var(--device-slider-gap); }
+.device-page.device-surfaces .brightness-track .native-slider { margin:0; }
+.device-page.device-surfaces .native-slider::-webkit-slider-thumb { box-sizing:border-box; width:7px; height:24px; margin:0 10px; border:0; border-radius:5px; }
+.device-page.device-surfaces .native-slider::-moz-range-thumb { box-sizing:border-box; width:7px; height:24px; border:0; border-radius:5px; }
+.device-page.device-surfaces :is(.slider-airer,.yeelight-page-content,.light-favorite-content) .native-slider { padding-inline:4px; }
+.device-page.device-surfaces :is(.slider-airer,.yeelight-page-content,.light-favorite-content) .native-slider::-webkit-slider-thumb { width:38px; height:38px; margin:0; border:0; border-radius:50%; }
+.device-page.device-surfaces :is(.slider-airer,.yeelight-page-content,.light-favorite-content) .native-slider::-moz-range-thumb { width:38px; height:38px; border:0; border-radius:50%; }
+.device-page.device-surfaces .airer-light-switch { top:13px; right:var(--device-control-inset); width:44px; height:44px; display:grid; place-items:center; }
+.device-page.device-surfaces .airer-light .native-slider-heading { padding-right:56px; }
+.device-page.device-surfaces .device-option { gap:var(--device-option-gap); min-width:0; font-size:var(--device-description-size); }
+.device-page.device-surfaces .fan-mode-choices,
+.device-page.device-surfaces .p69-fan-content .p69-choice-grid,
+.device-page.device-surfaces .air-choices { display:grid; grid-template-columns:repeat(auto-fit,minmax(var(--device-option-disc),1fr)); }
+.device-page.device-surfaces .air-choices { justify-items:center; }
+.device-page.device-surfaces .device-option-disc { flex:none; width:var(--device-option-disc); height:var(--device-option-disc); }
+.device-page.device-surfaces .device-option-disc:not(.airer-motor-circle) :is(.icon,svg) { width:var(--device-option-icon); height:var(--device-option-icon); }
+.device-page.device-surfaces :is(.fan-mode,.curtain-command) > .icon { width:var(--device-option-disc); height:var(--device-option-disc); padding:13px; flex:none; }
+.device-page.device-surfaces .airer-motor-circle { margin-bottom:var(--device-option-gap); }
+.device-page.device-surfaces .air-choice-label { font-size:var(--device-description-size); line-height:20px; overflow-wrap:anywhere; }
+/* Keep the direction dial's proportions when a short window narrows the page. */
+.device-page.device-surfaces .p69-direction-disc { width:min(250px,100%); height:auto; aspect-ratio:1; }
+.device-page.device-surfaces .p69-direction-disc::after { left:32.8%; top:32.8%; width:34.4%; height:34.4%; }
+.device-page.device-surfaces .p69-direction { width:16%; height:16%; padding:2%; }
+.device-page.device-surfaces .p69-direction .icon { width:100%; height:100%; }
+.device-page.device-surfaces .p69-direction-up { left:42%; top:8%; }
+.device-page.device-surfaces .p69-direction-down { left:42%; bottom:8%; }
+.device-page.device-surfaces .p69-direction-left { left:8%; top:42%; }
+.device-page.device-surfaces .p69-direction-right { right:8%; top:42%; }
+.device-page.device-surfaces .device-setting-row { min-height:var(--device-setting-height); height:auto; padding-block:14px; gap:var(--device-row-gap); font-size:var(--device-label-size); line-height:24px; }
+.device-page.device-surfaces .device-toggle { position:relative; display:block; flex:none; box-sizing:border-box; width:44px; height:24px; padding:0; border:0; border-radius:24px; }
+.device-page.device-surfaces .device-toggle::before { content:''; position:absolute; left:4px; top:4px; width:16px; height:16px; margin:0; border-radius:50%; background:var(--control-thumb,#fff); transform:none; }
+.device-page.device-surfaces .device-toggle::after { display:none; }
+.device-page.device-surfaces .device-toggle:is(.checked,.selected,.enabled)::before,
+.device-page.device-surfaces [aria-checked=true] > .device-toggle::before { left:24px; transform:none; }
+.device-page.device-surfaces .device-toggle > .yeelight-flow-knob { display:none; }
+.device-page.device-surfaces button.device-toggle::after { display:block; content:''; position:absolute; inset:-10px 0; background:transparent; }
+.device-page.device-surfaces .device-setting-row[role=switch] { min-height:var(--device-setting-height); }
+.device-page.device-surfaces :is(.device-setting-row,.device-list-row)[data-surface-row="two-line"] { min-height:var(--device-row-height); }
+.device-page.device-surfaces .device-row-card[data-surface-row="text"] { min-height:var(--device-text-row-height); }
+.device-page.device-surfaces :is([role=dialog] footer,.confirm-actions,.timer-dialog-actions,.washer-runtime-confirm-actions,.light-settings-dialog-actions) button { min-height:var(--device-action-height); height:auto; font-size:var(--device-label-size); }
+.device-page.device-surfaces [hidden] { display:none!important; }
+.device-page.device-surfaces .router-menu { display:block; }
+.device-page.device-surfaces.page-router-home { --router-home-row-height:80px; --device-text-row-height:var(--router-home-row-height); }
+.device-page.device-surfaces.page-router-home .router-toolbar { min-height:var(--router-home-row-height); }
+.device-page.device-surfaces.page-router-home :is(.router-password-card,.router-menu-row) { min-height:var(--router-home-row-height); padding:18px var(--device-control-inset); }
+.device-page.device-surfaces .router-menu-row > .icon,
+.device-page.device-surfaces .purifier-other-functions > .icon { flex:none; width:var(--device-arrow); height:var(--device-arrow); }
+.device-page.device-surfaces .device-action { min-height:var(--device-action-height); height:auto; font-size:var(--device-label-size); line-height:24px; }
+/* The scroll region owns the final inset; terminal actions must not add a
+   second bottom margin after their visible content. */
+.device-page.device-surfaces :is(.purifier-pipeline-control,.purifier-settings-list,.router-wifi-save):last-child,
+.device-page.device-surfaces .dispenser-history-body > .purifier-read:last-child { margin-bottom:0; }
+/* These original plugin families keep their artwork and accent, while their
+   content surfaces use the same desktop spacing and text hierarchy. */
+.device-page.device-surfaces :is(.bath-cards,.ceiling-cards) { gap:var(--device-gap); padding:0 var(--device-edge) var(--device-edge); }
+.device-page.device-surfaces :is(.bath-card,.ceiling-card,.bath-error,.ceiling-error) { border-radius:var(--device-card-radius); }
+.device-page.device-surfaces :is(.bath-card,.ceiling-card) { padding:var(--device-control-inset); }
+.device-page.device-surfaces :is(.bath-card,.ceiling-card) h3 { font-size:var(--device-label-size); line-height:24px; margin-bottom:18px; }
+.device-page.device-surfaces :is(.bath-power,.ceiling-power) { gap:var(--device-gap); }
+.device-page.device-surfaces :is(.bath-power,.ceiling-power) > button { min-height:var(--device-row-height); height:auto; padding:14px 16px; gap:10px; border-radius:var(--device-card-radius); font-size:var(--device-label-size); line-height:24px; }
+.device-page.device-surfaces :is(.bath-choice,.ceiling-choice) > span { white-space:normal; overflow-wrap:anywhere; }
+.device-page.device-surfaces :is(.bath-choice,.ceiling-choice) { font-size:var(--device-description-size); line-height:20px; }
+.device-page.device-surfaces :is(.bath-choice,.ceiling-choice) > .icon { width:var(--device-option-disc); height:var(--device-option-disc); }
+.device-page.device-surfaces :is(.bath-power,.ceiling-power) > button > .icon { width:var(--device-function-disc); height:var(--device-function-disc); }
+.device-page.device-surfaces .bath-ventilation > .bath-choice { flex-wrap:wrap; }
+.device-page.device-surfaces :is(.bath-four,.ceiling-three) { display:grid; grid-template-columns:repeat(auto-fit,minmax(54px,1fr)); gap:14px; }

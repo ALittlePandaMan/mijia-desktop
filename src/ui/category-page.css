@@ -1,0 +1,48 @@
+/* Public standard abilities reuse the same device card/control roles. The
+   category supplies only the accent; dimensions stay in device-surfaces.css. */
+.category-page-content { --category-accent:#46bfd4; color:var(--text-primary,#111); }
+.category-page-content[data-category="water-purifier"],
+.category-page-content[data-category="water-dispenser"],
+.category-page-content[data-category="washer"] { --category-accent:#0098ff; }
+.category-page-content[data-category="light"],
+.category-page-content[data-category="ceiling-fan"] { --category-accent:#e4aa51; }
+.category-product { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; min-height:190px; padding:22px 0; }
+.category-product .device-artwork,.category-product .device-product-image { width:100px; height:100px; }
+.category-product .device-artwork > .icon { width:60px; height:60px; }
+.category-product h1 { max-width:100%; margin:0; font-size:var(--device-title-size,18px); font-weight:500; line-height:26px; overflow-wrap:anywhere; text-align:center; }
+.category-controls { min-width:0; }
+.category-controls .p69-choice-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(54px,1fr)); gap:14px; }
+.category-controls .p69-choice { min-width:0; }
+.category-controls .p69-choice-label { max-width:100%; overflow-wrap:anywhere; font-size:var(--device-description-size); }
+.category-controls .p69-choice-symbol { color:var(--category-accent); }
+.category-controls .p69-choice.selected .p69-choice-symbol { color:var(--on-color,white); background:var(--category-accent); }
+.category-controls .p69-toggle.checked { background:var(--category-accent); }
+.category-controls .p69-setting-row { border:0; background:var(--surface-card,white); }
+.category-controls .p69-setting-icon { color:var(--on-color,white); background:var(--category-accent); }
+.category-controls .native-slider { --slider-color:var(--category-accent); }
+.category-actions { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-items:stretch; gap:14px; }
+.category-action { display:flex; align-items:center; justify-content:center; gap:10px; min-width:0; min-height:48px; padding:14px; border:0; color:var(--text-primary,#111); font-size:var(--device-label-size); line-height:24px; }
+.category-action > span { min-width:0; overflow-wrap:anywhere; }
+.category-action > .icon { flex:none; width:24px; height:24px; color:var(--category-accent); }
+.category-action:disabled { opacity:.45; }
+.category-command {display:flex;justify-content:space-between;padding:15px;gap:10px;}
+.category-command .category-action {flex:1;flex-direction:column;background:transparent;}
+.category-command [aria-pressed="true"] {color:var(--category-accent);background:var(--surface-subtle,#f0f9ff);border-radius:16px;}
+.category-private-notes { padding:14px 9px 0; color:var(--text-secondary,#888); font-size:var(--device-aux-size); line-height:1.7; }
+.category-private-notes p { margin:0 0 8px; }
+.category-private-notes p:last-child { margin-bottom:0; }
+.category-empty { padding:23px; }
+.category-empty h3 { margin:0; font-size:var(--device-label-size); font-weight:400; line-height:24px; }
+.category-empty p { margin:10px 0 0; color:var(--text-secondary,#999); font-size:var(--device-description-size); line-height:1.6; }
+.category-parameter-action { padding:23px; display:flex; flex-direction:column; gap:14px; }
+.category-parameter-label { display:flex; flex-direction:column; gap:10px; font-size:var(--device-label-size); }
+.category-parameter-action .category-action { width:100%; background:var(--surface-subtle,#f5f5f5); }
+.category-page-content[data-family="lighting"] { --category-accent:#e4aa51; }
+.event-date-card {padding:20px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.event-date-card h3 {font-size:var(--device-label-size);font-weight:500;margin:0;}
+.event-date-card input {width:150px;min-width:0;}
+.event-record {padding:20px;position:relative;}
+.event-record h3 {margin:0 90px 12px 0;font-size:var(--device-label-size);font-weight:500;}
+.event-record time {position:absolute;right:20px;top:23px;color:var(--text-secondary,#888);font-size:var(--device-description-size);}
+.event-record p {font-size:var(--device-description-size);margin:7px 0;color:var(--text-secondary,#777);}
+.category-page-content[data-family="water"],.category-page-content[data-family="cooking"] { --category-accent:#0098ff; }

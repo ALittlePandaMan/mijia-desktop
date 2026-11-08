@@ -1,0 +1,29 @@
+.device-page.page-doorbell{background:var(--surface-page,#f7f7f7);color:var(--text-primary,#111)}
+.page-doorbell .device-page-header{background:var(--surface-page,#f7f7f7)}
+.page-doorbell .device-page-title h2{font-weight:400}
+.doorbell-battery{margin:2px 0 0;font-size:12px;line-height:16px;color:var(--text-secondary,#7f7f7f);font-weight:400}
+.page-doorbell .doorbell-content{padding:0 12px 24px}
+.doorbell-date-stamp{height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;color:var(--text-secondary,#8c93b0);font-size:12px;line-height:18px}
+.doorbell-calendar{display:grid;place-items:center;width:36px;height:36px;padding:8px;border:0;background:transparent;color:var(--text-primary,#222);border-radius:50%;cursor:pointer}.doorbell-calendar .icon{width:17px;height:17px}
+.doorbell-week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;margin-bottom:13px}
+.doorbell-day{aspect-ratio:1;min-width:0;border:0;border-radius:50%;background:transparent;color:var(--text-primary,#111);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:4px 0 0}
+.doorbell-day>span{font-size:12px;line-height:18px;font-weight:400}.doorbell-day>strong{font-size:16px;line-height:22px;font-weight:600}
+.doorbell-day[aria-pressed=true]{background:var(--surface-disabled,#eaeaea)}.doorbell-day:disabled{color:var(--text-secondary,#999);cursor:default;opacity:1}
+.doorbell-live-entry{display:flex;align-items:center;gap:16px;width:100%;height:92px;border:0;border-radius:16px;background:var(--surface-card,#fff);text-align:left;padding:0 17px;color:var(--text-primary,#111)}
+.doorbell-live-entry>.icon{width:30px;height:30px;flex:none}.doorbell-live-entry>div{display:flex;flex-direction:column;gap:4px;min-width:0}
+.doorbell-live-entry strong{font-size:15px;line-height:22px;font-weight:600}.doorbell-live-entry span{font-size:13px;line-height:19px;font-weight:400;color:var(--text-secondary,#7f7f7f)}
+.doorbell-filter{position:relative;display:flex;align-items:center;gap:4px;height:46px;padding:0 10px;color:var(--text-secondary,#8c93b0);width:max-content}
+.doorbell-filter select{appearance:none;-webkit-appearance:none;border:0;background:transparent;color:inherit;font:inherit;font-size:12px;padding:10px 22px 10px 0;cursor:pointer;max-width:180px}
+.doorbell-filter>.icon{position:absolute;right:10px;width:20px;height:20px;pointer-events:none}
+.doorbell-event-list{display:flex;flex-direction:column;gap:8px;min-width:0}
+.doorbell-event{display:flex;align-items:center;gap:13px;height:88px;border:0;border-radius:12px;background:var(--surface-card,#fff);text-align:left;padding:0 12px 0 18px;color:var(--text-primary,#111);font:inherit}
+.doorbell-event:disabled{opacity:1;cursor:default}.doorbell-event>.icon{width:30px;height:30px;flex:none}
+.doorbell-event-copy{flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:2px;min-width:0;margin-right:8px}
+.doorbell-event-copy strong{font-size:16px;line-height:22px;font-weight:600;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.doorbell-event-copy>span{font-size:12px;line-height:18px;font-weight:600;color:var(--text-secondary,#7f7f7f)}
+.doorbell-event-preview{width:106px;height:64px;border-radius:9px;background:var(--surface-subtle,#eee);flex:none;overflow:hidden}.doorbell-event-preview img{width:100%;height:100%;object-fit:cover}.doorbell-event-preview img:not([src]){visibility:hidden}.doorbell-event:not(:disabled){cursor:pointer}.doorbell-event:hover:not(:disabled){background:var(--surface-hover,#fcfcfc)}
+.doorbell-empty{display:flex;align-items:center;flex-direction:column;justify-content:center;min-height:220px;color:var(--text-secondary,#999);text-align:center;gap:15px;padding:20px}
+.doorbell-empty>.icon{width:90px;height:90px}.doorbell-empty p{font-size:13px;line-height:20px;margin:0}
+.doorbell-status{font-size:13px;line-height:20px;color:var(--text-secondary,#999);text-align:center;padding:24px 12px;margin:0}
+.doorbell-retry{min-height:44px;border:0;background:var(--surface-card,#fff);border-radius:10px;padding:0 24px;color:var(--text-primary,#111);font:inherit}
+@media(max-width:380px){.doorbell-event{padding-left:12px;gap:8px}.doorbell-event-preview{width:88px;height:54px}.doorbell-event-copy{margin-right:0}.doorbell-event-copy strong{font-size:14px}}

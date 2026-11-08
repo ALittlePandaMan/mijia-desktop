@@ -1,0 +1,417 @@
+{
+  "passed": true,
+  "categories": 38,
+  "models": 74,
+  "properties": 1439,
+  "actions": 264,
+  "distinctBooleanPowerBindings": [
+    "10.1",
+    "11.1",
+    "12.1",
+    "13.1",
+    "14.1",
+    "15.1",
+    "16.1",
+    "17.1",
+    "2.1",
+    "2.2",
+    "2.5",
+    "3.1",
+    "3.3",
+    "36.1",
+    "4.1",
+    "5.1",
+    "6.1",
+    "7.1",
+    "8.1",
+    "8.3",
+    "9.1"
+  ],
+  "allRawHashesMatch": true,
+  "allRegistryRowsReleasedAndMatchDescriptor": true,
+  "allFixturesHaveNoLiveValues": true,
+  "nativeIpcCalls": 0,
+  "networkCalls": 0,
+  "physicalDeviceWrites": 0,
+  "physicalDeviceCompatibilityClaimed": false,
+  "statistics": [
+    {
+      "category": "switch",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "lumi",
+        "yeelink"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "outlet",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "chuangmi",
+        "cuco"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "light",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "philips",
+        "yeelink"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "fan",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "dmaker",
+        "zhimi"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "air-conditioner",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "viomi",
+        "xiaomi"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "curtain",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "dooya",
+        "lumi"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "temperature-humidity-sensor",
+      "models": 3,
+      "manufacturerPrefixes": [
+        "cleargrass",
+        "miaomiaoce",
+        "xiaomi"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "fridge",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "minij",
+        "viomi"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "washer",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "minij",
+        "viomi"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "airer",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "dooya",
+        "hyd"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "water-purifier",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "bj352",
+        "dmaker"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "water-dispenser",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "chunmi",
+        "yunmi"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "router",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "isa",
+        "xiaomi"
+      ],
+      "physicallyVerified": 0,
+      "scope": "published-descriptor-only-private-protocol"
+    },
+    {
+      "category": "ir-remote-control",
+      "models": 1,
+      "manufacturerPrefixes": [
+        "bymiot"
+      ],
+      "physicallyVerified": 0,
+      "scope": "published-descriptor-only-private-protocol"
+    },
+    {
+      "category": "air-purifier",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "1245",
+        "zhimi"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "humidifier",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "als1",
+        "deerma"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "dehumidifier",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "deye",
+        "dmaker"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "air-fresh",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "dmaker",
+        "zhimi"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "vacuum",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "360sdj",
+        "dreame"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "camera",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "chuangmi",
+        "lumi"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "speaker",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "onemore",
+        "xiaomi"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "television",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "orvibo",
+        "xiaomi"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "projector",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "fengmi",
+        "gimi"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "air-fryer",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "careli",
+        "viomi"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "occupancy-sensor",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "linp",
+        "xiaomi"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "magnet-sensor",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "cgllc",
+        "lumi"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "gas-sensor",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "bkxh",
+        "lumi"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "smoke-sensor",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "bkxh",
+        "lumi"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "scale",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "xiaomi",
+        "yunmai"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "bath-heater",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "aupu",
+        "yeelink"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "ceiling-fan",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "opple",
+        "yeelink"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "sphygmomanometer",
+      "models": 1,
+      "manufacturerPrefixes": [
+        "ihealth"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "stb",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "coolki",
+        "heiman"
+      ],
+      "physicallyVerified": 0,
+      "scope": "published-descriptor-only-private-protocol"
+    },
+    {
+      "category": "air-condition-outlet",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "cuco",
+        "lumi"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "video-doorbell",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "chuangmi",
+        "loock"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "control-panel",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "xiaomi",
+        "yeelink"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "relay",
+      "models": 2,
+      "manufacturerPrefixes": [
+        "lumi",
+        "pwzn"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    },
+    {
+      "category": "roller-shutter",
+      "models": 1,
+      "manufacturerPrefixes": [
+        "shuse"
+      ],
+      "physicallyVerified": 0,
+      "scope": "public-description-and-standard-capability-contract"
+    }
+  ]
+}

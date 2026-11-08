@@ -1,0 +1,6 @@
+import {it,expect} from 'vitest';
+import {DeviceEventsState,type DeviceEventPage} from './device-events';
+const context={homeId:'home',generation:1,did:'lock'};
+const page=(id:string,date='2026-11-06'):DeviceEventPage=>({did:'lock',date,records:[{id,time:100,role:'lock.lock-event',label:'门锁记录',arguments:[]}],complete:true,nextCursor:null,errors:[],rejected:0});
+it('ignores a late day response and clears records for a new household',async()=>{const waiting:((p:DeviceEventPage)=>void)[]=[];const s=new DeviceEventsState(()=>new Promise(r=>waiting.push(r)),()=>{});s.bind(context,'account');const a=s.load('2026-11-05'),b=s.load('2026-11-06');waiting[1](page('new'));await b;waiting[0](page('old','2026-11-05'));await a;expect(s.records.map(r=>r.id)).toEqual(['new']);s.bind({...context,homeId:'other',generation:2},'account');expect(s.open).toBe(false);expect(s.records).toEqual([]);});
+it('merges overlapping pages by stable IDs and clears old content while switching days',async()=>{let n=0;const s=new DeviceEventsState(async()=>{const p=page(n++?'two':'one');p.nextCursor=n===1?'cursor':null;return p;},()=>{});s.bind(context,'account');await s.load('2026-11-06');await s.load('2026-11-06',true);expect(s.records).toHaveLength(2);await s.load('2026-11-06');expect(s.records.map(r=>r.id)).toEqual(['two']);});

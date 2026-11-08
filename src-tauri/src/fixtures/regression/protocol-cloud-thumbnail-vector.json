@@ -1,0 +1,1 @@
+{"fixture":"synthetic-only","source":"Independent Java JCE AES/CBC/PKCS5Padding (AES block padding equals Android PKCS7Padding)","securityBase64":"AAECAwQFBgcICQoLDA0ODw==","segmentIvBase64":"8PHy8/T19vf4+fr7/P3+/w==","plaintextBase64":"iVBORw0KGgoAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHw==","ciphertextBase64":"y9UHgp2z9n4zPjRzyDVLtWJNM021L1tANvjoIsLv59/Zb5+KKKWsi7K9NtPj5wDX"}

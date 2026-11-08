@@ -1,0 +1,22 @@
+/* Public Xiaomi account illustration has a gradient fallback. */
+.login-screen.account-login{--account-orange:#ff6900;display:grid;grid-template-columns:min(26vw,375px) minmax(0,1fr);height:100dvh;min-height:0;overflow:auto;background:var(--surface-card,#fff);color:var(--text-primary,#333);font-family:var(--app-font)}
+.account-art{position:sticky;top:0;height:100dvh;background:linear-gradient(145deg,#34306b,#b1b6ed 48%,#edbde4 78%,#bedfeb);background-image:url('https://cdn.web-global.fds.api.mi-img.com/mcfe--mi-account/static/static/media/banner.92c693b4..jpg'),linear-gradient(145deg,#34306b,#b1b6ed 48%,#edbde4 78%,#bedfeb);background-position:50% 50%;background-size:cover}
+.account-layout{display:flex;align-items:safe center;justify-content:center;min-width:0;min-height:100dvh;padding:40px 32px}
+.account-login-content{width:360px;max-width:100%;min-width:0}
+.account-qr{display:flex;align-items:center;flex-direction:column;text-align:center}
+.account-qr h2{font-size:24px;font-weight:500;line-height:1.5;margin:0 0 10px}
+.account-qr-help{font-size:14px;color:var(--text-secondary,#999);line-height:1.7}
+.account-qr-image-box{width:200px;height:200px;margin:26px 0 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:var(--control-thumb,#fafafa);border-radius:4px;color:var(--text-muted,#aaa);font-size:14px}
+.account-qr-image-box>svg{width:68px;height:68px;color:var(--text-muted,#ccc)}
+.account-qr .qr-image{display:block;width:200px;height:200px;margin:0;border-radius:0;padding:4px;object-fit:contain}
+.account-primary{display:flex;justify-content:center;align-items:center;width:100%;min-height:50px;border:0;border-radius:4px;background:var(--account-orange);color:var(--on-color,#fff);font-size:18px;font-weight:400;padding:12px 20px;line-height:26px}
+.account-primary:hover:not(:disabled){background:#ff7e29}
+.account-primary:disabled{opacity:.38;cursor:not-allowed}
+.account-cancel{margin-top:18px;padding:0;background:none;border:0;color:var(--account-orange);font-weight:400;font-size:14px;line-height:1.6}
+.account-cancel:hover{text-decoration:underline;text-underline-offset:3px}
+.account-login button:focus-visible{outline:2px solid var(--account-orange);outline-offset:3px}
+.account-scan-status{font-size:14px;color:var(--text-secondary,#666);margin:0 0 12px}
+.account-error{margin-top:20px;color:var(--status-error,#f04645);line-height:1.7;font-size:13px;overflow-wrap:anywhere}
+@media(max-width:900px){.login-screen.account-login{grid-template-columns:minmax(0,1fr)}.account-art{display:none}}
+@media(max-width:560px){.account-layout{padding:24px}}
+@media(max-height:560px){.account-layout{align-items:flex-start;padding-top:24px;padding-bottom:24px}}

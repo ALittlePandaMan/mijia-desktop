@@ -1,0 +1,281 @@
+{
+  "model": "xiaomi.fryer.maf16",
+  "specType": "urn:miot-spec-v2:device:air-fryer:0000A0A4:xiaomi-maf16:2:0000D043",
+  "pageOrder": [
+    0,
+    9,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    10,
+    11,
+    12
+  ],
+  "modes": [
+    {
+      "mode": 0,
+      "recipeId": "M0",
+      "label": "手动模式",
+      "minutes": 15,
+      "temperature": 180,
+      "temperatureRange": [
+        40,
+        230,
+        5
+      ],
+      "maxMinutes": 1440,
+      "reservation": true,
+      "keepWarm": true,
+      "measure": 1,
+      "weight": 500,
+      "texture": 1,
+      "icon": "0-icon.png",
+      "image": "0-image.png"
+    },
+    {
+      "mode": 1,
+      "recipeId": "M1",
+      "label": "冷冻薯条",
+      "minutes": 20,
+      "temperature": 200,
+      "temperatureRange": [
+        180,
+        200,
+        5
+      ],
+      "maxMinutes": 60,
+      "reservation": true,
+      "keepWarm": true,
+      "measure": 0,
+      "weight": 500,
+      "texture": 1,
+      "icon": "1-icon.png",
+      "image": "1-image.png"
+    },
+    {
+      "mode": 2,
+      "recipeId": "M2",
+      "label": "鸡翅",
+      "minutes": 9,
+      "temperature": 230,
+      "temperatureRange": [
+        160,
+        230,
+        5
+      ],
+      "maxMinutes": 60,
+      "reservation": true,
+      "keepWarm": true,
+      "measure": 1,
+      "weight": 500,
+      "texture": 1,
+      "icon": "2-icon.png",
+      "image": "2-image.png"
+    },
+    {
+      "mode": 3,
+      "recipeId": "M3",
+      "label": "蜜薯",
+      "minutes": 28,
+      "temperature": 230,
+      "temperatureRange": [
+        170,
+        230,
+        5
+      ],
+      "maxMinutes": 60,
+      "reservation": true,
+      "keepWarm": true,
+      "measure": 1,
+      "weight": 500,
+      "texture": 1,
+      "icon": "3-icon.png",
+      "image": "3-image.png"
+    },
+    {
+      "mode": 4,
+      "recipeId": "M4",
+      "label": "蛋挞",
+      "minutes": 15,
+      "temperature": 160,
+      "temperatureRange": [
+        150,
+        170,
+        5
+      ],
+      "maxMinutes": 60,
+      "reservation": true,
+      "keepWarm": true,
+      "measure": 1,
+      "weight": 500,
+      "texture": 1,
+      "icon": "4-icon.png",
+      "image": "4-image.png"
+    },
+    {
+      "mode": 5,
+      "recipeId": "M5",
+      "label": "牛排",
+      "minutes": 9,
+      "temperature": 230,
+      "temperatureRange": [
+        160,
+        230,
+        5
+      ],
+      "maxMinutes": 60,
+      "reservation": true,
+      "keepWarm": true,
+      "measure": 1,
+      "weight": 500,
+      "texture": 1,
+      "icon": "5-icon.png",
+      "image": "5-image.png"
+    },
+    {
+      "mode": 6,
+      "recipeId": "M6",
+      "label": "五花肉",
+      "minutes": 15,
+      "temperature": 230,
+      "temperatureRange": [
+        160,
+        230,
+        5
+      ],
+      "maxMinutes": 60,
+      "reservation": true,
+      "keepWarm": true,
+      "measure": 1,
+      "weight": 500,
+      "texture": 1,
+      "icon": "6-icon.png",
+      "image": "6-image.png"
+    },
+    {
+      "mode": 7,
+      "recipeId": "M7",
+      "label": "虾",
+      "minutes": 8,
+      "temperature": 230,
+      "temperatureRange": [
+        160,
+        230,
+        5
+      ],
+      "maxMinutes": 60,
+      "reservation": true,
+      "keepWarm": true,
+      "measure": 1,
+      "weight": 500,
+      "texture": 1,
+      "icon": "7-icon.png",
+      "image": "7-image.png"
+    },
+    {
+      "mode": 8,
+      "recipeId": "M8",
+      "label": "蛋糕",
+      "minutes": 20,
+      "temperature": 160,
+      "temperatureRange": [
+        140,
+        170,
+        5
+      ],
+      "maxMinutes": 60,
+      "reservation": true,
+      "keepWarm": true,
+      "measure": 1,
+      "weight": 500,
+      "texture": 1,
+      "icon": "8-icon.png",
+      "image": "8-image.png"
+    },
+    {
+      "mode": 9,
+      "recipeId": "M9",
+      "label": "披萨",
+      "minutes": 15,
+      "temperature": 160,
+      "temperatureRange": [
+        150,
+        180,
+        5
+      ],
+      "maxMinutes": 60,
+      "reservation": true,
+      "keepWarm": true,
+      "measure": 1,
+      "weight": 500,
+      "texture": 1,
+      "icon": "9-icon.png",
+      "image": "9-image.png"
+    },
+    {
+      "mode": 10,
+      "recipeId": "M10",
+      "label": "果干",
+      "minutes": 300,
+      "temperature": 40,
+      "temperatureRange": [
+        40,
+        80,
+        5
+      ],
+      "maxMinutes": 1440,
+      "reservation": false,
+      "keepWarm": false,
+      "measure": 1,
+      "weight": 500,
+      "texture": 1,
+      "icon": "10-icon.png",
+      "image": "10-image.png"
+    },
+    {
+      "mode": 11,
+      "recipeId": "M11",
+      "label": "解冻",
+      "minutes": 20,
+      "temperature": 50,
+      "temperatureRange": [
+        40,
+        80,
+        5
+      ],
+      "maxMinutes": 60,
+      "reservation": false,
+      "keepWarm": false,
+      "measure": 1,
+      "weight": 500,
+      "texture": 1,
+      "icon": "11-icon.png",
+      "image": "11-image.png"
+    },
+    {
+      "mode": 12,
+      "recipeId": "M12",
+      "label": "复热",
+      "minutes": 8,
+      "temperature": 160,
+      "temperatureRange": [
+        140,
+        180,
+        5
+      ],
+      "maxMinutes": 60,
+      "reservation": true,
+      "keepWarm": true,
+      "measure": 1,
+      "weight": 500,
+      "texture": 1,
+      "icon": "12-icon.png",
+      "image": "12-image.png"
+    }
+  ]
+}

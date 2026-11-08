@@ -1,0 +1,17 @@
+import {deviceWait} from './device-loading';
+import type {Device} from '../types';
+import {classificationOptions,type RouterClassificationState} from '../router-classification';
+import {button,element} from './dom';
+import {icon} from '../icons';
+export function routerClassificationPage(s:RouterClassificationState,device:Device,back:()=>void):HTMLElement{
+ const stage=element('div','device-stage'),page=element('section','device-page page-router page-router-classify'),body=element('div','device-page-scroll router-classify-content');stage.append(page);page.dataset.routerView='classify';page.dataset.pendingOperations=String(s.pending?1:0);page.dataset.uncertainOperations=String(s.blocked?1:0);
+ const previous=button('','page-icon-button',back,'back');previous.setAttribute('aria-label','返回设备详情');page.append(element('header','device-page-header',previous,element('div','device-page-title',element('h2','','设备信息'))),body);
+ const r=s.report;if(r)for(const [field,label]of [['product','类型'],['company','品牌'],['model','型号']]as const){const row=button('','router-classify-row',()=>s.open(field));row.dataset.field=field;row.dataset.focusKey=`classify-${field}`;row.disabled=!s.canEdit||!device.online||!!device.sharedReadOnly||field==='model'&&!r.modelEnabled;row.append(element('span','',label),element('span','router-classify-value',r.labels[field]||'--'),icon('chevron'));body.append(row);}
+ if(s.loading)body.append(deviceWait(undefined,'设备分类'));
+ const message=!r?s.error?.message:undefined;if(message){const note=element('p','router-warning',message);note.setAttribute('role',s.error?'alert':'status');body.append(note);}
+ page.append(element('div','router-classify-footer',element('p','router-warning','上报缺失设备信息暂未支持'),button('确认','router-classify-back',back)));
+ if(s.picker&&r){const picker=s.picker,overlay=element('div','router-modal-backdrop'),dialog=element('section','router-classify-picker');dialog.setAttribute('role','dialog');dialog.setAttribute('aria-modal','true');dialog.setAttribute('aria-label',({product:'类型选择',company:'品牌选择',model:'型号选择'}as const)[picker.field]);dialog.tabIndex=-1;dialog.append(element('h3','',dialog.getAttribute('aria-label')));const list=element('div','router-classify-options');list.setAttribute('role','radiogroup');list.setAttribute('aria-label','分类选项');for(const id of classificationOptions(r,picker.field)){const option=button('','router-classify-option',()=>s.choose(id));option.dataset.value=id;option.setAttribute('role','radio');option.setAttribute('aria-checked',String(id===picker.value));option.append(element('span','',r.catalog.names[id]),element('span','router-classify-radio'));list.append(option);}dialog.append(list,element('footer','',button('取消','',()=>s.cancel()),button('确定','',()=>{void s.save();})));overlay.append(dialog);page.append(overlay);
+  overlay.addEventListener('click',e=>{if(e.target===overlay)s.cancel();});dialog.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();e.stopPropagation();s.cancel();}else if(e.key==='Tab'){const items=[...dialog.querySelectorAll<HTMLElement>('button:not(:disabled)')];if(e.shiftKey&&(document.activeElement===dialog||document.activeElement===items[0])){e.preventDefault();items.at(-1)?.focus();}else if(!e.shiftKey&&document.activeElement===items.at(-1)){e.preventDefault();items[0]?.focus();}}});queueMicrotask(()=>{if(dialog.isConnected){dialog.focus();list.querySelector('[aria-checked=true]')?.scrollIntoView({block:'nearest'});}});
+ }
+ return stage;
+}

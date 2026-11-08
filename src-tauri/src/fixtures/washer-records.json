@@ -1,0 +1,497 @@
+{
+  "range": {
+    "aggregation": "day",
+    "endTime": 1793254479000,
+    "startTime": 1785478479000
+  },
+  "statistics": {
+    "endTime": "1793254479000",
+    "mode": [
+      24,
+      3,
+      4
+    ],
+    "startTime": "1785478479000",
+    "times": [
+      {
+        "endTime": "1785513599000",
+        "startTime": "1785478479000",
+        "value": 2
+      },
+      {
+        "endTime": "1785599999000",
+        "startTime": "1785513600000",
+        "value": 4
+      },
+      {
+        "endTime": "1785686399000",
+        "startTime": "1785600000000",
+        "value": 2
+      },
+      {
+        "endTime": "1785772799000",
+        "startTime": "1785686400000",
+        "value": 3
+      },
+      {
+        "endTime": "1785859199000",
+        "startTime": "1785772800000",
+        "value": 1
+      },
+      {
+        "endTime": "1785945599000",
+        "startTime": "1785859200000",
+        "value": 2
+      },
+      {
+        "endTime": "1786031999000",
+        "startTime": "1785945600000",
+        "value": 2
+      },
+      {
+        "endTime": "1786118399000",
+        "startTime": "1786032000000",
+        "value": 4
+      },
+      {
+        "endTime": "1786204799000",
+        "startTime": "1786118400000",
+        "value": 1
+      },
+      {
+        "endTime": "1786291199000",
+        "startTime": "1786204800000",
+        "value": 2
+      },
+      {
+        "endTime": "1786377599000",
+        "startTime": "1786291200000",
+        "value": 1
+      },
+      {
+        "endTime": "1786463999000",
+        "startTime": "1786377600000",
+        "value": 1
+      },
+      {
+        "endTime": "1786550399000",
+        "startTime": "1786464000000",
+        "value": 2
+      },
+      {
+        "endTime": "1786636799000",
+        "startTime": "1786550400000",
+        "value": 4
+      },
+      {
+        "endTime": "1786723199000",
+        "startTime": "1786636800000",
+        "value": 2
+      },
+      {
+        "endTime": "1786809599000",
+        "startTime": "1786723200000",
+        "value": 3
+      },
+      {
+        "endTime": "1786895999000",
+        "startTime": "1786809600000",
+        "value": 5
+      },
+      {
+        "endTime": "1786982399000",
+        "startTime": "1786896000000",
+        "value": 3
+      },
+      {
+        "endTime": "1787068799000",
+        "startTime": "1786982400000",
+        "value": 5
+      },
+      {
+        "endTime": "1787155199000",
+        "startTime": "1787068800000",
+        "value": 3
+      },
+      {
+        "endTime": "1787241599000",
+        "startTime": "1787155200000",
+        "value": 2
+      },
+      {
+        "endTime": "1787327999000",
+        "startTime": "1787241600000",
+        "value": 4
+      },
+      {
+        "endTime": "1787414399000",
+        "startTime": "1787328000000",
+        "value": 3
+      },
+      {
+        "endTime": "1787500799000",
+        "startTime": "1787414400000",
+        "value": 3
+      },
+      {
+        "endTime": "1787587199000",
+        "startTime": "1787500800000",
+        "value": 9
+      },
+      {
+        "endTime": "1787673599000",
+        "startTime": "1787587200000",
+        "value": 4
+      },
+      {
+        "endTime": "1787759999000",
+        "startTime": "1787673600000",
+        "value": 2
+      },
+      {
+        "endTime": "1787846399000",
+        "startTime": "1787760000000",
+        "value": 2
+      },
+      {
+        "endTime": "1787932799000",
+        "startTime": "1787846400000",
+        "value": 4
+      },
+      {
+        "endTime": "1788019199000",
+        "startTime": "1787932800000",
+        "value": 2
+      },
+      {
+        "endTime": "1788105599000",
+        "startTime": "1788019200000",
+        "value": 3
+      },
+      {
+        "endTime": "1788191999000",
+        "startTime": "1788105600000",
+        "value": 1
+      },
+      {
+        "endTime": "1788278399000",
+        "startTime": "1788192000000",
+        "value": 5
+      },
+      {
+        "endTime": "1788364799000",
+        "startTime": "1788278400000",
+        "value": 2
+      },
+      {
+        "endTime": "1788451199000",
+        "startTime": "1788364800000",
+        "value": 1
+      },
+      {
+        "endTime": "1788537599000",
+        "startTime": "1788451200000",
+        "value": 3
+      },
+      {
+        "endTime": "1788623999000",
+        "startTime": "1788537600000",
+        "value": 4
+      },
+      {
+        "endTime": "1788710399000",
+        "startTime": "1788624000000",
+        "value": 1
+      },
+      {
+        "endTime": "1788796799000",
+        "startTime": "1788710400000",
+        "value": 4
+      },
+      {
+        "endTime": "1788883199000",
+        "startTime": "1788796800000",
+        "value": 2
+      },
+      {
+        "endTime": "1788969599000",
+        "startTime": "1788883200000",
+        "value": 2
+      },
+      {
+        "endTime": "1789055999000",
+        "startTime": "1788969600000",
+        "value": 2
+      },
+      {
+        "endTime": "1789142399000",
+        "startTime": "1789056000000",
+        "value": 2
+      },
+      {
+        "endTime": "1789228799000",
+        "startTime": "1789142400000",
+        "value": 2
+      },
+      {
+        "endTime": "1789315199000",
+        "startTime": "1789228800000",
+        "value": 2
+      },
+      {
+        "endTime": "1789401599000",
+        "startTime": "1789315200000",
+        "value": 2
+      },
+      {
+        "endTime": "1789487999000",
+        "startTime": "1789401600000",
+        "value": 2
+      },
+      {
+        "endTime": "1789574399000",
+        "startTime": "1789488000000",
+        "value": 2
+      },
+      {
+        "endTime": "1789660799000",
+        "startTime": "1789574400000",
+        "value": 1
+      },
+      {
+        "endTime": "1789747199000",
+        "startTime": "1789660800000",
+        "value": 2
+      },
+      {
+        "endTime": "1789833599000",
+        "startTime": "1789747200000",
+        "value": 1
+      },
+      {
+        "endTime": "1789919999000",
+        "startTime": "1789833600000",
+        "value": 4
+      },
+      {
+        "endTime": "1790006399000",
+        "startTime": "1789920000000",
+        "value": 2
+      },
+      {
+        "endTime": "1790092799000",
+        "startTime": "1790006400000",
+        "value": 1
+      },
+      {
+        "endTime": "1790179199000",
+        "startTime": "1790092800000",
+        "value": 3
+      },
+      {
+        "endTime": "1790265599000",
+        "startTime": "1790179200000",
+        "value": 3
+      },
+      {
+        "endTime": "1790351999000",
+        "startTime": "1790265600000",
+        "value": 4
+      },
+      {
+        "endTime": "1790438399000",
+        "startTime": "1790352000000",
+        "value": 3
+      },
+      {
+        "endTime": "1790524799000",
+        "startTime": "1790438400000",
+        "value": 1
+      },
+      {
+        "endTime": "1790611199000",
+        "startTime": "1790524800000",
+        "value": 2
+      },
+      {
+        "endTime": "1790697599000",
+        "startTime": "1790611200000",
+        "value": 1
+      },
+      {
+        "endTime": "1790783999000",
+        "startTime": "1790697600000",
+        "value": 3
+      },
+      {
+        "endTime": "1790870399000",
+        "startTime": "1790784000000",
+        "value": 4
+      },
+      {
+        "endTime": "1790956799000",
+        "startTime": "1790870400000",
+        "value": 2
+      },
+      {
+        "endTime": "1791043199000",
+        "startTime": "1790956800000",
+        "value": 3
+      },
+      {
+        "endTime": "1791129599000",
+        "startTime": "1791043200000",
+        "value": 2
+      },
+      {
+        "endTime": "1791215999000",
+        "startTime": "1791129600000",
+        "value": 4
+      },
+      {
+        "endTime": "1791302399000",
+        "startTime": "1791216000000",
+        "value": 3
+      },
+      {
+        "endTime": "1791388799000",
+        "startTime": "1791302400000",
+        "value": 3
+      },
+      {
+        "endTime": "1791475199000",
+        "startTime": "1791388800000",
+        "value": 3
+      },
+      {
+        "endTime": "1791561599000",
+        "startTime": "1791475200000",
+        "value": 3
+      },
+      {
+        "endTime": "1791647999000",
+        "startTime": "1791561600000",
+        "value": 1
+      },
+      {
+        "endTime": "1791734399000",
+        "startTime": "1791648000000",
+        "value": 3
+      },
+      {
+        "endTime": "1791820799000",
+        "startTime": "1791734400000",
+        "value": 2
+      },
+      {
+        "endTime": "1791907199000",
+        "startTime": "1791820800000",
+        "value": 2
+      },
+      {
+        "endTime": "1791993599000",
+        "startTime": "1791907200000",
+        "value": 3
+      },
+      {
+        "endTime": "1792079999000",
+        "startTime": "1791993600000",
+        "value": 2
+      },
+      {
+        "endTime": "1792166399000",
+        "startTime": "1792080000000",
+        "value": 3
+      },
+      {
+        "endTime": "1792252799000",
+        "startTime": "1792166400000",
+        "value": 2
+      },
+      {
+        "endTime": "1792339199000",
+        "startTime": "1792252800000",
+        "value": 1
+      },
+      {
+        "endTime": "1792425599000",
+        "startTime": "1792339200000",
+        "value": 1
+      },
+      {
+        "endTime": "1792511999000",
+        "startTime": "1792425600000",
+        "value": 4
+      },
+      {
+        "endTime": "1792598399000",
+        "startTime": "1792512000000",
+        "value": 2
+      },
+      {
+        "endTime": "1792684799000",
+        "startTime": "1792598400000",
+        "value": 2
+      },
+      {
+        "endTime": "1792771199000",
+        "startTime": "1792684800000",
+        "value": 1
+      },
+      {
+        "endTime": "1792857599000",
+        "startTime": "1792771200000",
+        "value": 3
+      },
+      {
+        "endTime": "1792943999000",
+        "startTime": "1792857600000",
+        "value": 2
+      },
+      {
+        "endTime": "1793030399000",
+        "startTime": "1792944000000",
+        "value": 3
+      },
+      {
+        "endTime": "1793116799000",
+        "startTime": "1793030400000",
+        "value": 1
+      },
+      {
+        "endTime": "1793203199000",
+        "startTime": "1793116800000",
+        "value": 2
+      },
+      {
+        "endTime": "1793254479000",
+        "startTime": "1793203200000",
+        "value": 0
+      }
+    ],
+    "type": "day"
+  },
+  "page": {
+    "logs": [
+      {
+        "endTime": "1793196319153",
+        "id": "fixture-record-1",
+        "mode": 24,
+        "param": "",
+        "powerUse": 0,
+        "startTime": "1793193799153",
+        "waterUse": 0
+      }
+    ],
+    "nextId": ""
+  },
+  "detail": {
+    "endTime": "1793196319153",
+    "id": "fixture-record-1",
+    "mode": 24,
+    "param": "{\"waterTemperature\":40,\"rinseTimes\":2,\"spinSpeed\":800,\"dryingLevel\":0,\"dryingTime\":0,\"soakTime\":0,\"nightWash\":false,\"steam\":false,\"shake\":false,\"blueOxygen\":false,\"shakeTime\":0,\"freeWashTime\":0,\"dryingDegree\":0}",
+    "powerUse": 0,
+    "startTime": "1793193799153",
+    "waterUse": 0
+  }
+}

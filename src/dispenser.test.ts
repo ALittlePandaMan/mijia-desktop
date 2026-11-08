@@ -1,0 +1,24 @@
+import {describe,it,expect,vi,afterEach} from 'vitest';
+import raw from './fixtures/dispenser-page.json';
+import type {DevicePanel,ControlResult,DeviceContext} from './types';
+import {DispenserCommands,dispenserProfile,modeNameError,targetMatches,volumeChoices,type DispenserChange} from './dispenser';
+const fixture=()=>structuredClone(raw)as DevicePanel,c:DeviceContext={homeId:'offline',generation:1,did:raw.did};
+afterEach(()=>{vi.useRealTimers();});
+describe('dispenser UI ownership and receipts',()=>{
+ it('keeps exact-model scope and matches ordered mode values rather than acknowledgements',()=>{
+  const p=fixture();expect(dispenserProfile(p)).toBe(true);expect(dispenserProfile({...p,model:'xiaomi.ysj.gxj2'})).toBe(false);
+  const change:DispenserChange={operation:'modes',expected:p.dispenser!.modeSource!,modes:structuredClone(p.dispenser!.modes)};
+  expect(targetMatches(p,change)).toBe(true);change.modes.reverse();expect(targetMatches(p,change)).toBe(false);expect(targetMatches(p,{operation:'setting',field:'childLock',expected:2,value:1})).toBe(false);
+ });
+ it('copies a submitted mode draft and projects it before any cloud reply',async()=>{let complete!:(r:ControlResult)=>void;const send=vi.fn((_c:DeviceContext,_v:DispenserChange)=>new Promise<ControlResult>(r=>complete=r)),ops=new DispenserCommands({change:send,read:async()=>fixture()},()=>{},()=>{},()=>{}),p=fixture();ops.bind(c,'a');ops.display(p);const change:DispenserChange={operation:'modes',expected:raw.dispenser!.modeSource!,modes:structuredClone(raw.dispenser!.modes)};change.modes[1].temperature=46;await ops.change(c,change);change.modes[1].temperature=99;expect(ops.display(p).dispenser!.modes[1].temperature).toBe(46);await tick();expect((send.mock.calls[0][1]as Extract<DispenserChange,{operation:'modes'}>).modes[1].temperature).toBe(46);const actual=fixture();actual.dispenser!.modes[1].temperature=46;complete({verified:true,message:'read',panel:actual});await tick();expect(ops.pending).toBe(false);ops.close();});
+ it('keeps uncertain settings across reopening the same generation without resending',async()=>{vi.useFakeTimers();const p=fixture(),send=vi.fn(async()=>({verified:false,message:'待确认',panel:fixture()})),ops=new DispenserCommands({change:send,read:async()=>fixture()},()=>{},()=>{},()=>{});ops.bind(c,'a');ops.display(p);await ops.change(c,{operation:'setting',field:'screen',expected:0,value:1});await tick();ops.close();ops.bind(c,'a');expect(ops.display(p).dispenser!.screen).toBe(1);await vi.advanceTimersByTimeAsync(10000);expect(send).toHaveBeenCalledOnce();expect(ops.display(p).dispenser!.screen).toBe(1);ops.adopt();expect(ops.display(p).dispenser!.screen).toBe(0);ops.close();});
+ it('requires matching live settings rather than a verified flag',async()=>{vi.useFakeTimers();const p=fixture(),ops=new DispenserCommands({change:async()=>({verified:true,message:'ack',panel:fixture()}),read:async()=>fixture()},()=>{},()=>{},()=>{});ops.bind(c,'a');ops.display(p);await ops.change(c,{operation:'setting',field:'childLock',expected:2,value:1});await tick();expect(ops.pending).toBe(true);expect(ops.display(p).dispenser!.childLock).toBe(1);expect(p.dispenser!.childLock).toBe(2);ops.close();});
+ it('isolates a late result from another account',async()=>{let complete!:(r:ControlResult)=>void;const accepted=vi.fn(),p=fixture(),ops=new DispenserCommands({change:()=>new Promise<ControlResult>(r=>complete=r),read:async()=>fixture()},()=>{},accepted,()=>{});ops.bind(c,'old');ops.display(p);await ops.change(c,{operation:'setting',field:'screen',expected:0,value:1});await tick();ops.close();ops.bind({...c,generation:3},'new');const actual=fixture();actual.dispenser!.screen=1;complete({verified:true,message:'read',panel:actual});await tick();expect(accepted).not.toHaveBeenCalled();expect(ops.pending).toBe(false);ops.close();});
+ it('cannot recover with unreadable configuration and advances its read version',async()=>{const p=fixture();p.dispenser!.modeError='unread';p.dispenser!.modeSource=null;const ops=new DispenserCommands({change:async()=>({verified:false,message:'uncertain',panel:fixture()}),read:async()=>p},()=>{},()=>{},()=>{});ops.bind(c,'a');const before=ops.version;expect(await ops.refresh(c)).toBe(false);expect(ops.version).toBeGreaterThan(before);expect(ops.blocked).toBe(true);ops.close();});
+ it('uses the vendor weighted-name and split-step cup ranges',()=>{
+  expect(modeNameError('六个汉字正好',[])).toBeUndefined();expect(modeNameError('七个汉字超过了',[])).toBeTruthy();expect(modeNameError('😀😀😀',[])).toBeUndefined();expect(modeNameError('😀😀😀😀',[])).toBeTruthy();for(const n of ['a,b','a[b]','bad\nname'])expect(modeNameError(n,[])).toBeTruthy();
+  expect(volumeChoices).toContain(300);expect(volumeChoices).toContain(350);expect(volumeChoices).not.toContain(310);expect(volumeChoices.at(-1)).toBe(999);
+ });
+});
+
+const tick=async()=>{for(let i=0;i<30;i++)await Promise.resolve();};

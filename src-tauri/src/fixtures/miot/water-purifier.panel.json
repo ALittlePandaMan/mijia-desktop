@@ -1,0 +1,477 @@
+{
+  "did": "model-fixture-only",
+  "model": "bj352.waterpuri.k10",
+  "specType": "urn:miot-spec-v2:device:water-purifier:0000A013:bj352-k10:1",
+  "services": [
+    {
+      "siid": 1,
+      "name": "device-information",
+      "description": "Device Information",
+      "properties": [
+        {
+          "siid": 1,
+          "piid": 1,
+          "name": "manufacturer",
+          "description": "Device Manufacturer",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 1,
+          "piid": 2,
+          "name": "model",
+          "description": "Device Model",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 1,
+          "piid": 3,
+          "name": "serial-number",
+          "description": "Device Serial Number",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 1,
+          "piid": 4,
+          "name": "firmware-revision",
+          "description": "Current Firmware Version",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 2,
+      "name": "water-purifier",
+      "description": "Water Purifier",
+      "properties": [
+        {
+          "siid": 2,
+          "piid": 1,
+          "name": "fault",
+          "description": "Device Fault",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "none",
+          "value": null,
+          "code": null,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "No Faults"
+            },
+            {
+              "value": 1,
+              "description": "TempErr"
+            },
+            {
+              "value": 2,
+              "description": "Templow"
+            },
+            {
+              "value": 3,
+              "description": "TempHigh"
+            },
+            {
+              "value": 4,
+              "description": "TdsoutErr"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 3,
+          "name": "status",
+          "description": "Status",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "none",
+          "value": null,
+          "code": null,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "Idle"
+            },
+            {
+              "value": 1,
+              "description": "Puri"
+            },
+            {
+              "value": 2,
+              "description": "Flush"
+            },
+            {
+              "value": 3,
+              "description": "WaitPuri"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 5,
+          "name": "temperature",
+          "description": "Temperature",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "celsius",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            50.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 3,
+      "name": "filter",
+      "description": "Composite Filter Service",
+      "properties": [
+        {
+          "siid": 3,
+          "piid": 1,
+          "name": "filter-life-level",
+          "description": "Filter Life Level",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "percentage",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            100.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [
+        {
+          "siid": 3,
+          "aiid": 1,
+          "name": "reset-filter-life",
+          "description": "Reset Filter Life",
+          "in": [],
+          "out": [
+            1
+          ],
+          "unsupportedReason": null
+        }
+      ]
+    },
+    {
+      "siid": 4,
+      "name": "tds-sensor",
+      "description": "Total Dissolved Solids Sensor",
+      "properties": [
+        {
+          "siid": 4,
+          "piid": 2,
+          "name": "tds-out",
+          "description": "Total Dissolved Solids for Output Water",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            1000.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 5,
+      "name": "filter",
+      "description": "RO Filter Service",
+      "properties": [
+        {
+          "siid": 5,
+          "piid": 1,
+          "name": "filter-life-level",
+          "description": "Filter Life Level",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "percentage",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            100.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [
+        {
+          "siid": 5,
+          "aiid": 1,
+          "name": "reset-filter-life",
+          "description": "Reset Filter Life",
+          "in": [],
+          "out": [
+            1
+          ],
+          "unsupportedReason": null
+        }
+      ]
+    },
+    {
+      "siid": 6,
+      "name": "waterrecord",
+      "description": "waterrecord",
+      "properties": [
+        {
+          "siid": 6,
+          "piid": 1,
+          "name": "currentusewater",
+          "description": "",
+          "format": "float",
+          "access": [
+            "notify",
+            "read"
+          ],
+          "unit": "L",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            99999.0,
+            0.01
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 6,
+          "piid": 2,
+          "name": "currentusetime",
+          "description": "currentusetime",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "seconds",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            65535.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 6,
+          "piid": 3,
+          "name": "totalpurifywater",
+          "description": "",
+          "format": "uint32",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "L",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            4294967295.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 6,
+          "piid": 4,
+          "name": "totalworktime",
+          "description": "totalworktime",
+          "format": "uint32",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "seconds",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            4294967295.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 6,
+          "piid": 5,
+          "name": "tdsoutwarnvalue",
+          "description": "",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "unit": "none",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            255.0,
+            5.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 6,
+          "piid": 6,
+          "name": "currentflow",
+          "description": "",
+          "format": "float",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "L",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            1000.0,
+            0.01
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 6,
+          "piid": 7,
+          "name": "keyvalue",
+          "description": "keyvalue",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "none",
+          "value": null,
+          "code": null,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "Idle"
+            },
+            {
+              "value": 1,
+              "description": "Tapkey"
+            },
+            {
+              "value": 2,
+              "description": "Resetkey"
+            },
+            {
+              "value": 3,
+              "description": "PpresetKey"
+            },
+            {
+              "value": 4,
+              "description": "Roresetkey"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [
+        {
+          "siid": 6,
+          "aiid": 1,
+          "name": "settdswarnvalue",
+          "description": "settdswarnvalue",
+          "in": [
+            5
+          ],
+          "out": [],
+          "unsupportedReason": null
+        }
+      ]
+    }
+  ],
+  "unsupportedReason": null
+}

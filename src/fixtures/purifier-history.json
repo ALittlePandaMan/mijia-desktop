@@ -1,0 +1,348 @@
+{
+  "records": {
+    "did": "offline-purifier-fixture",
+    "end": 1793300227,
+    "fetchedAt": 1793300228,
+    "ignoredZero": 33,
+    "nextBefore": null,
+    "records": [
+      {
+        "id": "ea215d356f764721ab1a44cd6744ba95e60f1011058701546abfdadb29d4609c",
+        "seconds": 39,
+        "tds": [
+          4,
+          12,
+          16,
+          5,
+          4
+        ],
+        "time": 1793284290,
+        "volumeMl": 1647
+      },
+      {
+        "id": "b40d3f8f996b79ac4131cd51d79157f48f49e4bdddc82679c7ced8917bcc1e93",
+        "seconds": 18,
+        "tds": [
+          21,
+          22,
+          28,
+          21
+        ],
+        "time": 1793268459,
+        "volumeMl": 853
+      },
+      {
+        "id": "8efaa1ef691f4bb5b2f792b34478c8a58642d3f9f6ca06c7b013c240b88ca51f",
+        "seconds": 15,
+        "tds": [
+          17,
+          4,
+          17
+        ],
+        "time": 1793229782,
+        "volumeMl": 345
+      }
+    ],
+    "rejected": 0,
+    "start": 1761926400,
+    "warnings": []
+  },
+  "scope": "Offline UI fixture: sanitized captured records; not real device control evidence",
+  "statistics": [
+    {
+      "did": "offline-purifier-fixture",
+      "end": 1793548799,
+      "fetchedAt": 1793300228,
+      "points": [
+        {
+          "label": "10/26",
+          "time": 1792944000,
+          "volumeMl": 2751
+        },
+        {
+          "label": "10/27",
+          "time": 1793030400,
+          "volumeMl": 3588
+        },
+        {
+          "label": "10/28",
+          "time": 1793116800,
+          "volumeMl": 4925
+        },
+        {
+          "label": "10/29",
+          "time": 1793203200,
+          "volumeMl": 2845
+        },
+        {
+          "label": "10/30",
+          "time": 1793289600,
+          "volumeMl": null
+        },
+        {
+          "label": "10/31",
+          "time": 1793376000,
+          "volumeMl": null
+        },
+        {
+          "label": "11/1",
+          "time": 1793462400,
+          "volumeMl": null
+        }
+      ],
+      "selection": {
+        "date": "2026-10-30",
+        "period": "week"
+      },
+      "start": 1792944000,
+      "totalMl": 14109,
+      "warnings": [],
+      "weekTotalMl": 14109
+    },
+    {
+      "did": "offline-purifier-fixture",
+      "end": 1793462399,
+      "fetchedAt": 1793300228,
+      "points": [
+        {
+          "label": "10/1",
+          "time": 1790784000,
+          "volumeMl": 7781
+        },
+        {
+          "label": "10/2",
+          "time": 1790870400,
+          "volumeMl": 9118
+        },
+        {
+          "label": "10/3",
+          "time": 1790956800,
+          "volumeMl": 6529
+        },
+        {
+          "label": "10/4",
+          "time": 1791043200,
+          "volumeMl": 13066
+        },
+        {
+          "label": "10/5",
+          "time": 1791129600,
+          "volumeMl": 8365
+        },
+        {
+          "label": "10/6",
+          "time": 1791216000,
+          "volumeMl": 9559
+        },
+        {
+          "label": "10/7",
+          "time": 1791302400,
+          "volumeMl": 5542
+        },
+        {
+          "label": "10/8",
+          "time": 1791388800,
+          "volumeMl": 4673
+        },
+        {
+          "label": "10/9",
+          "time": 1791475200,
+          "volumeMl": 3492
+        },
+        {
+          "label": "10/10",
+          "time": 1791561600,
+          "volumeMl": 2603
+        },
+        {
+          "label": "10/11",
+          "time": 1791648000,
+          "volumeMl": 4147
+        },
+        {
+          "label": "10/12",
+          "time": 1791734400,
+          "volumeMl": 3071
+        },
+        {
+          "label": "10/13",
+          "time": 1791820800,
+          "volumeMl": 4399
+        },
+        {
+          "label": "10/14",
+          "time": 1791907200,
+          "volumeMl": 7548
+        },
+        {
+          "label": "10/15",
+          "time": 1791993600,
+          "volumeMl": 4786
+        },
+        {
+          "label": "10/16",
+          "time": 1792080000,
+          "volumeMl": 3372
+        },
+        {
+          "label": "10/17",
+          "time": 1792166400,
+          "volumeMl": 2810
+        },
+        {
+          "label": "10/18",
+          "time": 1792252800,
+          "volumeMl": 6784
+        },
+        {
+          "label": "10/19",
+          "time": 1792339200,
+          "volumeMl": 6033
+        },
+        {
+          "label": "10/20",
+          "time": 1792425600,
+          "volumeMl": 4676
+        },
+        {
+          "label": "10/21",
+          "time": 1792512000,
+          "volumeMl": 3270
+        },
+        {
+          "label": "10/22",
+          "time": 1792598400,
+          "volumeMl": 2972
+        },
+        {
+          "label": "10/23",
+          "time": 1792684800,
+          "volumeMl": 3518
+        },
+        {
+          "label": "10/24",
+          "time": 1792771200,
+          "volumeMl": 3108
+        },
+        {
+          "label": "10/25",
+          "time": 1792857600,
+          "volumeMl": 2891
+        },
+        {
+          "label": "10/26",
+          "time": 1792944000,
+          "volumeMl": 2751
+        },
+        {
+          "label": "10/27",
+          "time": 1793030400,
+          "volumeMl": 3588
+        },
+        {
+          "label": "10/28",
+          "time": 1793116800,
+          "volumeMl": 4925
+        },
+        {
+          "label": "10/29",
+          "time": 1793203200,
+          "volumeMl": 2845
+        },
+        {
+          "label": "10/30",
+          "time": 1793289600,
+          "volumeMl": null
+        },
+        {
+          "label": "10/31",
+          "time": 1793376000,
+          "volumeMl": null
+        }
+      ],
+      "selection": {
+        "date": "2026-10-30",
+        "period": "month"
+      },
+      "start": 1790784000,
+      "totalMl": 148222,
+      "warnings": [],
+      "weekTotalMl": null
+    },
+    {
+      "did": "offline-purifier-fixture",
+      "end": 1798732799,
+      "fetchedAt": 1793300228,
+      "points": [
+        {
+          "label": "1月",
+          "time": 1767196800,
+          "volumeMl": 169609
+        },
+        {
+          "label": "2月",
+          "time": 1769875200,
+          "volumeMl": 68507
+        },
+        {
+          "label": "3月",
+          "time": 1772294400,
+          "volumeMl": 80073
+        },
+        {
+          "label": "4月",
+          "time": 1774972800,
+          "volumeMl": 46314
+        },
+        {
+          "label": "5月",
+          "time": 1777564800,
+          "volumeMl": 73228
+        },
+        {
+          "label": "6月",
+          "time": 1780243200,
+          "volumeMl": 129210
+        },
+        {
+          "label": "7月",
+          "time": 1782835200,
+          "volumeMl": 167733
+        },
+        {
+          "label": "8月",
+          "time": 1785513600,
+          "volumeMl": 227935
+        },
+        {
+          "label": "9月",
+          "time": 1788192000,
+          "volumeMl": 167719
+        },
+        {
+          "label": "10月",
+          "time": 1790784000,
+          "volumeMl": 148222
+        },
+        {
+          "label": "11月",
+          "time": 1793462400,
+          "volumeMl": null
+        },
+        {
+          "label": "12月",
+          "time": 1796054400,
+          "volumeMl": null
+        }
+      ],
+      "selection": {
+        "date": "2026-10-30",
+        "period": "year"
+      },
+      "start": 1767196800,
+      "totalMl": 1278550,
+      "warnings": [],
+      "weekTotalMl": null
+    }
+  ]
+}

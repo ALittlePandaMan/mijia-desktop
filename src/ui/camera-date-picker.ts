@@ -1,0 +1,19 @@
+import {cameraDate} from '../camera-browser';
+import {button,element} from './dom';
+import './camera-date-picker.css';
+const closePickers=new WeakMap<HTMLElement,()=>void>();
+export function dismissCameraDatePicker(host:Element):boolean{const overlay=host.querySelector<HTMLElement>('.camera-calendar-overlay'),close=overlay&&closePickers.get(overlay);if(!close)return false;close();return true;}
+/** Bounded cloud-history month picker; no browser-native calendar surface. */
+export function cameraDatePicker(anchor:HTMLElement,value:string,choose:(date:string)=>void,min=cameraDate(Date.now()/1000-30*86400)):void{
+ const page=anchor.closest('.device-page')??anchor.parentElement;if(!page)return;dismissCameraDatePicker(page);
+ const overlay=element('div','camera-calendar-overlay'),dialog=element('section','camera-calendar');dialog.setAttribute('role','dialog');dialog.setAttribute('aria-modal','true');dialog.setAttribute('aria-label','选择日期');dialog.tabIndex=-1;
+ const today=cameraDate(Date.now()/1000);let month=value.slice(0,7),restore=document.activeElement as HTMLElement|null;
+ const close=()=>{closePickers.delete(overlay);overlay.remove();if(restore?.isConnected)restore.focus({preventScroll:true});},select=(date:string)=>{if(date<min||date>today)return;close();choose(date);};closePickers.set(overlay,close);
+ const render=()=>{dialog.replaceChildren();const [year,m]=month.split('-').map(Number),head=element('header','camera-calendar-heading',element('div','',element('h3','','选择日期'),element('p','',`${year}年${m}月`))),now=button('今','camera-calendar-today',()=>select(today));now.setAttribute('aria-label','选择今天');head.append(now);dialog.append(head);
+  const nav=element('div','camera-calendar-navigation');for(const [step,label]of[[-1,'上个月'],[1,'下个月']]as const){const b=button('','',()=>{const d=new Date(Date.UTC(year,m-1+step,1));month=d.toISOString().slice(0,7);render();},step===-1?'back':'arrow');b.setAttribute('aria-label',label);b.disabled=step===-1?month<=min.slice(0,7):month>=today.slice(0,7);nav.append(b);}dialog.append(nav);
+  const grid=element('div','camera-calendar-grid');grid.setAttribute('role','grid');for(const day of'日一二三四五六')grid.append(element('span','camera-calendar-weekday',day));
+  const start=new Date(Date.UTC(year,m-1,1)),offset=start.getUTCDay();for(let n=0;n<Math.ceil((offset+new Date(Date.UTC(year,m,0)).getUTCDate())/7)*7;n++){const date=new Date(Date.UTC(year,m-1,1-offset+n)),key=date.toISOString().slice(0,10),b=button(String(date.getUTCDate()),'camera-calendar-day',()=>select(key));b.setAttribute('role','gridcell');b.setAttribute('aria-label',key);b.setAttribute('aria-selected',String(key===value));b.disabled=key<min||key>today||date.getUTCMonth()!==m-1;b.dataset.date=key;if(key===today)b.setAttribute('aria-current','date');grid.append(b);}dialog.append(grid,button('取消','camera-calendar-cancel',close));
+  // Month navigation replaces its focused button; keep keyboard ownership here.
+  queueMicrotask(()=>{if(overlay.isConnected)(dialog.querySelector<HTMLButtonElement>('[aria-selected=true]:not(:disabled)')??dialog.querySelector<HTMLButtonElement>('.camera-calendar-day:not(:disabled)')??dialog).focus({preventScroll:true});});};
+ overlay.addEventListener('click',e=>{if(e.target===overlay)close();});overlay.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();e.stopPropagation();close();}if(e.key==='Tab'){const controls=[...dialog.querySelectorAll<HTMLButtonElement>('button:not(:disabled)')];if(!controls.length)return;const first=controls[0],last=controls.at(-1)!;if(e.shiftKey&&(document.activeElement===first||document.activeElement===dialog)){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});overlay.append(dialog);render();page.append(overlay);
+}

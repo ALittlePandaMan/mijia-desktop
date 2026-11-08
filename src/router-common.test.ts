@@ -1,0 +1,13 @@
+import {describe,expect,it,vi} from 'vitest';
+import {canonicalClientMac,commonSections,RouterCommonState} from './router-common';
+import {PreferenceOperations,type LocalPreferences} from './local-preferences';
+import type {RouterClient} from './types';
+const macs=Array.from({length:6},(_,i)=>`AA:BB:CC:00:00:0${i+1}`);
+const client=(mac:string,online:boolean):RouterClient=>({mac,name:'fixture',ip:null,icon:null,online,blocked:false,connection:1,downloadBps:0,uploadBps:0,eventTime:null});
+const prefs:LocalPreferences={hideOffline:false,dragLocked:false,splitSwitches:false,hiddenDeviceIds:[],homeHiddenDeviceIds:[],roomOrders:{},routerCommonDevices:{}};
+describe('local router common devices',()=>{
+ it('canonicalizes identities, preserves chosen order, and does not invent stale clients',()=>{expect(canonicalClientMac(macs[0].toLowerCase())).toBe(macs[0]);expect(canonicalClientMac('bad')).toBeUndefined();const one=client(macs[0].toLowerCase(),true),two=client(macs[1],false);expect(commonSections([one,two],[macs[0],macs[5]])).toEqual({common:[one],other:[two]});expect(commonSections([one,two],[macs[1],macs[0]]).common).toEqual([two,one]);});
+ it('allows editing five saved devices in a local draft and rejects a changed baseline',()=>{const changed=vi.fn(),s=new RouterCommonState(changed),saved=macs.slice(0,5);s.limit(macs[5]);s.manage(saved);s.add(macs[5]);expect(s.draft).toEqual(saved);s.remove(macs[0]);s.add(macs[5]);expect(s.prepare(saved)).toEqual({expected:saved,macs:[...saved.slice(1),macs[5]]});expect(s.prepare([])).toBeUndefined();expect(s.message).toBeTruthy();s.close();expect(s.draft).toBeUndefined();});
+ it('rolls back a failed local write and ignores a late former-home response',async()=>{let resolve!:(value:LocalPreferences)=>void;const persist=vi.fn(()=>new Promise<LocalPreferences>(r=>resolve=r)),s=new PreferenceOperations(persist,vi.fn());s.reset(prefs);s.change({operation:'setRouterCommon',did:'r',expected:[],macs:[macs[0]]});expect(s.view?.routerCommonDevices?.r).toEqual([macs[0]]);s.reset({...prefs,routerCommonDevices:{other:[macs[1]]}});resolve({...prefs,routerCommonDevices:{r:[macs[0]]}});await Promise.resolve();await Promise.resolve();expect(s.view?.routerCommonDevices).toEqual({other:[macs[1]]});
+ const failing=new PreferenceOperations(async()=>{throw{kind:'localPreferences',message:'failed'};},vi.fn());failing.reset(prefs);failing.change({operation:'setRouterCommon',did:'r',expected:[],macs:[macs[0]]});await Promise.resolve();await Promise.resolve();expect(failing.view?.routerCommonDevices?.r).toBeUndefined();expect(failing.error?.kind).toBe('localPreferences');});
+});

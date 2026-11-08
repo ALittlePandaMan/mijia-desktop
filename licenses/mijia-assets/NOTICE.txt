@@ -1,0 +1,11 @@
+Mi Home / device plugin static visual resources
+
+Original icons, images, symbol glyph outlines and Android vector definitions
+remain the works of their respective owners. The MIT license of this project
+does not apply to these vendor works or their format conversions. No affiliation,
+endorsement, or additional redistribution license from the owners is claimed.
+
+Source digests, member paths and conversions: src/assets/mijia/library-manifest.json.
+C700 screenshot extractions are separately identified and contain only isolated
+UI icon pixels. No APK, executable plugin code, account data or camera footage
+is bundled. Development extraction tools are not client runtime dependencies.
