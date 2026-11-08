@@ -2,20 +2,17 @@
 
 [![构建](https://github.com/ALittlePandaMan/mijia-desktop/actions/workflows/ci.yml/badge.svg)](https://github.com/ALittlePandaMan/mijia-desktop/actions/workflows/ci.yml)
 
-基于 Tauri 2、Rust 和 TypeScript 的非官方米家桌面客户端，支持 Windows、Linux 和 macOS。通过小米账号扫码登录，查看家庭与房间，管理支持的米家设备。
+基于 Tauri 2、Rust 和 TypeScript 的非官方米家桌面客户端，目前发布 Windows x64 版本。通过小米账号扫码登录，查看家庭与房间，管理支持的米家设备。
 
 ## 下载
 
-在 [GitHub Releases](https://github.com/ALittlePandaMan/mijia-desktop/releases) 下载对应系统版本：
+在 [GitHub Releases](https://github.com/ALittlePandaMan/mijia-desktop/releases) 下载 Windows 版本：
 
 | 系统 | 下载文件 |
 | --- | --- |
 | Windows x64 | 安装程序 `.exe` 或便携 `.zip` |
-| Linux x64 | `.AppImage` 或 `.deb` |
-| macOS Apple Silicon | `macos-arm64.dmg` 或对应 `.app.tar.gz` |
-| macOS Intel | `macos-x64.dmg` 或对应 `.app.tar.gz` |
 
-首版 Windows 未做证书签名，macOS 使用临时签名；系统可能要求额外确认。安装步骤和系统依赖见 [平台说明](docs/PLATFORMS.md)。各文件的 SHA-256 校验值随版本提供。
+首版未做证书签名，Windows 可能要求额外确认。安装步骤和系统依赖见 [平台说明](docs/PLATFORMS.md)。各文件的 SHA-256 校验值随版本提供。Linux 和 macOS 暂不构建或发布安装包。
 
 ## 功能
 
@@ -25,7 +22,7 @@
 - 截图和录像仅保存在本机，默认位于系统视频／影片目录中的“米家Desktop”，可在设置中更改。
 - MiSans 字体、系统自动深浅色，以及键盘操作和减少动态效果支持。
 
-设备功能以型号、固件和云端实际提供的能力为准。Linux/macOS 首版适配核心功能，Windows 专有路由器本机网络检测仍受限；音视频能力取决于系统 WebView 和编解码器。[平台支持与待验收范围](docs/PLATFORMS.md)。
+设备功能以型号、固件和云端实际提供的能力为准，音视频能力取决于系统 WebView 和编解码器。[平台支持与待验收范围](docs/PLATFORMS.md)。
 
 ## 本地开发
 
@@ -64,7 +61,7 @@ git tag v0.1.1
 git push origin v0.1.1
 ```
 
-标签触发四种平台组合的原生构建，全部成功后统一发布安装包和校验值。`v0.2.0-beta.1` 这类标签发布为预发布版本。[发布维护](docs/RELEASING.md)。
+标签触发 Windows x64 原生构建，安装程序和便携包均通过文件检查后发布，并附校验值。`v0.2.0-beta.1` 这类标签发布为预发布版本。[发布维护](docs/RELEASING.md)。
 
 ## 数据与许可证
 
