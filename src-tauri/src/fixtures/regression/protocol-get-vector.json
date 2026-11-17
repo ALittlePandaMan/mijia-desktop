@@ -1,0 +1,14 @@
+{
+  "provenance": "Independent Java synthetic GET vector following static APK algorithm; no account data or live verification",
+  "ssecurity": "AAAAAAAAAAAAAAAAAAAAAA==",
+  "nonce": "AAECAwQFBgcAAAAB",
+  "method": "GET",
+  "path": "/v2/home/get_union_order",
+  "data": "{\"owner_uid\":123,\"home_id\":[456]}",
+  "signed_nonce": "/b4Dx72XRYpoTirqu2CpJq622eW/ehJiDeRavaQ6DsE=",
+  "rc4_hash": "IQSpY95eQ/eC5bCJ80vOcjFlxF4=",
+  "encrypted_data": "rZYNvkgMvYNm1EVvUDeCYncuM+9O9lyjC7+4nejIb4NZ",
+  "encrypted_hash_continuous": "pVCxpv5QIBhTXwB4rB/uPfMA+8wjfdR5m+rWNw==",
+  "encrypted_hash_reset": "n+UxuX9Q+rlCkkQOX2TzG2M8Lc9A+UWmF9u2+w==",
+  "signature_continuous": "xsaCPti4Fv73fHGqgrgoGYbZoNM="
+}

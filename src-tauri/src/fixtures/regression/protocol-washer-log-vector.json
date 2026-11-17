@@ -1,0 +1,11 @@
+{
+  "provenance": "Independent Java URI encoded-path/POST/null-data oracle using synthetic identifiers and keys; not a live response",
+  "ssecurity": "AAAAAAAAAAAAAAAAAAAAAA==",
+  "nonce": "AAECAwQFBgcAAAAB",
+  "path": "/appliance/washer/log/list?limit=20&did=fixture-123&startTime=1790000000000&endTime=1790086399000",
+  "encoded_path": "/appliance/washer/log/list",
+  "signed_nonce": "/b4Dx72XRYpoTirqu2CpJq622eW/ehJiDeRavaQ6DsE=",
+  "rc4_hash": "Kx93NNvTRIrV2VceXcYbNycJ1pc=",
+  "encrypted_hash": "ncxb+mgnuYhB9FMbWFDTNANvAuJt6mCAXu3h+w==",
+  "signature": "6Q6+MeYdyCGkRfXnceHdyX4Y9hU="
+}

@@ -1,0 +1,655 @@
+{
+  "did": "offline-airer-fixture",
+  "model": "hyd.airer.1s",
+  "specType": "urn:miot-spec-v2:device:airer:0000A00D:hyd-1s:1",
+  "services": [
+    {
+      "siid": 1,
+      "name": "device-information",
+      "description": "Device Information",
+      "properties": [
+        {
+          "siid": 1,
+          "piid": 1,
+          "name": "manufacturer",
+          "description": "Device Manufacturer",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 1,
+          "piid": 2,
+          "name": "model",
+          "description": "Device Model",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 1,
+          "piid": 3,
+          "name": "serial-number",
+          "description": "Device ID",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 1,
+          "piid": 4,
+          "name": "firmware-revision",
+          "description": "Current Firmware Version",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 1,
+          "piid": 5,
+          "name": "serial-no",
+          "description": "Serial Number",
+          "format": "string",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null,
+          "lastReported": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 2,
+      "name": "airer",
+      "description": "Airer",
+      "properties": [
+        {
+          "siid": 2,
+          "piid": 1,
+          "name": "fault",
+          "description": "Device Fault",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": 0,
+          "code": 0,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "No Faults"
+            },
+            {
+              "value": 1,
+              "description": "Obstruction"
+            },
+            {
+              "value": 2,
+              "description": "Overweight"
+            },
+            {
+              "value": 3,
+              "description": "Machine Fault"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 2,
+          "piid": 2,
+          "name": "motor-control",
+          "description": "Motor Control",
+          "format": "uint8",
+          "access": [
+            "write"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "Pause"
+            },
+            {
+              "value": 1,
+              "description": "Up"
+            },
+            {
+              "value": 2,
+              "description": "Down"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 2,
+          "piid": 4,
+          "name": "status",
+          "description": "Status",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": 0,
+          "code": 0,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "Stop"
+            },
+            {
+              "value": 1,
+              "description": "Rising"
+            },
+            {
+              "value": 2,
+              "description": "Down"
+            },
+            {
+              "value": 3,
+              "description": "Pause"
+            },
+            {
+              "value": 4,
+              "description": "Stop"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 2,
+          "piid": 6,
+          "name": "target-position",
+          "description": "Target Position",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": "percentage",
+          "value": 0,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0,
+            100,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 3,
+      "name": "light",
+      "description": "Light",
+      "properties": [
+        {
+          "siid": 3,
+          "piid": 1,
+          "name": "on",
+          "description": "Switch Status",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": false,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 3,
+          "piid": 3,
+          "name": "brightness",
+          "description": "Brightness",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": "percentage",
+          "value": 100,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0,
+            100,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        }
+      ],
+      "actions": [
+        {
+          "siid": 3,
+          "aiid": 1,
+          "name": "toggle",
+          "description": "Toggle",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        }
+      ]
+    },
+    {
+      "siid": 5,
+      "name": "alarm",
+      "description": "Alarm",
+      "properties": [
+        {
+          "siid": 5,
+          "piid": 1,
+          "name": "alarm",
+          "description": "Alarm",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": true,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null,
+          "lastReported": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 4,
+      "name": "set-night-light",
+      "description": "set-night-light",
+      "properties": [
+        {
+          "siid": 4,
+          "piid": 1,
+          "name": "start-time-hour",
+          "description": "start-time-hour",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": "hours",
+          "value": 22,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0,
+            23,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 4,
+          "piid": 2,
+          "name": "start-time-min",
+          "description": "start-time-min",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": "minutes",
+          "value": 0,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0,
+            59,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 4,
+          "piid": 3,
+          "name": "end-time-hour",
+          "description": "end-time-hour",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": "hours",
+          "value": 23,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0,
+            23,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 4,
+          "piid": 4,
+          "name": "end-time-min",
+          "description": "end-time-min",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": "minutes",
+          "value": 0,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0,
+            59,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 4,
+          "piid": 5,
+          "name": "nightlight-switch",
+          "description": "nightlight-switch",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": 1,
+          "code": 0,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "Off"
+            },
+            {
+              "value": 1,
+              "description": "On"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 4,
+          "piid": 6,
+          "name": "brightness",
+          "description": "brightness",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": "percentage",
+          "value": 60,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            1,
+            100,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 4,
+          "piid": 7,
+          "name": "upper-limit",
+          "description": "upper-limit",
+          "format": "int8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "percentage",
+          "value": 0,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0,
+            49,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 4,
+          "piid": 8,
+          "name": "lower-limit",
+          "description": "lower-limit",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "percentage",
+          "value": 100,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            51,
+            100,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 4,
+          "piid": 9,
+          "name": "set-position",
+          "description": "set-position",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "unit": "percentage",
+          "value": 0,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0,
+            100,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 4,
+          "piid": 10,
+          "name": "brightness",
+          "description": "brightness",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "unit": "percentage",
+          "value": 0,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0,
+            100,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 4,
+          "piid": 11,
+          "name": "current-position",
+          "description": "current-position",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "percentage",
+          "value": 0,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0,
+            100,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        },
+        {
+          "siid": 4,
+          "piid": 12,
+          "name": "motor-speed",
+          "description": "motor-speed",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": 0,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0,
+            65025,
+            1
+          ],
+          "unsupportedReason": null,
+          "lastReported": null
+        }
+      ],
+      "actions": [
+        {
+          "siid": 4,
+          "aiid": 1,
+          "name": "motor-control-up",
+          "description": "motor-control-up",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 4,
+          "aiid": 2,
+          "name": "motor-control-down",
+          "description": "motor-control-down",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 4,
+          "aiid": 3,
+          "name": "motor-control-pause",
+          "description": "motor-control-pause",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 4,
+          "aiid": 4,
+          "name": "set-upper-limit",
+          "description": "set-upper-limit",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 4,
+          "aiid": 5,
+          "name": "set-lower-limit",
+          "description": "set-lower-limit",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        }
+      ]
+    }
+  ],
+  "unsupportedReason": null
+}

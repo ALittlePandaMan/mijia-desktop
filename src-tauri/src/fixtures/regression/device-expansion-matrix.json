@@ -1,0 +1,2627 @@
+{
+  "scope": "Public pinned schemas; TS/native parity only",
+  "records": [
+    {
+      "model": "chunmi.i_stove.x1",
+      "file": "chunmi.i_stove.x1.json",
+      "capabilities": {
+        "version": 2,
+        "category": "integrated-stove",
+        "profile": "standard",
+        "family": "cooking",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "self.gas-stateleft",
+            "siid": 11,
+            "piid": 1,
+            "service": "self",
+            "name": "gas-stateleft",
+            "label": "左炉状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "self.gas-target-temp",
+            "siid": 11,
+            "piid": 9,
+            "service": "self",
+            "name": "gas-target-temp",
+            "label": "目标温度",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "self.gas-current-temp",
+            "siid": 11,
+            "piid": 10,
+            "service": "self",
+            "name": "gas-current-temp",
+            "label": "当前温度",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "self.gas-errorcode",
+            "siid": 11,
+            "piid": 13,
+            "service": "self",
+            "name": "gas-errorcode",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "self.gas-lefttime-left",
+            "siid": 11,
+            "piid": 38,
+            "service": "self",
+            "name": "gas-lefttime-left",
+            "label": "左炉剩余时间",
+            "kind": "reading",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": [
+          {
+            "role": "self.cookfinish",
+            "siid": 11,
+            "eiid": 1,
+            "service": "self",
+            "name": "cookfinish",
+            "arguments": [
+              47
+            ]
+          },
+          {
+            "role": "self.cookfinish-right",
+            "siid": 11,
+            "eiid": 5,
+            "service": "self",
+            "name": "cookfinish-right",
+            "arguments": []
+          },
+          {
+            "role": "self.falsefire-left",
+            "siid": 11,
+            "eiid": 10,
+            "service": "self",
+            "name": "falsefire-left",
+            "arguments": []
+          },
+          {
+            "role": "self.falsefire-right",
+            "siid": 11,
+            "eiid": 11,
+            "service": "self",
+            "name": "falsefire-right",
+            "arguments": []
+          },
+          {
+            "role": "self.temphigh-left",
+            "siid": 11,
+            "eiid": 12,
+            "service": "self",
+            "name": "temphigh-left",
+            "arguments": []
+          },
+          {
+            "role": "self.cookstar-left",
+            "siid": 11,
+            "eiid": 23,
+            "service": "self",
+            "name": "cookstar-left",
+            "arguments": []
+          },
+          {
+            "role": "self.cookstar-right",
+            "siid": 11,
+            "eiid": 24,
+            "service": "self",
+            "name": "cookstar-right",
+            "arguments": []
+          },
+          {
+            "role": "self.cookoff-left",
+            "siid": 11,
+            "eiid": 25,
+            "service": "self",
+            "name": "cookoff-left",
+            "arguments": []
+          },
+          {
+            "role": "self.cookoff-right",
+            "siid": 11,
+            "eiid": 26,
+            "service": "self",
+            "name": "cookoff-right",
+            "arguments": []
+          }
+        ]
+      }
+    },
+    {
+      "model": "cuco.plug.cp1",
+      "file": "cuco.plug.cp1.json",
+      "capabilities": {
+        "version": 2,
+        "category": "outlet",
+        "profile": "standard",
+        "family": "switch",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "switch.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      }
+    },
+    {
+      "model": "dmaker.fan.1c",
+      "file": "dmaker.fan.1c.json",
+      "capabilities": {
+        "version": 2,
+        "category": "fan",
+        "profile": "standard",
+        "family": "climate",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "fan.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "fan",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "fan.fan-level",
+            "siid": 2,
+            "piid": 2,
+            "service": "fan",
+            "name": "fan-level",
+            "label": "风速",
+            "kind": "enum",
+            "unit": "none"
+          },
+          {
+            "role": "fan.horizontal-swing",
+            "siid": 2,
+            "piid": 3,
+            "service": "fan",
+            "name": "horizontal-swing",
+            "label": "左右摇头",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "fan.mode",
+            "siid": 2,
+            "piid": 7,
+            "service": "fan",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": "none"
+          },
+          {
+            "role": "fan.off-delay-time",
+            "siid": 2,
+            "piid": 10,
+            "service": "fan",
+            "name": "off-delay-time",
+            "label": "延时关闭",
+            "kind": "range",
+            "unit": "minutes"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      }
+    },
+    {
+      "model": "dooya.airer.2m",
+      "file": "dooya.airer.2m.json",
+      "capabilities": {
+        "version": 2,
+        "category": "airer",
+        "profile": "standard",
+        "family": "cleaning",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "airer.fault",
+            "siid": 2,
+            "piid": 1,
+            "service": "airer",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "airer.motor-control",
+            "siid": 2,
+            "piid": 2,
+            "service": "airer",
+            "name": "motor-control",
+            "label": "开合控制",
+            "kind": "command",
+            "unit": null
+          },
+          {
+            "role": "airer.status",
+            "siid": 2,
+            "piid": 3,
+            "service": "airer",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "light.on",
+            "siid": 3,
+            "piid": 1,
+            "service": "light",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "light.brightness",
+            "siid": 3,
+            "piid": 3,
+            "service": "light",
+            "name": "brightness",
+            "label": "亮度",
+            "kind": "range",
+            "unit": "percentage"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "night-schedule",
+            "reason": "此型号的定时夜灯需插件专用协议，当前仅提供设备描述中已公开的日常控制。"
+          }
+        ],
+        "events": []
+      }
+    },
+    {
+      "model": "hyd.airer.1s1",
+      "file": "hyd.airer.1s1.json",
+      "capabilities": {
+        "version": 2,
+        "category": "airer",
+        "profile": "standard",
+        "family": "cleaning",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "airer.fault",
+            "siid": 2,
+            "piid": 1,
+            "service": "airer",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "airer.motor-control",
+            "siid": 2,
+            "piid": 2,
+            "service": "airer",
+            "name": "motor-control",
+            "label": "开合控制",
+            "kind": "command",
+            "unit": null
+          },
+          {
+            "role": "airer.status",
+            "siid": 2,
+            "piid": 4,
+            "service": "airer",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "airer.target-position",
+            "siid": 2,
+            "piid": 6,
+            "service": "airer",
+            "name": "target-position",
+            "label": "目标位置",
+            "kind": "range",
+            "unit": "percentage"
+          },
+          {
+            "role": "light.on",
+            "siid": 3,
+            "piid": 1,
+            "service": "light",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "light.brightness",
+            "siid": 3,
+            "piid": 3,
+            "service": "light",
+            "name": "brightness",
+            "label": "亮度",
+            "kind": "range",
+            "unit": "percentage"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "night-schedule",
+            "reason": "此型号的定时夜灯需插件专用协议，当前仅提供设备描述中已公开的日常控制。"
+          }
+        ],
+        "events": []
+      }
+    },
+    {
+      "model": "lumi.ctrl_ln2.aq1",
+      "file": "lumi.ctrl_ln2.aq1.json",
+      "capabilities": {
+        "version": 2,
+        "category": "switch",
+        "profile": "standard",
+        "family": "switch",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "switch.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "switch.on",
+            "siid": 3,
+            "piid": 1,
+            "service": "switch",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      }
+    },
+    {
+      "model": "midjd8.washer.42",
+      "file": "midjd8.washer.42.json",
+      "capabilities": {
+        "version": 2,
+        "category": "washer",
+        "profile": "standard",
+        "family": "cleaning",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "washer.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "washer",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "washer.status",
+            "siid": 2,
+            "piid": 2,
+            "service": "washer",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "washer.fault",
+            "siid": 2,
+            "piid": 4,
+            "service": "washer",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "washer.left-time",
+            "siid": 2,
+            "piid": 10,
+            "service": "washer",
+            "name": "left-time",
+            "label": "剩余时间",
+            "kind": "reading",
+            "unit": "minutes"
+          },
+          {
+            "role": "physical-controls-locked.physical-controls-locked",
+            "siid": 3,
+            "piid": 1,
+            "service": "physical-controls-locked",
+            "name": "physical-controls-locked",
+            "label": "童锁",
+            "kind": "toggle",
+            "unit": null
+          }
+        ],
+        "actions": [
+          {
+            "role": "washer.stop-washing",
+            "siid": 2,
+            "aiid": 1,
+            "service": "washer",
+            "name": "stop-washing",
+            "label": "停止洗涤"
+          },
+          {
+            "role": "washer.start-wash",
+            "siid": 2,
+            "aiid": 2,
+            "service": "washer",
+            "name": "start-wash",
+            "label": "继续洗涤"
+          },
+          {
+            "role": "washer.pause",
+            "siid": 2,
+            "aiid": 3,
+            "service": "washer",
+            "name": "pause",
+            "label": "暂停"
+          }
+        ],
+        "privateFeatures": [
+          {
+            "feature": "washer-program",
+            "reason": "洗涤程序及启动参数需此型号插件的完整程序约束；当前保留公开状态和电源，不套用其他型号的程序。"
+          },
+          {
+            "feature": "washer-history",
+            "reason": "洗涤历史需此型号经验证的记录协议。"
+          }
+        ],
+        "events": []
+      }
+    },
+    {
+      "model": "midjd8.washer.42a",
+      "file": "midjd8.washer.42a.json",
+      "capabilities": {
+        "version": 2,
+        "category": "washer",
+        "profile": "standard",
+        "family": "cleaning",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "washer.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "washer",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "washer.status",
+            "siid": 2,
+            "piid": 2,
+            "service": "washer",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "washer.fault",
+            "siid": 2,
+            "piid": 4,
+            "service": "washer",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "washer.left-time",
+            "siid": 2,
+            "piid": 10,
+            "service": "washer",
+            "name": "left-time",
+            "label": "剩余时间",
+            "kind": "reading",
+            "unit": "minutes"
+          },
+          {
+            "role": "physical-controls-locked.physical-controls-locked",
+            "siid": 3,
+            "piid": 1,
+            "service": "physical-controls-locked",
+            "name": "physical-controls-locked",
+            "label": "童锁",
+            "kind": "toggle",
+            "unit": null
+          }
+        ],
+        "actions": [
+          {
+            "role": "washer.stop-washing",
+            "siid": 2,
+            "aiid": 1,
+            "service": "washer",
+            "name": "stop-washing",
+            "label": "停止洗涤"
+          },
+          {
+            "role": "washer.start-wash",
+            "siid": 2,
+            "aiid": 2,
+            "service": "washer",
+            "name": "start-wash",
+            "label": "继续洗涤"
+          },
+          {
+            "role": "washer.pause",
+            "siid": 2,
+            "aiid": 3,
+            "service": "washer",
+            "name": "pause",
+            "label": "暂停"
+          }
+        ],
+        "privateFeatures": [
+          {
+            "feature": "washer-program",
+            "reason": "洗涤程序及启动参数需此型号插件的完整程序约束；当前保留公开状态和电源，不套用其他型号的程序。"
+          },
+          {
+            "feature": "washer-history",
+            "reason": "洗涤历史需此型号经验证的记录协议。"
+          }
+        ],
+        "events": []
+      }
+    },
+    {
+      "model": "minij.washer.v17",
+      "file": "minij.washer.v17.json",
+      "capabilities": {
+        "version": 2,
+        "category": "washer",
+        "profile": "standard",
+        "family": "cleaning",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "washer.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "washer",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": "none"
+          },
+          {
+            "role": "washer.status",
+            "siid": 2,
+            "piid": 2,
+            "service": "washer",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": "none"
+          },
+          {
+            "role": "washer.fault",
+            "siid": 2,
+            "piid": 4,
+            "service": "washer",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": "none"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "washer-program",
+            "reason": "洗涤程序及启动参数需此型号插件的完整程序约束；当前保留公开状态和电源，不套用其他型号的程序。"
+          },
+          {
+            "feature": "washer-history",
+            "reason": "洗涤历史需此型号经验证的记录协议。"
+          }
+        ],
+        "events": []
+      }
+    },
+    {
+      "model": "opple.light.dcfan5",
+      "file": "opple.light.dcfan5.json",
+      "capabilities": {
+        "version": 2,
+        "category": "light",
+        "profile": "standard",
+        "family": "lighting",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "light.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "light",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "light.brightness",
+            "siid": 2,
+            "piid": 2,
+            "service": "light",
+            "name": "brightness",
+            "label": "亮度",
+            "kind": "range",
+            "unit": "percentage"
+          },
+          {
+            "role": "light.color-temperature",
+            "siid": 2,
+            "piid": 3,
+            "service": "light",
+            "name": "color-temperature",
+            "label": "色温",
+            "kind": "range",
+            "unit": "kelvin"
+          },
+          {
+            "role": "light.mode",
+            "siid": 2,
+            "piid": 7,
+            "service": "light",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "fan.on",
+            "siid": 7,
+            "piid": 1,
+            "service": "fan",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "fan.fan-level",
+            "siid": 7,
+            "piid": 2,
+            "service": "fan",
+            "name": "fan-level",
+            "label": "风速",
+            "kind": "enum",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      }
+    },
+    {
+      "model": "viomi.washer.s1",
+      "file": "viomi.washer.s1.json",
+      "capabilities": {
+        "version": 2,
+        "category": "washer",
+        "profile": "standard",
+        "family": "cleaning",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "washer.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "washer",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "washer.status",
+            "siid": 2,
+            "piid": 2,
+            "service": "washer",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "washer.left-time",
+            "siid": 2,
+            "piid": 4,
+            "service": "washer",
+            "name": "left-time",
+            "label": "剩余时间",
+            "kind": "reading",
+            "unit": "minutes"
+          },
+          {
+            "role": "physical-controls-locked.physical-controls-locked",
+            "siid": 3,
+            "piid": 1,
+            "service": "physical-controls-locked",
+            "name": "physical-controls-locked",
+            "label": "童锁",
+            "kind": "toggle",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "washer-program",
+            "reason": "洗涤程序及启动参数需此型号插件的完整程序约束；当前保留公开状态和电源，不套用其他型号的程序。"
+          },
+          {
+            "feature": "washer-history",
+            "reason": "洗涤历史需此型号经验证的记录协议。"
+          }
+        ],
+        "events": []
+      }
+    },
+    {
+      "model": "xiaomi.airc.1r04r1",
+      "file": "xiaomi.airc.1r04r1.json",
+      "capabilities": {
+        "version": 2,
+        "category": "air-conditioner",
+        "profile": "standard",
+        "family": "climate",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "air-conditioner.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "air-conditioner",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.mode",
+            "siid": 2,
+            "piid": 2,
+            "service": "air-conditioner",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.fault",
+            "siid": 2,
+            "piid": 3,
+            "service": "air-conditioner",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.target-temperature",
+            "siid": 2,
+            "piid": 4,
+            "service": "air-conditioner",
+            "name": "target-temperature",
+            "label": "目标温度",
+            "kind": "range",
+            "unit": "celsius"
+          },
+          {
+            "role": "air-conditioner.eco",
+            "siid": 2,
+            "piid": 7,
+            "service": "air-conditioner",
+            "name": "eco",
+            "label": "节能模式",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.heater",
+            "siid": 2,
+            "piid": 9,
+            "service": "air-conditioner",
+            "name": "heater",
+            "label": "辅助加热",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.dryer",
+            "siid": 2,
+            "piid": 10,
+            "service": "air-conditioner",
+            "name": "dryer",
+            "label": "干燥",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.sleep-mode",
+            "siid": 2,
+            "piid": 11,
+            "service": "air-conditioner",
+            "name": "sleep-mode",
+            "label": "睡眠模式",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "fan-control.fan-level",
+            "siid": 3,
+            "piid": 2,
+            "service": "fan-control",
+            "name": "fan-level",
+            "label": "风速",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "fan-control.horizontal-swing",
+            "siid": 3,
+            "piid": 3,
+            "service": "fan-control",
+            "name": "horizontal-swing",
+            "label": "左右摇头",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "fan-control.vertical-swing",
+            "siid": 3,
+            "piid": 4,
+            "service": "fan-control",
+            "name": "vertical-swing",
+            "label": "上下摇头",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "environment.temperature",
+            "siid": 4,
+            "piid": 7,
+            "service": "environment",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          },
+          {
+            "role": "alarm.alarm",
+            "siid": 5,
+            "piid": 1,
+            "service": "alarm",
+            "name": "alarm",
+            "label": "提示音",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "power-consumption.power-consumption",
+            "siid": 20,
+            "piid": 1,
+            "service": "power-consumption",
+            "name": "power-consumption",
+            "label": "用电量",
+            "kind": "reading",
+            "unit": "kWh"
+          },
+          {
+            "role": "indicator-light.on",
+            "siid": 36,
+            "piid": 1,
+            "service": "indicator-light",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "indicator-light.brightness",
+            "siid": 36,
+            "piid": 2,
+            "service": "indicator-light",
+            "name": "brightness",
+            "label": "亮度",
+            "kind": "enum",
+            "unit": "percentage"
+          },
+          {
+            "role": "filter.filter-used-time",
+            "siid": 38,
+            "piid": 2,
+            "service": "filter",
+            "name": "filter-used-time",
+            "label": "滤芯使用时间",
+            "kind": "reading",
+            "unit": "days"
+          },
+          {
+            "role": "filter.filter-life-level",
+            "siid": 24,
+            "piid": 1,
+            "service": "filter",
+            "name": "filter-life-level",
+            "label": "滤芯剩余",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "fan-control.horizontal-swing",
+            "siid": 42,
+            "piid": 2,
+            "service": "fan-control",
+            "name": "horizontal-swing",
+            "label": "左右摇头",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "fan-control.vertical-swing",
+            "siid": 42,
+            "piid": 1,
+            "service": "fan-control",
+            "name": "vertical-swing",
+            "label": "上下摇头",
+            "kind": "toggle",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      }
+    },
+    {
+      "model": "xiaomi.airc.r34r00",
+      "file": "xiaomi.airc.r34r00.json",
+      "capabilities": {
+        "version": 2,
+        "category": "air-conditioner",
+        "profile": "standard",
+        "family": "climate",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "air-conditioner.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "air-conditioner",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.mode",
+            "siid": 2,
+            "piid": 2,
+            "service": "air-conditioner",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.fault",
+            "siid": 2,
+            "piid": 3,
+            "service": "air-conditioner",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.target-temperature",
+            "siid": 2,
+            "piid": 4,
+            "service": "air-conditioner",
+            "name": "target-temperature",
+            "label": "目标温度",
+            "kind": "range",
+            "unit": "celsius"
+          },
+          {
+            "role": "air-conditioner.eco",
+            "siid": 2,
+            "piid": 7,
+            "service": "air-conditioner",
+            "name": "eco",
+            "label": "节能模式",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.heater",
+            "siid": 2,
+            "piid": 9,
+            "service": "air-conditioner",
+            "name": "heater",
+            "label": "辅助加热",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.dryer",
+            "siid": 2,
+            "piid": 10,
+            "service": "air-conditioner",
+            "name": "dryer",
+            "label": "干燥",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.sleep-mode",
+            "siid": 2,
+            "piid": 11,
+            "service": "air-conditioner",
+            "name": "sleep-mode",
+            "label": "睡眠模式",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.soft-wind",
+            "siid": 2,
+            "piid": 12,
+            "service": "air-conditioner",
+            "name": "soft-wind",
+            "label": "柔风",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "air-conditioner.target-humidity",
+            "siid": 2,
+            "piid": 14,
+            "service": "air-conditioner",
+            "name": "target-humidity",
+            "label": "目标湿度",
+            "kind": "range",
+            "unit": "percentage"
+          },
+          {
+            "role": "fan-control.fan-level",
+            "siid": 3,
+            "piid": 2,
+            "service": "fan-control",
+            "name": "fan-level",
+            "label": "风速",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "fan-control.horizontal-swing",
+            "siid": 3,
+            "piid": 3,
+            "service": "fan-control",
+            "name": "horizontal-swing",
+            "label": "左右摇头",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "fan-control.vertical-swing",
+            "siid": 3,
+            "piid": 4,
+            "service": "fan-control",
+            "name": "vertical-swing",
+            "label": "上下摇头",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "environment.temperature",
+            "siid": 4,
+            "piid": 7,
+            "service": "environment",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          },
+          {
+            "role": "environment.relative-humidity",
+            "siid": 4,
+            "piid": 9,
+            "service": "environment",
+            "name": "relative-humidity",
+            "label": "湿度",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "alarm.alarm",
+            "siid": 5,
+            "piid": 1,
+            "service": "alarm",
+            "name": "alarm",
+            "label": "提示音",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "indicator-light.on",
+            "siid": 6,
+            "piid": 1,
+            "service": "indicator-light",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "indicator-light.brightness",
+            "siid": 6,
+            "piid": 2,
+            "service": "indicator-light",
+            "name": "brightness",
+            "label": "亮度",
+            "kind": "enum",
+            "unit": "percentage"
+          },
+          {
+            "role": "power-consumption.power-consumption",
+            "siid": 20,
+            "piid": 1,
+            "service": "power-consumption",
+            "name": "power-consumption",
+            "label": "用电量",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "filter.filter-life-level",
+            "siid": 21,
+            "piid": 1,
+            "service": "filter",
+            "name": "filter-life-level",
+            "label": "滤芯剩余",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "filter.filter-life-level",
+            "siid": 22,
+            "piid": 1,
+            "service": "filter",
+            "name": "filter-life-level",
+            "label": "滤芯剩余",
+            "kind": "reading",
+            "unit": "percentage"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      }
+    },
+    {
+      "model": "xiaomi.airp.mp5",
+      "file": "xiaomi.airp.mp5.json",
+      "capabilities": {
+        "version": 2,
+        "category": "air-purifier",
+        "profile": "standard",
+        "family": "climate",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "air-purifier.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "air-purifier",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "air-purifier.fault",
+            "siid": 2,
+            "piid": 2,
+            "service": "air-purifier",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "air-purifier.mode",
+            "siid": 2,
+            "piid": 4,
+            "service": "air-purifier",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "air-purifier.fan-level",
+            "siid": 2,
+            "piid": 5,
+            "service": "air-purifier",
+            "name": "fan-level",
+            "label": "风速",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "air-purifier.anion",
+            "siid": 2,
+            "piid": 6,
+            "service": "air-purifier",
+            "name": "anion",
+            "label": "负离子",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "air-purifier.uv",
+            "siid": 2,
+            "piid": 7,
+            "service": "air-purifier",
+            "name": "uv",
+            "label": "紫外净化",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "environment.relative-humidity",
+            "siid": 3,
+            "piid": 1,
+            "service": "environment",
+            "name": "relative-humidity",
+            "label": "湿度",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "environment.air-quality",
+            "siid": 3,
+            "piid": 3,
+            "service": "environment",
+            "name": "air-quality",
+            "label": "空气质量",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "environment.pm2.5-density",
+            "siid": 3,
+            "piid": 4,
+            "service": "environment",
+            "name": "pm2.5-density",
+            "label": "PM2.5",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "environment.pm10-density",
+            "siid": 3,
+            "piid": 5,
+            "service": "environment",
+            "name": "pm10-density",
+            "label": "PM10",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "environment.temperature",
+            "siid": 3,
+            "piid": 7,
+            "service": "environment",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          },
+          {
+            "role": "filter.filter-life-level",
+            "siid": 4,
+            "piid": 1,
+            "service": "filter",
+            "name": "filter-life-level",
+            "label": "滤芯剩余",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "filter.filter-left-time",
+            "siid": 4,
+            "piid": 2,
+            "service": "filter",
+            "name": "filter-left-time",
+            "label": "滤芯剩余时间",
+            "kind": "reading",
+            "unit": "hours"
+          },
+          {
+            "role": "filter.filter-used-time",
+            "siid": 4,
+            "piid": 3,
+            "service": "filter",
+            "name": "filter-used-time",
+            "label": "滤芯使用时间",
+            "kind": "reading",
+            "unit": "hours"
+          },
+          {
+            "role": "alarm.alarm",
+            "siid": 6,
+            "piid": 1,
+            "service": "alarm",
+            "name": "alarm",
+            "label": "提示音",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "screen.on",
+            "siid": 7,
+            "piid": 1,
+            "service": "screen",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "screen.brightness",
+            "siid": 7,
+            "piid": 2,
+            "service": "screen",
+            "name": "brightness",
+            "label": "亮度",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "physical-controls-locked.physical-controls-locked",
+            "siid": 8,
+            "piid": 1,
+            "service": "physical-controls-locked",
+            "name": "physical-controls-locked",
+            "label": "童锁",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "air-purifier-favorite.fan-level",
+            "siid": 9,
+            "piid": 1,
+            "service": "air-purifier-favorite",
+            "name": "fan-level",
+            "label": "风速",
+            "kind": "enum",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      }
+    },
+    {
+      "model": "xiaomi.curtain.acn009",
+      "file": "xiaomi.curtain.acn009.json",
+      "capabilities": {
+        "version": 2,
+        "category": "curtain",
+        "profile": "standard",
+        "family": "personal",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "curtain.fault",
+            "siid": 2,
+            "piid": 1,
+            "service": "curtain",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "curtain.status",
+            "siid": 2,
+            "piid": 3,
+            "service": "curtain",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "curtain.current-position",
+            "siid": 2,
+            "piid": 4,
+            "service": "curtain",
+            "name": "current-position",
+            "label": "当前位置",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "curtain.target-position",
+            "siid": 2,
+            "piid": 5,
+            "service": "curtain",
+            "name": "target-position",
+            "label": "目标位置",
+            "kind": "range",
+            "unit": "percentage"
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [
+          {
+            "feature": "movement-readback",
+            "reason": "此型号的升降或开合指令没有属性回读能力；需验证独立运动状态后才能提供可靠控制。"
+          }
+        ],
+        "events": []
+      }
+    },
+    {
+      "model": "xiaomi.hood.jyjp2",
+      "file": "xiaomi.hood.jyjp2.json",
+      "capabilities": {
+        "version": 2,
+        "category": "hood",
+        "profile": "standard",
+        "family": "cooking",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "hood.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "hood",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "hood.fault",
+            "siid": 2,
+            "piid": 2,
+            "service": "hood",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "hood.gestures",
+            "siid": 2,
+            "piid": 18,
+            "service": "hood",
+            "name": "gestures",
+            "label": "手势控制",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "fan-control.fan-level",
+            "siid": 3,
+            "piid": 1,
+            "service": "fan-control",
+            "name": "fan-level",
+            "label": "风速",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "light.on",
+            "siid": 6,
+            "piid": 1,
+            "service": "light",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "kitchen-stove.status",
+            "siid": 7,
+            "piid": 1,
+            "service": "kitchen-stove",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "kitchen-stove.current-heat-level",
+            "siid": 7,
+            "piid": 5,
+            "service": "kitchen-stove",
+            "name": "current-heat-level",
+            "label": "当前火力",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "kitchen-stove.left-time",
+            "siid": 7,
+            "piid": 7,
+            "service": "kitchen-stove",
+            "name": "left-time",
+            "label": "剩余时间",
+            "kind": "reading",
+            "unit": "minutes"
+          },
+          {
+            "role": "kitchen-stove.status",
+            "siid": 7,
+            "piid": 11,
+            "service": "kitchen-stove",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "kitchen-stove.status",
+            "siid": 7,
+            "piid": 12,
+            "service": "kitchen-stove",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "kitchen-stove.current-heat-level",
+            "siid": 7,
+            "piid": 13,
+            "service": "kitchen-stove",
+            "name": "current-heat-level",
+            "label": "当前火力",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "kitchen-stove.status",
+            "siid": 7,
+            "piid": 14,
+            "service": "kitchen-stove",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "kitchen-stove.status",
+            "siid": 8,
+            "piid": 1,
+            "service": "kitchen-stove",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "kitchen-stove.current-heat-level",
+            "siid": 8,
+            "piid": 5,
+            "service": "kitchen-stove",
+            "name": "current-heat-level",
+            "label": "当前火力",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "kitchen-stove.left-time",
+            "siid": 8,
+            "piid": 7,
+            "service": "kitchen-stove",
+            "name": "left-time",
+            "label": "剩余时间",
+            "kind": "reading",
+            "unit": "minutes"
+          },
+          {
+            "role": "kitchen-stove.current-heat-level",
+            "siid": 8,
+            "piid": 9,
+            "service": "kitchen-stove",
+            "name": "current-heat-level",
+            "label": "当前火力",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "kitchen-stove.status",
+            "siid": 8,
+            "piid": 10,
+            "service": "kitchen-stove",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "battery.battery-level",
+            "siid": 11,
+            "piid": 1,
+            "service": "battery",
+            "name": "battery-level",
+            "label": "电量",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "environment.pm2.5-density",
+            "siid": 12,
+            "piid": 1,
+            "service": "environment",
+            "name": "pm2.5-density",
+            "label": "PM2.5",
+            "kind": "reading",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": [
+          {
+            "role": "hood.clean-remind",
+            "siid": 2,
+            "eiid": 1,
+            "service": "hood",
+            "name": "clean-remind",
+            "arguments": []
+          },
+          {
+            "role": "hood.clean-remind",
+            "siid": 2,
+            "eiid": 13,
+            "service": "hood",
+            "name": "clean-remind",
+            "arguments": []
+          },
+          {
+            "role": "kitchen-stove.working-remind",
+            "siid": 7,
+            "eiid": 1,
+            "service": "kitchen-stove",
+            "name": "working-remind",
+            "arguments": []
+          },
+          {
+            "role": "kitchen-stove.cooking-finished",
+            "siid": 7,
+            "eiid": 3,
+            "service": "kitchen-stove",
+            "name": "cooking-finished",
+            "arguments": []
+          }
+        ]
+      }
+    },
+    {
+      "model": "xiaomi.hood.ymv12",
+      "file": "xiaomi.hood.ymv12.json",
+      "capabilities": {
+        "version": 2,
+        "category": "hood",
+        "profile": "standard",
+        "family": "cooking",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "hood.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "hood",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "hood.fault",
+            "siid": 2,
+            "piid": 2,
+            "service": "hood",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "hood.gestures",
+            "siid": 2,
+            "piid": 16,
+            "service": "hood",
+            "name": "gestures",
+            "label": "手势控制",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "hood.status",
+            "siid": 2,
+            "piid": 25,
+            "service": "hood",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "kitchen-stove.status",
+            "siid": 3,
+            "piid": 1,
+            "service": "kitchen-stove",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "kitchen-stove.status",
+            "siid": 3,
+            "piid": 2,
+            "service": "kitchen-stove",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "light.on",
+            "siid": 4,
+            "piid": 1,
+            "service": "light",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "fan-control.fan-level",
+            "siid": 5,
+            "piid": 1,
+            "service": "fan-control",
+            "name": "fan-level",
+            "label": "风速",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "battery.battery-level",
+            "siid": 6,
+            "piid": 1,
+            "service": "battery",
+            "name": "battery-level",
+            "label": "电量",
+            "kind": "reading",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": [
+          {
+            "role": "hood.clean-remind",
+            "siid": 2,
+            "eiid": 1,
+            "service": "hood",
+            "name": "clean-remind",
+            "arguments": []
+          },
+          {
+            "role": "kitchen-stove.working-remind",
+            "siid": 3,
+            "eiid": 1,
+            "service": "kitchen-stove",
+            "name": "working-remind",
+            "arguments": []
+          }
+        ]
+      }
+    },
+    {
+      "model": "xiaomi.lock.m40",
+      "file": "xiaomi.lock.m40.json",
+      "capabilities": {
+        "version": 2,
+        "category": "lock",
+        "profile": "standard",
+        "family": "security",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "door.door-state",
+            "siid": 3,
+            "piid": 1021,
+            "service": "door",
+            "name": "door-state",
+            "label": "门状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "battery.battery-level",
+            "siid": 13,
+            "piid": 1,
+            "service": "battery",
+            "name": "battery-level",
+            "label": "电量",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "battery.charging-state",
+            "siid": 13,
+            "piid": 2,
+            "service": "battery",
+            "name": "charging-state",
+            "label": "充电状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "battery.status",
+            "siid": 13,
+            "piid": 3,
+            "service": "battery",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "door-lock-camera.night-shot",
+            "siid": 17,
+            "piid": 2,
+            "service": "door-lock-camera",
+            "name": "night-shot",
+            "label": "夜视模式",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "door-lock-camera.ringtone",
+            "siid": 17,
+            "piid": 6,
+            "service": "door-lock-camera",
+            "name": "ringtone",
+            "label": "铃声",
+            "kind": "range",
+            "unit": null
+          },
+          {
+            "role": "door-lock-camera.auto-screen-on",
+            "siid": 17,
+            "piid": 9,
+            "service": "door-lock-camera",
+            "name": "auto-screen-on",
+            "label": "自动亮屏",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "lock-volume-management.language",
+            "siid": 19,
+            "piid": 7,
+            "service": "lock-volume-management",
+            "name": "language",
+            "label": "语言",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "lock-volume-management.door-operation-volume",
+            "siid": 19,
+            "piid": 8,
+            "service": "lock-volume-management",
+            "name": "door-operation-volume",
+            "label": "门锁提示音音量",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "doorbell.ringtone",
+            "siid": 21,
+            "piid": 4,
+            "service": "doorbell",
+            "name": "ringtone",
+            "label": "铃声",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "doorbell.volume",
+            "siid": 21,
+            "piid": 5,
+            "service": "doorbell",
+            "name": "volume",
+            "label": "音量",
+            "kind": "enum",
+            "unit": "percentage"
+          },
+          {
+            "role": "doorbell.doorbell-light-on",
+            "siid": 21,
+            "piid": 7,
+            "service": "doorbell",
+            "name": "doorbell-light-on",
+            "label": "门铃指示灯",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "battery.battery-level",
+            "siid": 22,
+            "piid": 1,
+            "service": "battery",
+            "name": "battery-level",
+            "label": "电量",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "battery.charging-state",
+            "siid": 22,
+            "piid": 2,
+            "service": "battery",
+            "name": "charging-state",
+            "label": "充电状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "battery.status",
+            "siid": 22,
+            "piid": 3,
+            "service": "battery",
+            "name": "status",
+            "label": "当前状态",
+            "kind": "reading",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": [
+          {
+            "role": "lock.lock-event",
+            "siid": 2,
+            "eiid": 1020,
+            "service": "lock",
+            "name": "lock-event",
+            "arguments": [
+              1,
+              2,
+              3,
+              5,
+              6
+            ]
+          },
+          {
+            "role": "lock.exception-occurred",
+            "siid": 2,
+            "eiid": 1007,
+            "service": "lock",
+            "name": "exception-occurred",
+            "arguments": [
+              4,
+              6
+            ]
+          },
+          {
+            "role": "doorbell.doorbell-ring",
+            "siid": 7,
+            "eiid": 1006,
+            "service": "doorbell",
+            "name": "doorbell-ring",
+            "arguments": [
+              1
+            ]
+          },
+          {
+            "role": "door-lock-camera.someone-at-the-door",
+            "siid": 17,
+            "eiid": 2,
+            "service": "door-lock-camera",
+            "name": "someone-at-the-door",
+            "arguments": [
+              8,
+              31
+            ]
+          },
+          {
+            "role": "door-lock-camera.someone-passed-by",
+            "siid": 17,
+            "eiid": 5,
+            "service": "door-lock-camera",
+            "name": "someone-passed-by",
+            "arguments": [
+              8,
+              31
+            ]
+          },
+          {
+            "role": "doorbell.doorbell-ring",
+            "siid": 21,
+            "eiid": 1,
+            "service": "doorbell",
+            "name": "doorbell-ring",
+            "arguments": [
+              6
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "model": "xiaomi.lock.s20pro",
+      "file": "xiaomi.lock.s20pro.json",
+      "capabilities": {
+        "version": 2,
+        "category": "lock",
+        "profile": "standard",
+        "family": "security",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "door.door-state",
+            "siid": 3,
+            "piid": 1021,
+            "service": "door",
+            "name": "door-state",
+            "label": "门状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "battery.battery-level",
+            "siid": 4,
+            "piid": 1003,
+            "service": "battery",
+            "name": "battery-level",
+            "label": "电量",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "video-doorbell.on",
+            "siid": 6,
+            "piid": 1,
+            "service": "video-doorbell",
+            "name": "on",
+            "label": "开关",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "video-doorbell.night-shot",
+            "siid": 6,
+            "piid": 3,
+            "service": "video-doorbell",
+            "name": "night-shot",
+            "label": "夜视模式",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "video-doorbell.image-distortion-correction",
+            "siid": 6,
+            "piid": 8,
+            "service": "video-doorbell",
+            "name": "image-distortion-correction",
+            "label": "画面畸变校正",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "video-doorbell.auto-screen-on",
+            "siid": 6,
+            "piid": 13,
+            "service": "video-doorbell",
+            "name": "auto-screen-on",
+            "label": "自动亮屏",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "battery.battery-level",
+            "siid": 9,
+            "piid": 1,
+            "service": "battery",
+            "name": "battery-level",
+            "label": "电量",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "customized-wifi-lock.language",
+            "siid": 11,
+            "piid": 1,
+            "service": "customized-wifi-lock",
+            "name": "language",
+            "label": "语言",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "customized-wifi-lock.unlock-tone-volume",
+            "siid": 11,
+            "piid": 2,
+            "service": "customized-wifi-lock",
+            "name": "unlock-tone-volume",
+            "label": "开门提示音音量",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "customized-wifi-lock.doorbell-volume",
+            "siid": 11,
+            "piid": 3,
+            "service": "customized-wifi-lock",
+            "name": "doorbell-volume",
+            "label": "门铃音量",
+            "kind": "enum",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": [
+          {
+            "role": "lock.exception-occurred",
+            "siid": 2,
+            "eiid": 1007,
+            "service": "lock",
+            "name": "exception-occurred",
+            "arguments": [
+              1,
+              4
+            ]
+          },
+          {
+            "role": "lock.lock-event",
+            "siid": 2,
+            "eiid": 1020,
+            "service": "lock",
+            "name": "lock-event",
+            "arguments": [
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "role": "doorbell.doorbell-ring",
+            "siid": 5,
+            "eiid": 1006,
+            "service": "doorbell",
+            "name": "doorbell-ring",
+            "arguments": [
+              1
+            ]
+          },
+          {
+            "role": "video-doorbell.doorbell-ring",
+            "siid": 6,
+            "eiid": 1,
+            "service": "video-doorbell",
+            "name": "doorbell-ring",
+            "arguments": [
+              10
+            ]
+          },
+          {
+            "role": "video-doorbell.someone-at-the-door",
+            "siid": 6,
+            "eiid": 4,
+            "service": "video-doorbell",
+            "name": "someone-at-the-door",
+            "arguments": [
+              10
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "model": "yeelink.light.fancl8",
+      "file": "yeelink.light.fancl8.json",
+      "capabilities": {
+        "version": 2,
+        "category": "light",
+        "profile": "standard",
+        "family": "lighting",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "light.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "light",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "light.brightness",
+            "siid": 2,
+            "piid": 2,
+            "service": "light",
+            "name": "brightness",
+            "label": "亮度",
+            "kind": "range",
+            "unit": "percentage"
+          },
+          {
+            "role": "light.color-temperature",
+            "siid": 2,
+            "piid": 3,
+            "service": "light",
+            "name": "color-temperature",
+            "label": "色温",
+            "kind": "range",
+            "unit": "kelvin"
+          },
+          {
+            "role": "light.mode",
+            "siid": 2,
+            "piid": 7,
+            "service": "light",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "fan.on",
+            "siid": 3,
+            "piid": 1,
+            "service": "fan",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "fan.fan-level",
+            "siid": 3,
+            "piid": 2,
+            "service": "fan",
+            "name": "fan-level",
+            "label": "风速",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "fan.mode",
+            "siid": 3,
+            "piid": 3,
+            "service": "fan",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "fan.wind-reverse",
+            "siid": 3,
+            "piid": 4,
+            "service": "fan",
+            "name": "wind-reverse",
+            "label": "反向送风",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "ambient-light.on",
+            "siid": 7,
+            "piid": 1,
+            "service": "ambient-light",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      }
+    },
+    {
+      "model": "zhimi.airpurifier.ma4",
+      "file": "zhimi.airpurifier.ma4.json",
+      "capabilities": {
+        "version": 2,
+        "category": "air-purifier",
+        "profile": "standard",
+        "family": "climate",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "air-purifier.fault",
+            "siid": 2,
+            "piid": 1,
+            "service": "air-purifier",
+            "name": "fault",
+            "label": "故障状态",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "air-purifier.on",
+            "siid": 2,
+            "piid": 2,
+            "service": "air-purifier",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "air-purifier.fan-level",
+            "siid": 2,
+            "piid": 4,
+            "service": "air-purifier",
+            "name": "fan-level",
+            "label": "风速",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "air-purifier.mode",
+            "siid": 2,
+            "piid": 5,
+            "service": "air-purifier",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": null
+          },
+          {
+            "role": "environment.pm2.5-density",
+            "siid": 3,
+            "piid": 6,
+            "service": "environment",
+            "name": "pm2.5-density",
+            "label": "PM2.5",
+            "kind": "reading",
+            "unit": null
+          },
+          {
+            "role": "environment.relative-humidity",
+            "siid": 3,
+            "piid": 7,
+            "service": "environment",
+            "name": "relative-humidity",
+            "label": "湿度",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "environment.temperature",
+            "siid": 3,
+            "piid": 8,
+            "service": "environment",
+            "name": "temperature",
+            "label": "温度",
+            "kind": "reading",
+            "unit": "celsius"
+          },
+          {
+            "role": "filter.filter-life-level",
+            "siid": 4,
+            "piid": 3,
+            "service": "filter",
+            "name": "filter-life-level",
+            "label": "滤芯剩余",
+            "kind": "reading",
+            "unit": "percentage"
+          },
+          {
+            "role": "filter.filter-used-time",
+            "siid": 4,
+            "piid": 5,
+            "service": "filter",
+            "name": "filter-used-time",
+            "label": "滤芯使用时间",
+            "kind": "reading",
+            "unit": "hours"
+          },
+          {
+            "role": "alarm.alarm",
+            "siid": 5,
+            "piid": 1,
+            "service": "alarm",
+            "name": "alarm",
+            "label": "提示音",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "indicator-light.brightness",
+            "siid": 6,
+            "piid": 1,
+            "service": "indicator-light",
+            "name": "brightness",
+            "label": "亮度",
+            "kind": "enum",
+            "unit": "percentage"
+          },
+          {
+            "role": "indicator-light.on",
+            "siid": 6,
+            "piid": 6,
+            "service": "indicator-light",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "physical-controls-locked.physical-controls-locked",
+            "siid": 7,
+            "piid": 1,
+            "service": "physical-controls-locked",
+            "name": "physical-controls-locked",
+            "label": "童锁",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "motor-speed.favorite-fan-level",
+            "siid": 10,
+            "piid": 10,
+            "service": "motor-speed",
+            "name": "favorite-fan-level",
+            "label": "喜爱风速",
+            "kind": "range",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      }
+    },
+    {
+      "model": "zhimi.fan.za1",
+      "file": "zhimi.fan.za1.json",
+      "capabilities": {
+        "version": 2,
+        "category": "fan",
+        "profile": "standard",
+        "family": "climate",
+        "readOnly": false,
+        "properties": [
+          {
+            "role": "fan.on",
+            "siid": 2,
+            "piid": 1,
+            "service": "fan",
+            "name": "on",
+            "label": "开关",
+            "kind": "power",
+            "unit": null
+          },
+          {
+            "role": "fan.fan-level",
+            "siid": 2,
+            "piid": 2,
+            "service": "fan",
+            "name": "fan-level",
+            "label": "风速",
+            "kind": "range",
+            "unit": null
+          },
+          {
+            "role": "fan.horizontal-swing",
+            "siid": 2,
+            "piid": 3,
+            "service": "fan",
+            "name": "horizontal-swing",
+            "label": "左右摇头",
+            "kind": "toggle",
+            "unit": null
+          },
+          {
+            "role": "fan.horizontal-angle",
+            "siid": 2,
+            "piid": 4,
+            "service": "fan",
+            "name": "horizontal-angle",
+            "label": "左右角度",
+            "kind": "range",
+            "unit": null
+          },
+          {
+            "role": "fan.mode",
+            "siid": 2,
+            "piid": 5,
+            "service": "fan",
+            "name": "mode",
+            "label": "模式",
+            "kind": "enum",
+            "unit": null
+          }
+        ],
+        "actions": [],
+        "privateFeatures": [],
+        "events": []
+      }
+    }
+  ]
+}

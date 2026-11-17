@@ -1,0 +1,110 @@
+/* Shared original home/desktop card geometry and controls. */
+.device-card { position:relative; width:100%; height:auto; aspect-ratio:5/4; max-height:224px; min-width:0; min-height:0; container-type:size; padding:0; border:0; border-radius:20px; background:var(--home-card,#f5f8faD9); color:var(--text-primary,#070a0c); text-align:left; transition:background-color var(--motion-fast); }
+.device-card-content { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:space-between; min-width:0; min-height:0; padding:clamp(12px,min(6cqw,8cqh),22px); container-type:size; pointer-events:none; }
+.device-card.is-active { background:var(--surface-selected,#fff); }
+.device-card { cursor:pointer; }
+.device-card-open { position:absolute;inset:0;border:0;border-radius:inherit;background:transparent;padding:0;z-index:0; }
+.device-card-top,.device-card-label { position:relative;pointer-events:none; }
+.device-card .device-shortcut { pointer-events:auto;z-index:1;border:0;padding:0;color:var(--text-secondary,#52616b);cursor:pointer;transform:scale(1);transform-origin:center;transition:transform var(--motion-medium) cubic-bezier(.34,1.56,.64,1); }
+.device-card .device-shortcut .icon { width:60%;height:60%;stroke-width:2.2; }
+@media (hover:hover) and (pointer:fine) {
+  .device-card .device-shortcut:hover:not(:disabled) { transform:scale(.96); }
+}
+.device-card .device-shortcut:active:not(:disabled) { transform:scale(.84);transition-duration:var(--motion-fast);transition-timing-function:ease-out; }
+.device-card .device-shortcut.is-on { background:#0dce95;color:var(--on-color,#fff); }
+.device-card .device-shortcut:disabled { cursor:default;opacity:.55;transform:none;transition:none; }
+@media (prefers-reduced-motion:reduce) {
+  .device-card .device-shortcut,.device-card .device-shortcut:hover:not(:disabled),.device-card .device-shortcut:active:not(:disabled) { transform:none;transition:none; }
+}
+.device-card .no-shortcut { visibility:hidden; }
+.device-card.offline { color:var(--text-secondary,#7d858c); background:var(--home-card-offline,#f1f5f9b5); }
+.device-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 5px; }
+.device-artwork { display: grid; place-items: center; width: 42px; height: 52px;color:var(--text-secondary,#6d8594); }
+.device-artwork .icon { width: 36px; height: 36px; stroke-width: 1.2; }
+.device-product-image { width: 48px; height: 52px; object-fit: contain; }
+.device-status { display: grid; flex-shrink:0; place-items: center; width: 27px; height: 27px; margin-top: -2px; margin-right: -2px; border-radius:50%; background:#0000000b; }
+.device-status .status-dot { width: 5px; height: 5px; background:#9ba4aa; }
+.device-status.is-online .status-dot { background:#18b69b; }
+.device-card-label { min-width: 0; }
+.device-card h3 { color:inherit; font-size: 16px; font-weight: 600; line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.device-room { margin-top: 2px; color:var(--text-secondary,#8c959c); font-size: 12px; line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* Use this card's own width AND height. A wide, shallow card must not inherit
+   large type from the window width. Its outer aspect ratio supplies both axes. */
+.device-card h3 { font-size:clamp(13px,min(8.5cqw,14cqh),24px); }
+.device-card .device-room { font-size:clamp(10px,min(6cqw,10cqh),16px); }
+.device-card .device-artwork,.device-card .device-product-image { width:clamp(40px,min(30cqw,42cqh),90px); height:clamp(40px,min(30cqw,42cqh),90px); }
+.device-card .device-artwork .icon { width:clamp(30px,min(24cqw,34cqh),64px); height:clamp(30px,min(24cqw,34cqh),64px); }
+.device-card .device-status { width:clamp(28px,min(22cqw,30cqh),44px); height:clamp(28px,min(22cqw,30cqh),44px); margin:0; }
+.device-card .device-status .status-dot { width:clamp(5px,min(2.5cqw,4cqh),7px); height:clamp(5px,min(2.5cqw,4cqh),7px); }
+/* The same nodes survive each size change. Text/art remain tied to one medium cell. */
+.device-card[data-card-size="small"] .device-card-content {display:grid;grid-template-columns:clamp(36px,21cqw,60px) minmax(0,1fr) 32px;grid-template-rows:minmax(0,1fr);align-items:center;gap:6px;padding:8px 10px;z-index:6;}
+.device-card[data-card-size="small"]:has(.no-shortcut) .device-card-content {grid-template-columns:clamp(36px,21cqw,60px) minmax(0,1fr);}
+.is-arranging .device-card[data-card-size="small"]:has(.no-shortcut) .device-card-content {grid-template-columns:clamp(36px,21cqw,60px) minmax(0,1fr) 32px;}
+.device-card[data-card-size="small"] .no-shortcut {display:none;}
+.device-card[data-card-size="small"] .device-card-top {display:contents;}
+.device-card[data-card-size="small"] .device-artwork {grid-column:1;grid-row:1;}
+.device-card[data-card-size="small"] .device-card-label {grid-column:2;grid-row:1;}
+.device-card[data-card-size="small"] .device-status {grid-column:3;grid-row:1;width:30px;height:30px;justify-self:center;align-self:center;}
+.device-card[data-card-size="small"] .device-select-indicator {top:50%;right:15px;transform:translateY(-50%);z-index:6;pointer-events:none;}
+.device-card[data-card-size="small"] h3 {font-size:clamp(13px,7cqw,20px);}
+.device-card[data-card-size="small"] .device-room {font-size:clamp(10px,5cqw,14px);}
+.device-card[data-card-size="small"] .device-artwork,.device-card[data-card-size="small"] .device-product-image {width:clamp(32px,21cqw,60px);height:clamp(32px,21cqw,60px);}
+.device-card[data-card-size="large"] h3 {font-size:clamp(13px,min(4.15cqw,14cqh),24px);}
+.device-card[data-card-size="large"] .device-room {font-size:clamp(10px,min(3cqw,10cqh),16px);}
+.device-card[data-card-size="large"] .device-artwork,.device-card[data-card-size="large"] .device-product-image {width:clamp(40px,min(15cqw,42cqh),90px);height:clamp(40px,min(15cqw,42cqh),90px);}
+.card-size-menu:not(:last-child){padding-bottom:5px;margin-bottom:5px;border-bottom:1px solid var(--border-subtle,#87969d24);}
+.device-context-menu .card-size-menu .card-size-menu-item{display:flex;align-items:center;justify-content:flex-start;gap:14px;width:100%;min-height:44px;padding:10px 12px;text-align:left;font-size:15px;line-height:1.4;}
+.card-size-menu .card-size-menu-item .card-size-menu-symbol{display:block;flex-shrink:0;width:20px;height:20px;}
+.card-size-menu-item:disabled{opacity:.45;cursor:default;}
+.device-card.has-card-template .device-card-content{display:grid;grid-template-columns:var(--card-art,52px) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);column-gap:12px;row-gap:8px;padding:12px!important;}
+.device-card.has-card-template.has-template-header .device-card-content{grid-template-columns:var(--card-art,52px) minmax(0,1fr) 32px;}
+.has-card-template .device-card-top{display:contents}
+.has-card-template .device-card-top>.device-artwork{grid-column:1;grid-row:1;align-self:center}
+.has-card-template .device-card-top>.device-status{display:none}
+.has-card-template .device-card-label{grid-column:2;grid-row:1;align-self:center}
+.card-template-header{grid-column:3;grid-row:1;align-self:center;position:relative;z-index:2;pointer-events:auto}
+.card-template-controls{grid-column:1/-1;grid-row:2;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;min-height:0;position:relative;z-index:2;pointer-events:auto}
+.card-template-header[hidden],.card-template-controls[hidden]{display:none}
+.card-control-row{display:flex;gap:8px;align-items:center;min-width:0}
+.card-control{position:relative;min-width:0;flex:1;pointer-events:auto;color:inherit}
+.card-control button{border:0;cursor:pointer;color:inherit;background:color-mix(in srgb,currentColor 7%,transparent);border-radius:12px;min-width:32px;min-height:44px;font:inherit;font-size:13px;padding:6px 10px;touch-action:manipulation;}
+.card-control button:disabled,.card-control-slider:disabled{opacity:.45;cursor:default}
+.card-control button .icon{width:18px;height:18px}
+.card-control-button{width:100%;display:flex;align-items:center;justify-content:center;gap:6px}
+.card-template-header .card-control-power{width:32px;height:32px;min-height:32px;padding:6px;border-radius:50%}
+.card-control.is-on .card-control-power,.card-control .is-selected{background:#0dce95;color:#fff}
+.card-control[data-control-kind=choices]{display:flex;gap:4px}
+.card-control-choice{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card-control-label{font-size:12px;color:var(--text-secondary,#8c959c)}
+.card-control-stepper{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.card-control-value{font-size:18px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.card-control-slider-heading{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.card-control-slider{display:block;width:100%;height:32px;margin:0;padding:0;appearance:none;background:transparent;accent-color:#0dce95;cursor:ew-resize;touch-action:none}
+.card-control[data-control-kind=slider]{margin-bottom:-8px}
+.card-control-slider::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:linear-gradient(to right,#0dce95 var(--control-progress,0%),color-mix(in srgb,currentColor 18%,transparent) var(--control-progress,0%))}
+.card-control-slider::-webkit-slider-thumb{appearance:none;width:16px;height:16px;margin-top:-6px;border-radius:50%;background:#0dce95;border:0}
+.card-control.is-pending{opacity:1}
+.device-card.card-template-compact.has-card-template .device-card-content{column-gap:6px;row-gap:4px;padding:8px!important;}
+.card-template-compact .card-control-row,.card-template-compact .card-template-controls{gap:4px}
+.card-template-compact .card-control button{min-height:32px;padding:4px 6px;font-size:12px}
+.card-template-compact .card-control-value{font-size:15px}
+.card-template-compact .card-control[data-control-kind=stepper]>.card-control-label{display:none}
+.card-template-compact .card-control[data-control-kind=slider]{display:flex;align-items:center;gap:6px}
+.card-template-compact .card-control-slider-heading{flex:none}
+.card-template-compact .card-control-slider-heading .card-control-label{display:none}
+.card-template-compact .card-control-slider-heading .card-control-value{font-size:13px}
+.card-template-compact .card-control-slider{width:0;min-width:0;flex:1}
+.device-card[data-card-size=small] .device-status{min-width:32px;min-height:32px}
+.device-card[data-card-size] h3{font-size:var(--card-title,16px)}
+.device-card[data-card-size] .device-room{font-size:var(--card-room,12px)}
+.device-card[data-card-size] .device-artwork,.device-card[data-card-size] .device-product-image{width:var(--card-art,52px);height:var(--card-art,52px)}
+.device-card[data-card-size] .device-artwork .icon{width:var(--card-symbol,36px);height:var(--card-symbol,36px)}
+.device-card[data-card-size] .device-status{width:var(--card-status,30px);height:var(--card-status,30px)}
+.device-card[data-card-size] .status-dot{width:var(--card-dot,5px);height:var(--card-dot,5px)}
+.device-card[data-card-size] .device-card-content{padding:var(--card-pad-y,12px) var(--card-pad-x,12px)}
+
+.device-grid{position:relative}
+.device-grid>.device-drag-slot{border-color:transparent}
+.device-drop-preview{position:absolute;z-index:0;pointer-events:none;border:2px solid rgb(12,206,148);border-radius:20px;background:color-mix(in srgb,var(--drop-color,var(--home-card,#fff)) 35%,transparent);box-sizing:border-box}
+.device-drop-preview.invalid{border-color:#d78680;background:#d7868028}
+.device-drop-preview[hidden]{display:none}

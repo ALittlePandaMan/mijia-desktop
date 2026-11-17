@@ -1,0 +1,65 @@
+name: Build
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  compile:
+    name: Compile ${{ matrix.platform }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: windows-2022
+            platform: windows-x64
+            target: x86_64-pc-windows-msvc
+            bundles: nsis
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          toolchain: 1.98.1
+          targets: ${{ matrix.target }}
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2
+        with:
+          workspaces: src-tauri -> target
+          key: ${{ matrix.target }}
+      - run: npm ci
+      - run: npm run version:check
+      - run: npm run source:check
+      - run: npm run capabilities:check
+      - name: Run frontend regressions
+        run: npm test
+      - name: Check distribution contents and the lightweight desktop entry
+        run: node --test scripts/widget-boundary.test.mjs scripts/distribution-files.test.mjs
+      - name: Run offline browser regressions with mock IPC
+        run: node scripts/check-browser.mjs
+      - name: Preserve mock browser diagnostics on failure
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: offline-browser-diagnostics-${{ github.sha }}
+          path: .cache/browser-regression/
+          if-no-files-found: ignore
+          retention-days: 7
+      - name: Check built-in MCP reference matches tool contracts
+        run: npm run mcp:docs:check
+      - run: npm run build
+      - name: Run offline Rust regressions
+        run: cargo test --manifest-path src-tauri/Cargo.toml --locked --lib --target ${{ matrix.target }}
+      - name: Compile Rust source and retained test sources without running tests
+        run: cargo check --manifest-path src-tauri/Cargo.toml --locked --all-targets --target ${{ matrix.target }}

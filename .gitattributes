@@ -1,0 +1,12 @@
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.icns binary
+*.ttf binary
+*.crate binary
+# Preserve upstream license bytes, including their original whitespace.
+licenses/** -text -whitespace
+src/assets/** -text

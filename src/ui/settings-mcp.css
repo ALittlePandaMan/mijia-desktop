@@ -1,0 +1,48 @@
+.settings-page .settings-mcp-layout{--mcp-symbol-selected:#edf3ff;container:mcp-settings/inline-size;display:flex;flex-direction:column;gap:24px;width:100%;min-width:0}
+:root[data-theme=dark] .settings-page .settings-mcp-layout{--mcp-symbol-selected:var(--settings-selected-bg)}
+.settings-page .settings-mcp-layout .settings-panel-symbol-accent{background:var(--mcp-symbol-selected)}
+.settings-page .settings-mcp-layout .settings-group-title{font-size:14px;line-height:21px}
+.settings-page .settings-mcp-layout .settings-card{border-radius:12px}
+.settings-page .settings-mcp-service{min-height:78px;gap:14px;padding:16px 22px}
+.settings-page .settings-mcp-service .settings-row-label,.settings-page .settings-assistant-heading .settings-row-label{font-size:15px}
+.settings-page .settings-mcp-status{display:inline-flex;align-items:center;flex:none;gap:5px;padding:4px 8px;border-radius:5px;background:var(--settings-subtle);color:var(--settings-secondary);font-size:11px;line-height:16px}
+.settings-page .settings-mcp-status::before{content:'';flex:none;width:5px;height:5px;border-radius:50%;background:currentColor}
+.settings-page .settings-mcp-status[data-state=running]{background:#e9f4ed;color:#277247}
+.settings-page .settings-mcp-status[data-state=error]{background:#fcecec;color:#af3f3f}
+:root[data-theme=dark] .settings-page .settings-mcp-status[data-state=running]{background:#203a2c;color:#91c7a5}
+:root[data-theme=dark] .settings-page .settings-mcp-status[data-state=error]{background:#412a2a;color:#f3a2a2}
+.settings-page .settings-mcp-fields{display:grid;grid-template-columns:minmax(0,1fr) 126px;gap:16px;padding:18px 22px;border-top:1px solid var(--settings-border)}
+.settings-page .settings-mcp-layout .settings-mcp-field{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:8px;min-width:0;min-height:0;margin:0;padding:0;border:0}
+.settings-page .settings-mcp-field .settings-row-label,.settings-page .settings-mcp-address-label{color:var(--settings-secondary);font-size:12px;line-height:18px;font-weight:400}
+.settings-page .settings-mcp-layout .settings-mcp-field>.settings-number{width:100%;max-width:100%;min-width:0;min-height:36px;padding:7px 12px;text-align:left}
+.settings-page .settings-mcp-endpoint{display:flex;flex-direction:column;gap:8px;min-width:0}
+.settings-page .settings-mcp-address-value{display:flex;align-items:center;gap:8px;min-width:0;min-height:36px;padding:7px 12px;border-radius:7px;background:var(--settings-subtle)}
+.settings-page .settings-mcp-address-value>.icon{flex:none;width:15px;height:15px;color:var(--settings-muted)}
+.settings-page .settings-mcp-url{min-width:0;margin:0;color:var(--settings-text);font:13px/20px var(--app-font);overflow-wrap:anywhere;user-select:text}
+.settings-page .settings-mcp-connection-actions{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:10px;padding:0 22px 20px}
+.settings-page .settings-mcp-layout .settings-mcp-button-primary{border-color:transparent;background:var(--settings-control);color:#fff}
+.settings-page .settings-mcp-layout .settings-mcp-button-primary:hover:not(:disabled){border-color:transparent;background:var(--settings-control-hover);color:#fff}
+.settings-page .settings-assistant-heading{display:flex;align-items:center;gap:14px;min-height:89px;padding:18px 22px}
+.settings-page .settings-assistant-brand{display:block;flex:none;width:38px;height:38px}
+.settings-page .settings-assistant-brand>.icon{display:block;width:100%;height:100%}
+.settings-page .settings-assistant-actions{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:10px;min-height:65px;padding:14px 22px;border-top:1px solid var(--settings-border)}
+.settings-page .settings-assistant-caption{margin:0;color:var(--settings-secondary);font-size:12px;line-height:1.6;overflow-wrap:anywhere}
+.settings-page .settings-assistant>.settings-assistant-caption{padding:0 22px 16px}
+.settings-page .settings-assistant-qr{display:flex;flex-direction:column;align-items:center;gap:12px;padding:20px 16px;border-top:1px solid var(--settings-border)}
+.settings-page .settings-assistant-qr>.qr-image{width:200px;max-width:100%;height:auto;aspect-ratio:1;background:white;padding:8px;border-radius:12px}
+.settings-page .settings-mcp-families{display:flex;flex-direction:column;gap:11px;min-width:0}
+.settings-page .settings-mcp-family-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.settings-page .settings-mcp-family-list{padding:0;overflow:hidden}
+.settings-page .settings-mcp-family{display:flex;align-items:center;gap:13px;padding:12px 22px;min-height:65px;cursor:pointer}
+.settings-page .settings-mcp-family:hover{background:var(--settings-hover)}
+.settings-page .settings-mcp-family+.settings-mcp-family{border-top:1px solid var(--settings-border)}
+.settings-page .settings-mcp-family input{appearance:none;-webkit-appearance:none;flex:none;width:18px;height:18px;margin:0;border:1px solid var(--settings-track-hover);border-radius:5px;background:var(--settings-card-bg) center/14px 14px no-repeat;cursor:pointer}
+.settings-page .settings-mcp-family input:checked{border-color:var(--settings-control);background-color:var(--settings-control);background-image:url('../assets/rounded-check.svg')}
+.settings-page .settings-mcp-family input:disabled{opacity:.55;cursor:default}
+.settings-page .settings-mcp-family-copy{display:flex;flex:1;flex-direction:column;gap:5px;min-width:0;color:var(--settings-text);overflow-wrap:anywhere}
+.settings-page .settings-mcp-family-copy strong{font-size:14px;line-height:21px;font-weight:500}
+.settings-page .settings-mcp-family-copy small{font-size:12px;line-height:18px;color:var(--settings-secondary)}
+.settings-page .settings-mcp-family-list>.settings-assistant-caption{padding:18px 22px}
+@container mcp-settings (max-width:540px){.settings-page .settings-mcp-fields{grid-template-columns:minmax(0,1fr)}.settings-page .settings-mcp-service,.settings-page .settings-assistant-heading{gap:10px;padding-inline:16px;flex-wrap:wrap}.settings-page :is(.settings-mcp-service,.settings-assistant-heading)>.settings-row-copy{flex-basis:calc(100% - 48px)}.settings-page .settings-mcp-service>.settings-mcp-status,.settings-page .settings-assistant-heading>.settings-mcp-status{margin-left:48px}.settings-page .settings-mcp-service>.settings-toggle{margin-left:auto;margin-top:0}.settings-page .settings-mcp-fields,.settings-page .settings-mcp-connection-actions,.settings-page .settings-assistant-actions,.settings-page .settings-assistant>.settings-assistant-caption,.settings-page .settings-mcp-family{padding-inline:16px}}
+@container mcp-settings (max-width:320px){.settings-page .settings-mcp-connection-actions,.settings-page .settings-assistant-actions{align-items:stretch;flex-direction:column}.settings-page .settings-mcp-family-heading{align-items:flex-start;flex-wrap:wrap}}
+@media(forced-colors:active){.settings-page .settings-mcp-family input{appearance:auto;-webkit-appearance:auto;background:none;forced-color-adjust:auto}}

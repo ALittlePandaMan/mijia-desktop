@@ -1,0 +1,697 @@
+{
+  "did": "fixture-tv",
+  "model": "xiaomi.tv.mih1",
+  "specType": "urn:miot-spec-v2:device:television:0000A010:xiaomi-mih1:2",
+  "services": [
+    {
+      "siid": 1,
+      "name": "device-information",
+      "description": "Device Information",
+      "properties": [
+        {
+          "siid": 1,
+          "piid": 1,
+          "name": "manufacturer",
+          "description": "Device Manufacturer",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 1,
+          "piid": 2,
+          "name": "model",
+          "description": "Device Model",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 1,
+          "piid": 3,
+          "name": "serial-number",
+          "description": "Device ID",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 1,
+          "piid": 4,
+          "name": "firmware-revision",
+          "description": "Current Firmware Version",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 1,
+          "piid": 5,
+          "name": "serial-no",
+          "description": "Serial Number",
+          "format": "string",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [],
+      "events": []
+    },
+    {
+      "siid": 2,
+      "name": "television",
+      "description": "Television",
+      "properties": [
+        {
+          "siid": 2,
+          "piid": 1,
+          "name": "input-control",
+          "description": "TV Input Control",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": "none",
+          "value": null,
+          "code": 0,
+          "valueList": [
+            {
+              "value": 1,
+              "description": "ATV"
+            },
+            {
+              "value": 2,
+              "description": "DTV"
+            },
+            {
+              "value": 3,
+              "description": "AV"
+            },
+            {
+              "value": 4,
+              "description": "HDMI 1"
+            },
+            {
+              "value": 5,
+              "description": "HDMI 2"
+            },
+            {
+              "value": 6,
+              "description": "HDMI 3"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 2,
+          "name": "sleep-mode",
+          "description": "Sleep Mode",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [
+        {
+          "siid": 2,
+          "aiid": 1,
+          "name": "turn-off",
+          "description": "Turn Off",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        }
+      ],
+      "events": []
+    },
+    {
+      "siid": 3,
+      "name": "play-control",
+      "description": "Play Control",
+      "properties": [
+        {
+          "siid": 3,
+          "piid": 1,
+          "name": "playing-state",
+          "description": "Playing State",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "Playing"
+            },
+            {
+              "value": 1,
+              "description": "Pause"
+            },
+            {
+              "value": 2,
+              "description": "Stop"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [
+        {
+          "siid": 3,
+          "aiid": 1,
+          "name": "play",
+          "description": "Play",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 3,
+          "aiid": 2,
+          "name": "pause",
+          "description": "Pause",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        }
+      ],
+      "events": []
+    },
+    {
+      "siid": 4,
+      "name": "speaker",
+      "description": "Speaker",
+      "properties": [
+        {
+          "siid": 4,
+          "piid": 1,
+          "name": "volume",
+          "description": "Volume",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": "percentage",
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            1.0,
+            100.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 4,
+          "piid": 2,
+          "name": "mute",
+          "description": "Mute",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [],
+      "events": []
+    },
+    {
+      "siid": 5,
+      "name": "message-router",
+      "description": "Message Router",
+      "properties": [
+        {
+          "siid": 5,
+          "piid": 1,
+          "name": "request",
+          "description": "Request",
+          "format": "string",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 5,
+          "piid": 2,
+          "name": "response",
+          "description": "Response",
+          "format": "string",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [
+        {
+          "siid": 5,
+          "aiid": 1,
+          "name": "post",
+          "description": "Post",
+          "in": [
+            1
+          ],
+          "out": [
+            2
+          ],
+          "unsupportedReason": null
+        }
+      ],
+      "events": []
+    },
+    {
+      "siid": 6,
+      "name": "ble-control",
+      "description": "BLE Local Control",
+      "properties": [],
+      "actions": [
+        {
+          "siid": 6,
+          "aiid": 1,
+          "name": "turn-on",
+          "description": "Turn On",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        }
+      ],
+      "events": []
+    },
+    {
+      "siid": 9,
+      "name": "no-disturb",
+      "description": "No Disturb",
+      "properties": [
+        {
+          "siid": 9,
+          "piid": 1,
+          "name": "no-disturb",
+          "description": "No Disturb",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 9,
+          "piid": 2,
+          "name": "enable-time-period",
+          "description": "Enable Time Period",
+          "format": "string",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [],
+      "events": []
+    },
+    {
+      "siid": 12,
+      "name": "extra-device-information",
+      "description": "Extra Device Information",
+      "properties": [
+        {
+          "siid": 12,
+          "piid": 1,
+          "name": "platform-id",
+          "description": "Platform Id",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            10000.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [],
+      "events": []
+    },
+    {
+      "siid": 7,
+      "name": "remote-control",
+      "description": "remote-control",
+      "properties": [
+        {
+          "siid": 7,
+          "piid": 1,
+          "name": "state-playing",
+          "description": "",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [
+        {
+          "siid": 7,
+          "aiid": 1,
+          "name": "turn-off",
+          "description": "turn-off",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 7,
+          "aiid": 2,
+          "name": "press-home",
+          "description": "press-home",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 7,
+          "aiid": 3,
+          "name": "press-menu",
+          "description": "press-menu",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 7,
+          "aiid": 4,
+          "name": "press-settings",
+          "description": "press-settings",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 7,
+          "aiid": 5,
+          "name": "press-back",
+          "description": "press-back",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 7,
+          "aiid": 6,
+          "name": "press-left",
+          "description": "press-left",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 7,
+          "aiid": 7,
+          "name": "press-right",
+          "description": "press-right",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 7,
+          "aiid": 8,
+          "name": "press-up",
+          "description": "press-up",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 7,
+          "aiid": 9,
+          "name": "press-down",
+          "description": "press-down",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 7,
+          "aiid": 10,
+          "name": "press-ok",
+          "description": "press-ok",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 7,
+          "aiid": 11,
+          "name": "press-volume-down",
+          "description": "press-volume-down",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 7,
+          "aiid": 12,
+          "name": "press-volume-up",
+          "description": "press-volume-up",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 7,
+          "aiid": 13,
+          "name": "play-pause-video",
+          "description": "play-pause-video",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 7,
+          "aiid": 14,
+          "name": "press-play",
+          "description": "press-play",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 7,
+          "aiid": 15,
+          "name": "press-pause",
+          "description": "press-pause",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 7,
+          "aiid": 16,
+          "name": "press-play-pause",
+          "description": "press-play-pause",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        }
+      ],
+      "events": []
+    },
+    {
+      "siid": 8,
+      "name": "speaker-mode",
+      "description": "speaker-mode",
+      "properties": [
+        {
+          "siid": 8,
+          "piid": 1,
+          "name": "is-on",
+          "description": "",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "unit": null,
+          "value": null,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [
+        {
+          "siid": 8,
+          "aiid": 1,
+          "name": "turn-mode-on",
+          "description": "turn-mode-on",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "aiid": 2,
+          "name": "turn-mode-off",
+          "description": "turn-mode-off",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        }
+      ],
+      "events": []
+    }
+  ],
+  "capabilities": {
+    "version": 2,
+    "family": "media",
+    "readOnly": false,
+    "category": "television",
+    "profile": "standard",
+    "properties": [
+      {
+        "role": "play-control.playing-state",
+        "siid": 3,
+        "piid": 1,
+        "service": "play-control",
+        "name": "playing-state",
+        "label": "播放状态",
+        "kind": "reading",
+        "unit": null
+      },
+      {
+        "role": "speaker.volume",
+        "siid": 4,
+        "piid": 1,
+        "service": "speaker",
+        "name": "volume",
+        "label": "音量",
+        "kind": "range",
+        "unit": "percentage"
+      },
+      {
+        "role": "speaker.mute",
+        "siid": 4,
+        "piid": 2,
+        "service": "speaker",
+        "name": "mute",
+        "label": "静音",
+        "kind": "toggle",
+        "unit": null
+      }
+    ],
+    "actions": [
+      {
+        "role": "television.turn-off",
+        "siid": 2,
+        "aiid": 1,
+        "service": "television",
+        "name": "turn-off",
+        "label": "关闭"
+      }
+    ],
+    "privateFeatures": [],
+    "events": []
+  },
+  "unsupportedReason": null
+}

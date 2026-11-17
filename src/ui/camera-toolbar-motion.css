@@ -1,0 +1,4 @@
+/* One entrance/exit motion for camera detail and monitor controls. */
+.camera-toolbar-motion{opacity:0;visibility:hidden;pointer-events:none;transform:translateY(100%);transition:transform var(--motion-medium) ease-out,opacity var(--motion-medium) ease-out,visibility var(--motion-medium)}
+@media(hover:none){.camera-toolbar-motion{opacity:1;visibility:visible;pointer-events:auto;transform:none}}
+@media(prefers-reduced-motion:reduce){.camera-toolbar-motion{transition:none}}

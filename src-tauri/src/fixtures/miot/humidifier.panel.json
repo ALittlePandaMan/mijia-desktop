@@ -1,0 +1,345 @@
+{
+  "did": "model-fixture-only",
+  "model": "als1.humidifier.js03",
+  "specType": "urn:miot-spec-v2:device:humidifier:0000A00E:als1-js03:1",
+  "services": [
+    {
+      "siid": 1,
+      "name": "device-information",
+      "description": "Device Information",
+      "properties": [
+        {
+          "siid": 1,
+          "piid": 1,
+          "name": "manufacturer",
+          "description": "Device Manufacturer",
+          "format": "string",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 1,
+          "piid": 2,
+          "name": "model",
+          "description": "Device Model",
+          "format": "string",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 1,
+          "piid": 3,
+          "name": "serial-number",
+          "description": "Device ID",
+          "format": "string",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 1,
+          "piid": 4,
+          "name": "firmware-revision",
+          "description": "Current Firmware Version",
+          "format": "string",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 1,
+          "piid": 5,
+          "name": "serial-no",
+          "description": "Serial Number",
+          "format": "string",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 2,
+      "name": "humidifier",
+      "description": "Humidifier",
+      "properties": [],
+      "actions": []
+    },
+    {
+      "siid": 3,
+      "name": "total",
+      "description": "total",
+      "properties": [
+        {
+          "siid": 3,
+          "piid": 1,
+          "name": "main-switch",
+          "description": "",
+          "format": "bool",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 3,
+          "piid": 2,
+          "name": "mode",
+          "description": "",
+          "format": "uint8",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            255.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 3,
+          "piid": 3,
+          "name": "pwm",
+          "description": "pwm",
+          "format": "uint8",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            255.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 3,
+          "piid": 4,
+          "name": "interval",
+          "description": "",
+          "format": "uint8",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            255.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 3,
+          "piid": 5,
+          "name": "hour",
+          "description": "",
+          "format": "uint16",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            65535.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 3,
+          "piid": 6,
+          "name": "week",
+          "description": "",
+          "format": "uint8",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            255.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 3,
+          "piid": 7,
+          "name": "timing-switch",
+          "description": "",
+          "format": "bool",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 3,
+          "piid": 8,
+          "name": "rtc",
+          "description": "",
+          "format": "uint32",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            4294967295.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 3,
+          "piid": 9,
+          "name": "rtc-debug",
+          "description": "",
+          "format": "uint32",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            4294967295.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 3,
+          "piid": 10,
+          "name": "vibe-mode",
+          "description": "",
+          "format": "uint8",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "0"
+            },
+            {
+              "value": 1,
+              "description": "1"
+            },
+            {
+              "value": 2,
+              "description": "2"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 3,
+          "piid": 11,
+          "name": "vibe-light",
+          "description": "vibe-light",
+          "format": "uint8",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            255.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 3,
+          "piid": 12,
+          "name": "bat",
+          "description": "",
+          "format": "uint8",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            100.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 3,
+          "piid": 13,
+          "name": "charge",
+          "description": "",
+          "format": "uint8",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "0"
+            },
+            {
+              "value": 1,
+              "description": "1"
+            },
+            {
+              "value": 2,
+              "description": "2"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": []
+    }
+  ],
+  "unsupportedReason": null
+}

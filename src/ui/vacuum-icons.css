@@ -1,0 +1,3 @@
+/* Original white station glyphs use a gray tone on the desktop's white rows.
+   The filter preserves their original alpha, silhouette, and source asset. */
+.vacuum-icon.vacuum-icon-station-tone{filter:brightness(0) invert(54%)}

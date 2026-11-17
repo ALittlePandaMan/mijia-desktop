@@ -1,0 +1,5 @@
+.camera-talking-status{position:absolute;z-index:12;right:10px;top:10px;display:flex;align-items:center;gap:6px;padding:5px 9px;border-radius:5px;background:#128456f2;color:#fff;font-size:12px;line-height:18px;white-space:nowrap;pointer-events:none}
+.camera-talking-status::before{content:'';flex:none;width:7px;height:7px;border-radius:50%;background:#fff}
+.camera-talking-status[hidden]{display:none!important}
+:is(.camera-video-viewport,.camera-secondary-viewport):has(>.camera-recording-status:not([hidden]))>.camera-talking-status,.monitor-recording-mark:not([hidden])~.monitor-talking-mark{top:46px}
+.monitor-tile>.device-stage .camera-talking-status{display:none!important}

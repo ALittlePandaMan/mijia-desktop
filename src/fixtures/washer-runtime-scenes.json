@@ -1,0 +1,399 @@
+{
+  "scenes": [
+    {
+      "did": "washer-readonly-local",
+      "model": "midjd8.washer.42",
+      "name": "busy",
+      "services": [],
+      "washerRuntime": {
+        "active": true,
+        "cleaning": false,
+        "controls": [
+          {
+            "aiid": 1,
+            "confirmation": "确定要终止洗涤吗？",
+            "enabled": true,
+            "key": "stop",
+            "kind": "action",
+            "label": "终止",
+            "piid": null,
+            "reason": null,
+            "siid": 2,
+            "value": null
+          },
+          {
+            "aiid": 3,
+            "confirmation": null,
+            "enabled": true,
+            "key": "pause",
+            "kind": "action",
+            "label": "暂停",
+            "piid": null,
+            "reason": null,
+            "siid": 2,
+            "value": null
+          },
+          {
+            "aiid": null,
+            "confirmation": null,
+            "enabled": true,
+            "key": "lock",
+            "kind": "property",
+            "label": "童锁",
+            "piid": 1,
+            "reason": null,
+            "siid": 3,
+            "value": true
+          }
+        ],
+        "hasDrying": true,
+        "locked": false,
+        "mode": 24,
+        "remainingMinutes": 42,
+        "reservationMinutes": 180,
+        "stage": "washing",
+        "state": "busy",
+        "steps": [
+          {
+            "id": 2,
+            "label": "称重",
+            "progress": "done"
+          },
+          {
+            "id": 5,
+            "label": "洗涤",
+            "progress": "current"
+          },
+          {
+            "id": 6,
+            "label": "漂洗",
+            "progress": "pending"
+          },
+          {
+            "id": 8,
+            "label": "脱水",
+            "progress": "pending"
+          },
+          {
+            "id": 9,
+            "label": "烘干",
+            "progress": "pending"
+          }
+        ],
+        "weighing": false
+      }
+    },
+    {
+      "did": "washer-readonly-local",
+      "model": "midjd8.washer.42",
+      "name": "paused",
+      "services": [],
+      "washerRuntime": {
+        "active": true,
+        "cleaning": false,
+        "controls": [
+          {
+            "aiid": 1,
+            "confirmation": "确定要终止洗涤吗？",
+            "enabled": true,
+            "key": "stop",
+            "kind": "action",
+            "label": "终止",
+            "piid": null,
+            "reason": null,
+            "siid": 2,
+            "value": null
+          },
+          {
+            "aiid": 2,
+            "confirmation": null,
+            "enabled": true,
+            "key": "resume",
+            "kind": "action",
+            "label": "继续",
+            "piid": null,
+            "reason": null,
+            "siid": 2,
+            "value": null
+          }
+        ],
+        "hasDrying": true,
+        "locked": false,
+        "mode": 24,
+        "remainingMinutes": 42,
+        "reservationMinutes": 180,
+        "stage": "washing",
+        "state": "paused",
+        "steps": [
+          {
+            "id": 2,
+            "label": "称重",
+            "progress": "done"
+          },
+          {
+            "id": 5,
+            "label": "洗涤",
+            "progress": "current"
+          },
+          {
+            "id": 6,
+            "label": "漂洗",
+            "progress": "pending"
+          },
+          {
+            "id": 8,
+            "label": "脱水",
+            "progress": "pending"
+          },
+          {
+            "id": 9,
+            "label": "烘干",
+            "progress": "pending"
+          }
+        ],
+        "weighing": false
+      }
+    },
+    {
+      "did": "washer-readonly-local",
+      "model": "midjd8.washer.42",
+      "name": "delay",
+      "services": [],
+      "washerRuntime": {
+        "active": true,
+        "cleaning": false,
+        "controls": [
+          {
+            "aiid": null,
+            "confirmation": "确定要取消预约吗？",
+            "enabled": true,
+            "key": "cancel",
+            "kind": "property",
+            "label": "取消预约",
+            "piid": 1,
+            "reason": null,
+            "siid": 2,
+            "value": false
+          }
+        ],
+        "hasDrying": true,
+        "locked": false,
+        "mode": 24,
+        "remainingMinutes": 42,
+        "reservationMinutes": 180,
+        "stage": "washing",
+        "state": "delay",
+        "steps": [
+          {
+            "id": 2,
+            "label": "称重",
+            "progress": "pending"
+          },
+          {
+            "id": 5,
+            "label": "洗涤",
+            "progress": "pending"
+          },
+          {
+            "id": 6,
+            "label": "漂洗",
+            "progress": "pending"
+          },
+          {
+            "id": 8,
+            "label": "脱水",
+            "progress": "pending"
+          },
+          {
+            "id": 9,
+            "label": "烘干",
+            "progress": "pending"
+          }
+        ],
+        "weighing": false
+      }
+    },
+    {
+      "did": "washer-readonly-local",
+      "model": "midjd8.washer.42",
+      "name": "completed",
+      "services": [],
+      "washerRuntime": {
+        "active": true,
+        "cleaning": false,
+        "controls": [
+          {
+            "aiid": null,
+            "confirmation": null,
+            "enabled": true,
+            "key": "off",
+            "kind": "property",
+            "label": "关机",
+            "piid": 1,
+            "reason": null,
+            "siid": 2,
+            "value": false
+          }
+        ],
+        "hasDrying": true,
+        "locked": false,
+        "mode": 24,
+        "remainingMinutes": 42,
+        "reservationMinutes": 180,
+        "stage": "washing",
+        "state": "completed",
+        "steps": [],
+        "weighing": false
+      }
+    },
+    {
+      "did": "washer-readonly-local",
+      "model": "midjd8.washer.42",
+      "name": "off",
+      "services": [],
+      "washerRuntime": {
+        "active": false,
+        "cleaning": false,
+        "controls": [],
+        "hasDrying": true,
+        "locked": false,
+        "mode": 24,
+        "remainingMinutes": 42,
+        "reservationMinutes": 180,
+        "stage": "washing",
+        "state": "off",
+        "steps": [],
+        "weighing": false
+      }
+    },
+    {
+      "did": "washer-readonly-local",
+      "model": "midjd8.washer.42",
+      "name": "locked",
+      "services": [],
+      "washerRuntime": {
+        "active": true,
+        "cleaning": false,
+        "controls": [
+          {
+            "aiid": 1,
+            "confirmation": "确定要终止洗涤吗？",
+            "enabled": false,
+            "key": "stop",
+            "kind": "action",
+            "label": "终止",
+            "piid": null,
+            "reason": "请先确认并解除童锁。",
+            "siid": 2,
+            "value": null
+          },
+          {
+            "aiid": 3,
+            "confirmation": null,
+            "enabled": false,
+            "key": "pause",
+            "kind": "action",
+            "label": "暂停",
+            "piid": null,
+            "reason": "请先确认并解除童锁。",
+            "siid": 2,
+            "value": null
+          },
+          {
+            "aiid": null,
+            "confirmation": null,
+            "enabled": true,
+            "key": "lock",
+            "kind": "property",
+            "label": "童锁",
+            "piid": 1,
+            "reason": null,
+            "siid": 3,
+            "value": false
+          }
+        ],
+        "hasDrying": true,
+        "locked": true,
+        "mode": 24,
+        "remainingMinutes": 42,
+        "reservationMinutes": 180,
+        "stage": "washing",
+        "state": "busy",
+        "steps": [
+          {
+            "id": 2,
+            "label": "称重",
+            "progress": "done"
+          },
+          {
+            "id": 5,
+            "label": "洗涤",
+            "progress": "current"
+          },
+          {
+            "id": 6,
+            "label": "漂洗",
+            "progress": "pending"
+          },
+          {
+            "id": 8,
+            "label": "脱水",
+            "progress": "pending"
+          },
+          {
+            "id": 9,
+            "label": "烘干",
+            "progress": "pending"
+          }
+        ],
+        "weighing": false
+      }
+    },
+    {
+      "did": "washer-readonly-local",
+      "model": "midjd8.washer.42",
+      "name": "cleaning",
+      "services": [],
+      "washerRuntime": {
+        "active": true,
+        "cleaning": true,
+        "controls": [
+          {
+            "aiid": 2,
+            "confirmation": "确定要终止风道清洁吗？",
+            "enabled": true,
+            "key": "stop",
+            "kind": "action",
+            "label": "终止",
+            "piid": null,
+            "reason": null,
+            "siid": 11,
+            "value": null
+          },
+          {
+            "aiid": 3,
+            "confirmation": null,
+            "enabled": true,
+            "key": "pause",
+            "kind": "action",
+            "label": "暂停",
+            "piid": null,
+            "reason": null,
+            "siid": 2,
+            "value": null
+          }
+        ],
+        "hasDrying": true,
+        "locked": false,
+        "mode": 24,
+        "remainingMinutes": 5,
+        "reservationMinutes": 180,
+        "stage": "washing",
+        "state": "busy",
+        "steps": [],
+        "weighing": false
+      }
+    }
+  ],
+  "scope": "offline native projection fixture; no real device execution"
+}

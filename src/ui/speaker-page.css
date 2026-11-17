@@ -1,0 +1,9 @@
+.speaker-song-summary{display:flex;align-items:center;gap:16px;padding:20px;min-width:0}
+.speaker-song-summary img{width:48px;height:48px;flex:none;border-radius:8px;object-fit:cover}
+.speaker-song-summary>div{display:flex;flex-direction:column;gap:4px;min-width:0}
+.speaker-song-summary strong{font-size:16px;font-weight:400;line-height:24px;overflow-wrap:anywhere}
+.speaker-song-summary span{font-size:14px;line-height:20px;color:var(--text-secondary,#999);overflow-wrap:anywhere}
+.category-page-content[data-category="speaker"] .category-action>span{min-width:3em;text-align:left}
+.speaker-transport{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.speaker-transport .category-action{display:flex;align-items:center;justify-content:center;gap:12px;padding:18px 10px;min-width:0;font-size:var(--device-label-size)}
+.speaker-transport .category-action>.icon{width:20px;height:20px;flex:none}

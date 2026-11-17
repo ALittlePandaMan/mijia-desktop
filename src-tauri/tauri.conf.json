@@ -1,0 +1,96 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "米家Desktop",
+  "version": "1.0.0",
+  "identifier": "io.mijiadesktop.client",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "visible": false,
+        "title": "米家Desktop",
+        "width": 1280,
+        "height": 720,
+        "minWidth": 480,
+        "minHeight": 420,
+        "decorations": false,
+        "resizable": true,
+        "maximizable": true,
+        "center": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; connect-src ipc: http://ipc.localhost; img-src 'self' data: https: http://*.fds.api.mi-img.com http://*.fds.api.xiaomi.com; media-src 'self' blob: https://cnbj2.fds.api.xiaomi.com; style-src 'self' 'unsafe-inline'; script-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "nsis"
+    ],
+    "shortDescription": "米家跨平台桌面客户端",
+    "category": "Utility",
+    "resources": {
+      "../licenses/": "licenses/",
+      "../LICENSE": "LICENSE",
+      "../README.md": "README.md",
+      "../CHANGELOG.md": "CHANGELOG.md",
+      "../docs/APP_UPDATES.md": "docs/APP_UPDATES.md",
+      "../docs/PLATFORMS.md": "docs/PLATFORMS.md",
+      "../docs/DESKTOP_WIDGETS.md": "docs/DESKTOP_WIDGETS.md",
+      "../docs/PERFORMANCE.md": "docs/PERFORMANCE.md",
+      "../docs/LOCAL_FIRST_CONTROLS.md": "docs/LOCAL_FIRST_CONTROLS.md",
+      "../docs/MCP.md": "docs/MCP.md",
+      "../docs/MCP_REFERENCE.md": "docs/MCP_REFERENCE.md",
+      "../docs/mcp-guide.json": "docs/mcp-guide.json",
+      "../docs/skills/device-collaboration/SKILL.md": "docs/skills/device-collaboration/SKILL.md",
+      "../docs/CLOUD_ASSISTANT.md": "docs/CLOUD_ASSISTANT.md",
+      "../docs/THIRD_PARTY_NOTICES.md": "docs/THIRD_PARTY_NOTICES.md",
+      "../docs/DEPENDENCY_LICENSES.md": "docs/DEPENDENCY_LICENSES.md"
+    },
+    "windows": {
+      "nsis": {
+        "languages": [
+          "SimpChinese",
+          "English"
+        ],
+        "displayLanguageSelector": true,
+        "installerIcon": "icons/mijia.ico",
+        "uninstallerIcon": "icons/mijia.ico",
+        "installMode": "currentUser"
+      }
+    },
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/mijia.ico"
+    ],
+    "macOS": {
+      "minimumSystemVersion": "12.0",
+      "signingIdentity": "-",
+      "entitlements": "Entitlements.plist",
+      "infoPlist": "Info.plist"
+    },
+    "createUpdaterArtifacts": true
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDdBQkI1RUJDMDAwQkFFQjUKUldTMXJnc0F2RjY3ZXRGSEpDMVV4dVlRRDRmNlhvR0w5SUdlOWhVWTJqT2I3cDdCN0NlcDBCV08K",
+      "endpoints": [
+        "https://github.com/ALittlePandaMan/mijia-desktop/releases/latest/download/latest.json"
+      ],
+      "windows": {
+        "installMode": "quiet"
+      },
+      "requireSignedVersion": true
+    }
+  }
+}

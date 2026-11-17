@@ -1,0 +1,40 @@
+import '../src/style.css';
+import '../src/theme.css';
+import '../src/ui/app-font.css';
+import '../src/ui/home-card.css';
+import '../src/ui/widget.css';
+import {deviceCardView} from '../src/ui/device-card-view';
+import {sizeDeviceGrid} from '../src/ui/device-grid';
+import {cardSizeMenu,cardMenuKeys} from '../src/ui/card-size-menu';
+import {PreferenceOperations,projectPreferences,type LocalPreferences,type PreferenceChange} from '../src/local-preferences';
+import {DeviceDrag} from '../src/ui/device-drag';
+import type {CardSize} from '../src/card-size';
+import type {Device,HomeCardEntry} from '../src/types';
+const style=document.createElement('style');style.textContent=`body{margin:0;background:#80b8d1;}#fixture{padding:24px}.device-grid{display:grid;grid-template-columns:repeat(var(--grid-columns,4),minmax(0,1fr));gap:12px;align-content:start}.device-card h3,.device-room{margin:0}.device-drag-ghost{position:fixed!important;z-index:100;pointer-events:none}.device-drag-slot{border:2px solid white;border-radius:20px;box-sizing:border-box}.device-card-open{font:inherit}.is-arranging .device-shortcut{visibility:hidden}`;document.head.append(style);
+const grid=document.querySelector<HTMLElement>('.device-grid')!;let sizes:Record<string,CardSize>={},order=['a','b','c','d','e','f'],arranging=true,opens=0,writes=0;
+let appOwner:Record<string,any>|undefined,savedPreferences:LocalPreferences|undefined,preferenceWrites:PreferenceChange[]=[];let saveDelay=0,failNextSave=false,renders=0;let locked=false,commits=0;const drag=new DeviceDrag({begin:()=>{if(locked)return false;arranging=true;document.querySelector('#fixture')!.classList.add('is-arranging');return true;},preview:ids=>{order=ids;commits++;},ended:()=>{},arranging:()=>arranging,order:()=>order});
+const nodes=new Map<string,HTMLElement>();
+for(const [index,did]of order.entries()){
+ const device:Device={did,name:['电视','IPTV机顶盒','净水器','路由器','客厅开关','客厅灯'][index],model:'mock.device',roomId:'mock-room',roomName:'模拟房间',online:true};
+ const art=document.createElement('span');art.className='device-artwork';const image=document.createElement('img');image.className='device-product-image';image.src='data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"><rect x="6" y="6" width="36" height="36" rx="5" fill="#bcc6cc"/></svg>');art.append(image);
+ const shortcut=index===2?undefined:{did,kind:'power',visible:true,enabled:true,selected:false}as HomeCardEntry;
+ const card=deviceCardView({device,shortcut,pending:false,artwork:art,caption:'模拟房间 · 关闭',selected:false,open:()=>{opens++;},activate:()=>{writes++;}});
+ card.addEventListener('contextmenu',event=>{event.preventDefault();if(appOwner){appOwner.openDeviceMenu(did,event.clientX,event.clientY);return;}document.querySelector('.device-context-menu')?.remove();const menu=document.createElement('div');menu.className='device-context-menu';menu.setAttribute('role','menu');const close=()=>menu.remove();menu.append(cardSizeMenu(card.dataset.cardSize as CardSize,size=>{close();sizes[did]=size;card.dataset.cardSize=size;sizeDeviceGrid(grid,order,true);}));menu.style.left=`${event.clientX}px`;menu.style.top=`${event.clientY}px`;cardMenuKeys(menu,close);document.querySelector('#app')!.append(menu);});drag.bind(card,did,false);grid.append(card);nodes.set(did,card);
+}
+sizeDeviceGrid(grid);
+const snapshot=()=>({renders,sizes:Object.fromEntries([...nodes].map(([id,c])=>[id,c.dataset.cardSize])),savedSizes:savedPreferences?.cardSizes??{},pending:appOwner?.preferences.pendingCount??0,error:appOwner?.preferences.error?.message,roomOrders:appOwner?.preferences.view.roomOrders??{},draft:!!appOwner?.arrangement,locked:appOwner?.preferences.view.dragLocked??locked,preferenceWrites,order,opens,writes,commits,dragging:drag.active,cards:[...nodes].map(([id,card])=>{const r=card.getBoundingClientRect();return{id,size:card.dataset.cardSize,x:r.x,y:r.y,width:r.width,height:r.height,font:parseFloat(getComputedStyle(card.querySelector('h3')!).fontSize),art:parseFloat(getComputedStyle(card.querySelector('.device-product-image')!).width),same:card===nodes.get(id)};})});
+async function useAppMenu(){
+ if(appOwner)return;
+ let callback=0;
+ // The default application instance waits at its mocked startup boundary.
+ // Every invoke remains local; this page cannot reach native commands/devices.
+ Object.assign(window,{isTauri:true,__TAURI_INTERNALS__:{metadata:{currentWindow:{label:'main'},currentWebview:{label:'main'}},transformCallback(){return ++callback;},invoke(){return new Promise(()=>{});}}});
+ const {App}=await import('../src/main');const owner=Object.create(App.prototype)as Record<string,any>;appOwner=owner;
+ const initial:LocalPreferences={cardSizes:{},hideOffline:false,dragLocked:false,splitSwitches:false,hiddenDeviceIds:[],homeHiddenDeviceIds:[],roomOrders:{}};
+ savedPreferences=initial;
+ const preferences=new PreferenceOperations(async change=>{preferenceWrites.push(change);const fail=failNextSave;failNextSave=false;await new Promise(resolve=>setTimeout(resolve,saveDelay));if(fail)throw{kind:'localPreferences',message:'模拟保存失败'};savedPreferences=projectPreferences(savedPreferences!,change);return savedPreferences;},change=>owner.preferenceChanged(change));preferences.reset(initial);
+ const inventory=[...nodes].map(([did,c])=>({did,name:c.querySelector('h3')!.textContent,model:'mock.device',online:true,roomName:'模拟房间',roomId:'mock-room'}));
+ Object.assign(owner,{root:document.querySelector('#app'),preferences,renderedHomeId:'mock-home',selectedHomeId:'mock-home',workPaused:false,snapshot:{homeId:'mock-home',generation:1,devices:inventory},roomId:'*',drag,sceneDrag:{active:false,settleLanding:()=>true,cancel(){}},widgetSupport:{supported:true,enabledDisplays:1,pins:[]},filteredDevices:()=>inventory,currentHome:()=>({rooms:[]}),visibleSceneTasks:()=>[],render(){renders++;const display=owner.arrangement?.sizes??owner.preferences.view.cardSizes??{};for(const [id,card]of nodes)card.dataset.cardSize=display[id]??'medium';arranging=!!owner.arrangement;document.querySelector('#fixture')!.classList.toggle('is-arranging',arranging);sizeDeviceGrid(grid,order);}});
+ document.querySelector('.desktop-titlebar')?.remove();
+}
+Object.assign(window,{cardFixture:{snapshot,useAppMenu,setSaveDelay(ms:number){saveDelay=ms;},failNextSave(){failNextSave=true;},beginArrange(id:string){return appOwner?.beginArrangement(id);},previewOrder(ids:string[]){if(appOwner?.arrangement){appOwner.arrangement.order=ids;sizeDeviceGrid(grid,ids);}},finish(save:boolean){appOwner?.finishArrangement(save);},setLocked(value:boolean){locked=value;if(appOwner){savedPreferences={...appOwner.preferences.view,dragLocked:value};appOwner.preferences.reset(savedPreferences);}},reset(){drag.cancel();if(appOwner){appOwner.closeDeviceMenu();appOwner.arrangement=undefined;savedPreferences={...appOwner.preferences.view,cardSizes:{},roomOrders:{}};appOwner.preferences.reset(savedPreferences);}preferenceWrites=[];document.querySelector('.home-arrange-toolbar')?.remove();locked=false;order=['a','b','c','d','e','f'];sizes={};opens=0;writes=0;commits=0;for(const card of nodes.values())card.dataset.cardSize='medium';sizeDeviceGrid(grid,order);},setEdit(value:boolean){arranging=value;document.querySelector('#fixture')!.classList.toggle('is-arranging',value);},setSelected(id:string,value:boolean){nodes.get(id)!.classList.toggle('arrange-selected',value);},setDesktop(value:boolean){document.querySelector('#fixture')!.classList.toggle('home-screen',!value);document.documentElement.classList.toggle('desktop-widget-document',value);},cancel(){drag.cancel();appOwner?.finishArrangement(false);},setSize(id:string,size:CardSize,animate=false){sizes[id]=size;nodes.get(id)!.dataset.cardSize=size;sizeDeviceGrid(grid,order,animate);},identity:[...nodes.values()].map(c=>({card:c,image:c.querySelector('img'),button:c.querySelector('.device-shortcut')})),stable(){return this.identity.every(n=>n.card.isConnected&&n.image===n.card.querySelector('img')&&n.button===n.card.querySelector('.device-shortcut'));}}});

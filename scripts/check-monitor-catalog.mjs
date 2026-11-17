@@ -1,0 +1,3 @@
+import fs from 'node:fs/promises';import path from 'node:path';import{connect,pages,until}from'./perf/cdp.mjs';
+const out=process.argv[2]??'.cache/monitor-catalog-browser.json',client=await connect((await pages(9444))[0]);
+try{await client.call('Page.enable');await client.call('Emulation.setFocusEmulationEnabled',{enabled:true});await client.call('Page.navigate',{url:'http://127.0.0.1:1421/scripts/monitor-catalog-fixture.html'});await until(client,'typeof runMonitorChecks==="function"',600);const report=await client.evaluate('runMonitorChecks()');await fs.mkdir(path.dirname(path.resolve(out)),{recursive:true});await fs.writeFile(out,JSON.stringify(report,null,2));console.log(JSON.stringify(report));if(!report.complete)process.exitCode=1;}finally{client.close();}

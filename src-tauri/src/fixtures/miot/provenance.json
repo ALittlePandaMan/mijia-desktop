@@ -1,0 +1,50 @@
+{
+  "records": [
+    {
+      "actions": 0,
+      "category": "air-purifier",
+      "model": "1245.airpurifier.dl01",
+      "notInAccessibleHomes": true,
+      "physicalDeviceVerified": false,
+      "properties": 8,
+      "sha256": "55fd0e756825dc2ba2b8d08709cd28415413a90f3f8a4d02244dfc86aafcb94d",
+      "type": "urn:miot-spec-v2:device:air-purifier:0000A007:1245-dl01:1",
+      "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Aair-purifier%3A0000A007%3A1245-dl01%3A1"
+    },
+    {
+      "actions": 0,
+      "category": "humidifier",
+      "model": "als1.humidifier.js03",
+      "notInAccessibleHomes": true,
+      "physicalDeviceVerified": false,
+      "properties": 18,
+      "sha256": "adea22b161293a9a6720708444aa107f1b518be4b8a1dbe340c67af574c993c6",
+      "type": "urn:miot-spec-v2:device:humidifier:0000A00E:als1-js03:1",
+      "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Ahumidifier%3A0000A00E%3Aals1-js03%3A1"
+    },
+    {
+      "actions": 3,
+      "category": "water-purifier",
+      "model": "bj352.waterpuri.k10",
+      "notInAccessibleHomes": true,
+      "physicalDeviceVerified": false,
+      "properties": 17,
+      "sha256": "99b8f6bc0ae0f6862578b8d49442b5c7d946f9deca89a540a16406343f6372dc",
+      "type": "urn:miot-spec-v2:device:water-purifier:0000A013:bj352-k10:1",
+      "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Awater-purifier%3A0000A013%3Abj352-k10%3A1"
+    },
+    {
+      "actions": 3,
+      "category": "vacuum",
+      "model": "360sdj.vacuum.s",
+      "notInAccessibleHomes": true,
+      "physicalDeviceVerified": false,
+      "properties": 7,
+      "sha256": "e714a67054f895139ada7a4b3e29898d9023b87d3ac4790fa072bbd73dbc56cc",
+      "type": "urn:miot-spec-v2:device:vacuum:0000A006:360sdj-s:1",
+      "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Avacuum%3A0000A006%3A360sdj-s%3A1"
+    }
+  ],
+  "retrievedAt": "2026-10-26T16:56:13.500728+00:00",
+  "scope": "public-model-and-protocol-fixtures-no-physical-control"
+}
