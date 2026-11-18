@@ -10,10 +10,14 @@ const listed = args => execFileSync('git', ['ls-files', '-z', ...args], {encodin
 const deleted = new Set(listed(['--deleted']));
 const names = [...new Set([...listed(['--cached']), ...listed(['--others', '--exclude-standard'])])].filter(name=>!deleted.has(name));
 const fail = (name, reason) => errors.push(`${name}: ${reason}`);
+const websiteSnapshot = path.join(root, 'website', 'demo', 'desktop');
 const resolveReference = (name, reference) => {
   const clean = reference.split(/[?#]/)[0];
   if (!clean.startsWith('.')) return;
-  const base = path.resolve(path.dirname(name), clean);
+  let base = path.resolve(path.dirname(name), clean);
+  // The website builds this snapshot from project sources. Validate imports
+  // against their originals even in a checkout that has yet to build the site.
+  if (base.startsWith(websiteSnapshot + path.sep)) base = path.join(root, path.relative(websiteSnapshot, base));
   if (!['', '.ts', '.tsx', '.js', '.mjs', '.json', '.css', '/index.ts'].some(ext => fs.existsSync(base + ext))) fail(name, `missing reference ${clean}`);
 };
 for (const name of names) {
