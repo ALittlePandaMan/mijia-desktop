@@ -14,12 +14,21 @@ interface DragState {
   card: HTMLElement; grid: HTMLElement; id: string; pointer: number;
   startX: number; startY: number; x: number; y: number; offsetX: number; offsetY: number;
   started: boolean; movedEarly: boolean; timer?: ReturnType<typeof setTimeout>;
+  moved?: boolean;
   ghost?: HTMLElement; slot?: HTMLElement; styles?: Record<string, string>; raise?: Animation; frame?: number; original: string[];
   slots: DOMRect[]; scrollTop: number; viewport?: HTMLElement;
   hitX?:number;hitY?:number;hitScroll?:number;
   baseRects?:Map<string,DOMRect>;baseGrid?:DOMRect;sizes?:Record<string,CardSize>;columns?:number;candidate?:string[];candidateKey?:string;preview?:HTMLElement;liftRect?:DOMRect;ghostWidth?:number;ghostHeight?:number;
 }
-interface DragCallbacks { begin: (id: string) => boolean; preview: (ids: string[]) => void; ended: () => void; arranging?: () => boolean; order?:()=>readonly string[] }
+interface DragCallbacks {
+  begin: (id: string) => boolean;
+  preview: (ids: string[]) => void;
+  ended: () => void;
+  arranging?: () => boolean;
+  order?: () => readonly string[];
+  requireHold?: boolean;
+  heldTouch?: (id: string, x: number, y: number) => void;
+}
 function visualCards(grid: HTMLElement, selector: string): HTMLElement[] {
   return [...grid.querySelectorAll<HTMLElement>(`:scope > ${selector}`)].sort((a, b) => Number(a.dataset.visualOrder ?? a.style.order ?? 0) - Number(b.dataset.visualOrder ?? b.style.order ?? 0));
 }
@@ -31,6 +40,7 @@ export class DeviceDrag {
   private cards(grid:HTMLElement):HTMLElement[]{return visualCards(grid,this.surface.card);}
   private id(card:HTMLElement):string{return card.dataset[this.surface.id]!;}
   get active(): boolean { return !!this.state?.started || !!this.landing; }
+  get dragging(): boolean { return !!this.state?.started; }
   /** A released pointer must not block a new action while the card lands. */
   settleLanding(): boolean {
     if (this.state) return false;
@@ -81,9 +91,12 @@ export class DeviceDrag {
     card.addEventListener('pointermove', event => {
       const state = this.state; if (!state || state.card !== card || state.pointer !== event.pointerId) return;
       state.x = event.clientX; state.y = event.clientY;
+      if (Math.hypot(state.x-state.startX,state.y-state.startY)>=DRAG_START_DIP) state.moved = true;
       if (!state.started) {
-        if (Math.hypot(state.x-state.startX,state.y-state.startY)<DRAG_START_DIP)return;
-        if(event.pointerType==='touch'&&!this.callbacks.arranging?.()){clearTimeout(state.timer);state.movedEarly=true;return;}
+        if (!state.moved) return;
+        if (this.callbacks.requireHold || event.pointerType==='touch'&&!this.callbacks.arranging?.()) {
+          clearTimeout(state.timer); state.movedEarly = true; return;
+        }
         this.start(state);
         if (!state.started) return;
       }
@@ -185,7 +198,15 @@ export class DeviceDrag {
   }
   private end(event: PointerEvent, card: HTMLElement, commit: boolean): void {
     const state = this.state; if (!state || state.card !== card || state.pointer !== event.pointerId) return;
-    if(commit){state.x=event.clientX;state.y=event.clientY;if(!state.started&&!state.movedEarly&&Math.hypot(state.x-state.startX,state.y-state.startY)>=DRAG_START_DIP&&event.pointerType!=='touch')this.start(state);if(state.started)this.position(state);}
+    if (commit) {
+      state.x=event.clientX; state.y=event.clientY;
+      if (Math.hypot(state.x-state.startX,state.y-state.startY)>=DRAG_START_DIP) state.moved = true;
+      if (!state.started && !state.movedEarly && state.moved) {
+        if (this.callbacks.requireHold) state.movedEarly = true;
+        else if (event.pointerType!=='touch') this.start(state);
+      }
+      if (state.started) this.position(state);
+    }
     this.state = undefined; clearTimeout(state.timer); if (state.frame !== undefined) cancelAnimationFrame(state.frame);
     if (card.hasPointerCapture(state.pointer)) card.releasePointerCapture(state.pointer);
     if (state.started || state.movedEarly) {
@@ -196,12 +217,14 @@ export class DeviceDrag {
     delete card.dataset.interacting;
     if (!state.started || !state.ghost) { this.settleLanding();document.body.classList.remove('device-drag-active'); this.callbacks.ended(); return; }
     const final=commit&&state.candidate?state.candidate:state.original;this.order(state.grid,final,true);if(commit&&state.candidate)this.callbacks.preview([...state.candidate]);state.preview?.remove();
+    const heldTouch = commit && event.pointerType === 'touch' && !state.moved;
     const ghost = state.ghost, bounds = state.slot!.getBoundingClientRect(), transform = getComputedStyle(ghost).transform, landing = { state, animation: undefined as Animation | undefined };
     state.raise?.cancel();
     this.landing = landing;
     const cleanup = (): void => {
       if (this.landing !== landing) return;
       this.landing = undefined; landing.animation?.cancel(); this.clearFloating(state); document.body.classList.remove('device-drag-active'); this.callbacks.ended();
+      if (heldTouch) this.callbacks.heldTouch?.(state.id, state.x, state.y);
     };
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) { cleanup(); return; }
     landing.animation = ghost.animate([{ left: ghost.style.left, top: ghost.style.top, transform }, { left: `${bounds.x}px`, top: `${bounds.y}px`, transform: 'scale(1)' }], { duration: 160, easing: 'cubic-bezier(.2,0,0,1)', fill: 'forwards' });

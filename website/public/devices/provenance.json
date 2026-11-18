@@ -1,0 +1,126 @@
+{
+  "source": "Mi Home device-card images and user-requested AC product icons",
+  "policy": "Original public Xiaomi CDN images. Other device-card icons were selected from desktop; bedroom and living-room AC icons use the requested wall-mounted Pro and floor-standing 3 HP products. Downloads require no login. Only public model identifiers and image paths are retained. No home/device IDs, state, account information or signed queries. Original brand rights apply.",
+  "assets": [
+    {
+      "id": "switch",
+      "model": "linp.switch.e2db3",
+      "name": "领普智能屏显开关（零火MESH三键）",
+      "file": "switch.png",
+      "source": "https://home.mi.com/cgi-op/api/v1/baike/v2/product?model=linp.switch.e2db3",
+      "assetSource": "https://cnbj1.fds.api.xiaomi.com/iotweb-product-center/15864.png",
+      "sha256": "71ed4ad3f2569dbfcb4c4f7505b04a133bc6d2462feba6adf523c55354b8e31a",
+      "bytes": 6016,
+      "width": 168,
+      "height": 168
+    },
+    {
+      "id": "curtain",
+      "model": "xiaomi.curtain.acn009",
+      "name": "米家智能窗帘 伸缩轨道版",
+      "file": "curtain.png",
+      "source": "https://home.mi.com/cgi-op/api/v1/baike/v2/product?model=xiaomi.curtain.acn009",
+      "assetSource": "https://cnbj1.fds.api.xiaomi.com/iotweb-product-center/14195.png",
+      "sha256": "76fa2ad267e53eef20c0727213a8e5309860dbac6e2c822aedb6c25ebff08adc",
+      "bytes": 4286,
+      "width": 168,
+      "height": 168
+    },
+    {
+      "id": "fan",
+      "model": "dmaker.fan.p28",
+      "name": "米家智能直流变频循环扇 落地式",
+      "file": "fan.png",
+      "source": "https://home.mi.com/cgi-op/api/v1/baike/v2/product?model=dmaker.fan.p28",
+      "assetSource": "https://cnbj1.fds.api.xiaomi.com/iotweb-product-center/7212.png",
+      "sha256": "98980785793d18862f961eec8b127dd74a1ad1effd4dc6371d42c56d8f84a53a",
+      "bytes": 35640,
+      "width": 168,
+      "height": 168
+    },
+    {
+      "id": "ac",
+      "model": "xiaomi.airc.h55h00",
+      "name": "空调 巨省电Pro 大1.5匹 超一级能效",
+      "file": "ac.png",
+      "source": "https://home.mi.com/cgi-op/api/v1/baike/v2/product?model=xiaomi.airc.h55h00",
+      "assetSource": "https://cdn.cnbj1.fds.api.mi-img.com/iotweb-product-center/1881b640ec261c08689f5262b4c86678_1766064298600.png",
+      "sha256": "294a84b63075c64ab3ba45bed0cd6db7fa8ca15f05d68ceee23b570c7ed0caa6",
+      "bytes": 10899,
+      "width": 480,
+      "height": 480
+    },
+    {
+      "id": "ac-standing",
+      "model": "xiaomi.airc.frlysj",
+      "name": "空调 巨省电Pro 柔风版 立式大3匹 超一级能效",
+      "file": "ac-standing.png",
+      "source": "https://home.mi.com/cgi-op/api/v1/baike/v2/product?model=xiaomi.airc.frlysj",
+      "assetSource": "https://cdn.cnbj1.fds.api.mi-img.com/iotweb-product-center/6364de64ee8704869f3f0d7e8fb4ecaa_1773974701631.png",
+      "sha256": "c99616740002262dab6f5f4c6960aa13ebfa9bd6c4ff698119e9b4083e0f287f",
+      "bytes": 24900,
+      "width": 480,
+      "height": 480
+    },
+    {
+      "id": "tv",
+      "model": "xiaomi.tv.mih1",
+      "name": "小米电视",
+      "file": "tv.png",
+      "source": "https://home.mi.com/cgi-op/api/v1/baike/v2/product?model=xiaomi.tv.mih1",
+      "assetSource": "https://cnbj1.fds.api.xiaomi.com/iotweb-product-center/3847.png",
+      "sha256": "7651a41b3a4808e1a38e18aeb93c9b6fa7829173cfa8e196a45edbe2e853e5b5",
+      "bytes": 29303,
+      "width": 168,
+      "height": 168
+    },
+    {
+      "id": "thermo",
+      "model": "miaomiaoce.sensor_ht.t2",
+      "name": "小米米家蓝牙温湿度计2",
+      "file": "thermo.png",
+      "source": "https://home.mi.com/cgi-op/api/v1/baike/v2/product?model=miaomiaoce.sensor_ht.t2",
+      "assetSource": "https://cnbj1.fds.api.xiaomi.com/iotweb-product-center/1371.png",
+      "sha256": "a9c7ac43e1029049a6d51f9ad55e60dd201bdffbffa08b6c166fb0dfa6288c57",
+      "bytes": 8810,
+      "width": 168,
+      "height": 168
+    },
+    {
+      "id": "light",
+      "model": "yeelink.light.light3",
+      "name": "米家LED筒灯 蓝牙MESH版",
+      "file": "light.png",
+      "source": "https://home.mi.com/cgi-op/api/v1/baike/v2/product?model=yeelink.light.light3",
+      "assetSource": "https://cnbj1.fds.api.xiaomi.com/iotweb-product-center/1772.png",
+      "sha256": "00ee2d392965f3bb96168339ba99bbc0f4b2dfae6048ae7a04bb87c376f55c72",
+      "bytes": 9950,
+      "width": 168,
+      "height": 168
+    },
+    {
+      "id": "airer",
+      "model": "hyd.airer.1s",
+      "name": "米家智能晾衣机 1S",
+      "file": "airer.png",
+      "source": "https://home.mi.com/cgi-op/api/v1/baike/v2/product?model=hyd.airer.1s",
+      "assetSource": "https://cnbj1.fds.api.xiaomi.com/iotweb-product-center/11326.png",
+      "sha256": "a2754757cf881d59d4c14713bcd529eb6beca6bd9e0276cb5b2e1e7b9356f3f6",
+      "bytes": 14578,
+      "width": 168,
+      "height": 168
+    },
+    {
+      "id": "washer",
+      "model": "midjd8.washer.42",
+      "name": "米家洗衣机 超净洗Pro 洗烘12kg",
+      "file": "washer.png",
+      "source": "https://home.mi.com/cgi-op/api/v1/baike/v2/product?model=midjd8.washer.42",
+      "assetSource": "https://cnbj1.fds.api.xiaomi.com/iotweb-product-center/16065.png",
+      "sha256": "10d275d478d03f73c2afff10729b04022360ac5cebfb64b2c21795c334425af6",
+      "bytes": 17209,
+      "width": 168,
+      "height": 168
+    }
+  ]
+}

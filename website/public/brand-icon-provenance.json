@@ -1,0 +1,42 @@
+{
+  "repository": "https://github.com/ALittlePandaMan/mijia-desktop",
+  "color": "#3A83F7",
+  "rgb": [
+    58,
+    131,
+    247
+  ],
+  "master": {
+    "path": "src/assets/brand/app-icon-blue.svg",
+    "sha256": "641385491625a363b7b422a8b7c0a787e5ae745aa30bfe81e7dbe794c7c16376",
+    "width": 512,
+    "height": 512
+  },
+  "source": {
+    "description": "Original application mark embedded without changing its bytes",
+    "sha256": "7f320fd5d9080a94a0f56b62049dc18bae59dc8a1c29c762d9e4ba33fa44fe10"
+  },
+  "files": [
+    {
+      "path": "/app-icon-blue.svg",
+      "sha256": "641385491625a363b7b422a8b7c0a787e5ae745aa30bfe81e7dbe794c7c16376",
+      "bytes": 195466,
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "/favicon.svg",
+      "sha256": "641385491625a363b7b422a8b7c0a787e5ae745aa30bfe81e7dbe794c7c16376",
+      "bytes": 195466,
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "/app-icon.png",
+      "sha256": "f356d5a5dcafd1527b31b48af5999ebecff31bf176bbff24bca455a1c0d8e846",
+      "bytes": 8024,
+      "width": 128,
+      "height": 128
+    }
+  ]
+}

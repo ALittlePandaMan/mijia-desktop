@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 3,
+  "sourceKind": "user-camera-snapshot",
+  "generatedAt": "2026-11-09T14:03:20.919Z",
+  "usage": "Static still images for the public Mi Home Desktop project website.",
+  "authorization": {
+    "basis": "The owner confirmed these four JPEGs may be used on the public project website.",
+    "scope": "Static display on GitHub Pages and storage in the project repository.",
+    "license": "Demo image use only; the project software license is separate."
+  },
+  "preparation": {
+    "output": "public/demo-media",
+    "outputs": "Four static JPEG images only",
+    "decoder": "Locally available FFmpeg software decoder, isolated from desktop application"
+  },
+  "totalImageBytes": 597342,
+  "images": [
+    {
+      "id": "factory-one",
+      "title": "一楼室内",
+      "source": {
+        "kind": "user-camera-snapshot",
+        "capturedAt": "2026-11-09T14:02:30.538582600+00:00",
+        "codec": "hevc"
+      },
+      "processing": {
+        "outputKind": "static-image",
+        "method": "One current keyframe decoded locally in an isolated software decoder; no continuous recording or audio file.",
+        "imageEncoder": "mjpeg",
+        "imageQuality": 3,
+        "scale": "Preserve aspect ratio; maximum width 1920 pixels; even height",
+        "metadata": "Source metadata removed"
+      },
+      "image": {
+        "path": "/demo-media/factory-one.jpg",
+        "format": "JPEG",
+        "width": 1920,
+        "height": 1080,
+        "bytes": 232288,
+        "sha256": "211b1f8da77c5c0f74f3d0e3834656d8190fbcab7ba8f596cef3c0d87ca62a04"
+      }
+    },
+    {
+      "id": "factory-two",
+      "title": "室外",
+      "source": {
+        "kind": "user-camera-snapshot",
+        "capturedAt": "2026-11-09T14:02:32.187164300+00:00",
+        "codec": "hevc"
+      },
+      "processing": {
+        "outputKind": "static-image",
+        "method": "One current keyframe decoded locally in an isolated software decoder; no continuous recording or audio file.",
+        "imageEncoder": "mjpeg",
+        "imageQuality": 3,
+        "scale": "Preserve aspect ratio; maximum width 1920 pixels; even height",
+        "metadata": "Source metadata removed"
+      },
+      "image": {
+        "path": "/demo-media/factory-two.jpg",
+        "format": "JPEG",
+        "width": 1920,
+        "height": 1080,
+        "bytes": 100825,
+        "sha256": "2a46e73b56fe8d238993132e5193d89c6513803f3874155d07323961b16e1010"
+      }
+    },
+    {
+      "id": "factory-three",
+      "title": "二楼室外",
+      "source": {
+        "kind": "user-camera-snapshot",
+        "capturedAt": "2026-11-09T14:02:34.755733500+00:00",
+        "codec": "hevc"
+      },
+      "processing": {
+        "outputKind": "static-image",
+        "method": "One current keyframe decoded locally in an isolated software decoder; no continuous recording or audio file.",
+        "imageEncoder": "mjpeg",
+        "imageQuality": 3,
+        "scale": "Preserve aspect ratio; maximum width 1920 pixels; even height",
+        "metadata": "Source metadata removed"
+      },
+      "image": {
+        "path": "/demo-media/factory-three.jpg",
+        "format": "JPEG",
+        "width": 1920,
+        "height": 1080,
+        "bytes": 102760,
+        "sha256": "72ba7a8118a767d8262c3c8756cb5b4a1350e48dd1d55514de21223145eef506"
+      }
+    },
+    {
+      "id": "factory-four",
+      "title": "二楼室内",
+      "source": {
+        "kind": "user-camera-snapshot",
+        "capturedAt": "2026-11-09T14:02:36.253026500+00:00",
+        "codec": "hevc"
+      },
+      "processing": {
+        "outputKind": "static-image",
+        "method": "One current keyframe decoded locally in an isolated software decoder; no continuous recording or audio file.",
+        "imageEncoder": "mjpeg",
+        "imageQuality": 3,
+        "scale": "Preserve aspect ratio; maximum width 1920 pixels; even height",
+        "metadata": "Source metadata removed"
+      },
+      "image": {
+        "path": "/demo-media/factory-four.jpg",
+        "format": "JPEG",
+        "width": 1920,
+        "height": 1080,
+        "bytes": 161469,
+        "sha256": "6159c3d6e32ea1d6a845161471191ffd599c2275491b1773936e793148825875"
+      }
+    }
+  ]
+}

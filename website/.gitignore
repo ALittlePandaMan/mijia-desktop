@@ -1,0 +1,6 @@
+/.next/
+/out/
+/next-env.d.ts
+/demo/desktop/
+/public/demo/
+*.tsbuildinfo

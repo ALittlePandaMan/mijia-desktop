@@ -2,6 +2,8 @@
 
 <p align="center">米家设备管理、桌面卡片与摄像机监控的 Windows 客户端</p>
 
+<p align="center"><a href="https://alittlepandaman.github.io/mijia-desktop/">项目网站与交互演示</a></p>
+
 <p align="center">
   <a href="https://github.com/ALittlePandaMan/mijia-desktop/actions/workflows/ci.yml"><img src="https://github.com/ALittlePandaMan/mijia-desktop/actions/workflows/ci.yml/badge.svg" alt="构建状态"></a>
   <a href="https://github.com/ALittlePandaMan/mijia-desktop/releases/latest"><img src="https://img.shields.io/github/v/release/ALittlePandaMan/mijia-desktop?label=version&amp;color=blue" alt="最新版本"></a>

@@ -9,4 +9,6 @@
 *.crate binary
 # Preserve upstream license bytes, including their original whitespace.
 licenses/** -text -whitespace
+website/public/licenses/*.txt -text -whitespace
+website/public/fonts/LICENSE.zh-CN.txt -text -whitespace
 src/assets/** -text
