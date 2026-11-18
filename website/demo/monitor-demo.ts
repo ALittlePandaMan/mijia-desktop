@@ -18,7 +18,8 @@ export class DemoMonitor {
    const tile=element('section','monitor-tile');tile.tabIndex=0;tile.setAttribute('aria-label',names[index]+'图片，按 Enter 打开设备详情');this.canvases[index].setAttribute('aria-label',names[index]+'实景图片');
    const quality=button('流畅','monitor-tile-button monitor-quality-button',()=>this.toggleQuality(index));quality.setAttribute('aria-label','切换画质');quality.setAttribute('aria-haspopup','menu');quality.setAttribute('aria-expanded','false');
    const shot=monitorTool('截图','snapshot',()=>{void this.snapshot(index);}),tools=element('div','monitor-tile-tools camera-toolbar-motion',monitorTool('画面全屏','fullscreen',()=>{void this.fullscreen(tile);}),shot,this.recordButton(),this.audioButton('声音','muted'),this.audioButton('对讲','microphone'),quality),menu=element('div','monitor-quality-menu');tools.setAttribute('role','toolbar');tools.setAttribute('aria-label','摄像头工具');menu.hidden=true;menu.setAttribute('role','menu');menu.setAttribute('aria-label','画面质量');
-   tile.append(this.canvases[index],element('span','monitor-name',names[index]),tools,menu);
+   const footer=element('div','monitor-tile-footer',element('span','monitor-name',names[index]),tools);
+   tile.append(this.canvases[index],footer,menu);
    tile.addEventListener('keydown',event=>{if(event.key==='Enter'&&event.target===tile){event.preventDefault();this.open(index,tile);}});
    tile.addEventListener('pointerleave',()=>{if(!menu.contains(document.activeElement))this.hideQuality(index);});tile.addEventListener('focusout',event=>{if(!tile.contains(event.relatedTarget as Node|null))this.hideQuality(index);});
    this.tiles.push(tile);this.menus.push(menu);this.qualityButtons.push(quality);this.shots.push(shot);this.grid.append(tile);
