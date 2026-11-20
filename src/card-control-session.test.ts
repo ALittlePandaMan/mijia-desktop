@@ -1,0 +1,77 @@
+import {describe,it,expect,vi} from 'vitest';
+import {CardControlSession} from './card-control-session';
+import type {CardControlChange,CardControlResult,HomeCardPresentation,Json} from './types';
+const ticks=async()=>{for(let i=0;i<30;i++)await Promise.resolve();};
+const presentation=(revision=1,value:Json=40,kind:'slider'|'action'='slider'):HomeCardPresentation=>({did:'d',templateId:'template',revision,headerControl:null,rows:[['c']],controls:[{id:'c',kind,label:kind==='action'?'开始清扫':'亮度',value,enabled:true,reason:null,options:[],range:kind==='slider'?{min:1,max:100,step:1,unit:'%'}:null}]});
+const result=(change:CardControlChange,p:HomeCardPresentation,verified=true):CardControlResult=>({homeId:'h',did:'d',controlId:change.controlId,requestId:change.requestId,verified,actual:verified?change.value:null,message:verified?'confirmed':'pending',presentation:p,card:null,status:null});
+describe('template card control queues',()=>{
+ it('shows shared sensor values, expires a failed read, and drops it immediately when offline',async()=>{
+  vi.useFakeTimers();
+  const send=vi.fn(),session=new CardControlSession(send,()=>{});
+  const frame=(revision:number,value:number|null,blocked=false)=>{
+   const p=presentation(revision,value);p.observedAt=Date.now();
+   Object.assign(p.controls[0],{kind:'reading',state:value===null?null:`${value}°C`,readBlocked:blocked,enabled:false,fieldId:'2:1'});return p;
+  };
+  try{
+   session.setAccess(false,true);session.accept(frame(1,24));session.write('c',25);expect(send).not.toHaveBeenCalled();
+   session.accept(frame(2,null));expect(session.presentation?.controls[0]).toMatchObject({value:24,state:'24°C',enabled:false});
+   await vi.advanceTimersByTimeAsync(30001);expect(session.presentation?.controls[0]).toMatchObject({value:null,state:null});
+   session.accept(frame(3,23));session.accept(frame(4,null,true));expect(session.presentation?.controls[0].state).toBeNull();
+   session.accept(frame(5,22));session.setAccess(false,false);expect(session.presentation?.controls[0]).toMatchObject({value:null,state:null});
+  }finally{session.dispose();vi.useRealTimers();}
+ });
+ it('keeps the newest numeric target while older acknowledgements arrive',async()=>{
+  const sent:{change:CardControlChange;resolve:(r:CardControlResult)=>void}[]=[];
+  const session=new CardControlSession(c=>new Promise(resolve=>sent.push({change:c,resolve})),()=>{});session.accept(presentation());session.write('c',60);session.write('c',85);
+  expect(sent).toHaveLength(1);expect(session.presentation?.controls[0].value).toBe(85);
+  sent[0].resolve(result(sent[0].change,presentation(2,60)));await ticks();expect(sent).toHaveLength(2);expect(sent[1].change.value).toBe(85);expect(sent[1].change.requestId).not.toBe(sent[0].change.requestId);expect(session.presentation?.controls[0].value).toBe(85);
+  sent[1].resolve(result(sent[1].change,presentation(3,85)));await ticks();expect(session.pendingCount).toBe(0);expect(session.presentation?.controls[0].value).toBe(85);session.dispose();
+ });
+ it('rejects stale snapshots and resets pending work on template changes',async()=>{
+  let finish!:(r:CardControlResult)=>void;let sent!:CardControlChange;
+  const session=new CardControlSession(c=>{sent=c;return new Promise(resolve=>finish=resolve);},()=>{});session.accept(presentation(4,55));expect(session.accept(presentation(3,1))).toBe(false);session.write('c',80);
+  session.accept({...presentation(5,25),templateId:'replacement'});finish(result(sent,presentation(6,80)));await ticks();expect(session.presentation?.templateId).toBe('replacement');expect(session.presentation?.controls[0].value).toBe(25);expect(session.pendingCount).toBe(0);session.dispose();
+ });
+ it('does not send disabled, invisible or stale control identities',()=>{
+  const send=vi.fn();const session=new CardControlSession(send,()=>{});const p=presentation();p.controls[0].enabled=false;session.accept(p);session.write('c',50);session.write('missing',50);expect(send).not.toHaveBeenCalled();session.accept(presentation(2));session.setActive(false);session.write('c',50);expect(send).not.toHaveBeenCalled();session.dispose();
+ });
+ it('sends an action once and only queries to confirm an uncertain result',async()=>{
+  vi.useFakeTimers();try{
+   const calls:CardControlChange[]=[];const session=new CardControlSession(async c=>{calls.push(c);return result(c,presentation(c.confirmOnly?3:2,c.confirmOnly?'vacuum:pause-sweeping':'vacuum:start-sweep','action'),!!c.confirmOnly);},()=>{});
+   session.accept(presentation(1,'vacuum:start-sweep','action'));session.write('c','vacuum:start-sweep');session.write('c','vacuum:start-sweep');await ticks();expect(calls).toHaveLength(1);expect(session.pendingCount).toBe(1);await vi.advanceTimersByTimeAsync(1001);await ticks();expect(calls.filter(c=>!c.confirmOnly)).toHaveLength(1);expect(calls[1].confirmOnly).toBe(true);expect(calls[1].requestId).toBe(calls[0].requestId);expect(session.pendingCount).toBe(0);expect(session.presentation?.controls[0].value).toBe('vacuum:pause-sweeping');session.dispose();
+  }finally{vi.useRealTimers();}
+ });
+ it('pauses readback in the background without resubmitting the command',async()=>{
+  vi.useFakeTimers();try{const send=vi.fn(async(c:CardControlChange)=>result(c,presentation(2,40),false));const session=new CardControlSession(send,()=>{});session.accept(presentation());session.write('c',70);await ticks();session.setActive(false);await vi.advanceTimersByTimeAsync(20000);expect(send.mock.calls.filter(([c])=>!c.confirmOnly)).toHaveLength(1);session.setActive(true);await vi.advanceTimersByTimeAsync(1001);expect(send.mock.calls.filter(([c])=>!c.confirmOnly)).toHaveLength(1);session.dispose();}finally{vi.useRealTimers();}
+ });
+ it('retains a missing reading for display only without settling a pending operation',async()=>{
+  vi.useFakeTimers();try{
+   const send=vi.fn(async(c:CardControlChange)=>{if(c.confirmOnly)throw {kind:'readbackFailed'};return {...result(c,presentation(),false),submitted:true,presentation:null};});
+   const session=new CardControlSession(send,()=>{}),p=presentation();
+   session.accept(p);session.write('c',70);await ticks();session.unavailable();
+   expect(session.pendingCount).toBe(1);expect(session.presentation?.controls[0]).toMatchObject({enabled:false,value:70});
+   await vi.advanceTimersByTimeAsync(1001);
+   expect(session.pendingCount).toBe(0);expect(session.presentation?.controls[0]).toMatchObject({enabled:false,value:40});
+   await vi.advanceTimersByTimeAsync(29000);expect(session.presentation?.controls[0]).toMatchObject({enabled:false,value:null});
+   session.accept(presentation(2,45));expect(session.presentation?.controls[0]).toMatchObject({enabled:true,value:45});
+   expect(send.mock.calls.filter(([c])=>!c.confirmOnly)).toHaveLength(1);session.dispose();
+  }finally{vi.useRealTimers();}
+ });
+ it('does not settle from passive values and accepts only current target readback patches',async()=>{
+  vi.useFakeTimers();try{
+   const send=vi.fn(async(c:CardControlChange)=>c.confirmOnly?{...result(c,presentation()),presentation:null,confirmation:{templateId:'template',revision:4,observedAt:Date.now(),reading:70,control:{...presentation(4,70).controls[0],fieldId:'2:1'}}}:{...result(c,presentation(),false),submitted:true,presentation:null});
+   const session=new CardControlSession(send,()=>{});session.accept(presentation());session.write('c',70);await ticks();
+   session.accept(presentation(2,70));expect(session.pendingCount).toBe(1);
+   await vi.advanceTimersByTimeAsync(1001);expect(session.pendingCount).toBe(0);
+   session.accept(presentation(3,30));expect(session.presentation?.controls[0].value).toBe(70);expect(session.confirmedCaption(3)[0].value).toBe(70);
+   session.setAccess(false);expect(session.presentation?.controls[0]).toMatchObject({value:null,enabled:false});session.dispose();
+  }finally{vi.useRealTimers();}
+ });
+ it('a reused cached frame cannot confirm a new reverse target',async()=>{const send=vi.fn(()=>new Promise<CardControlResult>(()=>{})),session=new CardControlSession(send,()=>{}),p=presentation();session.accept(p);session.write('c',70);session.write('c',40);session.accept(p);expect(session.pendingCount).toBe(1);expect(session.presentation?.controls[0].value).toBe(40);session.dispose();});
+ it('restores the confirmed value silently on rejected writes',async()=>{const session=new CardControlSession(async()=>{throw{kind:'invalidValue',message:'值无效'};},()=>{});session.accept(presentation());session.write('c',70);await ticks();expect(session.presentation?.controls[0]).toMatchObject({value:40,error:undefined,message:undefined});expect(session.pendingCount).toBe(0);session.dispose();});
+ it('unlocks an ordinary dependent control before power readback',async()=>{const send=vi.fn(()=>new Promise<CardControlResult>(()=>{})),session=new CardControlSession(send,()=>{}),p=presentation();p.controls.push({id:'power',kind:'toggle',label:'电源',value:false,enabled:true,reason:null,options:[],range:null});p.controls[0].enabled=false;p.projections=[{controlId:'power',value:true,controls:[{id:'c',enabled:true,value:null,label:'亮度'}]},{controlId:'power',value:false,controls:[{id:'c',enabled:false,value:null,label:'亮度'}]}];session.accept(p);session.write('power',true);expect(session.presentation?.controls[0].enabled).toBe(true);session.write('c',80);expect(send.mock.calls).toHaveLength(2);expect(session.presentation?.controls[0].value).toBe(80);session.dispose();});
+ it('projects the next action immediately while preserving action order',async()=>{const sent:CardControlChange[]=[],finish:((r:CardControlResult)=>void)[]=[];const session=new CardControlSession(c=>{sent.push(c);return new Promise(resolve=>finish.push(resolve));},()=>{}),p=presentation(1,'vacuum:start-sweep','action');p.projections=[{controlId:'c',value:'vacuum:start-sweep',controls:[{id:'c',enabled:true,value:'vacuum:pause-sweeping',label:'暂停'}]},{controlId:'c',value:'vacuum:pause-sweeping',controls:[{id:'c',enabled:true,value:'vacuum:start-sweep',label:'开始清扫'}]}];session.accept(p);session.write('c','vacuum:start-sweep');expect(session.presentation?.controls[0].label).toBe('暂停');session.write('c','vacuum:pause-sweeping');await ticks();expect(sent).toHaveLength(1);finish[0]({...result(sent[0],p,false),submitted:true,target:sent[0].value,presentation:null});await ticks();expect(sent[1].value).toBe('vacuum:pause-sweeping');session.dispose();});
+ it('removes controls when the backend falls back to a simple card',async()=>{const session=new CardControlSession(async c=>({...result(c,presentation()),presentation:null}),()=>{});session.accept(presentation());session.write('c',70);await ticks();expect(session.presentation).toBeUndefined();expect(session.pendingCount).toBe(0);session.dispose();});
+ it('preserves start-pause-start rather than coalescing different actions',async()=>{const sent:CardControlChange[]=[],finish:((r:CardControlResult)=>void)[]=[];const session=new CardControlSession(c=>{sent.push(c);return new Promise(resolve=>finish.push(resolve));},()=>{}),p=presentation(1,'vacuum:start-sweep','action');p.projections=[{controlId:'c',value:'vacuum:start-sweep',controls:[{id:'c',enabled:true,value:'vacuum:pause-sweeping',label:'暂停'}]},{controlId:'c',value:'vacuum:pause-sweeping',controls:[{id:'c',enabled:true,value:'vacuum:start-sweep',label:'开始清扫'}]}];session.accept(p);session.write('c','vacuum:start-sweep');session.write('c','vacuum:pause-sweeping');session.write('c','vacuum:start-sweep');await ticks();expect(sent).toHaveLength(1);for(let i=0;i<3;i++){finish[i]({...result(sent[i],p,false),sequence:i+1,submitted:true,target:sent[i].value,presentation:null});await ticks();}expect(sent.map(c=>c.value)).toEqual(['vacuum:start-sweep','vacuum:pause-sweeping','vacuum:start-sweep']);expect(session.presentation?.controls[0].label).toBe('暂停');session.dispose();});
+ it('keeps a newer remote target when an older local receipt arrives late',async()=>{let finish!:(r:CardControlResult)=>void;let sent!:CardControlChange;const session=new CardControlSession(c=>{sent=c;return new Promise(resolve=>finish=resolve);},()=>{});session.accept(presentation());session.write('c',60);session.receive({...result({...sent,value:80,requestId:'remote'},presentation(),false),submitted:true,target:80,sequence:8});finish({...result(sent,presentation(),false),submitted:true,target:60,sequence:7});await ticks();expect(session.presentation?.controls[0].value).toBe(80);session.dispose();});
+});

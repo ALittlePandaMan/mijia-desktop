@@ -1,0 +1,670 @@
+{
+  "did": "offline-purifier-fixture",
+  "model": "xiaomi.waterpuri.lx32",
+  "specType": "urn:miot-spec-v2:device:water-purifier:0000A013:xiaomi-lx32:2",
+  "services": [
+    {
+      "siid": 2,
+      "name": "water-purifier",
+      "description": "water-purifier",
+      "properties": [
+        {
+          "siid": 2,
+          "piid": 1,
+          "name": "fault",
+          "description": "Device Fault",
+          "format": "uint32",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": 0,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            3999999999.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 2,
+          "name": "status",
+          "description": "Status",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": 1,
+          "code": 0,
+          "valueList": [
+            {
+              "value": 1,
+              "description": "Idle"
+            },
+            {
+              "value": 2,
+              "description": "Busy"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 3,
+          "name": "temperature",
+          "description": "Temperature",
+          "format": "float",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "celsius",
+          "value": 29,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            -30.0,
+            100.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 4,
+          "name": "no-old-water-mode",
+          "description": "No Old Water Mode",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": 1,
+          "code": 0,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "Default"
+            },
+            {
+              "value": 1,
+              "description": "Quality"
+            },
+            {
+              "value": 2,
+              "description": "Save"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 5,
+          "name": "pipeline-connection",
+          "description": "Pipeline Connection",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": true,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 7,
+          "name": "holiday-mode",
+          "description": "Holiday Mode",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": true,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 3,
+      "name": "filter",
+      "description": "filter",
+      "properties": [
+        {
+          "siid": 3,
+          "piid": 1,
+          "name": "filter-life-level",
+          "description": "Filter Life Level",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "percentage",
+          "value": 91,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            100.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 3,
+          "piid": 2,
+          "name": "filter-left-time",
+          "description": "Filter Left Time",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "days",
+          "value": 657,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            65535.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 3,
+          "piid": 3,
+          "name": "filter-used-time",
+          "description": "Filter Used Time",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "days",
+          "value": 73,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            65535.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 3,
+          "piid": 4,
+          "name": "filter-used-flow",
+          "description": "Filter Used Flow",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": 4020,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            65535.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 3,
+          "piid": 5,
+          "name": "filter-left-flow",
+          "description": "Filter Left FLow",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": 13980,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            65535.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 3,
+          "piid": 6,
+          "name": "anti-fake",
+          "description": "Anti Fake",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": false,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 4,
+      "name": "tds-sensor",
+      "description": "tds-sensor",
+      "properties": [
+        {
+          "siid": 4,
+          "piid": 2,
+          "name": "tds-out",
+          "description": "Total Dissolved Solids for Output Water",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": 21,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            65535.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 5,
+      "name": "filter",
+      "description": "filter",
+      "properties": [
+        {
+          "siid": 5,
+          "piid": 1,
+          "name": "filter-life-level",
+          "description": "Filter Life Level",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "percentage",
+          "value": 58,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            100.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 5,
+          "piid": 2,
+          "name": "filter-left-time",
+          "description": "Filter Left Time",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "days",
+          "value": 1044,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            65535.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 5,
+          "piid": 3,
+          "name": "filter-used-time",
+          "description": "Filter Used Time",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "days",
+          "value": 781,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            65535.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 5,
+          "piid": 4,
+          "name": "filter-used-flow",
+          "description": "Filter Used Flow",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": 2730,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            65535.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 5,
+          "piid": 5,
+          "name": "filter-left-flow",
+          "description": "Filter Left FLow",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": 4470,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            65535.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 5,
+          "piid": 6,
+          "name": "anti-fake",
+          "description": "Anti Fake",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": false,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 6,
+      "name": "no-disturb",
+      "description": "no-disturb",
+      "properties": [
+        {
+          "siid": 6,
+          "piid": 1,
+          "name": "no-disturb",
+          "description": "No Disturb",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": false,
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 7,
+      "name": "water-dispenser",
+      "description": "water-dispenser",
+      "properties": [
+        {
+          "siid": 7,
+          "piid": 1,
+          "name": "cup-setting",
+          "description": "Cup Setting",
+          "format": "string",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": "[1,300],[2,1200]",
+          "code": 0,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 7,
+          "piid": 2,
+          "name": "out-water-cup",
+          "description": "Out Water Cup",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": 0,
+          "code": 0,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "Last"
+            },
+            {
+              "value": 1,
+              "description": "Cup 1"
+            },
+            {
+              "value": 2,
+              "description": "Cup 2"
+            },
+            {
+              "value": 3,
+              "description": "Cup 3"
+            },
+            {
+              "value": 4,
+              "description": "Cup 4"
+            },
+            {
+              "value": 5,
+              "description": "Cup 5"
+            },
+            {
+              "value": 6,
+              "description": "Cup 6"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 7,
+          "piid": 3,
+          "name": "out-water-volume",
+          "description": "Out Water Volume",
+          "format": "uint32",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": 1200,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            1000000000.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 8,
+      "name": "water-use-details",
+      "description": "water-use-details",
+      "properties": [
+        {
+          "siid": 8,
+          "piid": 1,
+          "name": "water-production-time",
+          "description": "Water Production Time",
+          "format": "uint32",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "seconds",
+          "value": 18,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            1000000000.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 2,
+          "name": "pure-water-output",
+          "description": "Pure Water Output",
+          "format": "uint32",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": 853,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            1000000000.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 3,
+          "name": "statistical-tds-out",
+          "description": "Statistical Tds Out",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": 21,
+          "code": 0,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            1000.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        }
+      ],
+      "actions": []
+    }
+  ],
+  "unsupportedReason": null,
+  "purifier": {
+    "status": "idle",
+    "tds": 21,
+    "temperature": 29,
+    "fault": 0,
+    "cups": [
+      {
+        "id": 1,
+        "volumeMl": 300
+      },
+      {
+        "id": 2,
+        "volumeMl": 1200
+      }
+    ],
+    "cupSource": "[1,300],[2,1200]",
+    "cupError": null,
+    "canEditCups": true,
+    "editReason": null,
+    "filters": [
+      {
+        "siid": 3,
+        "name": "复合滤芯",
+        "description": "过滤精度可达0.01~0.1微米，有效地拦截水中的胶体、颗粒物、肉眼可见物和细菌等杂质。",
+        "percent": 91,
+        "days": 657,
+        "antiFake": false
+      },
+      {
+        "siid": 5,
+        "name": "RO滤芯",
+        "description": "理论过滤精度可达到0.0001微米，有效地过滤掉水中的重金属、细菌、水垢、有机物等物质。",
+        "percent": 58,
+        "days": 1044,
+        "antiFake": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,380 @@
+{
+  "version": 1,
+  "scope": "Released public metadata, no live state",
+  "records": [
+    {
+      "model": "chunmi.i_stove.x1",
+      "type": "urn:miot-spec-v2:device:integrated-stove:0000A056:chunmi-x1:1",
+      "file": "chunmi.i_stove.x1.json",
+      "sha256": "3651221a10e202ef3f0c02c28d8a8c65c561c9914aa27a1a32ad9e970e91faec",
+      "registryRow": {
+        "model": "chunmi.i_stove.x1",
+        "version": 1,
+        "type": "urn:miot-spec-v2:device:integrated-stove:0000A056:chunmi-x1:1",
+        "ts": 1668567770
+      },
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Aintegrated-stove%3A0000A056%3Achunmi-x1%3A1",
+        "retrievedAt": "2026-11-06T13:10:41.652Z"
+      },
+      "physicalDeviceVerified": false
+    },
+    {
+      "model": "cuco.plug.cp1",
+      "type": "urn:miot-spec-v2:device:outlet:0000A002:cuco-cp1:2",
+      "file": "cuco.plug.cp1.json",
+      "sha256": "a4fbfd05cb7b4ab1961ff86438c297173a3470e0c0631d61b769421b0f289179",
+      "registryRow": {
+        "model": "cuco.plug.cp1",
+        "version": 2,
+        "type": "urn:miot-spec-v2:device:outlet:0000A002:cuco-cp1:2",
+        "ts": 1639134732
+      },
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Aoutlet%3A0000A002%3Acuco-cp1%3A2",
+        "retrievedAt": "2026-11-06T13:10:44.825Z"
+      },
+      "physicalDeviceVerified": false
+    },
+    {
+      "model": "dmaker.fan.1c",
+      "type": "urn:miot-spec-v2:device:fan:0000A005:dmaker-1c:1",
+      "file": "dmaker.fan.1c.json",
+      "sha256": "2dde39f27be19bbdef10ac587af3d5e67438b030a730e6c8861a5ffe34f430de",
+      "registryRow": {
+        "model": "dmaker.fan.1c",
+        "version": 1,
+        "type": "urn:miot-spec-v2:device:fan:0000A005:dmaker-1c:1",
+        "ts": 1588217341
+      },
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Afan%3A0000A005%3Admaker-1c%3A1",
+        "retrievedAt": "2026-11-06T13:07:12.291Z"
+      },
+      "physicalDeviceVerified": false
+    },
+    {
+      "model": "dooya.airer.2m",
+      "type": "urn:miot-spec-v2:device:airer:0000A00D:dooya-2m:1:0000C831",
+      "file": "dooya.airer.2m.json",
+      "sha256": "8286946ccf5a0d476802a3e7b603a0367385f7874205cfe373dce8136a329c7a",
+      "registryRow": {
+        "model": "dooya.airer.2m",
+        "version": 1,
+        "type": "urn:miot-spec-v2:device:airer:0000A00D:dooya-2m:1:0000C831",
+        "ts": 1766157895
+      },
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Aairer%3A0000A00D%3Adooya-2m%3A1%3A0000C831",
+        "retrievedAt": "2026-11-06T13:10:46.976Z"
+      },
+      "physicalDeviceVerified": false
+    },
+    {
+      "model": "hyd.airer.1s1",
+      "type": "urn:miot-spec-v2:device:airer:0000A00D:hyd-1s1:1",
+      "file": "hyd.airer.1s1.json",
+      "sha256": "07e9f37303a384645c1c4af8116395407a2d0bc345396ec5c9fb3b0fb0ae7894",
+      "registryRow": {
+        "model": "hyd.airer.1s1",
+        "version": 1,
+        "type": "urn:miot-spec-v2:device:airer:0000A00D:hyd-1s1:1",
+        "ts": 1695089833
+      },
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Aairer%3A0000A00D%3Ahyd-1s1%3A1",
+        "retrievedAt": "2026-11-06T13:10:41.675Z"
+      },
+      "physicalDeviceVerified": false
+    },
+    {
+      "model": "lumi.ctrl_ln2.aq1",
+      "type": "urn:miot-spec-v2:device:switch:0000A003:lumi-ctrl-ln2-aq1:1",
+      "file": "lumi.ctrl_ln2.aq1.json",
+      "sha256": "6c6136beed1adf677f6e66d45518ce18777d232e48139b4f9e786dbe7d22e97a",
+      "registryRow": {
+        "model": "lumi.ctrl_ln2.aq1",
+        "version": 1,
+        "type": "urn:miot-spec-v2:device:switch:0000A003:lumi-ctrl-ln2-aq1:1",
+        "ts": 1641970611
+      },
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Aswitch%3A0000A003%3Alumi-ctrl-ln2-aq1%3A1",
+        "retrievedAt": "2026-11-06T13:10:49.346Z"
+      },
+      "physicalDeviceVerified": false
+    },
+    {
+      "model": "midjd8.washer.42",
+      "type": "urn:miot-spec-v2:device:washer:0000A01F:midjd8-42:1",
+      "file": "midjd8.washer.42.json",
+      "sha256": "a1cde60c22de386dd139f5ea691c7f4fc1552dc2567b3a650fb0a447b7fd1a9c",
+      "registryRow": {
+        "model": "midjd8.washer.42",
+        "version": 1,
+        "type": "urn:miot-spec-v2:device:washer:0000A01F:midjd8-42:1",
+        "ts": 1714962718
+      },
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Awasher%3A0000A01F%3Amidjd8-42%3A1",
+        "retrievedAt": "2026-11-06T13:10:44.189Z"
+      },
+      "physicalDeviceVerified": false
+    },
+    {
+      "model": "midjd8.washer.42a",
+      "type": "urn:miot-spec-v2:device:washer:0000A01F:midjd8-42a:2",
+      "file": "midjd8.washer.42a.json",
+      "sha256": "655cea9a3441ad2a715a9ab7d83d3dfa5f9f5020a001cfe0c3d5dc59cd53962d",
+      "registryRow": {
+        "model": "midjd8.washer.42a",
+        "version": 2,
+        "type": "urn:miot-spec-v2:device:washer:0000A01F:midjd8-42a:2",
+        "ts": 1737097709
+      },
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Awasher%3A0000A01F%3Amidjd8-42a%3A2",
+        "retrievedAt": "2026-11-06T13:10:41.565Z"
+      },
+      "physicalDeviceVerified": false
+    },
+    {
+      "model": "minij.washer.v17",
+      "type": "urn:miot-spec-v2:device:washer:0000A01F:minij-v17:1",
+      "file": "minij.washer.v17.json",
+      "sha256": "0c1866db5c784a2b7f4c2e17336f3ce85e941e9000e04727f5f8ed5d61e37cd9",
+      "registryRow": {
+        "model": "minij.washer.v17",
+        "version": 1,
+        "type": "urn:miot-spec-v2:device:washer:0000A01F:minij-v17:1",
+        "ts": 1583152947
+      },
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Awasher%3A0000A01F%3Aminij-v17%3A1",
+        "retrievedAt": "2026-11-06T13:10:52.443Z"
+      },
+      "physicalDeviceVerified": false
+    },
+    {
+      "model": "opple.light.dcfan5",
+      "type": "urn:miot-spec-v2:device:light:0000A001:opple-dcfan5:1:0000C802",
+      "file": "opple.light.dcfan5.json",
+      "sha256": "f2c58abf7e963259ede124ad708e952de9516e803c1abaefea46bbf69ae6a4bd",
+      "registryRow": {
+        "model": "opple.light.dcfan5",
+        "version": 1,
+        "type": "urn:miot-spec-v2:device:light:0000A001:opple-dcfan5:1:0000C802",
+        "ts": 1726745374
+      },
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Alight%3A0000A001%3Aopple-dcfan5%3A1%3A0000C802",
+        "retrievedAt": "2026-11-06T13:10:40.658Z"
+      },
+      "physicalDeviceVerified": false
+    },
+    {
+      "model": "viomi.washer.s1",
+      "type": "urn:miot-spec-v2:device:washer:0000A01F:viomi-s1:1",
+      "file": "viomi.washer.s1.json",
+      "sha256": "a32150ccba2955be96440aaa8967e0537cd8b6f0c2ec1cd5345a62397ce59ae1",
+      "registryRow": {
+        "model": "viomi.washer.s1",
+        "version": 1,
+        "type": "urn:miot-spec-v2:device:washer:0000A01F:viomi-s1:1",
+        "ts": 1616647713
+      },
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Awasher%3A0000A01F%3Aviomi-s1%3A1",
+        "retrievedAt": "2026-11-06T13:10:42.462Z"
+      },
+      "physicalDeviceVerified": false
+    },
+    {
+      "model": "xiaomi.airc.1r04r1",
+      "type": "urn:miot-spec-v2:device:air-conditioner:0000A004:xiaomi-1r04r1:2",
+      "file": "xiaomi.airc.1r04r1.json",
+      "sha256": "f97d5ed38c1d55001b97b6a24a4a771a30add17782db957cfcea5c109091306f",
+      "registryRow": {
+        "model": "xiaomi.airc.1r04r1",
+        "version": 2,
+        "type": "urn:miot-spec-v2:device:air-conditioner:0000A004:xiaomi-1r04r1:2",
+        "ts": 1758208379
+      },
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Aair-conditioner%3A0000A004%3Axiaomi-1r04r1%3A2",
+        "retrievedAt": "2026-11-06T13:10:46.421Z"
+      },
+      "physicalDeviceVerified": false
+    },
+    {
+      "model": "xiaomi.airc.r34r00",
+      "type": "urn:miot-spec-v2:device:air-conditioner:0000A004:xiaomi-r34r00:4",
+      "file": "xiaomi.airc.r34r00.json",
+      "sha256": "2e112b85702c4e10970c0de11eb9357d0f1123d2df2d7fef56642f83b26e981c",
+      "registryRow": {
+        "model": "xiaomi.airc.r34r00",
+        "version": 4,
+        "type": "urn:miot-spec-v2:device:air-conditioner:0000A004:xiaomi-r34r00:4",
+        "ts": 1747640169
+      },
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Aair-conditioner%3A0000A004%3Axiaomi-r34r00%3A4",
+        "retrievedAt": "2026-11-06T13:10:40.521Z"
+      },
+      "physicalDeviceVerified": false
+    },
+    {
+      "model": "xiaomi.airp.mp5",
+      "type": "urn:miot-spec-v2:device:air-purifier:0000A007:xiaomi-mp5:2",
+      "file": "xiaomi.airp.mp5.json",
+      "sha256": "90e3b796f9fc50ae0de0e78bf975d18ed9aca6eebcad4d45df582e8a93020b3c",
+      "registryRow": {
+        "model": "xiaomi.airp.mp5",
+        "version": 2,
+        "type": "urn:miot-spec-v2:device:air-purifier:0000A007:xiaomi-mp5:2",
+        "ts": 1747378621
+      },
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Aair-purifier%3A0000A007%3Axiaomi-mp5%3A2",
+        "retrievedAt": "2026-11-06T13:10:42.283Z"
+      },
+      "physicalDeviceVerified": false
+    },
+    {
+      "model": "xiaomi.curtain.acn009",
+      "type": "urn:miot-spec-v2:device:curtain:0000A00C:xiaomi-acn009:1",
+      "file": "xiaomi.curtain.acn009.json",
+      "sha256": "55f8a5b68bdef834858e7bd4715a2af66d035119888b0d67a7e0602b599f689c",
+      "registryRow": {
+        "model": "xiaomi.curtain.acn009",
+        "version": 1,
+        "type": "urn:miot-spec-v2:device:curtain:0000A00C:xiaomi-acn009:1",
+        "ts": 1695092972
+      },
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Acurtain%3A0000A00C%3Axiaomi-acn009%3A1",
+        "retrievedAt": "2026-11-06T13:10:41.615Z"
+      },
+      "physicalDeviceVerified": false
+    },
+    {
+      "model": "xiaomi.hood.jyjp2",
+      "type": "urn:miot-spec-v2:device:hood:0000A01B:xiaomi-jyjp2:4",
+      "file": "xiaomi.hood.jyjp2.json",
+      "sha256": "afb74fae2ca3f3bfc2f77ca1cc35f2de4d2e39f716947d71d37239315fe59bf9",
+      "registryRow": {
+        "model": "xiaomi.hood.jyjp2",
+        "version": 4,
+        "type": "urn:miot-spec-v2:device:hood:0000A01B:xiaomi-jyjp2:4",
+        "ts": 1768794296
+      },
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Ahood%3A0000A01B%3Axiaomi-jyjp2%3A4",
+        "retrievedAt": "2026-11-06T13:10:42.315Z"
+      },
+      "physicalDeviceVerified": false
+    },
+    {
+      "model": "xiaomi.hood.ymv12",
+      "type": "urn:miot-spec-v2:device:hood:0000A01B:xiaomi-ymv12:3",
+      "file": "xiaomi.hood.ymv12.json",
+      "sha256": "1f77599b9f205d2e3c82e0da079881d6009f151202e6f09ba853777877fa943f",
+      "registryRow": {
+        "model": "xiaomi.hood.ymv12",
+        "version": 3,
+        "type": "urn:miot-spec-v2:device:hood:0000A01B:xiaomi-ymv12:3",
+        "ts": 1789355918
+      },
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Ahood%3A0000A01B%3Axiaomi-ymv12%3A3",
+        "retrievedAt": "2026-11-06T13:10:40.290Z"
+      },
+      "physicalDeviceVerified": false
+    },
+    {
+      "model": "xiaomi.lock.m40",
+      "type": "urn:miot-spec-v2:device:lock:0000A038:xiaomi-m40:1",
+      "file": "xiaomi.lock.m40.json",
+      "sha256": "ffa22b6c198f3208c68df6c560a04dc796c64840dbd45878bd13b24445046b5d",
+      "registryRow": {
+        "model": "xiaomi.lock.m40",
+        "version": 1,
+        "type": "urn:miot-spec-v2:device:lock:0000A038:xiaomi-m40:1",
+        "ts": 1789383500
+      },
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Alock%3A0000A038%3Axiaomi-m40%3A1",
+        "retrievedAt": "2026-11-06T13:10:42.221Z"
+      },
+      "physicalDeviceVerified": false
+    },
+    {
+      "model": "xiaomi.lock.s20pro",
+      "type": "urn:miot-spec-v2:device:lock:0000A038:xiaomi-s20pro:2",
+      "file": "xiaomi.lock.s20pro.json",
+      "sha256": "97db62e6769804963427475b765c0459b06269687881e17990f80fcd90f222ba",
+      "registryRow": {
+        "model": "xiaomi.lock.s20pro",
+        "version": 2,
+        "type": "urn:miot-spec-v2:device:lock:0000A038:xiaomi-s20pro:2",
+        "ts": 1775791779
+      },
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Alock%3A0000A038%3Axiaomi-s20pro%3A2",
+        "retrievedAt": "2026-11-06T13:10:44.835Z"
+      },
+      "physicalDeviceVerified": false
+    },
+    {
+      "model": "yeelink.light.fancl8",
+      "type": "urn:miot-spec-v2:device:light:0000A001:yeelink-fancl8:1:0000C802",
+      "file": "yeelink.light.fancl8.json",
+      "sha256": "991188f3edd0c64b002acfde1cb0de4aa9dc686554f7cf2db35e5bc2966f9f42",
+      "registryRow": {
+        "model": "yeelink.light.fancl8",
+        "version": 1,
+        "type": "urn:miot-spec-v2:device:light:0000A001:yeelink-fancl8:1:0000C802",
+        "ts": 1740984674
+      },
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Alight%3A0000A001%3Ayeelink-fancl8%3A1%3A0000C802",
+        "retrievedAt": "2026-11-06T13:10:42.429Z"
+      },
+      "physicalDeviceVerified": false
+    },
+    {
+      "model": "zhimi.airpurifier.ma4",
+      "type": "urn:miot-spec-v2:device:air-purifier:0000A007:zhimi-ma4:2",
+      "file": "zhimi.airpurifier.ma4.json",
+      "sha256": "0496006101a52e90240dc566c6bc049e60616144b9d3834438e8436e679bbe17",
+      "registryRow": {
+        "model": "zhimi.airpurifier.ma4",
+        "version": 2,
+        "type": "urn:miot-spec-v2:device:air-purifier:0000A007:zhimi-ma4:2",
+        "ts": 1607075639
+      },
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Aair-purifier%3A0000A007%3Azhimi-ma4%3A2",
+        "retrievedAt": "2026-11-06T13:10:47.068Z"
+      },
+      "physicalDeviceVerified": false
+    },
+    {
+      "model": "zhimi.fan.za1",
+      "type": "urn:miot-spec-v2:device:fan:0000A005:zhimi-za1:1",
+      "file": "zhimi.fan.za1.json",
+      "sha256": "c90aba7952de13966388eea847c1fbc29398182ce36c59d6bc777badee590d71",
+      "registryRow": {
+        "model": "zhimi.fan.za1",
+        "version": 1,
+        "type": "urn:miot-spec-v2:device:fan:0000A005:zhimi-za1:1",
+        "ts": 1604590509
+      },
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Afan%3A0000A005%3Azhimi-za1%3A1",
+        "retrievedAt": "2026-11-06T13:10:46.995Z"
+      },
+      "physicalDeviceVerified": false
+    }
+  ]
+}

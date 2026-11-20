@@ -1,0 +1,2155 @@
+{
+  "conditionsConfig": {
+    "night": {
+      "data": [
+        0.0,
+        400.0,
+        600.0
+      ],
+      "defaultValue": 600.0,
+      "key": "night",
+      "keyValue": true,
+      "next": true,
+      "operator": "="
+    },
+    "speed1000-13": {
+      "data": [
+        1000.0
+      ],
+      "defaultValue": 1000.0,
+      "key": "dry",
+      "keyValue": 0.0,
+      "next": true,
+      "operator": ">",
+      "timeObj": {
+        "1000": 13.0
+      }
+    },
+    "speed1200-16": {
+      "data": [
+        1200.0
+      ],
+      "defaultValue": 1200.0,
+      "key": "dry",
+      "keyValue": 0.0,
+      "next": true,
+      "operator": ">",
+      "timeObj": {
+        "1200": 16.0
+      }
+    },
+    "sterilizationConObj4060": {
+      "data": [
+        40.0,
+        60.0
+      ],
+      "defaultValue": 40.0,
+      "key": "sterilization",
+      "keyValue": true,
+      "next": true,
+      "operator": "="
+    },
+    "sterilizationConObj406095-40": {
+      "data": [
+        40.0,
+        60.0,
+        95.0
+      ],
+      "defaultValue": 40.0,
+      "key": "sterilization",
+      "keyValue": true,
+      "next": true,
+      "operator": "="
+    },
+    "sterilizationConObj406095-60": {
+      "data": [
+        40.0,
+        60.0,
+        95.0
+      ],
+      "defaultValue": 60.0,
+      "key": "sterilization",
+      "keyValue": true,
+      "next": true,
+      "operator": "="
+    }
+  },
+  "itemsConfig": {
+    "dry": {
+      "data": [
+        0.0,
+        1.0,
+        2.0,
+        30.0,
+        60.0,
+        90.0,
+        120.0,
+        180.0
+      ],
+      "defaultValue": 0.0,
+      "intelligentDryShowDryingDegree": true,
+      "timeObj": {
+        "0": 0.0,
+        "1": 142.0,
+        "1.2": 142.0,
+        "1.3": 172.0,
+        "120": 120.0,
+        "180": 180.0,
+        "2": 0.0,
+        "30": 30.0,
+        "60": 60.0,
+        "90": 90.0
+      }
+    },
+    "highWaterLevel": {
+      "conditions": [
+        {
+          "isHide": true,
+          "key": "temperature",
+          "keyValue": 60.0,
+          "operator": ">="
+        }
+      ],
+      "data": [
+        true,
+        false
+      ],
+      "defaultValue": false,
+      "isHide": false
+    },
+    "shakeTime": {
+      "conditions": [
+        {
+          "data": [
+            0.0,
+            0.5,
+            1.0,
+            2.0,
+            4.0
+          ],
+          "defaultValue": 0.0,
+          "key": "dry",
+          "keyValue": 0.0,
+          "next": true,
+          "operator": ">",
+          "timeObj": {
+            "0": 0.0,
+            "0.5": 0.0,
+            "1": 0.0,
+            "2": 0.0,
+            "4": 0.0
+          }
+        }
+      ],
+      "data": [
+        0.0,
+        2.0,
+        4.0,
+        8.0,
+        12.0
+      ],
+      "defaultValue": 0.0,
+      "timeObj": {
+        "0": 0.0,
+        "12": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    "soak": {
+      "data": [
+        0.0,
+        10.0,
+        20.0,
+        30.0
+      ],
+      "defaultValue": 0.0,
+      "time": 0.0,
+      "timeObj": {
+        "0": 0.0,
+        "10": 10.0,
+        "20": 20.0,
+        "30": 30.0
+      }
+    },
+    "sterilization": {
+      "data": [
+        true,
+        false
+      ],
+      "defaultValue": false,
+      "timeObj": {
+        "false": 0.0,
+        "true": 30.0
+      }
+    }
+  },
+  "modesConfig": {},
+  "modesData": [
+    {
+      "items": [
+        {
+          "propertyName": "soak"
+        },
+        {
+          "data": [
+            0.0,
+            40.0,
+            60.0
+          ],
+          "defaultValue": 40.0,
+          "propertyName": "temperature",
+          "timeObj": {
+            "0": 11.0,
+            "40": 20.0,
+            "60": 38.0
+          }
+        },
+        {
+          "data": [
+            1.0,
+            2.0,
+            3.0,
+            4.0
+          ],
+          "defaultValue": 2.0,
+          "propertyName": "rinsh",
+          "timeObj": {
+            "1": 10.0,
+            "2": 20.0,
+            "3": 30.0,
+            "4": 40.0
+          }
+        },
+        {
+          "conditions": [
+            "night",
+            "speed1000-13"
+          ],
+          "data": [
+            0.0,
+            400.0,
+            600.0,
+            800.0,
+            1000.0
+          ],
+          "defaultValue": 800.0,
+          "propertyName": "speed",
+          "timeObj": {
+            "0": 2.0,
+            "1000": 10.0,
+            "400": 7.0,
+            "600": 8.0,
+            "800": 9.0
+          }
+        },
+        {
+          "data": [
+            0.0,
+            1.0,
+            2.0,
+            30.0,
+            60.0,
+            90.0,
+            120.0,
+            180.0
+          ],
+          "defaultValue": 0.0,
+          "propertyName": "dry",
+          "timeObj": {
+            "0": 0.0,
+            "1": 160.0,
+            "120": 120.0,
+            "180": 180.0,
+            "2": 0.0,
+            "30": 30.0,
+            "60": 60.0,
+            "90": 90.0
+          }
+        },
+        {
+          "propertyName": "shakeTime"
+        },
+        {
+          "propertyName": "highWaterLevel"
+        },
+        {
+          "propertyName": "sterilization"
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "smart",
+      "modeTime": 185.0
+    },
+    {
+      "items": [
+        {
+          "conditions": [],
+          "data": [
+            0.0,
+            40.0
+          ],
+          "defaultValue": 0.0,
+          "propertyName": "temperature",
+          "timeObj": {
+            "0": 4.0,
+            "40": 12.0
+          }
+        },
+        {
+          "conditions": [],
+          "data": [
+            1.0,
+            2.0,
+            3.0
+          ],
+          "defaultValue": 2.0,
+          "propertyName": "rinsh",
+          "timeObj": {
+            "1": 3.0,
+            "2": 6.0,
+            "3": 9.0
+          }
+        },
+        {
+          "conditions": [
+            "night",
+            {
+              "data": [
+                800.0
+              ],
+              "defaultValue": 800.0,
+              "key": "dry",
+              "keyValue": 0.0,
+              "next": true,
+              "operator": ">",
+              "timeObj": {
+                "800": 8.0
+              }
+            }
+          ],
+          "data": [
+            0.0,
+            400.0,
+            600.0,
+            800.0
+          ],
+          "defaultValue": 800.0,
+          "propertyName": "speed",
+          "timeObj": {
+            "0": 1.0,
+            "400": 3.0,
+            "600": 4.0,
+            "800": 5.0
+          }
+        },
+        {
+          "propertyName": "dry"
+        },
+        {
+          "propertyName": "shakeTime"
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "quickWash",
+      "modeTime": 15.0
+    },
+    {
+      "items": [
+        {
+          "conditions": [],
+          "data": [
+            0.0,
+            1000.0,
+            1200.0
+          ],
+          "defaultValue": 1200.0,
+          "propertyName": "speed",
+          "timeObj": {
+            "0": 0.0,
+            "1000": 0.0,
+            "1200": 0.0
+          }
+        },
+        {
+          "data": [
+            1.0,
+            2.0,
+            30.0,
+            60.0,
+            90.0,
+            120.0,
+            180.0
+          ],
+          "defaultValue": 1.0,
+          "propertyName": "dry",
+          "timeObj": {
+            "1": 142.0,
+            "1.2": 142.0,
+            "1.3": 172.0,
+            "120": 120.0,
+            "180": 180.0,
+            "2": 0.0,
+            "30": 30.0,
+            "60": 60.0,
+            "90": 90.0
+          }
+        },
+        {
+          "propertyName": "shakeTime"
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "dry",
+      "modeTime": 142.0
+    },
+    {
+      "items": [
+        {
+          "data": [
+            2.0,
+            30.0,
+            50.0
+          ],
+          "defaultValue": 50.0,
+          "intelligentDryShowDryingDegree": false,
+          "propertyName": "dry",
+          "timeObj": {
+            "2": 0.0,
+            "30": 30.0,
+            "50": 50.0
+          }
+        },
+        {
+          "propertyName": "shakeTime"
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "dryAirWash",
+      "modeTime": 50.0
+    },
+    {
+      "items": [
+        {
+          "data": [
+            0.0,
+            40.0
+          ],
+          "defaultValue": 40.0,
+          "propertyName": "temperature",
+          "timeObj": {
+            "0": 0.0,
+            "40": 0.0
+          }
+        },
+        {
+          "data": [
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0
+          ],
+          "defaultValue": 1.0,
+          "propertyName": "rinsh",
+          "timeObj": {
+            "1": 0.0,
+            "2": 10.0,
+            "3": 20.0,
+            "4": 30.0,
+            "5": 40.0
+          }
+        },
+        {
+          "data": [
+            20.0,
+            30.0,
+            40.0,
+            50.0,
+            60.0,
+            70.0
+          ],
+          "defaultValue": 20.0,
+          "propertyName": "pleasedWash",
+          "timeObj": {
+            "20": 20.0,
+            "30": 30.0,
+            "40": 40.0,
+            "50": 50.0,
+            "60": 60.0,
+            "70": 70.0
+          }
+        },
+        {
+          "conditions": [],
+          "data": [
+            0.0,
+            20.0,
+            30.0,
+            40.0,
+            50.0,
+            60.0,
+            70.0,
+            80.0,
+            90.0,
+            100.0,
+            110.0,
+            120.0,
+            130.0,
+            140.0,
+            150.0,
+            160.0,
+            170.0,
+            180.0
+          ],
+          "defaultValue": 0.0,
+          "propertyName": "pleasedDry",
+          "timeObj": {
+            "0": 0.0,
+            "100": 100.0,
+            "110": 110.0,
+            "120": 120.0,
+            "130": 130.0,
+            "140": 140.0,
+            "150": 150.0,
+            "160": 160.0,
+            "170": 170.0,
+            "180": 180.0,
+            "20": 20.0,
+            "30": 30.0,
+            "40": 40.0,
+            "50": 50.0,
+            "60": 60.0,
+            "70": 70.0,
+            "80": 80.0,
+            "90": 90.0
+          }
+        },
+        {
+          "conditions": [
+            {
+              "data": [
+                0.0,
+                0.5,
+                1.0,
+                2.0,
+                4.0
+              ],
+              "defaultValue": 0.0,
+              "key": "pleasedDry",
+              "keyValue": 0.0,
+              "next": true,
+              "operator": ">",
+              "timeObj": {
+                "0": 0.0,
+                "0.5": 0.0,
+                "1": 0.0,
+                "2": 0.0,
+                "4": 0.0
+              }
+            }
+          ],
+          "data": [
+            0.0,
+            2.0,
+            4.0,
+            8.0,
+            12.0
+          ],
+          "defaultValue": 0.0,
+          "propertyName": "shakeTime",
+          "timeObj": {
+            "0": 0.0,
+            "12": 0.0,
+            "2": 0.0,
+            "4": 0.0,
+            "8": 0.0
+          }
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "followHeartWashDry",
+      "modeTime": 40.0
+    },
+    {
+      "items": [
+        {
+          "conditions": [
+            "night",
+            {
+              "data": [
+                1200.0
+              ],
+              "defaultValue": 1200.0,
+              "key": "dry",
+              "keyValue": 0.0,
+              "next": true,
+              "operator": ">",
+              "timeObj": {
+                "1200": 15.0
+              }
+            }
+          ],
+          "data": [
+            0.0,
+            400.0,
+            600.0,
+            800.0,
+            1000.0,
+            1200.0
+          ],
+          "defaultValue": 1000.0,
+          "propertyName": "speed",
+          "timeObj": {
+            "0": 2.0,
+            "1000": 10.0,
+            "1200": 12.0,
+            "400": 7.0,
+            "600": 8.0,
+            "800": 9.0
+          }
+        },
+        {
+          "propertyName": "dry"
+        },
+        {
+          "propertyName": "shakeTime"
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "spin",
+      "modeTime": 10.0
+    },
+    {
+      "items": [
+        {
+          "propertyName": "soak"
+        },
+        {
+          "conditions": [],
+          "data": [
+            0.0,
+            40.0
+          ],
+          "defaultValue": 0.0,
+          "propertyName": "temperature",
+          "timeObj": {
+            "0": 9.0,
+            "40": 22.0
+          }
+        },
+        {
+          "conditions": [],
+          "data": [
+            1.0,
+            2.0,
+            3.0,
+            4.0
+          ],
+          "defaultValue": 2.0,
+          "propertyName": "rinsh",
+          "timeObj": {
+            "1": 11.0,
+            "2": 22.0,
+            "3": 33.0,
+            "4": 44.0
+          }
+        },
+        {
+          "conditions": [
+            "night"
+          ],
+          "data": [
+            0.0,
+            400.0,
+            600.0,
+            800.0
+          ],
+          "defaultValue": 800.0,
+          "propertyName": "speed",
+          "timeObj": {
+            "0": 1.0,
+            "400": 6.0,
+            "600": 7.0,
+            "800": 8.0
+          }
+        },
+        {
+          "propertyName": "shakeTime"
+        },
+        {
+          "propertyName": "highWaterLevel"
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "delicateWash",
+      "modeTime": 50.0
+    },
+    {
+      "items": [
+        {
+          "propertyName": "soak"
+        },
+        {
+          "conditions": [
+            "sterilizationConObj4060"
+          ],
+          "data": [
+            0.0,
+            40.0,
+            60.0
+          ],
+          "defaultValue": 40.0,
+          "propertyName": "temperature",
+          "timeObj": {
+            "0": 12.0,
+            "40": 20.0,
+            "60": 55.0
+          }
+        },
+        {
+          "conditions": [],
+          "data": [
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0
+          ],
+          "defaultValue": 2.0,
+          "propertyName": "rinsh",
+          "timeObj": {
+            "1": 14.0,
+            "2": 28.0,
+            "3": 42.0,
+            "4": 56.0,
+            "5": 70.0
+          }
+        },
+        {
+          "conditions": [
+            "night",
+            "speed1200-16"
+          ],
+          "data": [
+            0.0,
+            400.0,
+            600.0,
+            800.0,
+            1000.0,
+            1200.0
+          ],
+          "defaultValue": 1000.0,
+          "propertyName": "speed",
+          "timeObj": {
+            "0": 3.0,
+            "1000": 11.0,
+            "1200": 13.0,
+            "400": 8.0,
+            "600": 9.0,
+            "800": 10.0
+          }
+        },
+        {
+          "propertyName": "dry"
+        },
+        {
+          "propertyName": "shakeTime"
+        },
+        {
+          "propertyName": "highWaterLevel"
+        },
+        {
+          "propertyName": "sterilization"
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "mix",
+      "modeTime": 59.0
+    },
+    {
+      "items": [
+        {
+          "propertyName": "soak"
+        },
+        {
+          "conditions": [
+            "sterilizationConObj4060"
+          ],
+          "data": [
+            0.0,
+            40.0,
+            60.0
+          ],
+          "defaultValue": 40.0,
+          "propertyName": "temperature",
+          "timeObj": {
+            "0": 38.0,
+            "40": 42.0,
+            "60": 76.0
+          }
+        },
+        {
+          "conditions": [],
+          "data": [
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0
+          ],
+          "defaultValue": 2.0,
+          "propertyName": "rinsh",
+          "timeObj": {
+            "1": 14.0,
+            "2": 28.0,
+            "3": 42.0,
+            "4": 56.0,
+            "5": 70.0
+          }
+        },
+        {
+          "conditions": [
+            "night",
+            "speed1200-16"
+          ],
+          "data": [
+            0.0,
+            400.0,
+            600.0,
+            800.0,
+            1000.0,
+            1200.0
+          ],
+          "defaultValue": 1000.0,
+          "propertyName": "speed",
+          "timeObj": {
+            "0": 3.0,
+            "1000": 11.0,
+            "1200": 13.0,
+            "400": 8.0,
+            "600": 9.0,
+            "800": 10.0
+          }
+        },
+        {
+          "propertyName": "dry"
+        },
+        {
+          "propertyName": "shakeTime"
+        },
+        {
+          "propertyName": "highWaterLevel"
+        },
+        {
+          "propertyName": "sterilization"
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "intensive",
+      "modeTime": 81.0
+    },
+    {
+      "items": [
+        {
+          "conditions": [
+            "sterilizationConObj4060"
+          ],
+          "data": [
+            0.0,
+            40.0,
+            60.0
+          ],
+          "defaultValue": 40.0,
+          "propertyName": "temperature",
+          "timeObj": {
+            "0": 31.0,
+            "40": 48.0,
+            "60": 76.0
+          }
+        },
+        {
+          "conditions": [],
+          "data": [
+            1.0,
+            2.0,
+            3.0,
+            4.0
+          ],
+          "defaultValue": 2.0,
+          "propertyName": "rinsh",
+          "timeObj": {
+            "1": 12.0,
+            "2": 24.0,
+            "3": 36.0,
+            "4": 48.0
+          }
+        },
+        {
+          "conditions": [
+            "night",
+            {
+              "data": [
+                800.0
+              ],
+              "defaultValue": 800.0,
+              "key": "dry",
+              "keyValue": 0.0,
+              "next": true,
+              "operator": ">",
+              "timeObj": {
+                "800": 13.0
+              }
+            }
+          ],
+          "data": [
+            0.0,
+            400.0,
+            600.0,
+            800.0
+          ],
+          "defaultValue": 800.0,
+          "propertyName": "speed",
+          "timeObj": {
+            "0": 3.0,
+            "400": 8.0,
+            "600": 9.0,
+            "800": 10.0
+          }
+        },
+        {
+          "propertyName": "dry"
+        },
+        {
+          "propertyName": "shakeTime"
+        },
+        {
+          "propertyName": "highWaterLevel"
+        },
+        {
+          "propertyName": "sterilization"
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "downCoat",
+      "modeTime": 82.0
+    },
+    {
+      "items": [
+        {
+          "propertyName": "soak"
+        },
+        {
+          "conditions": [
+            "sterilizationConObj4060"
+          ],
+          "data": [
+            0.0,
+            40.0,
+            60.0
+          ],
+          "defaultValue": 40.0,
+          "propertyName": "temperature",
+          "timeObj": {
+            "0": 40.0,
+            "40": 54.0,
+            "60": 104.0
+          }
+        },
+        {
+          "conditions": [],
+          "data": [
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0
+          ],
+          "defaultValue": 3.0,
+          "propertyName": "rinsh",
+          "timeObj": {
+            "1": 14.0,
+            "2": 28.0,
+            "3": 42.0,
+            "4": 56.0,
+            "5": 70.0
+          }
+        },
+        {
+          "conditions": [
+            "night",
+            {
+              "data": [
+                1000.0
+              ],
+              "defaultValue": 1000.0,
+              "key": "dry",
+              "keyValue": 0.0,
+              "next": true,
+              "operator": ">",
+              "timeObj": {
+                "1000": 14.0
+              }
+            }
+          ],
+          "data": [
+            0.0,
+            400.0,
+            600.0,
+            800.0,
+            1000.0
+          ],
+          "defaultValue": 800.0,
+          "propertyName": "speed",
+          "timeObj": {
+            "0": 3.0,
+            "1000": 11.0,
+            "400": 8.0,
+            "600": 9.0,
+            "800": 10.0
+          }
+        },
+        {
+          "propertyName": "dry"
+        },
+        {
+          "propertyName": "shakeTime"
+        },
+        {
+          "propertyName": "highWaterLevel"
+        },
+        {
+          "propertyName": "sterilization"
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "heavyWash",
+      "modeTime": 92.0
+    },
+    {
+      "items": [
+        {
+          "conditions": [],
+          "data": [
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0
+          ],
+          "defaultValue": 1.0,
+          "propertyName": "rinsh",
+          "timeObj": {
+            "1": 6.0,
+            "2": 20.0,
+            "3": 34.0,
+            "4": 48.0,
+            "5": 62.0
+          }
+        },
+        {
+          "conditions": [
+            "night",
+            {
+              "data": [
+                1200.0
+              ],
+              "defaultValue": 1200.0,
+              "key": "dry",
+              "keyValue": 0.0,
+              "next": true,
+              "operator": ">",
+              "timeObj": {
+                "1200": 15.0
+              }
+            }
+          ],
+          "data": [
+            0.0,
+            400.0,
+            600.0,
+            800.0,
+            1000.0,
+            1200.0
+          ],
+          "defaultValue": 1000.0,
+          "propertyName": "speed",
+          "timeObj": {
+            "0": 2.0,
+            "1000": 10.0,
+            "1200": 12.0,
+            "400": 7.0,
+            "600": 8.0,
+            "800": 9.0
+          }
+        },
+        {
+          "propertyName": "dry"
+        },
+        {
+          "propertyName": "shakeTime"
+        },
+        {
+          "propertyName": "highWaterLevel"
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "rinseSpin",
+      "modeTime": 16.0
+    },
+    {
+      "items": [
+        {
+          "propertyName": "soak"
+        },
+        {
+          "conditions": [
+            "sterilizationConObj406095-40"
+          ],
+          "data": [
+            0.0,
+            40.0,
+            60.0,
+            95.0
+          ],
+          "defaultValue": 40.0,
+          "propertyName": "temperature",
+          "timeObj": {
+            "0": 8.0,
+            "40": 24.0,
+            "60": 74.0,
+            "95": 99.0
+          }
+        },
+        {
+          "conditions": [],
+          "data": [
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0
+          ],
+          "defaultValue": 2.0,
+          "propertyName": "rinsh",
+          "timeObj": {
+            "1": 5.0,
+            "2": 10.0,
+            "3": 15.0,
+            "4": 20.0,
+            "5": 25.0
+          }
+        },
+        {
+          "conditions": [
+            "night",
+            "speed1000-13"
+          ],
+          "data": [
+            0.0,
+            400.0,
+            600.0,
+            800.0,
+            1000.0
+          ],
+          "defaultValue": 800.0,
+          "propertyName": "speed",
+          "timeObj": {
+            "0": 2.0,
+            "1000": 10.0,
+            "400": 7.0,
+            "600": 8.0,
+            "800": 9.0
+          }
+        },
+        {
+          "propertyName": "shakeTime"
+        },
+        {
+          "propertyName": "highWaterLevel"
+        },
+        {
+          "propertyName": "sterilization"
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "underwear",
+      "modeTime": 43.0
+    },
+    {
+      "items": [
+        {
+          "conditions": [],
+          "data": [
+            0.0,
+            40.0
+          ],
+          "defaultValue": 0.0,
+          "propertyName": "temperature",
+          "timeObj": {
+            "0": 27.0,
+            "40": 39.0
+          }
+        },
+        {
+          "conditions": [],
+          "data": [
+            1.0,
+            2.0,
+            3.0,
+            4.0
+          ],
+          "defaultValue": 2.0,
+          "propertyName": "rinsh",
+          "timeObj": {
+            "1": 4.0,
+            "2": 8.0,
+            "3": 12.0,
+            "4": 16.0
+          }
+        },
+        {
+          "conditions": [],
+          "data": [
+            0.0,
+            400.0,
+            600.0
+          ],
+          "defaultValue": 600.0,
+          "propertyName": "speed",
+          "timeObj": {
+            "0": 1.0,
+            "400": 6.0,
+            "600": 7.0
+          }
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "wool",
+      "modeTime": 42.0
+    },
+    {
+      "items": [
+        {
+          "propertyName": "soak"
+        },
+        {
+          "conditions": [
+            "sterilizationConObj406095-60"
+          ],
+          "data": [
+            0.0,
+            40.0,
+            60.0,
+            95.0
+          ],
+          "defaultValue": 60.0,
+          "propertyName": "temperature",
+          "timeObj": {
+            "0": 36.0,
+            "40": 50.0,
+            "60": 64.0,
+            "95": 120.0
+          }
+        },
+        {
+          "conditions": [],
+          "data": [
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0
+          ],
+          "defaultValue": 3.0,
+          "propertyName": "rinsh",
+          "timeObj": {
+            "1": 34.0,
+            "2": 48.0,
+            "3": 62.0,
+            "4": 76.0,
+            "5": 90.0
+          }
+        },
+        {
+          "conditions": [
+            "night",
+            {
+              "data": [
+                1000.0
+              ],
+              "defaultValue": 1000.0,
+              "key": "dry",
+              "keyValue": 0.0,
+              "next": true,
+              "operator": ">",
+              "timeObj": {
+                "1000": 14.0
+              }
+            }
+          ],
+          "data": [
+            0.0,
+            400.0,
+            600.0,
+            800.0,
+            1000.0
+          ],
+          "defaultValue": 800.0,
+          "propertyName": "speed",
+          "timeObj": {
+            "0": 3.0,
+            "1000": 11.0,
+            "400": 8.0,
+            "600": 9.0,
+            "800": 10.0
+          }
+        },
+        {
+          "propertyName": "dry"
+        },
+        {
+          "propertyName": "shakeTime"
+        },
+        {
+          "propertyName": "highWaterLevel"
+        },
+        {
+          "propertyName": "sterilization"
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "babyCare",
+      "modeTime": 116.0
+    },
+    {
+      "items": [
+        {
+          "propertyName": "soak"
+        },
+        {
+          "conditions": [
+            "sterilizationConObj406095-40"
+          ],
+          "data": [
+            0.0,
+            40.0,
+            60.0,
+            95.0
+          ],
+          "defaultValue": 40.0,
+          "propertyName": "temperature",
+          "timeObj": {
+            "0": 19.0,
+            "40": 23.0,
+            "60": 55.0,
+            "95": 90.0
+          }
+        },
+        {
+          "conditions": [],
+          "data": [
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0
+          ],
+          "defaultValue": 2.0,
+          "propertyName": "rinsh",
+          "timeObj": {
+            "1": 11.0,
+            "2": 22.0,
+            "3": 33.0,
+            "4": 44.0,
+            "5": 55.0
+          }
+        },
+        {
+          "conditions": [
+            "night",
+            "speed1200-16"
+          ],
+          "data": [
+            0.0,
+            400.0,
+            600.0,
+            800.0,
+            1000.0,
+            1200.0
+          ],
+          "defaultValue": 1000.0,
+          "propertyName": "speed",
+          "timeObj": {
+            "0": 3.0,
+            "1000": 11.0,
+            "1200": 13.0,
+            "400": 8.0,
+            "600": 9.0,
+            "800": 10.0
+          }
+        },
+        {
+          "propertyName": "dry"
+        },
+        {
+          "propertyName": "shakeTime"
+        },
+        {
+          "propertyName": "sterilization"
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "cotton",
+      "modeTime": 56.0
+    },
+    {
+      "items": [
+        {
+          "propertyName": "soak"
+        },
+        {
+          "conditions": [],
+          "data": [
+            40.0,
+            60.0,
+            95.0
+          ],
+          "defaultValue": 60.0,
+          "propertyName": "temperature",
+          "timeObj": {
+            "40": 51.0,
+            "60": 101.0,
+            "95": 111.0
+          }
+        },
+        {
+          "conditions": [],
+          "data": [
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0
+          ],
+          "defaultValue": 2.0,
+          "propertyName": "rinsh",
+          "timeObj": {
+            "1": 12.0,
+            "2": 24.0,
+            "3": 36.0,
+            "4": 48.0,
+            "5": 60.0
+          }
+        },
+        {
+          "conditions": [
+            "night",
+            "speed1200-16"
+          ],
+          "data": [
+            0.0,
+            400.0,
+            600.0,
+            800.0,
+            1000.0,
+            1200.0
+          ],
+          "defaultValue": 800.0,
+          "propertyName": "speed",
+          "timeObj": {
+            "0": 3.0,
+            "1000": 11.0,
+            "1200": 13.0,
+            "400": 8.0,
+            "600": 9.0,
+            "800": 10.0
+          }
+        },
+        {
+          "propertyName": "dry"
+        },
+        {
+          "propertyName": "shakeTime"
+        },
+        {
+          "propertyName": "highWaterLevel"
+        },
+        {
+          "propertyName": "sterilization"
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "degermingDry",
+      "modeTime": 132.0
+    },
+    {
+      "items": [
+        {
+          "propertyName": "soak"
+        },
+        {
+          "conditions": [
+            "sterilizationConObj4060"
+          ],
+          "data": [
+            0.0,
+            40.0,
+            60.0
+          ],
+          "defaultValue": 0.0,
+          "propertyName": "temperature",
+          "timeObj": {
+            "0": 13.0,
+            "40": 28.0,
+            "60": 41.0
+          }
+        },
+        {
+          "conditions": [],
+          "data": [
+            1.0,
+            2.0,
+            3.0
+          ],
+          "defaultValue": 1.0,
+          "propertyName": "rinsh",
+          "timeObj": {
+            "1": 12.0,
+            "2": 24.0,
+            "3": 36.0
+          }
+        },
+        {
+          "conditions": [
+            "night",
+            "speed1200-16"
+          ],
+          "data": [
+            0.0,
+            400.0,
+            600.0,
+            800.0,
+            1000.0,
+            1200.0
+          ],
+          "defaultValue": 800.0,
+          "propertyName": "speed",
+          "timeObj": {
+            "0": 3.0,
+            "1000": 11.0,
+            "1200": 13.0,
+            "400": 8.0,
+            "600": 9.0,
+            "800": 10.0
+          }
+        },
+        {
+          "propertyName": "dry"
+        },
+        {
+          "propertyName": "shakeTime"
+        },
+        {
+          "propertyName": "highWaterLevel"
+        },
+        {
+          "propertyName": "sterilization"
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "newClothesWash",
+      "modeTime": 35.0
+    },
+    {
+      "items": [
+        {
+          "conditions": [],
+          "data": [
+            60.0,
+            95.0
+          ],
+          "defaultValue": 60.0,
+          "propertyName": "temperature",
+          "timeObj": {
+            "60": 70.0,
+            "95": 96.0
+          }
+        },
+        {
+          "conditions": [],
+          "data": [
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0
+          ],
+          "defaultValue": 2.0,
+          "propertyName": "rinsh",
+          "timeObj": {
+            "1": 14.0,
+            "2": 28.0,
+            "3": 42.0,
+            "4": 56.0,
+            "5": 70.0
+          }
+        },
+        {
+          "conditions": [
+            "night",
+            "speed1200-16"
+          ],
+          "data": [
+            0.0,
+            400.0,
+            600.0,
+            800.0,
+            1000.0,
+            1200.0
+          ],
+          "defaultValue": 800.0,
+          "propertyName": "speed",
+          "timeObj": {
+            "0": 3.0,
+            "1000": 11.0,
+            "1200": 13.0,
+            "400": 8.0,
+            "600": 9.0,
+            "800": 10.0
+          }
+        },
+        {
+          "propertyName": "dry"
+        },
+        {
+          "propertyName": "shakeTime"
+        },
+        {
+          "propertyName": "sterilization"
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "boiling",
+      "modeTime": 108.0
+    },
+    {
+      "items": [
+        {
+          "data": [
+            0.0,
+            40.0
+          ],
+          "defaultValue": 40.0,
+          "propertyName": "temperature",
+          "timeObj": {
+            "0": 21.0,
+            "40": 41.0
+          }
+        },
+        {
+          "conditions": [],
+          "data": [
+            1.0,
+            2.0,
+            3.0,
+            4.0
+          ],
+          "defaultValue": 2.0,
+          "propertyName": "rinsh",
+          "timeObj": {
+            "1": 14.0,
+            "2": 28.0,
+            "3": 42.0,
+            "4": 56.0
+          }
+        },
+        {
+          "conditions": [
+            "night"
+          ],
+          "data": [
+            0.0,
+            400.0,
+            600.0,
+            800.0
+          ],
+          "defaultValue": 800.0,
+          "propertyName": "speed",
+          "timeObj": {
+            "0": 3.0,
+            "400": 8.0,
+            "600": 9.0,
+            "800": 10.0
+          }
+        },
+        {
+          "propertyName": "shakeTime"
+        },
+        {
+          "propertyName": "highWaterLevel"
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "jacket",
+      "modeTime": 79.0
+    },
+    {
+      "items": [
+        {
+          "propertyName": "soak"
+        },
+        {
+          "data": [
+            0.0,
+            40.0
+          ],
+          "defaultValue": 0.0,
+          "propertyName": "temperature",
+          "timeObj": {
+            "0": 23.0,
+            "40": 36.0
+          }
+        },
+        {
+          "conditions": [],
+          "data": [
+            1.0,
+            2.0,
+            3.0,
+            4.0
+          ],
+          "defaultValue": 2.0,
+          "propertyName": "rinsh",
+          "timeObj": {
+            "1": 13.0,
+            "2": 26.0,
+            "3": 39.0,
+            "4": 52.0
+          }
+        },
+        {
+          "conditions": [
+            "night",
+            "speed1000-13"
+          ],
+          "data": [
+            0.0,
+            400.0,
+            600.0,
+            800.0,
+            1000.0
+          ],
+          "defaultValue": 800.0,
+          "propertyName": "speed",
+          "timeObj": {
+            "0": 2.0,
+            "1000": 10.0,
+            "400": 7.0,
+            "600": 8.0,
+            "800": 9.0
+          }
+        },
+        {
+          "propertyName": "dry"
+        },
+        {
+          "propertyName": "shakeTime"
+        },
+        {
+          "propertyName": "highWaterLevel"
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "jeans",
+      "modeTime": 59.0
+    },
+    {
+      "items": [
+        {
+          "propertyName": "soak"
+        },
+        {
+          "conditions": [],
+          "data": [
+            0.0,
+            40.0,
+            60.0
+          ],
+          "defaultValue": 40.0,
+          "propertyName": "temperature",
+          "timeObj": {
+            "0": 18.0,
+            "40": 38.0,
+            "60": 48.0
+          }
+        },
+        {
+          "conditions": [],
+          "data": [
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0
+          ],
+          "defaultValue": 2.0,
+          "propertyName": "rinsh",
+          "timeObj": {
+            "1": 14.0,
+            "2": 28.0,
+            "3": 42.0,
+            "4": 56.0,
+            "5": 70.0
+          }
+        },
+        {
+          "conditions": [
+            "night",
+            "speed1000-13"
+          ],
+          "data": [
+            0.0,
+            400.0,
+            600.0,
+            800.0,
+            1000.0
+          ],
+          "defaultValue": 800.0,
+          "propertyName": "speed",
+          "timeObj": {
+            "0": 2.0,
+            "1000": 10.0,
+            "400": 7.0,
+            "600": 8.0,
+            "800": 9.0
+          }
+        },
+        {
+          "propertyName": "dry"
+        },
+        {
+          "propertyName": "shakeTime"
+        },
+        {
+          "propertyName": "highWaterLevel"
+        },
+        {
+          "propertyName": "sterilization"
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "synthetic",
+      "modeTime": 76.0
+    },
+    {
+      "items": [
+        {
+          "propertyName": "soak"
+        },
+        {
+          "data": [
+            0.0,
+            40.0,
+            60.0
+          ],
+          "defaultValue": 40.0,
+          "propertyName": "temperature",
+          "timeObj": {
+            "0": 24.0,
+            "40": 38.0,
+            "60": 56.0
+          }
+        },
+        {
+          "conditions": [],
+          "data": [
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0
+          ],
+          "defaultValue": 2.0,
+          "propertyName": "rinsh",
+          "timeObj": {
+            "1": 13.0,
+            "2": 26.0,
+            "3": 39.0,
+            "4": 52.0,
+            "5": 65.0
+          }
+        },
+        {
+          "conditions": [
+            "night",
+            "speed1000-13"
+          ],
+          "data": [
+            0.0,
+            400.0,
+            600.0,
+            800.0,
+            1000.0
+          ],
+          "defaultValue": 800.0,
+          "propertyName": "speed",
+          "timeObj": {
+            "0": 2.0,
+            "1000": 10.0,
+            "400": 7.0,
+            "600": 8.0,
+            "800": 9.0
+          }
+        },
+        {
+          "propertyName": "dry"
+        },
+        {
+          "propertyName": "shakeTime"
+        },
+        {
+          "propertyName": "highWaterLevel"
+        },
+        {
+          "propertyName": "sterilization"
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "sportswear",
+      "modeTime": 74.0
+    },
+    {
+      "items": [
+        {
+          "propertyName": "soak"
+        },
+        {
+          "conditions": [],
+          "data": [
+            0.0,
+            40.0
+          ],
+          "defaultValue": 0.0,
+          "propertyName": "temperature",
+          "timeObj": {
+            "0": 6.0,
+            "40": 22.0
+          }
+        },
+        {
+          "conditions": [],
+          "data": [
+            1.0,
+            2.0,
+            3.0,
+            4.0
+          ],
+          "defaultValue": 2.0,
+          "propertyName": "rinsh",
+          "timeObj": {
+            "1": 12.0,
+            "2": 24.0,
+            "3": 36.0,
+            "4": 48.0
+          }
+        },
+        {
+          "data": [
+            0.0,
+            400.0,
+            600.0
+          ],
+          "defaultValue": 600.0,
+          "propertyName": "speed",
+          "timeObj": {
+            "0": 2.0,
+            "400": 7.0,
+            "600": 8.0
+          }
+        },
+        {
+          "propertyName": "highWaterLevel"
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "silk",
+      "modeTime": 38.0
+    },
+    {
+      "items": [
+        {
+          "conditions": [],
+          "data": [
+            60.0
+          ],
+          "defaultValue": 60.0,
+          "isHide": true,
+          "propertyName": "temperature",
+          "timeObj": {
+            "60": 20.0
+          }
+        },
+        {
+          "propertyName": "shakeTime"
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "aromatherapyWash",
+      "modeTime": 20.0
+    },
+    {
+      "isOrder": false,
+      "items": [
+        {
+          "conditions": [],
+          "data": [
+            40.0,
+            60.0,
+            95.0
+          ],
+          "defaultValue": 40.0,
+          "propertyName": "temperature",
+          "timeObj": {
+            "40": 22.0,
+            "60": 41.0,
+            "95": 72.0
+          }
+        },
+        {
+          "data": [
+            2.0
+          ],
+          "defaultValue": 2.0,
+          "propertyName": "rinsh",
+          "timeObj": {
+            "2": 24.0
+          }
+        },
+        {
+          "conditions": [
+            {
+              "data": [
+                800.0
+              ],
+              "defaultValue": 800.0,
+              "key": "dry",
+              "keyValue": 0.0,
+              "next": true,
+              "operator": ">",
+              "timeObj": {
+                "800": 13.0
+              }
+            }
+          ],
+          "data": [
+            800.0
+          ],
+          "defaultValue": 800.0,
+          "isHide": true,
+          "propertyName": "speed",
+          "timeObj": {
+            "800": 10.0
+          }
+        },
+        {
+          "data": [
+            0.0,
+            2.0,
+            30.0
+          ],
+          "defaultValue": 30.0,
+          "intelligentDryShowDryingDegree": false,
+          "propertyName": "dry",
+          "timeObj": {
+            "0": 0.0,
+            "2": 0.0,
+            "30": 30.0
+          }
+        },
+        {
+          "defaultValue": false,
+          "propertyName": "night"
+        }
+      ],
+      "modeName": "drumClean",
+      "modeTime": 56.0
+    }
+  ]
+}

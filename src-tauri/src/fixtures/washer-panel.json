@@ -1,0 +1,2029 @@
+{
+  "did": "washer-readonly-local",
+  "model": "midjd8.washer.42",
+  "specType": "urn:miot-spec-v2:device:washer:0000A01F:midjd8-42:1",
+  "services": [
+    {
+      "siid": 2,
+      "name": "washer",
+      "description": "Washer",
+      "properties": [
+        {
+          "siid": 2,
+          "piid": 1,
+          "name": "on",
+          "description": "Switch Status",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": false,
+            "updatedAt": 1793221369,
+            "retrievedAt": 1793242059
+          },
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 2,
+          "name": "status",
+          "description": "Status",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": 0,
+            "updatedAt": 1793221369,
+            "retrievedAt": 1793242059
+          },
+          "valueList": [
+            {
+              "value": 1,
+              "description": "Idle"
+            },
+            {
+              "value": 2,
+              "description": "Paused"
+            },
+            {
+              "value": 3,
+              "description": "Busy"
+            },
+            {
+              "value": 4,
+              "description": "Delay"
+            },
+            {
+              "value": 5,
+              "description": "Completed"
+            },
+            {
+              "value": 0,
+              "description": "Off"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 3,
+          "name": "mode",
+          "description": "Mode",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": 24,
+            "updatedAt": 1793190803,
+            "retrievedAt": 1793242059
+          },
+          "valueList": [
+            {
+              "value": 1,
+              "description": "Mix"
+            },
+            {
+              "value": 3,
+              "description": "Quick Wash"
+            },
+            {
+              "value": 4,
+              "description": "Delicate Wash"
+            },
+            {
+              "value": 5,
+              "description": "Heavy Wash"
+            },
+            {
+              "value": 6,
+              "description": "Rinse Spin"
+            },
+            {
+              "value": 7,
+              "description": "Spin"
+            },
+            {
+              "value": 11,
+              "description": "Intensive"
+            },
+            {
+              "value": 12,
+              "description": "Baby Care"
+            },
+            {
+              "value": 13,
+              "description": "Drum Clean"
+            },
+            {
+              "value": 15,
+              "description": "Wool"
+            },
+            {
+              "value": 16,
+              "description": "Down Coat"
+            },
+            {
+              "value": 18,
+              "description": "Cotton"
+            },
+            {
+              "value": 20,
+              "description": "Underwear"
+            },
+            {
+              "value": 21,
+              "description": "Boiling"
+            },
+            {
+              "value": 22,
+              "description": "Jacket"
+            },
+            {
+              "value": 24,
+              "description": "Smart"
+            },
+            {
+              "value": 27,
+              "description": "New-Clothes Wash"
+            },
+            {
+              "value": 28,
+              "description": "Silk"
+            },
+            {
+              "value": 29,
+              "description": "Jeans"
+            },
+            {
+              "value": 57,
+              "description": "Aromatherapy Wash"
+            },
+            {
+              "value": 19,
+              "description": "Synthetic"
+            },
+            {
+              "value": 25,
+              "description": "Sportswear"
+            },
+            {
+              "value": 62,
+              "description": "Bacteria Mite Removal"
+            },
+            {
+              "value": 8,
+              "description": "Dry"
+            },
+            {
+              "value": 58,
+              "description": "Pleased Wash Dry"
+            },
+            {
+              "value": 17,
+              "description": "Dry Air Wash"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 4,
+          "name": "fault",
+          "description": "Device Fault",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": 0,
+            "updatedAt": 1793221369,
+            "retrievedAt": 1793242059
+          },
+          "valueList": [
+            {
+              "value": 0,
+              "description": "No Faults"
+            },
+            {
+              "value": 1,
+              "description": "Door Lock Malfunction"
+            },
+            {
+              "value": 2,
+              "description": "Water Intake Malfunction"
+            },
+            {
+              "value": 3,
+              "description": "Water Draining Malfunction"
+            },
+            {
+              "value": 4,
+              "description": "Water Level Sensor Malfunction"
+            },
+            {
+              "value": 5,
+              "description": "Overflow Malfunction"
+            },
+            {
+              "value": 6,
+              "description": "Motor Driver Board Communication Malfunction"
+            },
+            {
+              "value": 7,
+              "description": "Motor Fault"
+            },
+            {
+              "value": 8,
+              "description": "Motor Fault"
+            },
+            {
+              "value": 9,
+              "description": "Motor Fault"
+            },
+            {
+              "value": 10,
+              "description": "Motor Fault"
+            },
+            {
+              "value": 11,
+              "description": "Motor Fault"
+            },
+            {
+              "value": 12,
+              "description": "Motor Fault"
+            },
+            {
+              "value": 13,
+              "description": "Motor Fault"
+            },
+            {
+              "value": 14,
+              "description": "Motor Fault"
+            },
+            {
+              "value": 15,
+              "description": "Motor Fault"
+            },
+            {
+              "value": 16,
+              "description": "Unbalanced Alarm"
+            },
+            {
+              "value": 17,
+              "description": "Drying Heating Tube Malfunction"
+            },
+            {
+              "value": 18,
+              "description": "Drying Fan Malfunction"
+            },
+            {
+              "value": 19,
+              "description": "Drying Air Inlet NTC Malfunction"
+            },
+            {
+              "value": 20,
+              "description": "Drying Air Outlet NTC Malfunction"
+            },
+            {
+              "value": 21,
+              "description": "Water Weating Tube Malfunction"
+            },
+            {
+              "value": 22,
+              "description": "Water Temperature Sensor Malfunction"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 5,
+          "name": "target-temperature",
+          "description": "Target Temperature",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": "celsius",
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": 40,
+            "updatedAt": 1793178566,
+            "retrievedAt": 1793242059
+          },
+          "valueList": [
+            {
+              "value": 0,
+              "description": "0"
+            },
+            {
+              "value": 40,
+              "description": "40"
+            },
+            {
+              "value": 60,
+              "description": "60"
+            },
+            {
+              "value": 95,
+              "description": "95"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 6,
+          "name": "rinsh-times",
+          "description": "Rinsh Times",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": 2,
+            "updatedAt": 1793178566,
+            "retrievedAt": 1793242059
+          },
+          "valueList": null,
+          "valueRange": [
+            0,
+            5,
+            1
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 7,
+          "name": "spin-speed",
+          "description": "Spin Speed",
+          "format": "uint16",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": 800,
+            "updatedAt": 1793178566,
+            "retrievedAt": 1793242059
+          },
+          "valueList": [
+            {
+              "value": 0,
+              "description": "0"
+            },
+            {
+              "value": 400,
+              "description": "400"
+            },
+            {
+              "value": 600,
+              "description": "600"
+            },
+            {
+              "value": 800,
+              "description": "800"
+            },
+            {
+              "value": 1000,
+              "description": "1000"
+            },
+            {
+              "value": 1200,
+              "description": "1200"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 9,
+          "name": "door-state",
+          "description": "Door State",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": 0,
+            "updatedAt": 1793221369,
+            "retrievedAt": 1793242059
+          },
+          "valueList": [
+            {
+              "value": 0,
+              "description": "Open"
+            },
+            {
+              "value": 2,
+              "description": "Closed And Can Be Opened"
+            },
+            {
+              "value": 3,
+              "description": "Closed And Can Not Be Opened"
+            },
+            {
+              "value": 4,
+              "description": "Unopenable And Dry"
+            },
+            {
+              "value": 5,
+              "description": "Unopenable And High Water Temperature"
+            },
+            {
+              "value": 6,
+              "description": "Unopenable And High Water Level"
+            },
+            {
+              "value": 7,
+              "description": "Unopenable And High Speed Level"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 10,
+          "name": "left-time",
+          "description": "Left Time",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "minutes",
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": 0,
+            "updatedAt": 1793196319,
+            "retrievedAt": 1793242059
+          },
+          "valueList": null,
+          "valueRange": [
+            0,
+            1440,
+            1
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 11,
+          "name": "run-status",
+          "description": "Run Status",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": 0,
+            "updatedAt": 1793221369,
+            "retrievedAt": 1793242059
+          },
+          "valueList": [
+            {
+              "value": 0,
+              "description": "Not Run"
+            },
+            {
+              "value": 1,
+              "description": "Performing Scheduled Task"
+            },
+            {
+              "value": 2,
+              "description": "Weighing"
+            },
+            {
+              "value": 3,
+              "description": "Steam Sterilization"
+            },
+            {
+              "value": 4,
+              "description": "Soaking"
+            },
+            {
+              "value": 5,
+              "description": "Washing"
+            },
+            {
+              "value": 6,
+              "description": "Rinsing"
+            },
+            {
+              "value": 7,
+              "description": "Anti-crease Soaking"
+            },
+            {
+              "value": 8,
+              "description": "Spinning"
+            },
+            {
+              "value": 9,
+              "description": "Drying"
+            },
+            {
+              "value": 10,
+              "description": "Cooling After Drying"
+            },
+            {
+              "value": 11,
+              "description": "Waiting Blow And Shake"
+            },
+            {
+              "value": 12,
+              "description": "Blowing And Shaking"
+            },
+            {
+              "value": 13,
+              "description": "Prewashing"
+            },
+            {
+              "value": 14,
+              "description": "Clothing Care"
+            },
+            {
+              "value": 15,
+              "description": "Washing Completed"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 12,
+          "name": "soak-time",
+          "description": "Soak Time",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": "minutes",
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": 0,
+            "updatedAt": 1793178566,
+            "retrievedAt": 1793242059
+          },
+          "valueList": null,
+          "valueRange": [
+            0,
+            30,
+            10
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 13,
+          "name": "has-washed-times",
+          "description": "Has Washed Times",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": 51,
+            "updatedAt": 1793221369,
+            "retrievedAt": 1793242059
+          },
+          "valueList": null,
+          "valueRange": [
+            0,
+            65535,
+            1
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 16,
+          "name": "reservation-wash-status",
+          "description": "Reservation Wash Status",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": 3,
+            "updatedAt": 1793178566,
+            "retrievedAt": 1793242059
+          },
+          "valueList": [
+            {
+              "value": 1,
+              "description": "None"
+            },
+            {
+              "value": 2,
+              "description": "Start Wash"
+            },
+            {
+              "value": 3,
+              "description": "Finish Wash"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 17,
+          "name": "reservation-left-time",
+          "description": "Reservation Left Time",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "unit": "minutes",
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": 0,
+            "updatedAt": 1793178566,
+            "retrievedAt": 1793242059
+          },
+          "valueList": null,
+          "valueRange": [
+            0,
+            2880,
+            1
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 18,
+          "name": "steam-sterilization",
+          "description": "Steam Sterilization",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": false,
+            "updatedAt": 1793178566,
+            "retrievedAt": 1793242059
+          },
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 19,
+          "name": "high-water-switch",
+          "description": "High Water Switch",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": false,
+            "updatedAt": 1793178566,
+            "retrievedAt": 1793242059
+          },
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 20,
+          "name": "run-status-list",
+          "description": "Run Status List",
+          "format": "uint32",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": 0,
+            "updatedAt": 1793178566,
+            "retrievedAt": 1793242059
+          },
+          "valueList": null,
+          "valueRange": [
+            0,
+            65536,
+            1
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 21,
+          "name": "wash-time",
+          "description": "Wash Time",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": "minutes",
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": 20,
+            "updatedAt": 1793178566,
+            "retrievedAt": 1793242059
+          },
+          "valueList": null,
+          "valueRange": [
+            0,
+            120,
+            1
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 23,
+          "name": "sleep-mode",
+          "description": "Sleep Mode",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": false,
+            "updatedAt": 1793178566,
+            "retrievedAt": 1793242059
+          },
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 24,
+          "name": "shake-time",
+          "description": "Shake Time",
+          "format": "uint16",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": "minutes",
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": 0,
+            "updatedAt": 1793221368,
+            "retrievedAt": 1793242059
+          },
+          "valueList": null,
+          "valueRange": [
+            0,
+            720,
+            1
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 25,
+          "name": "filter-need-cleaning",
+          "description": "Filter Need Cleaning",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": false,
+            "updatedAt": 1793221369,
+            "retrievedAt": 1793242059
+          },
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 26,
+          "name": "drying-level",
+          "description": "Drying Level",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": 0,
+            "updatedAt": 1793178566,
+            "retrievedAt": 1793242059
+          },
+          "valueList": [
+            {
+              "value": 1,
+              "description": "Smart"
+            },
+            {
+              "value": 0,
+              "description": "None"
+            },
+            {
+              "value": 2,
+              "description": "Timed"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 27,
+          "name": "drying-time",
+          "description": "Drying Time",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": "minutes",
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": 0,
+            "updatedAt": 1793178566,
+            "retrievedAt": 1793242059
+          },
+          "valueList": null,
+          "valueRange": [
+            0,
+            180,
+            10
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 28,
+          "name": "child-protected-enabled",
+          "description": "Child Protected Enabled",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": false,
+            "updatedAt": 1793221369,
+            "retrievedAt": 1793242059
+          },
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 29,
+          "name": "child-protected-status",
+          "description": "Child Protected Status",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": false,
+            "updatedAt": 1793221369,
+            "retrievedAt": 1793242059
+          },
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 30,
+          "name": "shake-disperse-notify",
+          "description": "Shake Disperse Notify",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": false,
+            "updatedAt": 1793221369,
+            "retrievedAt": 1793242059
+          },
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 31,
+          "name": "has-dried-times",
+          "description": "Has Dried Times",
+          "format": "uint16",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": 0,
+            "updatedAt": 1793221369,
+            "retrievedAt": 1793242059
+          },
+          "valueList": null,
+          "valueRange": [
+            0,
+            65535,
+            1
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 32,
+          "name": "drying-degree",
+          "description": "Drying Degree",
+          "format": "uint8",
+          "access": [
+            "write",
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": 2,
+            "updatedAt": 1793178566,
+            "retrievedAt": 1793242059
+          },
+          "valueList": [
+            {
+              "value": 0,
+              "description": "Close"
+            },
+            {
+              "value": 1,
+              "description": "Ironing"
+            },
+            {
+              "value": 2,
+              "description": "Wear Immediately"
+            },
+            {
+              "value": 3,
+              "description": "Store"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 33,
+          "name": "one-click-wash",
+          "description": "One Click Wash",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": false,
+            "updatedAt": 1793178566,
+            "retrievedAt": 1793242059
+          },
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 34,
+          "name": "ai-mode",
+          "description": "Ai Mode",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": false,
+            "updatedAt": 1793178566,
+            "retrievedAt": 1793242059
+          },
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [
+        {
+          "siid": 2,
+          "aiid": 1,
+          "name": "stop-washing",
+          "description": "Stop Washing",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "aiid": 2,
+          "name": "start-wash",
+          "description": "Start Wash",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "aiid": 3,
+          "name": "pause",
+          "description": "Pause",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "aiid": 4,
+          "name": "set-customize-params",
+          "description": "Set Customize Params",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "aiid": 5,
+          "name": "stop-shake-disperse",
+          "description": "Stop Shake Disperse",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "aiid": 6,
+          "name": "start-shake-disperse",
+          "description": "Start Shake Disperse",
+          "in": [
+            24
+          ],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "aiid": 7,
+          "name": "make-cabin-openable",
+          "description": "Make Cabin Openable",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        }
+      ]
+    },
+    {
+      "siid": 3,
+      "name": "physical-controls-locked",
+      "description": "Physical Control Locked",
+      "properties": [
+        {
+          "siid": 3,
+          "piid": 1,
+          "name": "physical-controls-locked",
+          "description": "Physical Control Locked",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": false,
+            "updatedAt": 1793221369,
+            "retrievedAt": 1793242059
+          },
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 4,
+      "name": "alarm",
+      "description": "Alarm",
+      "properties": [
+        {
+          "siid": 4,
+          "piid": 1,
+          "name": "alarm",
+          "description": "Alarm",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": true,
+            "updatedAt": 1793178566,
+            "retrievedAt": 1793242059
+          },
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 8,
+      "name": "data-logging",
+      "description": "data-logging",
+      "properties": [
+        {
+          "siid": 8,
+          "piid": 1,
+          "name": "wash-mode",
+          "description": "wash-mode",
+          "format": "uint8",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "None"
+            },
+            {
+              "value": 1,
+              "description": "Mix"
+            },
+            {
+              "value": 2,
+              "description": "Daily Wash"
+            },
+            {
+              "value": 3,
+              "description": "Quick Wash"
+            },
+            {
+              "value": 4,
+              "description": "Delicate Wash"
+            },
+            {
+              "value": 5,
+              "description": "Heavy Wash"
+            },
+            {
+              "value": 6,
+              "description": "Rinse Spin"
+            },
+            {
+              "value": 7,
+              "description": "Spin"
+            },
+            {
+              "value": 8,
+              "description": "Dry"
+            },
+            {
+              "value": 9,
+              "description": "User Define"
+            },
+            {
+              "value": 10,
+              "description": "Quick Wash Dry"
+            },
+            {
+              "value": 11,
+              "description": "Intensive"
+            },
+            {
+              "value": 12,
+              "description": "Baby Care"
+            },
+            {
+              "value": 13,
+              "description": "Drum Clean"
+            },
+            {
+              "value": 14,
+              "description": "Sterilization"
+            },
+            {
+              "value": 15,
+              "description": "Wool"
+            },
+            {
+              "value": 16,
+              "description": "Down Coat"
+            },
+            {
+              "value": 17,
+              "description": "Dry Air Wash"
+            },
+            {
+              "value": 18,
+              "description": "Cotton"
+            },
+            {
+              "value": 19,
+              "description": "Synthetic"
+            },
+            {
+              "value": 20,
+              "description": "Underwear"
+            },
+            {
+              "value": 21,
+              "description": "Boiling"
+            },
+            {
+              "value": 22,
+              "description": "Jacket"
+            },
+            {
+              "value": 23,
+              "description": "Shirt"
+            },
+            {
+              "value": 24,
+              "description": "Smart"
+            },
+            {
+              "value": 25,
+              "description": "Sportswear"
+            },
+            {
+              "value": 26,
+              "description": "Mite Removal"
+            },
+            {
+              "value": 27,
+              "description": "New-Clothes Wash"
+            },
+            {
+              "value": 28,
+              "description": "Silk"
+            },
+            {
+              "value": 29,
+              "description": "Jeans"
+            },
+            {
+              "value": 30,
+              "description": "Cold Wash"
+            },
+            {
+              "value": 31,
+              "description": "Steam Wash"
+            },
+            {
+              "value": 32,
+              "description": "Free Wash"
+            },
+            {
+              "value": 33,
+              "description": "Color Protect"
+            },
+            {
+              "value": 34,
+              "description": "Anti-allergy"
+            },
+            {
+              "value": 35,
+              "description": "Stain Wash"
+            },
+            {
+              "value": 36,
+              "description": "Home Textile"
+            },
+            {
+              "value": 37,
+              "description": "Energy Saving"
+            },
+            {
+              "value": 38,
+              "description": "Cradle Wash"
+            },
+            {
+              "value": 39,
+              "description": "Skin Care"
+            },
+            {
+              "value": 40,
+              "description": "Curtain"
+            },
+            {
+              "value": 41,
+              "description": "Drum-air-dry"
+            },
+            {
+              "value": 42,
+              "description": "Soaking-wash"
+            },
+            {
+              "value": 43,
+              "description": "Towel Wash"
+            },
+            {
+              "value": 44,
+              "description": "Sock Wash"
+            },
+            {
+              "value": 45,
+              "description": "Small Item Wash"
+            },
+            {
+              "value": 57,
+              "description": "Aromatherapy Wash"
+            },
+            {
+              "value": 58,
+              "description": "Pleased Wash Dry"
+            },
+            {
+              "value": 59,
+              "description": "Steam Ironing"
+            },
+            {
+              "value": 62,
+              "description": "Bacteria Mite Removal"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 2,
+          "name": "target-temperature",
+          "description": "",
+          "format": "uint8",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0,
+            100,
+            1
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 3,
+          "name": "rinse-times",
+          "description": "",
+          "format": "uint8",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0,
+            5,
+            1
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 4,
+          "name": "spin-speed",
+          "description": "",
+          "format": "uint16",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0,
+            1600,
+            1
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 5,
+          "name": "drying-level",
+          "description": "",
+          "format": "uint8",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "None"
+            },
+            {
+              "value": 1,
+              "description": "Smart"
+            },
+            {
+              "value": 2,
+              "description": "Timing"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 6,
+          "name": "drying-time",
+          "description": "drying-time",
+          "format": "uint8",
+          "access": [],
+          "unit": "minutes",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0,
+            120,
+            1
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 7,
+          "name": "soak-time",
+          "description": "",
+          "format": "uint8",
+          "access": [],
+          "unit": "minutes",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0,
+            30,
+            1
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 8,
+          "name": "option",
+          "description": "",
+          "format": "uint16",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0,
+            65535,
+            1
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 9,
+          "name": "door-state",
+          "description": "",
+          "format": "uint8",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "Open"
+            },
+            {
+              "value": 1,
+              "description": "Closed"
+            },
+            {
+              "value": 2,
+              "description": "Close And Can Be Opened"
+            },
+            {
+              "value": 3,
+              "description": "Close And Can Not Be Opened"
+            },
+            {
+              "value": 4,
+              "description": "Unopenable And Dry"
+            },
+            {
+              "value": 5,
+              "description": "Unopenable And High Water Temperature"
+            },
+            {
+              "value": 6,
+              "description": "Unopenable And High Water Level"
+            },
+            {
+              "value": 7,
+              "description": "Unopenable And High Speed Level"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 10,
+          "name": "reservation-lefttime",
+          "description": "",
+          "format": "uint16",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0,
+            65535,
+            1
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 11,
+          "name": "detergent-delivery",
+          "description": "",
+          "format": "uint8",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "Off"
+            },
+            {
+              "value": 1,
+              "description": "Few"
+            },
+            {
+              "value": 2,
+              "description": "Standard"
+            },
+            {
+              "value": 3,
+              "description": "Many"
+            },
+            {
+              "value": 4,
+              "description": "Lots Of"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 12,
+          "name": "softener-delivery",
+          "description": "",
+          "format": "uint8",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "Off"
+            },
+            {
+              "value": 1,
+              "description": "Few"
+            },
+            {
+              "value": 2,
+              "description": "Standard"
+            },
+            {
+              "value": 3,
+              "description": "Many"
+            },
+            {
+              "value": 4,
+              "description": "Lots Of"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 14,
+          "name": "duration",
+          "description": "duration",
+          "format": "uint16",
+          "access": [],
+          "unit": "minutes",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0,
+            65535,
+            1
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 16,
+          "name": "shake-time",
+          "description": "",
+          "format": "uint16",
+          "access": [],
+          "unit": "minutes",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0,
+            720,
+            1
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 17,
+          "name": "init-loadval",
+          "description": "",
+          "format": "uint8",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0,
+            255,
+            1
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 18,
+          "name": "wet-loadval",
+          "description": "",
+          "format": "uint8",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0,
+            255,
+            1
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 19,
+          "name": "dry-loadval",
+          "description": "",
+          "format": "uint8",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0,
+            255,
+            1
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 20,
+          "name": "final-spin-speed",
+          "description": "",
+          "format": "uint16",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0,
+            1600,
+            1
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 21,
+          "name": "wash-time",
+          "description": "",
+          "format": "uint8",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0,
+            120,
+            1
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 8,
+          "piid": 22,
+          "name": "drying-degree",
+          "description": "",
+          "format": "uint8",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0,
+            3,
+            1
+          ],
+          "unsupportedReason": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 9,
+      "name": "plugin-connect",
+      "description": "plugin-connect",
+      "properties": [
+        {
+          "siid": 9,
+          "piid": 1,
+          "name": "extend-func-enabled",
+          "description": "",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "unit": null,
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": false,
+            "updatedAt": 1793178566,
+            "retrievedAt": 1793242059
+          },
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [
+        {
+          "siid": 9,
+          "aiid": 1,
+          "name": "plugin-connect",
+          "description": "plugin-connect",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 9,
+          "aiid": 2,
+          "name": "plugin-disconnect",
+          "description": "plugin-disconnect",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        }
+      ]
+    },
+    {
+      "siid": 10,
+      "name": "factory-test",
+      "description": "factory-test",
+      "properties": [],
+      "actions": []
+    },
+    {
+      "siid": 11,
+      "name": "dryer-channel-clean",
+      "description": "dryer-channel-clean",
+      "properties": [
+        {
+          "siid": 11,
+          "piid": 1,
+          "name": "clean-lefttime",
+          "description": "",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "minutes",
+          "value": null,
+          "code": -704220043,
+          "lastReported": {
+            "value": 0,
+            "updatedAt": 1793178566,
+            "retrievedAt": 1793242059
+          },
+          "valueList": null,
+          "valueRange": [
+            0,
+            50,
+            1
+          ],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 11,
+          "piid": 2,
+          "name": "deep-clean",
+          "description": "",
+          "format": "bool",
+          "access": [],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [
+        {
+          "siid": 11,
+          "aiid": 1,
+          "name": "clean-dryer-start",
+          "description": "clean-dryer-start",
+          "in": [
+            2
+          ],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 11,
+          "aiid": 2,
+          "name": "clean-dryer-stop",
+          "description": "clean-dryer-stop",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        }
+      ]
+    }
+  ],
+  "unsupportedReason": null
+}

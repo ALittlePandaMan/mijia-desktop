@@ -1,0 +1,5273 @@
+{
+  "version": 2,
+  "aliases": {
+    "relay": "switch",
+    "control-panel": "switch",
+    "roller-shutter": "curtain",
+    "refrigerator": "fridge",
+    "air-fresh": "fresh-air"
+  },
+  "readings": [
+    "status",
+    "fault",
+    "temperature",
+    "relative-humidity",
+    "illumination",
+    "battery-level",
+    "charging-state",
+    "tds-in",
+    "tds-out",
+    "filter-life-level",
+    "filter-used-time",
+    "pm2.5-density",
+    "pm10-density",
+    "co2-density",
+    "air-quality",
+    "electric-current",
+    "voltage",
+    "electric-power",
+    "power-consumption",
+    "weight",
+    "bmi",
+    "body-fat-rate",
+    "water-level",
+    "remaining-time",
+    "left-time",
+    "current-position",
+    "occupancy-status",
+    "has-someone-duration",
+    "no-one-duration",
+    "contact-state",
+    "gas-concentration",
+    "playing-state",
+    "connected-device-number",
+    "connected-device-count",
+    "refrigerator-temperature",
+    "freezer-temperature"
+  ],
+  "excludedServices": [
+    "device-information",
+    "memory-card-management",
+    "nas",
+    "p2p-stream",
+    "camera-ipc-cloud",
+    "self-check",
+    "user-management",
+    "message-router",
+    "ble-control",
+    "sensor-config",
+    "ble-conn",
+    "syncinfo",
+    "share-cancel",
+    "clock",
+    "firmware-upgrade",
+    "ota",
+    "router-settings",
+    "network-management",
+    "security-management"
+  ],
+  "labels": {
+    "on": "开关",
+    "mode": "模式",
+    "brightness": "亮度",
+    "color-temperature": "色温",
+    "color": "颜色",
+    "rgb": "颜色",
+    "fan-level": "风速",
+    "speed-level": "风速",
+    "favorite-level": "喜爱风速",
+    "horizontal-swing": "左右摇头",
+    "vertical-swing": "上下摇头",
+    "horizontal-angle": "左右角度",
+    "vertical-angle": "上下角度",
+    "off-delay-time": "延时关闭",
+    "target-temperature": "目标温度",
+    "target-humidity": "目标湿度",
+    "motor-control": "开合控制",
+    "target-position": "目标位置",
+    "current-position": "当前位置",
+    "child-lock": "童锁",
+    "physical-controls-locked": "童锁",
+    "buzzer": "提示音",
+    "status": "当前状态",
+    "fault": "故障状态",
+    "temperature": "温度",
+    "relative-humidity": "湿度",
+    "illumination": "光照",
+    "battery-level": "电量",
+    "charging-state": "充电状态",
+    "tds-in": "原水 TDS",
+    "tds-out": "纯水 TDS",
+    "filter-life-level": "滤芯剩余",
+    "filter-used-time": "滤芯使用时间",
+    "pm2.5-density": "PM2.5",
+    "pm10-density": "PM10",
+    "co2-density": "二氧化碳",
+    "air-quality": "空气质量",
+    "electric-current": "电流",
+    "voltage": "电压",
+    "electric-power": "功率",
+    "power-consumption": "用电量",
+    "weight": "体重",
+    "bmi": "BMI",
+    "body-fat-rate": "体脂率",
+    "water-level": "水量",
+    "remaining-time": "剩余时间",
+    "left-time": "剩余时间",
+    "occupancy-status": "有人状态",
+    "has-someone-duration": "有人时长",
+    "no-one-duration": "无人时长",
+    "contact-state": "开合状态",
+    "gas-concentration": "燃气浓度",
+    "playing-state": "播放状态",
+    "connected-device-number": "连接设备数",
+    "connected-device-count": "连接设备数",
+    "refrigerator-temperature": "冷藏温度",
+    "freezer-temperature": "冷冻温度",
+    "volume": "音量",
+    "mute": "静音",
+    "sweep-mode": "清扫模式",
+    "suction-state": "吸力",
+    "input-control": "输入源",
+    "target-time": "烹饪时间",
+    "auto-keep-warm": "自动保温",
+    "blow": "吹风",
+    "heating": "制热",
+    "ventilation": "换气",
+    "heat-level": "制热档位",
+    "off-delay": "延时关闭",
+    "refrigerating-room": "冷藏室温度",
+    "freezing-room": "冷冻室温度",
+    "refrigerator-temperature-set": "冷藏目标温度",
+    "freezer-temperature-set": "冷冻目标温度",
+    "light": "照明",
+    "submersion-state": "漏水状态",
+    "pressure-present-state": "受压状态",
+    "motion-state": "移动状态",
+    "motion-detection-state": "移动状态",
+    "door-state": "门状态",
+    "lock-state": "门锁状态",
+    "seating-state": "入座状态",
+    "ride-status": "乘坐状态",
+    "safety-belt": "安全带状态",
+    "install-warn": "安装提示",
+    "charging-status": "充电状态",
+    "battery-percentage": "电量",
+    "ble-battery-level": "电量",
+    "current-height": "当前高度",
+    "moving-status": "运动状态",
+    "working-time": "运行时间",
+    "current-distance": "距离",
+    "current-step-count": "步数",
+    "current-calorie-consumption": "消耗热量",
+    "heart-rate": "心率",
+    "systolic-pressure": "收缩压",
+    "diastolic-pressure": "舒张压",
+    "sleep-state": "睡眠状态",
+    "soil-ec": "土壤肥力",
+    "humidity": "湿度",
+    "water-temperature": "水温",
+    "water-hardness": "水硬度",
+    "water-consumption": "用水量",
+    "water-flow": "水流量",
+    "food-level": "余粮",
+    "food-left-level": "余粮",
+    "cat-litter-left-level": "余砂",
+    "trash-can-status": "集便盒状态",
+    "usage-count": "使用次数",
+    "cat-weight": "宠物体重",
+    "cat-enter-state": "在仓状态",
+    "cat-near-state": "靠近状态",
+    "filter-left-time": "滤芯剩余时间",
+    "cotton-left-time": "滤棉剩余时间",
+    "remain-clean-time": "距清洁时间",
+    "no-water-flag": "缺水状态",
+    "deodorant-left-time": "除臭耗材剩余时间",
+    "download-speed": "下载速度",
+    "upload-speed": "上传速度",
+    "used-space": "已用容量",
+    "free-space": "剩余容量",
+    "total-space": "总容量",
+    "disk-temperature": "硬盘温度",
+    "printer-state": "打印机状态",
+    "printed-page": "已打印页数",
+    "remaining-capacity": "剩余容量",
+    "hydraulic-pressure": "水压",
+    "wind-speed": "风速",
+    "rainfall": "降雨量",
+    "atmospheric-pressure": "气压",
+    "discharge-power-time": "预计可用时间",
+    "charge-power-time": "预计充满时间",
+    "switch-battery-level": "电量",
+    "battery-health": "电池健康",
+    "discharge-power": "放电功率",
+    "charge-power": "充电功率",
+    "charged-quantity": "已充电量",
+    "result": "最近操作结果",
+    "feeding-measure": "出粮份数",
+    "cook-time": "烹饪时长",
+    "working-level": "运行档位",
+    "massage-strength": "按摩力度",
+    "backrest-angle": "靠背角度",
+    "leg-rest-angle": "腿托角度",
+    "target-height": "目标高度",
+    "water-pump": "水泵",
+    "pump-flux": "水泵流量",
+    "keep-warm-temperature": "保温温度",
+    "valve-switch": "阀门开关",
+    "wind-reverse": "反向送风",
+    "stepless-fan-level": "无级风速",
+    "favorite-fan-level": "喜爱风速",
+    "anion": "负离子",
+    "uv": "紫外净化",
+    "plasma": "等离子净化",
+    "eco": "节能模式",
+    "heater": "辅助加热",
+    "dryer": "干燥",
+    "sleep-mode": "睡眠模式",
+    "soft-wind": "柔风",
+    "alarm": "提示音",
+    "ringtone": "铃声",
+    "night-shot": "夜视模式",
+    "auto-screen-on": "自动亮屏",
+    "image-distortion-correction": "画面畸变校正",
+    "language": "语言",
+    "door-operation-volume": "门锁提示音音量",
+    "unlock-tone-volume": "开门提示音音量",
+    "doorbell-volume": "门铃音量",
+    "doorbell-light-on": "门铃指示灯",
+    "gestures": "手势控制",
+    "gas-stateleft": "左炉状态",
+    "gas-stateright": "右炉状态",
+    "gas-target-temp": "目标温度",
+    "gas-current-temp": "当前温度",
+    "gas-lefttime-right": "右炉剩余时间",
+    "gas-sumcooktime-left": "左炉运行时间",
+    "gas-sumtime-right": "右炉运行时间",
+    "gas-errorcode": "故障状态",
+    "smoke-status": "烟机状态",
+    "smoke-light-status": "烟机照明",
+    "current-heat-level": "当前火力",
+    "hcho-density": "甲醛",
+    "tvoc-density": "TVOC",
+    "voc-density": "VOC",
+    "pm1": "PM1",
+    "gas-lefttime-left": "左炉剩余时间"
+  },
+  "actionLabels": {
+    "open": "打开",
+    "close": "关闭",
+    "pause": "暂停",
+    "stop": "停止",
+    "up": "上升",
+    "down": "下降",
+    "raise": "上升",
+    "lower": "下降",
+    "start-sweep": "开始清扫",
+    "stop-sweeping": "停止清扫",
+    "pause-sweeping": "暂停清扫",
+    "start-charge": "回充",
+    "turn-off": "关闭",
+    "play": "播放",
+    "next": "下一首",
+    "previous": "上一首",
+    "stop-working": "停止",
+    "start-cook": "开始",
+    "cancel-cooking": "停止",
+    "resume-cook": "继续",
+    "start-wash": "继续洗涤",
+    "stop-washing": "停止洗涤",
+    "start-drying": "开始烘干",
+    "start-work": "开始",
+    "turn-on": "开启",
+    "pet-food-out": "手动喂食"
+  },
+  "categories": {
+    "switch": {
+      "title": "开关",
+      "primary": [
+        "switch"
+      ],
+      "properties": {
+        "switch": [
+          "on"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [],
+      "family": "switch",
+      "readOnly": false
+    },
+    "outlet": {
+      "title": "插座",
+      "primary": [
+        "outlet",
+        "switch"
+      ],
+      "properties": {
+        "outlet": [
+          "on"
+        ],
+        "switch": [
+          "on"
+        ],
+        "physical-controls-locked": [
+          "physical-controls-locked"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [],
+      "family": "switch",
+      "readOnly": false,
+      "catalogGenerated": false,
+      "readings": {
+        "power-consumption": [
+          "electric-power",
+          "power-consumption"
+        ],
+        "electricity": [
+          "electric-current",
+          "voltage",
+          "electric-power",
+          "power-consumption"
+        ]
+      }
+    },
+    "light": {
+      "title": "灯具",
+      "primary": [
+        "light"
+      ],
+      "properties": {
+        "light": [
+          "on",
+          "brightness",
+          "color-temperature",
+          "color",
+          "rgb",
+          "mode"
+        ],
+        "fan": [
+          "on",
+          "mode",
+          "fan-level",
+          "speed-level",
+          "wind-reverse"
+        ],
+        "ambient-light": [
+          "on",
+          "brightness",
+          "color-temperature",
+          "color",
+          "rgb"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [],
+      "family": "lighting",
+      "readOnly": false,
+      "catalogGenerated": false
+    },
+    "fan": {
+      "title": "风扇",
+      "primary": [
+        "fan"
+      ],
+      "properties": {
+        "fan": [
+          "on",
+          "mode",
+          "fan-level",
+          "speed-level",
+          "horizontal-swing",
+          "vertical-swing",
+          "horizontal-angle",
+          "vertical-angle",
+          "off-delay-time",
+          "stepless-fan-level",
+          "wind-reverse"
+        ],
+        "fan-control": [
+          "fan-level",
+          "speed-level",
+          "horizontal-swing",
+          "vertical-swing"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [],
+      "family": "climate",
+      "readOnly": false,
+      "catalogGenerated": false
+    },
+    "ceiling-fan": {
+      "title": "风扇灯",
+      "primary": [
+        "ceiling-fan",
+        "fan"
+      ],
+      "properties": {
+        "ceiling-fan": [
+          "on",
+          "mode",
+          "fan-level",
+          "speed-level",
+          "off-delay-time",
+          "horizontal-swing",
+          "vertical-swing",
+          "horizontal-angle",
+          "vertical-angle"
+        ],
+        "fan": [
+          "on",
+          "mode",
+          "fan-level",
+          "speed-level",
+          "off-delay-time",
+          "horizontal-swing",
+          "vertical-swing",
+          "horizontal-angle",
+          "vertical-angle",
+          "wind-reverse"
+        ],
+        "light": [
+          "on",
+          "brightness",
+          "color-temperature",
+          "mode"
+        ],
+        "fan-control": [
+          "fan-level",
+          "speed-level"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [],
+      "family": "climate",
+      "readOnly": false,
+      "catalogGenerated": false
+    },
+    "air-conditioner": {
+      "title": "空调",
+      "primary": [
+        "air-conditioner"
+      ],
+      "properties": {
+        "air-conditioner": [
+          "on",
+          "mode",
+          "target-temperature",
+          "fan-level",
+          "vertical-swing",
+          "horizontal-swing",
+          "eco",
+          "heater",
+          "dryer",
+          "sleep-mode",
+          "soft-wind",
+          "target-humidity"
+        ],
+        "fan-control": [
+          "fan-level",
+          "speed-level",
+          "vertical-swing",
+          "horizontal-swing"
+        ],
+        "physical-controls-locked": [
+          "physical-controls-locked"
+        ],
+        "screen": [
+          "on",
+          "brightness"
+        ],
+        "indicator-light": [
+          "on",
+          "brightness"
+        ],
+        "alarm": [
+          "alarm"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [],
+      "family": "climate",
+      "readOnly": false,
+      "catalogGenerated": false
+    },
+    "curtain": {
+      "title": "窗帘",
+      "primary": [
+        "curtain"
+      ],
+      "properties": {
+        "curtain": [
+          "motor-control",
+          "target-position"
+        ]
+      },
+      "actions": {
+        "curtain": [
+          "open",
+          "close",
+          "pause"
+        ]
+      },
+      "privateFeatures": [],
+      "family": "personal",
+      "readOnly": false
+    },
+    "temperature-humidity-sensor": {
+      "title": "温湿度计",
+      "primary": [
+        "temperature-humidity-sensor",
+        "environment"
+      ],
+      "properties": {},
+      "actions": {},
+      "privateFeatures": [],
+      "family": "sensor",
+      "readOnly": false
+    },
+    "airer": {
+      "title": "晾衣机",
+      "primary": [
+        "airer"
+      ],
+      "properties": {
+        "airer": [
+          "on",
+          "motor-control",
+          "target-position"
+        ],
+        "light": [
+          "on",
+          "brightness",
+          "color-temperature"
+        ],
+        "dryer": [
+          "on",
+          "mode",
+          "off-delay-time"
+        ],
+        "drying": [
+          "on",
+          "mode",
+          "off-delay-time"
+        ]
+      },
+      "actions": {
+        "airer": [
+          "up",
+          "down",
+          "pause",
+          "stop",
+          "raise",
+          "lower"
+        ]
+      },
+      "privateFeatures": [
+        {
+          "feature": "night-schedule",
+          "reason": "此型号的定时夜灯需插件专用协议，当前仅提供设备描述中已公开的日常控制。"
+        }
+      ],
+      "family": "cleaning",
+      "readOnly": false,
+      "catalogGenerated": false,
+      "readings": {
+        "airer": [
+          "status",
+          "current-position",
+          "moving-status",
+          "current-height"
+        ],
+        "dryer": [
+          "status",
+          "remaining-time"
+        ],
+        "drying": [
+          "status",
+          "remaining-time"
+        ]
+      },
+      "events": {
+        "lock": [
+          "lock-event",
+          "exception-occurred"
+        ],
+        "door": [
+          "door-state"
+        ],
+        "doorbell": [
+          "doorbell-ring"
+        ],
+        "video-doorbell": [
+          "doorbell-ring",
+          "someone-at-the-door"
+        ],
+        "door-lock-camera": [
+          "someone-at-the-door",
+          "someone-passed-by"
+        ],
+        "hood": [
+          "clean-remind"
+        ],
+        "kitchen-stove": [
+          "working-remind",
+          "cooking-finished"
+        ],
+        "gas-sensor": [
+          "gas-leak"
+        ],
+        "smoke-sensor": [
+          "smoke-detected"
+        ],
+        "magnet-sensor": [
+          "contact-state"
+        ],
+        "submersion-sensor": [
+          "submersion-event"
+        ],
+        "airer": [
+          "fault"
+        ],
+        "washer": [
+          "wash-finished"
+        ],
+        "air-purifier": [
+          "fault"
+        ]
+      }
+    },
+    "fridge": {
+      "title": "冰箱",
+      "primary": [
+        "fridge",
+        "refrigerator"
+      ],
+      "properties": {
+        "fridge": [
+          "on",
+          "mode",
+          "target-temperature",
+          "refrigerating-room",
+          "freezing-room",
+          "refrigerator-temperature-set",
+          "freezer-temperature-set"
+        ],
+        "refrigerator": [
+          "on",
+          "mode",
+          "target-temperature"
+        ],
+        "refrigerating-room": [
+          "on",
+          "mode",
+          "target-temperature"
+        ],
+        "freezing-room": [
+          "on",
+          "mode",
+          "target-temperature"
+        ],
+        "refrigerating-chamber": [
+          "on",
+          "mode",
+          "target-temperature"
+        ],
+        "freezing-chamber": [
+          "on",
+          "mode",
+          "target-temperature"
+        ],
+        "fridge-chamber": [
+          "on",
+          "mode",
+          "target-temperature"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [],
+      "family": "cooking",
+      "readOnly": false
+    },
+    "washer": {
+      "title": "洗衣机",
+      "primary": [
+        "washer"
+      ],
+      "properties": {
+        "washer": [
+          "on"
+        ],
+        "physical-controls-locked": [
+          "physical-controls-locked"
+        ]
+      },
+      "actions": {
+        "washer": [
+          "pause",
+          "stop-washing",
+          "start-wash"
+        ]
+      },
+      "privateFeatures": [
+        {
+          "feature": "washer-program",
+          "reason": "洗涤程序及启动参数需此型号插件的完整程序约束；当前保留公开状态和电源，不套用其他型号的程序。"
+        },
+        {
+          "feature": "washer-history",
+          "reason": "洗涤历史需此型号经验证的记录协议。"
+        }
+      ],
+      "family": "cleaning",
+      "readOnly": false,
+      "events": {
+        "lock": [
+          "lock-event",
+          "exception-occurred"
+        ],
+        "door": [
+          "door-state"
+        ],
+        "doorbell": [
+          "doorbell-ring"
+        ],
+        "video-doorbell": [
+          "doorbell-ring",
+          "someone-at-the-door"
+        ],
+        "door-lock-camera": [
+          "someone-at-the-door",
+          "someone-passed-by"
+        ],
+        "hood": [
+          "clean-remind"
+        ],
+        "kitchen-stove": [
+          "working-remind",
+          "cooking-finished"
+        ],
+        "gas-sensor": [
+          "gas-leak"
+        ],
+        "smoke-sensor": [
+          "smoke-detected"
+        ],
+        "magnet-sensor": [
+          "contact-state"
+        ],
+        "submersion-sensor": [
+          "submersion-event"
+        ],
+        "airer": [
+          "fault"
+        ],
+        "washer": [
+          "wash-finished"
+        ],
+        "air-purifier": [
+          "fault"
+        ]
+      }
+    },
+    "water-purifier": {
+      "title": "净水器",
+      "primary": [
+        "water-purifier"
+      ],
+      "properties": {
+        "water-purifier": [
+          "on",
+          "mode",
+          "child-lock"
+        ],
+        "physical-controls-locked": [
+          "physical-controls-locked"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "water-volume",
+          "reason": "定量出水及用水历史需此型号经验证的专用协议；滤芯与水质使用公开属性。"
+        }
+      ],
+      "family": "cooking",
+      "readOnly": false
+    },
+    "water-dispenser": {
+      "title": "饮水机",
+      "primary": [
+        "water-dispenser"
+      ],
+      "properties": {
+        "water-dispenser": [
+          "on",
+          "mode",
+          "target-temperature",
+          "child-lock"
+        ],
+        "physical-controls-locked": [
+          "physical-controls-locked"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "cup-volume",
+          "reason": "出水启动、杯量和饮水历史需此型号经验证的专用协议，当前仅提供公开状态和基础设置。"
+        }
+      ],
+      "family": "cooking",
+      "readOnly": false
+    },
+    "router": {
+      "title": "路由器",
+      "primary": [
+        "router"
+      ],
+      "properties": {},
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "router-network",
+          "reason": "Wi-Fi 设置、设备列表、优化与测速使用厂家网络协议；此型号尚无经验证的网络适配器，不能套用其他路由器接口。"
+        }
+      ],
+      "family": "network",
+      "readOnly": false
+    },
+    "camera": {
+      "title": "摄像机",
+      "primary": [
+        "camera-control"
+      ],
+      "properties": {
+        "camera-control": [
+          "on"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [],
+      "family": "security",
+      "readOnly": false
+    },
+    "television": {
+      "title": "电视",
+      "primary": [
+        "television"
+      ],
+      "properties": {
+        "television": [
+          "on",
+          "volume",
+          "mute"
+        ],
+        "speaker": [
+          "volume",
+          "mute"
+        ]
+      },
+      "actions": {
+        "television": [
+          "turn-off"
+        ]
+      },
+      "privateFeatures": [],
+      "family": "media",
+      "readOnly": false
+    },
+    "speaker": {
+      "title": "音箱",
+      "primary": [
+        "speaker",
+        "play-control"
+      ],
+      "properties": {
+        "speaker": [
+          "volume",
+          "mute"
+        ]
+      },
+      "actions": {
+        "play-control": [
+          "play",
+          "pause",
+          "next",
+          "previous"
+        ]
+      },
+      "privateFeatures": [],
+      "family": "media",
+      "readOnly": false
+    },
+    "projector": {
+      "title": "投影仪",
+      "primary": [
+        "projector"
+      ],
+      "properties": {
+        "projector": [
+          "input-control",
+          "volume",
+          "mute"
+        ],
+        "speaker": [
+          "volume",
+          "mute"
+        ]
+      },
+      "actions": {
+        "projector": [
+          "turn-off"
+        ],
+        "play-control": [
+          "play",
+          "pause"
+        ]
+      },
+      "privateFeatures": [],
+      "family": "media",
+      "readOnly": false
+    },
+    "vacuum": {
+      "title": "扫地机器人",
+      "primary": [
+        "vacuum"
+      ],
+      "properties": {
+        "vacuum": [
+          "on",
+          "mode",
+          "sweep-mode",
+          "suction-state",
+          "water-level"
+        ]
+      },
+      "actions": {
+        "vacuum": [
+          "start-sweep",
+          "stop-sweeping",
+          "pause-sweeping"
+        ],
+        "battery": [
+          "start-charge"
+        ]
+      },
+      "privateFeatures": [],
+      "family": "cleaning",
+      "readOnly": false
+    },
+    "scale": {
+      "title": "体脂秤",
+      "primary": [
+        "scale",
+        "body-fat-scale"
+      ],
+      "properties": {},
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "scale-sync",
+          "reason": "仅显示设备公开到云端的测量值；未提供云端属性的称重与同步需在手机米家完成。"
+        }
+      ],
+      "family": "health",
+      "readOnly": false
+    },
+    "air-purifier": {
+      "title": "空气净化器",
+      "primary": [
+        "air-purifier"
+      ],
+      "properties": {
+        "air-purifier": [
+          "on",
+          "mode",
+          "fan-level",
+          "favorite-level",
+          "child-lock",
+          "buzzer",
+          "anion",
+          "uv",
+          "plasma"
+        ],
+        "physical-controls-locked": [
+          "physical-controls-locked"
+        ],
+        "air-purifier-favorite": [
+          "fan-level",
+          "favorite-fan-level"
+        ],
+        "motor-speed": [
+          "favorite-fan-level"
+        ],
+        "screen": [
+          "on",
+          "brightness"
+        ],
+        "indicator-light": [
+          "on",
+          "brightness"
+        ],
+        "alarm": [
+          "alarm"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [],
+      "family": "climate",
+      "readOnly": false,
+      "catalogGenerated": false,
+      "readings": {
+        "filter": [
+          "filter-left-time"
+        ],
+        "environment": [
+          "hcho-density",
+          "tvoc-density",
+          "voc-density",
+          "pm1"
+        ]
+      },
+      "events": {
+        "lock": [
+          "lock-event",
+          "exception-occurred"
+        ],
+        "door": [
+          "door-state"
+        ],
+        "doorbell": [
+          "doorbell-ring"
+        ],
+        "video-doorbell": [
+          "doorbell-ring",
+          "someone-at-the-door"
+        ],
+        "door-lock-camera": [
+          "someone-at-the-door",
+          "someone-passed-by"
+        ],
+        "hood": [
+          "clean-remind"
+        ],
+        "kitchen-stove": [
+          "working-remind",
+          "cooking-finished"
+        ],
+        "gas-sensor": [
+          "gas-leak"
+        ],
+        "smoke-sensor": [
+          "smoke-detected"
+        ],
+        "magnet-sensor": [
+          "contact-state"
+        ],
+        "submersion-sensor": [
+          "submersion-event"
+        ],
+        "airer": [
+          "fault"
+        ],
+        "washer": [
+          "wash-finished"
+        ],
+        "air-purifier": [
+          "fault"
+        ]
+      }
+    },
+    "humidifier": {
+      "title": "加湿器",
+      "primary": [
+        "humidifier"
+      ],
+      "properties": {
+        "humidifier": [
+          "on",
+          "mode",
+          "target-humidity",
+          "fan-level",
+          "child-lock"
+        ],
+        "physical-controls-locked": [
+          "physical-controls-locked"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [],
+      "family": "climate",
+      "readOnly": false
+    },
+    "dehumidifier": {
+      "title": "除湿机",
+      "primary": [
+        "dehumidifier"
+      ],
+      "properties": {
+        "dehumidifier": [
+          "on",
+          "mode",
+          "target-humidity",
+          "fan-level",
+          "child-lock"
+        ],
+        "physical-controls-locked": [
+          "physical-controls-locked"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [],
+      "family": "climate",
+      "readOnly": false
+    },
+    "ventilator": {
+      "title": "新风机",
+      "primary": [
+        "ventilator",
+        "fresh-air"
+      ],
+      "properties": {
+        "ventilator": [
+          "on",
+          "mode",
+          "fan-level"
+        ],
+        "fresh-air": [
+          "on",
+          "mode",
+          "fan-level"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "fresh-air": {
+      "title": "新风机",
+      "primary": [
+        "fresh-air",
+        "ventilator",
+        "air-fresh"
+      ],
+      "properties": {
+        "fresh-air": [
+          "on",
+          "mode",
+          "fan-level"
+        ],
+        "ventilator": [
+          "on",
+          "mode",
+          "fan-level"
+        ],
+        "air-fresh": [
+          "on",
+          "mode",
+          "fan-level"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "bath-heater": {
+      "title": "浴霸",
+      "primary": [
+        "ptc-bath-heater"
+      ],
+      "properties": {
+        "ptc-bath-heater": [
+          "mode",
+          "blow",
+          "heating",
+          "ventilation",
+          "heat-level",
+          "target-temperature",
+          "off-delay",
+          "off-delay-time"
+        ],
+        "light": [
+          "on",
+          "brightness",
+          "color-temperature",
+          "mode"
+        ]
+      },
+      "actions": {
+        "ptc-bath-heater": [
+          "stop-working"
+        ]
+      },
+      "privateFeatures": [],
+      "family": "water",
+      "readOnly": false
+    },
+    "air-fryer": {
+      "title": "空气炸锅",
+      "primary": [
+        "air-fryer"
+      ],
+      "properties": {
+        "air-fryer": [
+          "mode",
+          "target-time",
+          "target-temperature",
+          "auto-keep-warm"
+        ]
+      },
+      "actions": {
+        "air-fryer": [
+          "start-cook",
+          "cancel-cooking",
+          "pause",
+          "resume-cook"
+        ]
+      },
+      "privateFeatures": [],
+      "family": "cooking",
+      "readOnly": false
+    },
+    "occupancy-sensor": {
+      "title": "人体传感器",
+      "primary": [
+        "occupancy-sensor"
+      ],
+      "properties": {},
+      "actions": {},
+      "privateFeatures": [],
+      "family": "sensor",
+      "readOnly": false
+    },
+    "magnet-sensor": {
+      "title": "门窗传感器",
+      "primary": [
+        "magnet-sensor"
+      ],
+      "properties": {},
+      "actions": {},
+      "privateFeatures": [],
+      "family": "sensor",
+      "readOnly": false,
+      "events": {
+        "lock": [
+          "lock-event",
+          "exception-occurred"
+        ],
+        "door": [
+          "door-state"
+        ],
+        "doorbell": [
+          "doorbell-ring"
+        ],
+        "video-doorbell": [
+          "doorbell-ring",
+          "someone-at-the-door"
+        ],
+        "door-lock-camera": [
+          "someone-at-the-door",
+          "someone-passed-by"
+        ],
+        "hood": [
+          "clean-remind"
+        ],
+        "kitchen-stove": [
+          "working-remind",
+          "cooking-finished"
+        ],
+        "gas-sensor": [
+          "gas-leak"
+        ],
+        "smoke-sensor": [
+          "smoke-detected"
+        ],
+        "magnet-sensor": [
+          "contact-state"
+        ],
+        "submersion-sensor": [
+          "submersion-event"
+        ],
+        "airer": [
+          "fault"
+        ],
+        "washer": [
+          "wash-finished"
+        ],
+        "air-purifier": [
+          "fault"
+        ]
+      }
+    },
+    "gas-sensor": {
+      "title": "燃气传感器",
+      "primary": [
+        "gas-sensor"
+      ],
+      "properties": {},
+      "actions": {},
+      "privateFeatures": [],
+      "family": "sensor",
+      "readOnly": false,
+      "events": {
+        "lock": [
+          "lock-event",
+          "exception-occurred"
+        ],
+        "door": [
+          "door-state"
+        ],
+        "doorbell": [
+          "doorbell-ring"
+        ],
+        "video-doorbell": [
+          "doorbell-ring",
+          "someone-at-the-door"
+        ],
+        "door-lock-camera": [
+          "someone-at-the-door",
+          "someone-passed-by"
+        ],
+        "hood": [
+          "clean-remind"
+        ],
+        "kitchen-stove": [
+          "working-remind",
+          "cooking-finished"
+        ],
+        "gas-sensor": [
+          "gas-leak"
+        ],
+        "smoke-sensor": [
+          "smoke-detected"
+        ],
+        "magnet-sensor": [
+          "contact-state"
+        ],
+        "submersion-sensor": [
+          "submersion-event"
+        ],
+        "airer": [
+          "fault"
+        ],
+        "washer": [
+          "wash-finished"
+        ],
+        "air-purifier": [
+          "fault"
+        ]
+      }
+    },
+    "air-monitor": {
+      "title": "环境监测仪",
+      "primary": [
+        "environment",
+        "air-monitor"
+      ],
+      "properties": {},
+      "actions": {},
+      "privateFeatures": [],
+      "family": "climate",
+      "readOnly": false
+    },
+    "smoke-sensor": {
+      "title": "烟雾传感器",
+      "primary": [
+        "smoke-sensor"
+      ],
+      "properties": {},
+      "actions": {},
+      "privateFeatures": [],
+      "family": "sensor",
+      "readOnly": false,
+      "events": {
+        "lock": [
+          "lock-event",
+          "exception-occurred"
+        ],
+        "door": [
+          "door-state"
+        ],
+        "doorbell": [
+          "doorbell-ring"
+        ],
+        "video-doorbell": [
+          "doorbell-ring",
+          "someone-at-the-door"
+        ],
+        "door-lock-camera": [
+          "someone-at-the-door",
+          "someone-passed-by"
+        ],
+        "hood": [
+          "clean-remind"
+        ],
+        "kitchen-stove": [
+          "working-remind",
+          "cooking-finished"
+        ],
+        "gas-sensor": [
+          "gas-leak"
+        ],
+        "smoke-sensor": [
+          "smoke-detected"
+        ],
+        "magnet-sensor": [
+          "contact-state"
+        ],
+        "submersion-sensor": [
+          "submersion-event"
+        ],
+        "airer": [
+          "fault"
+        ],
+        "washer": [
+          "wash-finished"
+        ],
+        "air-purifier": [
+          "fault"
+        ]
+      }
+    },
+    "video-doorbell": {
+      "title": "可视门铃",
+      "primary": [
+        "camera-control",
+        "battery",
+        "motion-detection"
+      ],
+      "properties": {
+        "camera-control": [
+          "on"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "doorbell-video",
+          "reason": "视频和门铃事件需厂家专用协议，当前仅显示公开可读取的设备状态。"
+        }
+      ],
+      "family": "security",
+      "readOnly": false
+    },
+    "stb": {
+      "title": "机顶盒",
+      "primary": [
+        "ir-stb-control"
+      ],
+      "properties": {},
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "ir-remote",
+          "reason": "红外按键和码库需此型号已验证的专用适配器，不根据公开动作名称猜测编码。"
+        }
+      ],
+      "family": "media",
+      "readOnly": false
+    },
+    "air-condition-outlet": {
+      "title": "空调伴侣",
+      "primary": [
+        "air-condition-outlet",
+        "air-conditioner"
+      ],
+      "properties": {
+        "air-condition-outlet": [
+          "on"
+        ],
+        "air-conditioner": [
+          "on",
+          "mode",
+          "target-temperature"
+        ],
+        "fan-control": [
+          "fan-level",
+          "vertical-swing",
+          "horizontal-swing"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "ir-setup",
+          "reason": "红外配码与型号配置不在桌面端日常功能范围；仅使用已有配置下公开的基础空调能力。"
+        }
+      ],
+      "family": "climate",
+      "readOnly": false
+    },
+    "sphygmomanometer": {
+      "title": "血压计",
+      "primary": [
+        "sphygmomanometer"
+      ],
+      "properties": {},
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "health-sync",
+          "reason": "测量结果仅在设备公开云端读取能力时显示；本地测量、用户档案与同步请使用手机米家。"
+        }
+      ],
+      "family": "health",
+      "readOnly": false
+    },
+    "ir-remote-control": {
+      "title": "红外遥控器",
+      "primary": [
+        "control"
+      ],
+      "properties": {},
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "ir-remote",
+          "reason": "红外码库与指令封装使用厂家专用协议；此型号尚无经验证的适配器，不根据属性名称猜测控制编码。"
+        }
+      ],
+      "family": "other",
+      "readOnly": false
+    },
+    "clothes-dryer": {
+      "title": "洗衣/烘干机",
+      "family": "cleaning",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "cleanfly-dryer",
+        "clothes-dryer",
+        "status"
+      ],
+      "properties": {},
+      "readings": {
+        "clothes-dryer": [
+          "battery-level",
+          "fault",
+          "left-time",
+          "relative-humidity",
+          "temperature"
+        ],
+        "cleanfly-dryer": [
+          "left-time"
+        ],
+        "status": [
+          "status"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [],
+      "events": {
+        "lock": [
+          "lock-event",
+          "exception-occurred"
+        ],
+        "door": [
+          "door-state"
+        ],
+        "doorbell": [
+          "doorbell-ring"
+        ],
+        "video-doorbell": [
+          "doorbell-ring",
+          "someone-at-the-door"
+        ],
+        "door-lock-camera": [
+          "someone-at-the-door",
+          "someone-passed-by"
+        ],
+        "hood": [
+          "clean-remind"
+        ],
+        "kitchen-stove": [
+          "working-remind",
+          "cooking-finished"
+        ],
+        "gas-sensor": [
+          "gas-leak"
+        ],
+        "smoke-sensor": [
+          "smoke-detected"
+        ],
+        "magnet-sensor": [
+          "contact-state"
+        ],
+        "submersion-sensor": [
+          "submersion-event"
+        ],
+        "airer": [
+          "fault"
+        ],
+        "washer": [
+          "wash-finished"
+        ],
+        "air-purifier": [
+          "fault"
+        ]
+      }
+    },
+    "mopping-machine": {
+      "title": "擦地机",
+      "family": "cleaning",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "battery",
+        "filter",
+        "mopping-machine"
+      ],
+      "properties": {
+        "mopping-machine": [
+          "mode",
+          "on",
+          "speed-level"
+        ]
+      },
+      "readings": {
+        "mopping-machine": [
+          "fault",
+          "on",
+          "status"
+        ],
+        "battery": [
+          "battery-level",
+          "charging-state",
+          "voltage"
+        ],
+        "filter": [
+          "filter-left-time",
+          "filter-life-level"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "vacuum-cleaner": {
+      "title": "吸尘器",
+      "family": "cleaning",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "battery",
+        "vacuum-cleaner"
+      ],
+      "properties": {},
+      "readings": {
+        "vacuum-cleaner": [
+          "on"
+        ],
+        "battery": [
+          "battery-level"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "doorbell": {
+      "title": "猫眼门铃",
+      "family": "security",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "doorbell"
+      ],
+      "properties": {
+        "doorbell": [
+          "on",
+          "volume"
+        ]
+      },
+      "readings": {
+        "doorbell": [
+          "on"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "lock": {
+      "title": "门锁",
+      "family": "security",
+      "readOnly": true,
+      "catalogGenerated": false,
+      "primary": [
+        "battery",
+        "door",
+        "lock",
+        "video-doorbell"
+      ],
+      "properties": {
+        "doorbell": [
+          "ringtone",
+          "volume",
+          "doorbell-light-on"
+        ],
+        "lock-volume-management": [
+          "language",
+          "door-operation-volume",
+          "doorbell-volume"
+        ],
+        "customized-wifi-lock": [
+          "language",
+          "unlock-tone-volume",
+          "doorbell-volume"
+        ],
+        "video-doorbell": [
+          "night-shot",
+          "image-distortion-correction",
+          "auto-screen-on"
+        ],
+        "door-lock-camera": [
+          "night-shot",
+          "ringtone",
+          "auto-screen-on"
+        ]
+      },
+      "readings": {
+        "door": [
+          "door-state"
+        ],
+        "battery": [
+          "battery-level",
+          "charging-state"
+        ],
+        "video-doorbell": [
+          "on",
+          "status"
+        ],
+        "lock": [
+          "lock-state"
+        ],
+        "door-lock-camera": [
+          "status"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [],
+      "safeSettings": {
+        "doorbell": [
+          "ringtone",
+          "volume",
+          "doorbell-light-on"
+        ],
+        "lock-volume-management": [
+          "language",
+          "door-operation-volume",
+          "doorbell-volume"
+        ],
+        "customized-wifi-lock": [
+          "language",
+          "unlock-tone-volume",
+          "doorbell-volume"
+        ],
+        "video-doorbell": [
+          "night-shot",
+          "image-distortion-correction",
+          "auto-screen-on"
+        ],
+        "door-lock-camera": [
+          "night-shot",
+          "ringtone",
+          "auto-screen-on"
+        ]
+      },
+      "events": {
+        "lock": [
+          "lock-event",
+          "exception-occurred"
+        ],
+        "door": [
+          "door-state"
+        ],
+        "doorbell": [
+          "doorbell-ring"
+        ],
+        "video-doorbell": [
+          "doorbell-ring",
+          "someone-at-the-door"
+        ],
+        "door-lock-camera": [
+          "someone-at-the-door",
+          "someone-passed-by"
+        ],
+        "hood": [
+          "clean-remind"
+        ],
+        "kitchen-stove": [
+          "working-remind",
+          "cooking-finished"
+        ],
+        "gas-sensor": [
+          "gas-leak"
+        ],
+        "smoke-sensor": [
+          "smoke-detected"
+        ],
+        "magnet-sensor": [
+          "contact-state"
+        ],
+        "submersion-sensor": [
+          "submersion-event"
+        ],
+        "airer": [
+          "fault"
+        ],
+        "washer": [
+          "wash-finished"
+        ],
+        "air-purifier": [
+          "fault"
+        ]
+      }
+    },
+    "safe-box": {
+      "title": "保险箱",
+      "family": "security",
+      "readOnly": true,
+      "catalogGenerated": true,
+      "primary": [
+        "battery",
+        "safe-box"
+      ],
+      "properties": {},
+      "readings": {
+        "battery": [
+          "battery-level"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "desktop-readonly",
+          "reason": "此类设备在桌面仅展示云端可读取的状态，相关控制请使用手机米家。"
+        }
+      ]
+    },
+    "alertor": {
+      "title": "报警器",
+      "family": "security",
+      "readOnly": true,
+      "catalogGenerated": true,
+      "primary": [
+        "alertor",
+        "safty-monitoring"
+      ],
+      "properties": {},
+      "readings": {
+        "alertor": [
+          "on"
+        ],
+        "safty-monitoring": [
+          "temperature"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "desktop-readonly",
+          "reason": "此类设备在桌面仅展示云端可读取的状态，相关控制请使用手机米家。"
+        }
+      ]
+    },
+    "door": {
+      "title": "智能门",
+      "family": "security",
+      "readOnly": true,
+      "catalogGenerated": true,
+      "primary": [
+        "battery",
+        "door"
+      ],
+      "properties": {},
+      "readings": {
+        "door": [
+          "door-state"
+        ],
+        "battery": [
+          "battery-level",
+          "charging-state"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "desktop-readonly",
+          "reason": "此类设备在桌面仅展示云端可读取的状态，相关控制请使用手机米家。"
+        }
+      ]
+    },
+    "tracker": {
+      "title": "防丢器",
+      "family": "security",
+      "readOnly": true,
+      "catalogGenerated": true,
+      "primary": [
+        "custom",
+        "tracker"
+      ],
+      "properties": {},
+      "readings": {
+        "custom": [
+          "ride-status",
+          "safety-belt"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "desktop-readonly",
+          "reason": "此类设备在桌面仅展示云端可读取的状态，相关控制请使用手机米家。"
+        }
+      ]
+    },
+    "intercom": {
+      "title": "对讲机",
+      "family": "security",
+      "readOnly": true,
+      "catalogGenerated": true,
+      "primary": [
+        "intercom"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "desktop-readonly",
+          "reason": "此类设备在桌面仅展示云端可读取的状态，相关控制请使用手机米家。"
+        }
+      ]
+    },
+    "motion-sensor": {
+      "title": "人体传感器",
+      "family": "sensor",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "battery",
+        "motion-sensor"
+      ],
+      "properties": {
+        "motion-sensor": [
+          "mode",
+          "on"
+        ]
+      },
+      "readings": {
+        "motion-sensor": [
+          "fault",
+          "illumination",
+          "motion-state",
+          "on",
+          "status"
+        ],
+        "battery": [
+          "battery-level",
+          "charging-state",
+          "voltage"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "submersion-sensor": {
+      "title": "水浸传感器",
+      "family": "sensor",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "submersion-sensor"
+      ],
+      "properties": {},
+      "readings": {
+        "submersion-sensor": [
+          "submersion-state"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [],
+      "events": {
+        "lock": [
+          "lock-event",
+          "exception-occurred"
+        ],
+        "door": [
+          "door-state"
+        ],
+        "doorbell": [
+          "doorbell-ring"
+        ],
+        "video-doorbell": [
+          "doorbell-ring",
+          "someone-at-the-door"
+        ],
+        "door-lock-camera": [
+          "someone-at-the-door",
+          "someone-passed-by"
+        ],
+        "hood": [
+          "clean-remind"
+        ],
+        "kitchen-stove": [
+          "working-remind",
+          "cooking-finished"
+        ],
+        "gas-sensor": [
+          "gas-leak"
+        ],
+        "smoke-sensor": [
+          "smoke-detected"
+        ],
+        "magnet-sensor": [
+          "contact-state"
+        ],
+        "submersion-sensor": [
+          "submersion-event"
+        ],
+        "airer": [
+          "fault"
+        ],
+        "washer": [
+          "wash-finished"
+        ],
+        "air-purifier": [
+          "fault"
+        ]
+      }
+    },
+    "illumination-sensor": {
+      "title": "光照度传感器",
+      "family": "sensor",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "battery",
+        "illumination-sensor"
+      ],
+      "properties": {},
+      "readings": {
+        "illumination-sensor": [
+          "illumination"
+        ],
+        "battery": [
+          "battery-level",
+          "voltage"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "vibration-sensor": {
+      "title": "动静传感器",
+      "family": "sensor",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "battery",
+        "vibration-sensor"
+      ],
+      "properties": {},
+      "readings": {
+        "battery": [
+          "battery-level",
+          "voltage"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "pressure-sensor": {
+      "title": "压力传感器",
+      "family": "sensor",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "battery",
+        "pressure-sensor"
+      ],
+      "properties": {},
+      "readings": {
+        "pressure-sensor": [
+          "pressure-present-state"
+        ],
+        "battery": [
+          "battery-level"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "ble-speaker": {
+      "title": "蓝牙音箱",
+      "family": "media",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "ble-speaker",
+        "play-control",
+        "speaker"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {
+        "play-control": [
+          "next",
+          "pause",
+          "play",
+          "previous"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "tv-box": {
+      "title": "电视/盒子",
+      "family": "media",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "play-control",
+        "speaker",
+        "tv-box"
+      ],
+      "properties": {
+        "tv-box": [
+          "mode"
+        ],
+        "speaker": [
+          "mute",
+          "volume"
+        ]
+      },
+      "readings": {
+        "tv-box": [
+          "fault",
+          "status"
+        ],
+        "play-control": [
+          "playing-state"
+        ]
+      },
+      "actions": {
+        "tv-box": [
+          "turn-off",
+          "turn-on"
+        ],
+        "play-control": [
+          "next",
+          "pause",
+          "play",
+          "previous"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "story-machine": {
+      "title": "故事机",
+      "family": "media",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "play-control",
+        "speaker",
+        "story-machine"
+      ],
+      "properties": {
+        "speaker": [
+          "volume"
+        ]
+      },
+      "readings": {},
+      "actions": {},
+      "privateFeatures": []
+    },
+    "radio": {
+      "title": "收音机",
+      "family": "media",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "play-control",
+        "radio",
+        "speaker"
+      ],
+      "properties": {
+        "speaker": [
+          "volume"
+        ]
+      },
+      "readings": {
+        "play-control": [
+          "playing-state"
+        ]
+      },
+      "actions": {
+        "play-control": [
+          "next",
+          "pause",
+          "play",
+          "previous"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "robot": {
+      "title": "机器人",
+      "family": "media",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "fingerbot",
+        "robot"
+      ],
+      "properties": {},
+      "readings": {
+        "fingerbot": [
+          "charging-status"
+        ],
+        "robot": [
+          "fault"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "clock": {
+      "title": "时钟",
+      "family": "media",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "clock"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": []
+    },
+    "engraving-machine": {
+      "title": "雕刻机",
+      "family": "media",
+      "readOnly": true,
+      "catalogGenerated": true,
+      "primary": [
+        "engraving-machine"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "desktop-readonly",
+          "reason": "此类设备在桌面仅展示云端可读取的状态，相关控制请使用手机米家。"
+        }
+      ]
+    },
+    "microphone": {
+      "title": "麦克风",
+      "family": "media",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "battery",
+        "microphone"
+      ],
+      "properties": {},
+      "readings": {
+        "battery": [
+          "battery-level"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "audio-video-amplifier": {
+      "title": "音视频功放",
+      "family": "media",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "audio-video-amplifier"
+      ],
+      "properties": {
+        "audio-video-amplifier": [
+          "mode",
+          "mute",
+          "on",
+          "volume"
+        ]
+      },
+      "readings": {
+        "audio-video-amplifier": [
+          "on"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "cooler": {
+      "title": "散热器",
+      "family": "media",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "cooler"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": []
+    },
+    "heater": {
+      "title": "电暖器",
+      "family": "climate",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "environment",
+        "heater"
+      ],
+      "properties": {
+        "heater": [
+          "on",
+          "target-temperature"
+        ]
+      },
+      "readings": {
+        "heater": [
+          "fault",
+          "on"
+        ],
+        "environment": [
+          "relative-humidity",
+          "temperature"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "diffuser": {
+      "title": "香薰机",
+      "family": "climate",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "amount-fog",
+        "diffuser",
+        "light"
+      ],
+      "properties": {
+        "diffuser": [
+          "fan-level",
+          "mode",
+          "on"
+        ]
+      },
+      "readings": {
+        "diffuser": [
+          "fault",
+          "on"
+        ],
+        "light": [
+          "on"
+        ],
+        "amount-fog": [
+          "remaining-time"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "thermostat": {
+      "title": "温控器",
+      "family": "climate",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "thermostat"
+      ],
+      "properties": {
+        "thermostat": [
+          "fan-level",
+          "mode",
+          "on",
+          "target-temperature"
+        ]
+      },
+      "readings": {
+        "thermostat": [
+          "battery-level",
+          "fault",
+          "on",
+          "relative-humidity",
+          "status",
+          "temperature"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "watermon": {
+      "title": "水质检测",
+      "family": "climate",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "environment",
+        "water-use-details",
+        "watermon"
+      ],
+      "properties": {},
+      "readings": {
+        "environment": [
+          "temperature"
+        ],
+        "water-use-details": [
+          "temperature"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "gateway": {
+      "title": "网关",
+      "family": "network",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "gateway",
+        "indicator-light",
+        "light"
+      ],
+      "properties": {},
+      "readings": {
+        "indicator-light": [
+          "on"
+        ],
+        "light": [
+          "on"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "repeater": {
+      "title": "Wi-Fi信号放大器",
+      "family": "network",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "indicator-light",
+        "repeater"
+      ],
+      "properties": {},
+      "readings": {
+        "repeater": [
+          "connected-device-number",
+          "download-speed",
+          "fault",
+          "status",
+          "upload-speed"
+        ],
+        "indicator-light": [
+          "on"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "nas": {
+      "title": "智能存储",
+      "family": "network",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "indicator-light",
+        "nas"
+      ],
+      "properties": {},
+      "readings": {
+        "indicator-light": [
+          "on"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "night-light": {
+      "title": "夜灯",
+      "family": "lighting",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "battery",
+        "night-light"
+      ],
+      "properties": {},
+      "readings": {
+        "battery": [
+          "battery-level"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "remote-control": {
+      "title": "无线开关",
+      "family": "switch",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "remote-control"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": []
+    },
+    "card-switch": {
+      "title": "插卡取电器",
+      "family": "switch",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "card-switch"
+      ],
+      "properties": {
+        "card-switch": [
+          "mode",
+          "on"
+        ]
+      },
+      "readings": {
+        "card-switch": [
+          "fault",
+          "on",
+          "status"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "dimmer": {
+      "title": "调光控制器",
+      "family": "switch",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "dimmer",
+        "indicator-light"
+      ],
+      "properties": {},
+      "readings": {
+        "indicator-light": [
+          "on"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "integrated-stove": {
+      "title": "集成灶",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": false,
+      "primary": [
+        "gas-sensor",
+        "hood",
+        "integrated-stove",
+        "kitchen-stove",
+        "light",
+        "night-light",
+        "oven"
+      ],
+      "properties": {
+        "hood": [
+          "on"
+        ],
+        "fan-control": [
+          "fan-level"
+        ],
+        "light": [
+          "on",
+          "brightness"
+        ]
+      },
+      "readings": {
+        "hood": [
+          "fault",
+          "on",
+          "status",
+          "working-time"
+        ],
+        "kitchen-stove": [
+          "status",
+          "working-time",
+          "current-heat-level",
+          "left-time"
+        ],
+        "oven": [
+          "fault",
+          "left-time",
+          "on",
+          "status",
+          "temperature",
+          "working-time"
+        ],
+        "gas-sensor": [
+          "gas-concentration"
+        ],
+        "light": [
+          "on"
+        ],
+        "night-light": [
+          "on"
+        ],
+        "integrated-stove": [
+          "fault",
+          "on"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [],
+      "events": {
+        "lock": [
+          "lock-event",
+          "exception-occurred"
+        ],
+        "door": [
+          "door-state"
+        ],
+        "doorbell": [
+          "doorbell-ring"
+        ],
+        "video-doorbell": [
+          "doorbell-ring",
+          "someone-at-the-door"
+        ],
+        "door-lock-camera": [
+          "someone-at-the-door",
+          "someone-passed-by"
+        ],
+        "hood": [
+          "clean-remind"
+        ],
+        "kitchen-stove": [
+          "working-remind",
+          "cooking-finished"
+        ],
+        "gas-sensor": [
+          "gas-leak"
+        ],
+        "smoke-sensor": [
+          "smoke-detected"
+        ],
+        "magnet-sensor": [
+          "contact-state"
+        ],
+        "submersion-sensor": [
+          "submersion-event"
+        ],
+        "airer": [
+          "fault"
+        ],
+        "washer": [
+          "wash-finished"
+        ],
+        "air-purifier": [
+          "fault"
+        ]
+      }
+    },
+    "cooking-machine": {
+      "title": "炒菜机",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "cooking-machine",
+        "cooking-sd"
+      ],
+      "properties": {
+        "cooking-machine": [
+          "on"
+        ]
+      },
+      "readings": {
+        "cooking-machine": [
+          "fault",
+          "left-time",
+          "on",
+          "status"
+        ],
+        "cooking-sd": [
+          "status"
+        ]
+      },
+      "actions": {
+        "cooking-machine": [
+          "cancel-cooking",
+          "start-cook"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "fruit-vegetable-purifier": {
+      "title": "果蔬净化机",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "customize",
+        "fruit-vegetable-purifier"
+      ],
+      "properties": {},
+      "readings": {
+        "fruit-vegetable-purifier": [
+          "fault",
+          "left-time",
+          "status"
+        ],
+        "customize": [
+          "on",
+          "water-level"
+        ]
+      },
+      "actions": {
+        "fruit-vegetable-purifier": [
+          "pause",
+          "start-wash"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "water-softener": {
+      "title": "软水机",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "water-softener"
+      ],
+      "properties": {},
+      "readings": {
+        "water-softener": [
+          "fault",
+          "status",
+          "water-hardness"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "multifunction-cooking-pot": {
+      "title": "多功能料理锅",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "multifunction-cooking-pot"
+      ],
+      "properties": {
+        "multifunction-cooking-pot": [
+          "heat-level",
+          "mode",
+          "on",
+          "target-temperature",
+          "target-time"
+        ]
+      },
+      "readings": {
+        "multifunction-cooking-pot": [
+          "fault",
+          "left-time",
+          "on",
+          "status",
+          "temperature"
+        ]
+      },
+      "actions": {
+        "multifunction-cooking-pot": [
+          "cancel-cooking",
+          "pause",
+          "start-cook"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "microwave-oven": {
+      "title": "微蒸烤炉",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "custom",
+        "microwave-oven",
+        "microwave-ovn-extend"
+      ],
+      "properties": {
+        "microwave-oven": [
+          "heat-level",
+          "target-time"
+        ]
+      },
+      "readings": {
+        "microwave-oven": [
+          "fault",
+          "left-time",
+          "status"
+        ],
+        "custom": [
+          "left-time",
+          "status",
+          "weight"
+        ],
+        "microwave-ovn-extend": [
+          "door-state"
+        ]
+      },
+      "actions": {
+        "microwave-oven": [
+          "cancel-cooking",
+          "pause",
+          "resume-cook",
+          "start-cook"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "kettle": {
+      "title": "电热水壶",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "kettle"
+      ],
+      "properties": {
+        "kettle": [
+          "auto-keep-warm",
+          "keep-warm-temperature",
+          "mode",
+          "on",
+          "target-temperature"
+        ]
+      },
+      "readings": {
+        "kettle": [
+          "fault",
+          "on",
+          "status",
+          "temperature"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "coffee-machine": {
+      "title": "咖啡机",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "coffee-custom",
+        "coffee-machine"
+      ],
+      "properties": {
+        "coffee-machine": [
+          "mode",
+          "on"
+        ]
+      },
+      "readings": {
+        "coffee-machine": [
+          "fault",
+          "on",
+          "status",
+          "temperature"
+        ],
+        "coffee-custom": [
+          "water-temperature"
+        ]
+      },
+      "actions": {
+        "coffee-machine": [
+          "cancel-cooking",
+          "start-cook"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "cooker": {
+      "title": "电饭煲",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "cooker",
+        "custom",
+        "custom-property"
+      ],
+      "properties": {
+        "cooker": [
+          "auto-keep-warm"
+        ]
+      },
+      "readings": {
+        "cooker": [
+          "fault",
+          "status"
+        ],
+        "custom": [
+          "status"
+        ],
+        "custom-property": [
+          "fault",
+          "left-time",
+          "status"
+        ]
+      },
+      "actions": {
+        "cooker": [
+          "cancel-cooking",
+          "start-cook"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "hood": {
+      "title": "抽油烟机",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": false,
+      "primary": [
+        "hood",
+        "light"
+      ],
+      "properties": {
+        "hood": [
+          "mode",
+          "on",
+          "gestures"
+        ],
+        "fan-control": [
+          "fan-level",
+          "speed-level"
+        ],
+        "light": [
+          "on",
+          "brightness"
+        ],
+        "physical-controls-locked": [
+          "physical-controls-locked"
+        ]
+      },
+      "readings": {
+        "hood": [
+          "fault",
+          "on",
+          "status"
+        ],
+        "light": [
+          "on"
+        ],
+        "kitchen-stove": [
+          "status",
+          "current-heat-level",
+          "left-time",
+          "working-time"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [],
+      "events": {
+        "lock": [
+          "lock-event",
+          "exception-occurred"
+        ],
+        "door": [
+          "door-state"
+        ],
+        "doorbell": [
+          "doorbell-ring"
+        ],
+        "video-doorbell": [
+          "doorbell-ring",
+          "someone-at-the-door"
+        ],
+        "door-lock-camera": [
+          "someone-at-the-door",
+          "someone-passed-by"
+        ],
+        "hood": [
+          "clean-remind"
+        ],
+        "kitchen-stove": [
+          "working-remind",
+          "cooking-finished"
+        ],
+        "gas-sensor": [
+          "gas-leak"
+        ],
+        "smoke-sensor": [
+          "smoke-detected"
+        ],
+        "magnet-sensor": [
+          "contact-state"
+        ],
+        "submersion-sensor": [
+          "submersion-event"
+        ],
+        "airer": [
+          "fault"
+        ],
+        "washer": [
+          "wash-finished"
+        ],
+        "air-purifier": [
+          "fault"
+        ]
+      }
+    },
+    "induction-cooker": {
+      "title": "电磁炉",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "custom",
+        "induction-cooker"
+      ],
+      "properties": {},
+      "readings": {
+        "induction-cooker": [
+          "fault",
+          "left-time",
+          "status",
+          "working-time"
+        ],
+        "custom": [
+          "temperature"
+        ]
+      },
+      "actions": {
+        "induction-cooker": [
+          "cancel-cooking",
+          "pause"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "pressure-cooker": {
+      "title": "压力锅",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "pressure-cooker"
+      ],
+      "properties": {
+        "pressure-cooker": [
+          "target-time"
+        ]
+      },
+      "readings": {
+        "pressure-cooker": [
+          "fault",
+          "left-time",
+          "status",
+          "temperature"
+        ]
+      },
+      "actions": {
+        "pressure-cooker": [
+          "cancel-cooking",
+          "resume-cook",
+          "start-cook"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "dishwasher": {
+      "title": "洗碗机",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "appointment",
+        "dishwasher"
+      ],
+      "properties": {
+        "dishwasher": [
+          "mode",
+          "on"
+        ]
+      },
+      "readings": {
+        "dishwasher": [
+          "door-state",
+          "fault",
+          "left-time",
+          "on",
+          "status",
+          "temperature"
+        ],
+        "appointment": [
+          "on"
+        ]
+      },
+      "actions": {
+        "dishwasher": [
+          "pause",
+          "start-wash",
+          "stop-washing"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "juicer": {
+      "title": "榨汁机",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "customize",
+        "juicer",
+        "multifunction-cook"
+      ],
+      "properties": {},
+      "readings": {
+        "juicer": [
+          "fault",
+          "left-time",
+          "status",
+          "temperature"
+        ],
+        "customize": [
+          "left-time"
+        ],
+        "multifunction-cook": [
+          "left-time"
+        ]
+      },
+      "actions": {
+        "juicer": [
+          "cancel-cooking"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "oven": {
+      "title": "蒸烤箱",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "custom",
+        "oven"
+      ],
+      "properties": {
+        "oven": [
+          "on",
+          "target-temperature"
+        ]
+      },
+      "readings": {
+        "oven": [
+          "fault",
+          "left-time",
+          "on",
+          "status",
+          "temperature",
+          "working-time"
+        ],
+        "custom": [
+          "left-time"
+        ]
+      },
+      "actions": {
+        "oven": [
+          "cancel-cooking",
+          "pause",
+          "start-cook"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "sterilizer": {
+      "title": "消毒柜",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "sterilizer"
+      ],
+      "properties": {
+        "sterilizer": [
+          "mode",
+          "on",
+          "target-time"
+        ]
+      },
+      "readings": {
+        "sterilizer": [
+          "fault",
+          "left-time",
+          "on",
+          "status",
+          "working-time"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "health-pot": {
+      "title": "养生壶",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "appointment",
+        "custom",
+        "health-pot"
+      ],
+      "properties": {
+        "health-pot": [
+          "auto-keep-warm",
+          "mode",
+          "on"
+        ]
+      },
+      "readings": {
+        "health-pot": [
+          "fault",
+          "left-time",
+          "on",
+          "status",
+          "temperature"
+        ],
+        "custom": [
+          "left-time",
+          "temperature"
+        ],
+        "appointment": [
+          "on"
+        ]
+      },
+      "actions": {
+        "health-pot": [
+          "cancel-cooking",
+          "start-cook"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "kitchen-scale": {
+      "title": "厨房秤",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "kitchen-scale"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": []
+    },
+    "water-heater": {
+      "title": "热水器",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "screen",
+        "tds-sensor",
+        "water-heater"
+      ],
+      "properties": {
+        "water-heater": [
+          "on",
+          "target-temperature",
+          "target-time"
+        ]
+      },
+      "readings": {
+        "water-heater": [
+          "fault",
+          "left-time",
+          "on",
+          "status",
+          "temperature"
+        ],
+        "screen": [
+          "on"
+        ],
+        "tds-sensor": [
+          "tds-in",
+          "tds-out"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "baby-bottle-warmer": {
+      "title": "暖奶器",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "baby-bottle-warmer",
+        "night-light"
+      ],
+      "properties": {
+        "baby-bottle-warmer": [
+          "mode",
+          "on",
+          "target-temperature"
+        ]
+      },
+      "readings": {
+        "baby-bottle-warmer": [
+          "fault",
+          "left-time",
+          "on",
+          "status",
+          "temperature"
+        ],
+        "night-light": [
+          "on"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "garbage-disposal": {
+      "title": "垃圾处理器",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "garbage-disposal"
+      ],
+      "properties": {
+        "garbage-disposal": [
+          "on"
+        ]
+      },
+      "readings": {
+        "garbage-disposal": [
+          "fault",
+          "on",
+          "status"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "timer": {
+      "title": "计时器",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "timer"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": []
+    },
+    "ice-maker": {
+      "title": "制冰机",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "ice-maker"
+      ],
+      "properties": {
+        "ice-maker": [
+          "mode"
+        ]
+      },
+      "readings": {
+        "ice-maker": [
+          "fault",
+          "status"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "electric-steamer": {
+      "title": "电蒸锅",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "electric-steamer"
+      ],
+      "properties": {
+        "electric-steamer": [
+          "auto-keep-warm",
+          "mode",
+          "target-temperature",
+          "target-time"
+        ]
+      },
+      "readings": {
+        "electric-steamer": [
+          "fault",
+          "left-time",
+          "status"
+        ]
+      },
+      "actions": {
+        "electric-steamer": [
+          "cancel-cooking",
+          "pause",
+          "resume-cook",
+          "start-cook"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "boiler": {
+      "title": "壁挂炉",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "boiler",
+        "pump",
+        "thermostat",
+        "water-heater"
+      ],
+      "properties": {
+        "boiler": [
+          "on"
+        ]
+      },
+      "readings": {
+        "boiler": [
+          "fault",
+          "on",
+          "status"
+        ],
+        "water-heater": [
+          "fault",
+          "on",
+          "temperature"
+        ],
+        "thermostat": [
+          "on",
+          "status",
+          "temperature"
+        ],
+        "pump": [
+          "hydraulic-pressure"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "teabar": {
+      "title": "茶吧机",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "sterilizer",
+        "teabar"
+      ],
+      "properties": {
+        "teabar": [
+          "auto-keep-warm",
+          "cook-time",
+          "keep-warm-temperature"
+        ]
+      },
+      "readings": {
+        "teabar": [
+          "fault",
+          "left-time",
+          "status",
+          "temperature"
+        ],
+        "sterilizer": [
+          "door-state",
+          "fault",
+          "left-time",
+          "status"
+        ]
+      },
+      "actions": {
+        "teabar": [
+          "cancel-cooking"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "toilet": {
+      "title": "马桶（盖）",
+      "family": "water",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "night-light",
+        "toilet",
+        "toilet-jomoo"
+      ],
+      "properties": {
+        "toilet": [
+          "mode"
+        ]
+      },
+      "readings": {
+        "toilet": [
+          "fault",
+          "seating-state",
+          "status"
+        ],
+        "night-light": [
+          "on"
+        ],
+        "toilet-jomoo": [
+          "water-temperature"
+        ]
+      },
+      "actions": {
+        "toilet": [
+          "stop-working"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "towel-rack": {
+      "title": "毛巾架",
+      "family": "water",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "bathroom-rack",
+        "towel-rack"
+      ],
+      "properties": {
+        "towel-rack": [
+          "mode",
+          "on",
+          "target-temperature"
+        ]
+      },
+      "readings": {
+        "towel-rack": [
+          "fault",
+          "on",
+          "status",
+          "temperature"
+        ],
+        "bathroom-rack": [
+          "humidity",
+          "temperature"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "water-faucet": {
+      "title": "水龙头",
+      "family": "water",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "set",
+        "water-faucet"
+      ],
+      "properties": {
+        "water-faucet": [
+          "on",
+          "target-temperature"
+        ]
+      },
+      "readings": {
+        "water-faucet": [
+          "on",
+          "temperature"
+        ],
+        "set": [
+          "status"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "shower": {
+      "title": "淋浴器",
+      "family": "water",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "battery",
+        "shower",
+        "single-use-battery"
+      ],
+      "properties": {},
+      "readings": {
+        "shower": [
+          "fault",
+          "water-temperature"
+        ],
+        "single-use-battery": [
+          "battery-level"
+        ],
+        "battery": [
+          "battery-level"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "bed": {
+      "title": "智能床",
+      "family": "personal",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "backrest-control",
+        "bed",
+        "leg-rest-control"
+      ],
+      "properties": {
+        "bed": [
+          "mode",
+          "on"
+        ],
+        "backrest-control": [
+          "backrest-angle",
+          "mode"
+        ],
+        "leg-rest-control": [
+          "leg-rest-angle",
+          "mode"
+        ]
+      },
+      "readings": {
+        "bed": [
+          "fault",
+          "on",
+          "status"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "mattress": {
+      "title": "智能床垫",
+      "family": "personal",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "mattress"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": []
+    },
+    "beauty-instrument": {
+      "title": "美容仪",
+      "family": "personal",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "beauty-instrument",
+        "myk-mry"
+      ],
+      "properties": {},
+      "readings": {
+        "myk-mry": [
+          "on"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "toothbrush": {
+      "title": "牙刷",
+      "family": "personal",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "battery",
+        "toothbrush"
+      ],
+      "properties": {},
+      "readings": {
+        "battery": [
+          "battery-level",
+          "charging-state"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "dryer": {
+      "title": "干衣/鞋机",
+      "family": "personal",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "dryer"
+      ],
+      "properties": {
+        "dryer": [
+          "mode",
+          "on"
+        ]
+      },
+      "readings": {
+        "dryer": [
+          "door-state",
+          "fault",
+          "left-time",
+          "on",
+          "status"
+        ]
+      },
+      "actions": {
+        "dryer": [
+          "pause",
+          "start-drying"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "pillow": {
+      "title": "智能枕头",
+      "family": "personal",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "massager",
+        "pillow",
+        "sleep-monitor"
+      ],
+      "properties": {
+        "pillow": [
+          "mode",
+          "on"
+        ]
+      },
+      "readings": {
+        "pillow": [
+          "fault",
+          "on",
+          "status",
+          "working-time"
+        ],
+        "massager": [
+          "on"
+        ],
+        "sleep-monitor": [
+          "sleep-state"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "mirror": {
+      "title": "智能镜",
+      "family": "personal",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "demisting",
+        "light",
+        "mirror",
+        "motion-sensor"
+      ],
+      "properties": {},
+      "readings": {
+        "light": [
+          "on"
+        ],
+        "motion-sensor": [
+          "on"
+        ],
+        "mirror": [
+          "status"
+        ],
+        "demisting": [
+          "on"
+        ]
+      },
+      "actions": {
+        "mirror": [
+          "turn-off",
+          "turn-on"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "mosquito-dispeller": {
+      "title": "驱蚊器",
+      "family": "personal",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "dakuo-mosq-dispeller",
+        "mosquito-dispeller"
+      ],
+      "properties": {
+        "mosquito-dispeller": [
+          "mode",
+          "on"
+        ]
+      },
+      "readings": {
+        "mosquito-dispeller": [
+          "on"
+        ],
+        "dakuo-mosq-dispeller": [
+          "status"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "electric-blanket": {
+      "title": "电热毯",
+      "family": "personal",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "electric-blanket"
+      ],
+      "properties": {
+        "electric-blanket": [
+          "mode",
+          "on",
+          "target-temperature"
+        ]
+      },
+      "readings": {
+        "electric-blanket": [
+          "fault",
+          "on",
+          "temperature",
+          "water-level"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "window-opener": {
+      "title": "开窗器",
+      "family": "personal",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "indicator-light",
+        "window-opener"
+      ],
+      "properties": {
+        "window-opener": [
+          "on"
+        ]
+      },
+      "readings": {
+        "window-opener": [
+          "fault",
+          "on",
+          "status"
+        ],
+        "indicator-light": [
+          "on"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "electronic-valve": {
+      "title": "电子阀门",
+      "family": "personal",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "electronic-valve",
+        "switch"
+      ],
+      "properties": {
+        "electronic-valve": [
+          "mode"
+        ]
+      },
+      "readings": {
+        "switch": [
+          "on"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "motor-controller": {
+      "title": "电机控制器",
+      "family": "personal",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "indicator-light",
+        "motor-controller"
+      ],
+      "properties": {
+        "motor-controller": [
+          "mode",
+          "on",
+          "target-position"
+        ]
+      },
+      "readings": {
+        "motor-controller": [
+          "current-position",
+          "fault",
+          "on",
+          "status"
+        ],
+        "indicator-light": [
+          "on"
+        ]
+      },
+      "actions": {
+        "motor-controller": [
+          "turn-off",
+          "turn-on"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "sofa": {
+      "title": "沙发",
+      "family": "personal",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "backrest-control",
+        "leg-rest-control",
+        "light",
+        "sofa"
+      ],
+      "properties": {
+        "sofa": [
+          "mode"
+        ],
+        "backrest-control": [
+          "backrest-angle",
+          "mode"
+        ],
+        "leg-rest-control": [
+          "leg-rest-angle",
+          "mode"
+        ]
+      },
+      "readings": {
+        "sofa": [
+          "fault"
+        ],
+        "light": [
+          "on"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "shaver": {
+      "title": "剃须刀",
+      "family": "personal",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "battery",
+        "shaver"
+      ],
+      "properties": {},
+      "readings": {
+        "battery": [
+          "battery-level"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "hair-drier": {
+      "title": "吹风机",
+      "family": "personal",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "hair-drier"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": []
+    },
+    "oral-irrigator": {
+      "title": "冲牙器",
+      "family": "personal",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "battery",
+        "oral-irrigator"
+      ],
+      "properties": {},
+      "readings": {
+        "battery": [
+          "battery-level",
+          "charging-state"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "breast-pump": {
+      "title": "吸奶器",
+      "family": "personal",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "breast-pump"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": []
+    },
+    "bedstand": {
+      "title": "智能床头柜",
+      "family": "personal",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "bedstand",
+        "light"
+      ],
+      "properties": {
+        "light": [
+          "brightness",
+          "color",
+          "on"
+        ]
+      },
+      "readings": {
+        "light": [
+          "on"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "cat-litter-box": {
+      "title": "猫砂盆",
+      "family": "pet",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "cat-litter",
+        "cat-litter-box",
+        "cat-toilet",
+        "deodorant",
+        "my-cat-toilet"
+      ],
+      "properties": {},
+      "readings": {
+        "cat-toilet": [
+          "fault",
+          "status",
+          "trash-can-status",
+          "usage-count"
+        ],
+        "deodorant": [
+          "deodorant-left-time"
+        ],
+        "cat-litter": [
+          "cat-litter-left-level"
+        ],
+        "my-cat-toilet": [
+          "cat-enter-state",
+          "cat-near-state",
+          "cat-weight"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "pet-feeder": {
+      "title": "宠物喂食器",
+      "family": "pet",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "indicator-light",
+        "pet-feeder"
+      ],
+      "properties": {
+        "pet-feeder": [
+          "mode",
+          "on"
+        ]
+      },
+      "readings": {
+        "pet-feeder": [
+          "fault",
+          "on",
+          "status"
+        ],
+        "indicator-light": [
+          "on"
+        ]
+      },
+      "actions": {
+        "pet-feeder": [
+          "pet-food-out"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "pet-toy": {
+      "title": "宠物玩具",
+      "family": "pet",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "pet-toy"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": []
+    },
+    "germicidal-lamp": {
+      "title": "杀菌灯",
+      "family": "pet",
+      "readOnly": true,
+      "catalogGenerated": true,
+      "primary": [
+        "germicidal-lamp",
+        "lighting"
+      ],
+      "properties": {},
+      "readings": {
+        "germicidal-lamp": [
+          "fault",
+          "left-time",
+          "on",
+          "status"
+        ],
+        "lighting": [
+          "fault",
+          "on",
+          "status"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "desktop-readonly",
+          "reason": "此类设备在桌面仅展示云端可读取的状态，相关控制请使用手机米家。"
+        }
+      ]
+    },
+    "flowerpot": {
+      "title": "智能种植器",
+      "family": "pet",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "fill-light",
+        "flowerpot",
+        "humidity",
+        "plant-monitor",
+        "temperature",
+        "water-level"
+      ],
+      "properties": {
+        "flowerpot": [
+          "mode"
+        ]
+      },
+      "readings": {
+        "temperature": [
+          "temperature"
+        ],
+        "humidity": [
+          "humidity"
+        ],
+        "water-level": [
+          "water-level"
+        ],
+        "flowerpot": [
+          "fault"
+        ],
+        "plant-monitor": [
+          "illumination",
+          "relative-humidity",
+          "temperature"
+        ],
+        "fill-light": [
+          "on"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "plant-monitor": {
+      "title": "植物监测仪",
+      "family": "pet",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "plant-monitor"
+      ],
+      "properties": {},
+      "readings": {
+        "plant-monitor": [
+          "relative-humidity",
+          "soil-ec"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "pet-drinking-fountain": {
+      "title": "宠物饮水机",
+      "family": "pet",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "filter",
+        "filter-cotton",
+        "indicator-light",
+        "no-water-flag",
+        "pet-drinking-fountain",
+        "remain-clean-time"
+      ],
+      "properties": {
+        "pet-drinking-fountain": [
+          "mode",
+          "on"
+        ]
+      },
+      "readings": {
+        "pet-drinking-fountain": [
+          "fault",
+          "on"
+        ],
+        "filter": [
+          "filter-left-time",
+          "filter-used-time"
+        ],
+        "indicator-light": [
+          "on"
+        ],
+        "filter-cotton": [
+          "cotton-left-time"
+        ],
+        "remain-clean-time": [
+          "remain-clean-time"
+        ],
+        "no-water-flag": [
+          "no-water-flag"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "fish-tank": {
+      "title": "智能鱼缸",
+      "family": "pet",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "fish-tank",
+        "module-four",
+        "module-one",
+        "module-three",
+        "module-two"
+      ],
+      "properties": {
+        "fish-tank": [
+          "on",
+          "pump-flux",
+          "water-pump"
+        ]
+      },
+      "readings": {
+        "fish-tank": [
+          "on",
+          "status",
+          "temperature"
+        ],
+        "module-one": [
+          "status"
+        ],
+        "module-two": [
+          "status"
+        ],
+        "module-three": [
+          "status"
+        ],
+        "module-four": [
+          "status"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "watch": {
+      "title": "手表",
+      "family": "health",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "battery",
+        "watch"
+      ],
+      "properties": {},
+      "readings": {
+        "watch": [
+          "fault"
+        ],
+        "battery": [
+          "battery-level",
+          "charging-state"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "sleep-monitor": {
+      "title": "睡眠监测仪",
+      "family": "health",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "sleep-monitor",
+        "vital-signs"
+      ],
+      "properties": {},
+      "readings": {
+        "sleep-monitor": [
+          "sleep-state"
+        ],
+        "vital-signs": [
+          "heart-rate"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "shoes": {
+      "title": "智能鞋",
+      "family": "health",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "shoes"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": []
+    },
+    "bracelet": {
+      "title": "手环",
+      "family": "health",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "bracelet",
+        "motion-data",
+        "vital-signs"
+      ],
+      "properties": {},
+      "readings": {
+        "vital-signs": [
+          "heart-rate"
+        ],
+        "motion-data": [
+          "current-distance",
+          "current-step-count"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "cup": {
+      "title": "智能水杯",
+      "family": "health",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "cup"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": []
+    },
+    "walking-pad": {
+      "title": "走步机",
+      "family": "health",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "indicator-light",
+        "walking-pad"
+      ],
+      "properties": {
+        "walking-pad": [
+          "mode",
+          "on",
+          "speed-level",
+          "target-time"
+        ]
+      },
+      "readings": {
+        "walking-pad": [
+          "current-calorie-consumption",
+          "current-distance",
+          "current-step-count",
+          "fault",
+          "left-time",
+          "on",
+          "status",
+          "working-time"
+        ],
+        "indicator-light": [
+          "on"
+        ]
+      },
+      "actions": {
+        "walking-pad": [
+          "pause",
+          "start-work",
+          "stop-working"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "stationary-bicycle": {
+      "title": "健身车",
+      "family": "health",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "battery",
+        "stationary-bicycle"
+      ],
+      "properties": {},
+      "readings": {
+        "stationary-bicycle": [
+          "current-calorie-consumption",
+          "fault"
+        ],
+        "battery": [
+          "battery-level"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "treadmill": {
+      "title": "跑步机",
+      "family": "health",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "treadmill",
+        "treadmill-extra"
+      ],
+      "properties": {
+        "treadmill": [
+          "mode",
+          "on",
+          "speed-level",
+          "target-time"
+        ]
+      },
+      "readings": {
+        "treadmill": [
+          "current-calorie-consumption",
+          "current-distance",
+          "current-step-count",
+          "fault",
+          "left-time",
+          "on",
+          "status",
+          "working-time"
+        ],
+        "treadmill-extra": [
+          "heart-rate"
+        ]
+      },
+      "actions": {
+        "treadmill": [
+          "pause",
+          "start-work",
+          "stop-working"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "moxibustion": {
+      "title": "艾灸器",
+      "family": "health",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "moxibustion"
+      ],
+      "properties": {
+        "moxibustion": [
+          "mode",
+          "on",
+          "target-temperature",
+          "target-time"
+        ]
+      },
+      "readings": {
+        "moxibustion": [
+          "left-time",
+          "on",
+          "temperature"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "foot-bath": {
+      "title": "足浴器",
+      "family": "health",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "battery",
+        "foot-bath"
+      ],
+      "properties": {
+        "foot-bath": [
+          "heat-level",
+          "on",
+          "target-temperature",
+          "target-time"
+        ]
+      },
+      "readings": {
+        "foot-bath": [
+          "fault",
+          "left-time",
+          "on",
+          "status",
+          "temperature"
+        ],
+        "battery": [
+          "battery-level"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "massager": {
+      "title": "按摩器/椅",
+      "family": "health",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "battery",
+        "massager",
+        "property-control"
+      ],
+      "properties": {
+        "massager": [
+          "heat-level",
+          "massage-strength",
+          "mode",
+          "on"
+        ]
+      },
+      "readings": {
+        "massager": [
+          "on",
+          "temperature"
+        ],
+        "battery": [
+          "battery-level",
+          "voltage"
+        ],
+        "property-control": [
+          "left-time"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "massage": {
+      "title": "按摩器/椅",
+      "family": "health",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "massage"
+      ],
+      "properties": {
+        "massage": [
+          "massage-strength",
+          "mode",
+          "on"
+        ]
+      },
+      "readings": {
+        "massage": [
+          "atmospheric-pressure",
+          "fault",
+          "left-time",
+          "on",
+          "status"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "jump-rope": {
+      "title": "跳绳",
+      "family": "health",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "jump-rope"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": []
+    },
+    "analyzer": {
+      "title": "分析仪",
+      "family": "health",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "analyzer"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": []
+    },
+    "ab-wheel": {
+      "title": "健腹轮",
+      "family": "health",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "ab-wheel"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": []
+    },
+    "dumbbell": {
+      "title": "哑铃",
+      "family": "health",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "dumbbell"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": []
+    },
+    "suitcase": {
+      "title": "旅行箱",
+      "family": "vehicle",
+      "readOnly": true,
+      "catalogGenerated": true,
+      "primary": [
+        "suitcase"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "desktop-readonly",
+          "reason": "此类设备在桌面仅展示云端可读取的状态，相关控制请使用手机米家。"
+        }
+      ]
+    },
+    "bike": {
+      "title": "自行车",
+      "family": "vehicle",
+      "readOnly": true,
+      "catalogGenerated": true,
+      "primary": [
+        "bike",
+        "ble-battery"
+      ],
+      "properties": {},
+      "readings": {
+        "ble-battery": [
+          "ble-battery-level"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "desktop-readonly",
+          "reason": "此类设备在桌面仅展示云端可读取的状态，相关控制请使用手机米家。"
+        }
+      ]
+    },
+    "driving-recorder": {
+      "title": "行车记录仪",
+      "family": "vehicle",
+      "readOnly": true,
+      "catalogGenerated": true,
+      "primary": [
+        "driving-recorder",
+        "head-up-display"
+      ],
+      "properties": {},
+      "readings": {
+        "head-up-display": [
+          "fault",
+          "on",
+          "status"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "desktop-readonly",
+          "reason": "此类设备在桌面仅展示云端可读取的状态，相关控制请使用手机米家。"
+        }
+      ]
+    },
+    "scooter": {
+      "title": "滑板车",
+      "family": "vehicle",
+      "readOnly": true,
+      "catalogGenerated": true,
+      "primary": [
+        "scooter"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "desktop-readonly",
+          "reason": "此类设备在桌面仅展示云端可读取的状态，相关控制请使用手机米家。"
+        }
+      ]
+    },
+    "rearview-mirror": {
+      "title": "智能后视镜",
+      "family": "vehicle",
+      "readOnly": true,
+      "catalogGenerated": true,
+      "primary": [
+        "rearview-mirror"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "desktop-readonly",
+          "reason": "此类设备在桌面仅展示云端可读取的状态，相关控制请使用手机米家。"
+        }
+      ]
+    },
+    "head-up-display": {
+      "title": "平视显示器",
+      "family": "vehicle",
+      "readOnly": true,
+      "catalogGenerated": true,
+      "primary": [
+        "head-up-display"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "desktop-readonly",
+          "reason": "此类设备在桌面仅展示云端可读取的状态，相关控制请使用手机米家。"
+        }
+      ]
+    },
+    "electric-power": {
+      "title": "储能电源",
+      "family": "vehicle",
+      "readOnly": true,
+      "catalogGenerated": true,
+      "primary": [
+        "electric-power",
+        "enstor"
+      ],
+      "properties": {},
+      "readings": {
+        "enstor": [
+          "battery-health",
+          "charge-power",
+          "charge-power-time",
+          "discharge-power",
+          "discharge-power-time",
+          "switch-battery-level"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "desktop-readonly",
+          "reason": "此类设备在桌面仅展示云端可读取的状态，相关控制请使用手机米家。"
+        }
+      ]
+    },
+    "carlight": {
+      "title": "汽车氛围灯",
+      "family": "vehicle",
+      "readOnly": true,
+      "catalogGenerated": true,
+      "primary": [
+        "ambient-light",
+        "carlight"
+      ],
+      "properties": {},
+      "readings": {
+        "ambient-light": [
+          "on"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "desktop-readonly",
+          "reason": "此类设备在桌面仅展示云端可读取的状态，相关控制请使用手机米家。"
+        }
+      ]
+    },
+    "safety-seat": {
+      "title": "安全座椅",
+      "family": "vehicle",
+      "readOnly": true,
+      "catalogGenerated": true,
+      "primary": [
+        "ambient-light",
+        "battery",
+        "custom",
+        "safety-seat"
+      ],
+      "properties": {},
+      "readings": {
+        "safety-seat": [
+          "install-warn",
+          "ride-status",
+          "safety-belt"
+        ],
+        "battery": [
+          "battery-level",
+          "charging-state"
+        ],
+        "ambient-light": [
+          "on"
+        ],
+        "custom": [
+          "fault",
+          "temperature"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "desktop-readonly",
+          "reason": "此类设备在桌面仅展示云端可读取的状态，相关控制请使用手机米家。"
+        }
+      ]
+    },
+    "charging-pile": {
+      "title": "充电桩",
+      "family": "vehicle",
+      "readOnly": true,
+      "catalogGenerated": true,
+      "primary": [
+        "charging-pile"
+      ],
+      "properties": {},
+      "readings": {
+        "charging-pile": [
+          "charged-quantity",
+          "electric-current",
+          "electric-power",
+          "fault",
+          "status"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": [
+        {
+          "feature": "desktop-readonly",
+          "reason": "此类设备在桌面仅展示云端可读取的状态，相关控制请使用手机米家。"
+        }
+      ]
+    },
+    "table": {
+      "title": "智能桌",
+      "family": "office",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "desk-reminder",
+        "standing-desk",
+        "table",
+        "table-limit",
+        "table-sedentariness"
+      ],
+      "properties": {
+        "table": [
+          "mode"
+        ]
+      },
+      "readings": {
+        "standing-desk": [
+          "current-height",
+          "fault",
+          "moving-status"
+        ],
+        "desk-reminder": [
+          "on"
+        ],
+        "table": [
+          "fault",
+          "status"
+        ],
+        "table-sedentariness": [
+          "on"
+        ],
+        "table-limit": [
+          "on"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "chair": {
+      "title": "办公椅",
+      "family": "office",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "chair"
+      ],
+      "properties": {
+        "chair": [
+          "mode",
+          "on"
+        ]
+      },
+      "readings": {
+        "chair": [
+          "fault",
+          "on",
+          "seating-state",
+          "status"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "printer": {
+      "title": "打印机",
+      "family": "office",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "printer"
+      ],
+      "properties": {},
+      "readings": {
+        "printer": [
+          "printed-page",
+          "printer-state",
+          "status"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "laptop": {
+      "title": "笔记本",
+      "family": "office",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "battery",
+        "cpu-management",
+        "laptop"
+      ],
+      "properties": {},
+      "readings": {
+        "laptop": [
+          "status"
+        ],
+        "cpu-management": [
+          "temperature"
+        ],
+        "battery": [
+          "battery-level",
+          "charging-state"
+        ]
+      },
+      "actions": {
+        "laptop": [
+          "turn-off",
+          "turn-on"
+        ]
+      },
+      "privateFeatures": []
+    },
+    "rangefinder": {
+      "title": "家居工具",
+      "family": "other",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "rangefinder"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": []
+    },
+    "pump": {
+      "title": "泵",
+      "family": "other",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "pump"
+      ],
+      "properties": {
+        "pump": [
+          "mode",
+          "on",
+          "working-level"
+        ]
+      },
+      "readings": {
+        "pump": [
+          "fault",
+          "on",
+          "remaining-time"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "fitting": {
+      "title": "配件",
+      "family": "other",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "fitting"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": []
+    },
+    "other": {
+      "title": "其他",
+      "family": "other",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "ble-battery",
+        "other"
+      ],
+      "properties": {},
+      "readings": {
+        "ble-battery": [
+          "ble-battery-level"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "weather-sensor": {
+      "title": "气象传感器",
+      "family": "sensor",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "battery",
+        "weather-sensor"
+      ],
+      "properties": {
+        "weather-sensor": [
+          "mode",
+          "on"
+        ]
+      },
+      "readings": {
+        "weather-sensor": [
+          "atmospheric-pressure",
+          "fault",
+          "on",
+          "relative-humidity",
+          "status",
+          "temperature"
+        ],
+        "battery": [
+          "battery-level",
+          "charging-state",
+          "voltage"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "wine-tank": {
+      "title": "恒温酒柜",
+      "family": "cooking",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "indicator-light",
+        "liquor",
+        "screen",
+        "wine-tank"
+      ],
+      "properties": {
+        "wine-tank": [
+          "mode",
+          "on",
+          "target-temperature"
+        ]
+      },
+      "readings": {
+        "wine-tank": [
+          "fault",
+          "on",
+          "status",
+          "temperature"
+        ],
+        "liquor": [
+          "status"
+        ],
+        "indicator-light": [
+          "on"
+        ],
+        "screen": [
+          "on"
+        ]
+      },
+      "actions": {},
+      "privateFeatures": []
+    },
+    "thermometer": {
+      "title": "体温计",
+      "family": "health",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "thermometer"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": []
+    },
+    "car-air-purifier": {
+      "title": "车载空气净化器",
+      "family": "vehicle",
+      "readOnly": false,
+      "catalogGenerated": true,
+      "primary": [
+        "car-air-purifier"
+      ],
+      "properties": {},
+      "readings": {},
+      "actions": {},
+      "privateFeatures": []
+    }
+  },
+  "readingServices": [
+    "environment",
+    "battery",
+    "single-use-battery",
+    "tds-sensor",
+    "filter",
+    "fault",
+    "power-consumption",
+    "electric-power",
+    "fridge-chamber",
+    "play-control"
+  ],
+  "parameterizedActions": [
+    "pet-feeder.pet-food-out",
+    "oven.start-cook",
+    "cooker.start-cook",
+    "pressure-cooker.start-cook",
+    "electric-steamer.start-cook"
+  ],
+  "actionInputNames": [
+    "feeding-measure",
+    "target-time",
+    "cook-time",
+    "mode",
+    "cook-mode",
+    "target-temperature"
+  ],
+  "models": {
+    "chunmi.i_stove.x1": {
+      "specTypes": [
+        "urn:miot-spec-v2:device:integrated-stove:0000A056:chunmi-x1:1"
+      ],
+      "primary": [
+        "self"
+      ],
+      "properties": {},
+      "readings": {
+        "self": [
+          "gas-stateleft",
+          "gas-target-temp",
+          "gas-current-temp",
+          "gas-errorcode",
+          "gas-lefttime-left"
+        ]
+      },
+      "events": {
+        "self": [
+          "cookfinish",
+          "cookfinish-right",
+          "falsefire-left",
+          "falsefire-right",
+          "temphigh-left",
+          "cookstar-left",
+          "cookstar-right",
+          "cookoff-left",
+          "cookoff-right"
+        ]
+      }
+    }
+  }
+}

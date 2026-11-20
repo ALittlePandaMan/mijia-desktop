@@ -1,0 +1,62 @@
+import fs from 'node:fs/promises';import{connect,delay}from'./cdp.mjs';
+const source=`(()=>{const callbacks=new Map(),listeners=new Map();let seq=1;const view=id=>({id,homeId:'fixture-home',revision:1,device:{did:id,name:id==='one'?'客厅台灯':'卧室灯',model:'yeelink.light.fixture',online:true,roomId:'living',roomName:'客厅',sharedReadOnly:false,icon:'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',specType:'urn:miot-spec-v2:device:light:0000A001:fixture:1'},card:{did:id,kind:'power',selected:false,enabled:true,visible:true,highlight:false,binding:{siid:2,piid:1},action:'on',cardType:1},status:{did:id,text:'关'},pending:null,error:null,geometry:{monitor:'fixture',x:0,y:0,width:240}});const fixture={calls:[],delay:300,revision:1,views:[view('one'),view('two')]};const placement=(v,i)=>({view:v,x:i*250,y:0,width:240,height:192,z:i,interactive:v.interactive??true});fixture.frame=(reset=false)=>({revision:++fixture.revision,reset,viewport:{monitor:'fixture',width:490,height:192,scale:1},cards:fixture.views.map(placement),removed:[]});fixture.emit=frame=>{for(const l of listeners.values())if(l.event==='desktop-widget-host-state')l.fn({payload:frame})};fixture.gesture=phase=>{for(const l of listeners.values())if(l.event==='desktop-widget-gesture')l.fn({payload:{widgetId:'one',phase,kind:'move',sequence:1}})};fixture.inFlight=0;window.fixture=fixture;window.__TAURI_INTERNALS__={metadata:{currentWindow:{label:'widget-host-fixture'}},transformCallback(fn){const id=seq++;callbacks.set(id,fn);return id;},unregisterCallback(id){callbacks.delete(id);},async invoke(command,args={}){fixture.calls.push({command,args});if(command==='plugin:event|listen'){const id=seq++;listeners.set(id,{event:args.event,fn:callbacks.get(args.handler)});return id;}if(command==='plugin:event|unlisten')return;if(command==='desktop_resource_snapshot')return {version:1,revision:1,visible:true,refreshMs:30000};if(command==='desktop_widget_snapshot')return fixture.frame(true);if(command==='desktop_widget_viewport')return {monitor:'fixture',width:innerWidth,height:innerHeight,scale:1};if(command==='desktop_widget_regions')return;if(command==='desktop_widget_gesture')return {monitor:'fixture',x:0,y:0,width:240};if(command==='desktop_widget_menu'||command==='desktop_widget_open')return;if(command==='desktop_widget_unpin'){fixture.removed=args.id;return;}if(command==='desktop_widget_control'){fixture.inFlight++;await new Promise(r=>setTimeout(r,fixture.delay));const v=fixture.views.find(v=>v.id===args.widgetId);v.revision++;v.card={...v.card,selected:args.intent==='on',highlight:args.intent==='on'};fixture.emit(fixture.frame());fixture.inFlight--;return {verified:true,message:'mock',actual:args.intent,card:v.card,status:v.status};}throw Error('Unexpected IPC '+command);}};})();`;
+let target;for(let i=0;i<60;i++){try{target=(await(await fetch('http://127.0.0.1:9444/json/list')).json()).find(t=>t.type==='page');if(target)break;}catch{}await delay(150);}if(!target)throw Error('Browser target missing');
+const output=process.argv[2]??'.cache/perf/widget-browser.json';await fs.mkdir((await import('node:path')).dirname(output),{recursive:true});const c=await connect(target),report={complete:false,mockOnly:true,physicalDeviceActions:[],checks:[]};
+const check=async(name,expression)=>{const passed=!!await c.evaluate(expression);report.checks.push({name,passed});if(!passed)throw Error(name);};
+const until=async exp=>{for(let n=0;n<100;n++){if(await c.evaluate(exp))return;await delay(50);}throw Error('Timed out '+exp);};
+try{
+ await c.call('Page.enable');await c.call('Runtime.enable');await c.call('Page.addScriptToEvaluateOnNewDocument',{source});await c.call('Emulation.setDeviceMetricsOverride',{width:490,height:192,deviceScaleFactor:1,mobile:false});await c.call('Page.navigate',{url:'http://127.0.0.1:1421/widget.html'});await until("document.querySelectorAll('.device-card').length===2");
+ await check('two original cards share one lightweight page',"document.querySelectorAll('.device-card').length===2&&!document.querySelector('.home-screen,.desktop-titlebar')");
+ await check('host and gaps are transparent',"[document.documentElement,document.body,document.querySelector('#app')].every(e=>getComputedStyle(e).backgroundColor==='rgba(0, 0, 0, 0)')");
+ await check('each card retains its own original dimensions',"[...document.querySelectorAll('.device-card')].every(c=>c.getBoundingClientRect().width===240&&c.getBoundingClientRect().height===192)");
+ await delay(200);const viewportCalls=await c.evaluate("fixture.calls.filter(c=>c.command==='desktop_widget_viewport').length");
+ await c.evaluate("window.originalImage=document.querySelector('.device-product-image');window.originalButton=document.querySelector('.device-shortcut');for(let i=0;i<20;i++){fixture.views[0].revision++;fixture.emit(fixture.frame())}");await delay(200);
+ await check('state updates preserve image and button identity',"window.originalImage===document.querySelector('.device-product-image')&&window.originalButton===document.querySelector('.device-shortcut')");
+ await check('state updates do not recalibrate viewport',`fixture.calls.filter(c=>c.command==='desktop_widget_viewport').length===${viewportCalls}`);
+ const start=performance.now();await c.evaluate("document.querySelector('.device-shortcut').click()");await check('local feedback is immediate',"document.querySelector('.device-shortcut').classList.contains('is-on')&&!document.querySelector('.device-shortcut').disabled");report.localFeedbackUpperBoundMs=Math.round(performance.now()-start);await delay(400);
+ await check('control includes only the selected widget identity',"fixture.calls.filter(c=>c.command==='desktop_widget_control').length===1&&fixture.calls.find(c=>c.command==='desktop_widget_control').args.widgetId==='one'&&document.querySelectorAll('.device-shortcut.is-on').length===1");
+ report.localFeedbackSamples=await c.evaluate(`(async()=>{fixture.delay=5;const times=[];for(let n=0;n<100;n++){const b=document.querySelector('.device-shortcut'),on=!b.classList.contains('is-on'),start=performance.now();b.click();if(b.classList.contains('is-on')!==on)throw Error('Optimistic feedback missing');await new Promise(requestAnimationFrame);times.push(performance.now()-start);while(fixture.inFlight>0)await new Promise(r=>setTimeout(r,2));}return times;})()`);
+ const sorted=[...report.localFeedbackSamples].sort((a,b)=>a-b);report.localFeedback={count:sorted.length,medianMs:sorted[50],p95Ms:sorted[94],maxMs:sorted.at(-1),measurement:'DOM optimistic update plus next animation frame; simulated backend, no hardware writes'};
+ if(report.localFeedback.p95Ms>100)throw Error('Local feedback P95 exceeds 100 ms');
+ await c.evaluate("fixture.emit({revision:0,reset:true,viewport:{monitor:'fixture',width:490,height:192,scale:1},cards:[],removed:[]})");await delay(50);await check('stale host frames cannot remove cards',"document.querySelectorAll('.device-card').length===2");
+ await c.evaluate("fixture.views[1].interactive=false;fixture.emit(fixture.frame())");await delay(50);await check('cross-monitor mirror is inert',"document.querySelector('[data-widget-id=two]').inert");
+ await delay(150);await c.evaluate("window.layoutReads=0;window.regionCalls=fixture.calls.filter(c=>c.command==='desktop_widget_regions').length;window.savedRect=Element.prototype.getBoundingClientRect;Element.prototype.getBoundingClientRect=function(...args){layoutReads++;return savedRect.apply(this,args)};for(let i=0;i<20;i++){const f=fixture.frame();f.cards[0].x=i;fixture.emit(f)}");await delay(100);
+ await check('pure movement skips layout reads and hit-region registration',"layoutReads===0&&fixture.calls.filter(c=>c.command==='desktop_widget_regions').length===regionCalls");await c.evaluate("Element.prototype.getBoundingClientRect=savedRect");
+ await c.evaluate("fixture.gesture('started')");await check('renderer reflects native movement without submitting another gesture',"document.querySelector('.device-card').classList.contains('widget-moving')&&!fixture.calls.some(c=>c.command==='desktop_widget_gesture')");
+ await c.evaluate("fixture.gesture('ended')");await check('native release clears movement without opening details',"!document.querySelector('.device-card').classList.contains('widget-moving')&&!fixture.calls.some(c=>c.command==='desktop_widget_open')");
+ await delay(80);
+ await c.evaluate(`(()=>{
+   const native=window.__TAURI_INTERNALS__,invoke=native.invoke.bind(native);
+   fixture.held=[];fixture.regionsSeen=[];
+   native.invoke=(name,args)=>{
+     if(name!=='desktop_widget_regions'||args.widgetId!=='one')return invoke(name,args);
+     fixture.regionsSeen.push(args);
+     return new Promise((resolve,reject)=>fixture.held.push(ok=>ok?resolve():reject(Error('stale fixture region'))));
+   };
+   fixture.resize=w=>{const frame=fixture.frame();frame.cards[0].width=w;fixture.emit(frame);};
+   fixture.resize(260);
+ })()`);
+ await until('fixture.held.length===1');
+ for(const width of [265,270,275]){await c.evaluate(`fixture.resize(${width})`);await delay(40);}
+ await check('slow native IPC allows just one in-flight input region','fixture.regionsSeen.length===1');
+ await c.evaluate('fixture.held.shift()(true)');
+ await until('fixture.held.length===1');
+ await delay(350);
+ await c.evaluate("document.querySelector('[data-widget-id=one]').dispatchEvent(new MouseEvent('contextmenu',{bubbles:true,clientX:120,clientY:100}));[...document.querySelectorAll('.widget-menu button')].find(b=>b.textContent.includes('取消固定')).click()");await check('unpin targets the selected card',"fixture.removed==='one'");
+ await c.evaluate("fixture.emit({revision:++fixture.revision,reset:false,viewport:{monitor:'fixture',width:490,height:192,scale:1},cards:[],removed:['one']})");await delay(50);await check('removing one card preserves other controller',"document.querySelectorAll('.device-card').length===1&&!!document.querySelector('[data-widget-id=two]')");
+ await c.evaluate('fixture.disposedRegions=fixture.regionsSeen.length;fixture.held.shift()(false)');await delay(260);
+ await check('a rejected region from a destroyed card does not retry','fixture.regionsSeen.length===fixture.disposedRegions');
+ await c.evaluate("fixture.views=[];window.emptyHostFrame=fixture.frame(true);fixture.emit(emptyHostFrame)");
+ await until("document.querySelectorAll('.widget-placement').length===0&&fixture.calls.some(c=>c.command==='desktop_widget_viewport'&&c.args.revision===emptyHostFrame.revision)");
+ await c.evaluate("window.oldEmptyHostFrame=emptyHostFrame;fixture.views=[{id:'two',revision:3,geometry:{monitor:'fixture',x:0,y:0,width:240}}];window.reopenedHostFrame=fixture.frame(true);fixture.emit(reopenedHostFrame)");
+ await until("document.querySelectorAll('.widget-placement').length===1&&fixture.calls.some(c=>c.command==='desktop_widget_viewport'&&c.args.revision===reopenedHostFrame.revision)");
+ await c.evaluate('fixture.emit(oldEmptyHostFrame)');await delay(80);
+ await check('repinning clears the old host frame and acknowledges only the new content',"!!document.querySelector('[data-widget-id=two]')");
+ await c.evaluate("(async()=>{const{CameraPlayer}=await import('/src/camera-page.ts');window.testPlayer=new CameraPlayer(()=>{},{});})()");
+ await check('idle camera component permits suspension',"!testPlayer.blocksSuspension");
+ await check('recording and live media block suspension',"(()=>{for(const [key,value]of[['recording',true],['session','fixture-media'],['listening',true],['soundPending',true],['talking',true],['recordingPending',1],['busy',true]]){const old=testPlayer[key];testPlayer[key]=value;const blocked=testPlayer.blocksSuspension;testPlayer[key]=old;if(!blocked)return false;}return !testPlayer.blocksSuspension})()");
+ await check('camera control confirmations block suspension',"(()=>{for(const key of['powerOps','auxiliaryOps','qualityOps']){const old=testPlayer[key];testPlayer[key]={pendingCount:1};const blocked=testPlayer.blocksSuspension;testPlayer[key]=old;if(!blocked)return false;}return true})()");
+ await c.evaluate("testPlayer.dispose();delete window.testPlayer");
+ report.complete=true;
+}catch(error){report.error=String(error);throw error;}finally{await fs.writeFile(output,JSON.stringify(report,null,2));c.close();}
+

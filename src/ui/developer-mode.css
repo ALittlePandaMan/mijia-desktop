@@ -1,0 +1,50 @@
+.developer-home .home-topbar { padding-left: 0; }
+.developer-mode-switch { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+.developer-home .room-tabs[hidden] { display: none; }
+.developer-home .developer-category-menu { left: var(--home-inset); max-height: min(70vh, 500px); overflow-y: auto; }
+.developer-tools { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.developer-search, .developer-button {
+  min-height: 36px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: var(--surface-raised, white);
+  color: var(--text-primary, #171717);
+  padding: 5px 12px;
+}
+.developer-search { width: min(100%, 320px); }
+.developer-button:hover:not(:disabled) { background: var(--surface-hover, #eff6ff); }
+.developer-button:disabled { opacity: .55; }
+.developer-pagination { display: flex; gap: 6px; }
+.developer-summary { flex: 1; white-space: nowrap; }
+.developer-status { margin-block: 12px; }
+.developer-status .developer-button { margin-inline-start: 8px; }
+.developer-product-model { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px; }
+.developer-product-model code { overflow-wrap: anywhere; }
+.developer-preview-selectors { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.developer-preview-selectors .control-field { width: auto; flex: 1; }
+
+.developer-detail-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(200px, 264px);
+  align-items: start;
+  background: #10233366;
+}
+.developer-device-host { position: relative; align-self: stretch; min-height: 0; }
+.developer-device-host > .app-shell { height: 100%; }
+.developer-device-host .device-stage { background: transparent; }
+.developer-preview-tools {
+  margin: 16px 16px 0 0;
+  padding: 14px;
+  border-radius: 14px;
+  background: var(--surface-raised, white);
+  color: var(--text-primary, #171717);
+}
+.developer-preview-layout-row { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.developer-preview-layout { flex: 1; }
+@media (max-width: 860px) {
+  .developer-detail-overlay { grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; }
+  .developer-preview-tools { margin: 0 12px 12px; }
+}

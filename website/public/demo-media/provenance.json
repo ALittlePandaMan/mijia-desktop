@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 4,
+  "sourceKind": "synthetic-scene",
+  "usage": "Static synthetic camera scenes for the project website and README monitor screenshot.",
+  "totalImageBytes": 362975,
+  "images": [
+    {
+      "id": "entryway",
+      "title": "玄关摄像机",
+      "source": {
+        "kind": "synthetic-scene",
+        "sharedWith": "docs/screenshots/monitor.webp",
+        "tile": 1
+      },
+      "processing": {
+        "outputKind": "static-image",
+        "method": "First decoded video frame from the corresponding offline README monitor clip"
+      },
+      "image": {
+        "path": "/demo-media/entryway.jpg",
+        "format": "JPEG",
+        "width": 704,
+        "height": 396,
+        "bytes": 63918,
+        "sha256": "46f6ac0cde0cf92e7db10fd9b00b567279f30376a8cce267b35ef71189e73f40"
+      }
+    },
+    {
+      "id": "courtyard",
+      "title": "庭院摄像机",
+      "source": {
+        "kind": "synthetic-scene",
+        "sharedWith": "docs/screenshots/monitor.webp",
+        "tile": 2
+      },
+      "processing": {
+        "outputKind": "static-image",
+        "method": "First decoded video frame from the corresponding offline README monitor clip"
+      },
+      "image": {
+        "path": "/demo-media/courtyard.jpg",
+        "format": "JPEG",
+        "width": 704,
+        "height": 396,
+        "bytes": 124873,
+        "sha256": "47f74deaf6451c07f1a8723ce39a63084c4c2d1df8a442ccd844615e95eac305"
+      }
+    },
+    {
+      "id": "workshop",
+      "title": "工作间摄像机",
+      "source": {
+        "kind": "synthetic-scene",
+        "sharedWith": "docs/screenshots/monitor.webp",
+        "tile": 3
+      },
+      "processing": {
+        "outputKind": "static-image",
+        "method": "First decoded video frame from the corresponding offline README monitor clip"
+      },
+      "image": {
+        "path": "/demo-media/workshop.jpg",
+        "format": "JPEG",
+        "width": 704,
+        "height": 396,
+        "bytes": 87733,
+        "sha256": "ccf4108cb2518977458d90820806a660913c68dc6b636b07fc9e5e7f036e9e20"
+      }
+    },
+    {
+      "id": "garage",
+      "title": "车库摄像机",
+      "source": {
+        "kind": "synthetic-scene",
+        "sharedWith": "docs/screenshots/monitor.webp",
+        "tile": 4
+      },
+      "processing": {
+        "outputKind": "static-image",
+        "method": "First decoded video frame from the corresponding offline README monitor clip"
+      },
+      "image": {
+        "path": "/demo-media/garage.jpg",
+        "format": "JPEG",
+        "width": 704,
+        "height": 396,
+        "bytes": 86451,
+        "sha256": "5735a53df0dab8c0cc020f915291c007fdc3d99f69cf6d1502eda44111d06fa8"
+      }
+    }
+  ]
+}

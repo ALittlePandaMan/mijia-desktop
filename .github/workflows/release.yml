@@ -1,0 +1,116 @@
+name: Release
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      stageReplacement:
+        description: Stage the rebuilt v1.0.0 as a private draft
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  decoder:
+    if: github.event_name == 'workflow_dispatch' || (!github.event.forced && !github.event.deleted)
+    uses: ./.github/workflows/build-decoder.yml
+  package:
+    needs: decoder
+    name: Package ${{ matrix.platform }}
+    if: github.event_name == 'workflow_dispatch' || (!github.event.forced && !github.event.deleted)
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: windows-2022
+            platform: windows-x64
+            target: x86_64-pc-windows-msvc
+            bundles: nsis
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          toolchain: 1.98.1
+          targets: ${{ matrix.target }}
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2
+        with:
+          workspaces: src-tauri -> target
+          key: ${{ matrix.target }}
+      - run: npm ci
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: windows-x64-decoder
+          path: src-tauri/media-decoder/
+      - run: node scripts/write-media-decoder-manifest.mjs src-tauri/media-decoder --verify
+      - name: Verify the decoder starts on Windows
+        shell: pwsh
+        run: |
+          & ./src-tauri/media-decoder/mijia-media-decoder.exe
+          if ($LASTEXITCODE -ne 2) { throw "The cross-compiled decoder did not start: $LASTEXITCODE" }
+          exit 0
+      - run: npm run version:check
+      - run: npm run source:check
+      - name: Check distribution contents
+        run: node --test scripts/distribution-files.test.mjs
+      - name: Build native packages
+        uses: tauri-apps/tauri-action@1deb371b0cd8bd54025b384f1cd735e725c4060f # v1
+        env:
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        with:
+          args: --target ${{ matrix.target }} --bundles ${{ matrix.bundles }} -- --locked
+      - name: Inspect architecture and collect distribution files
+        run: node scripts/package-artifacts.mjs ${{ matrix.platform }}
+        env:
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: packages-${{ matrix.platform }}
+          path: artifacts/${{ matrix.platform }}/
+          if-no-files-found: error
+          include-hidden-files: false
+          overwrite: true
+          retention-days: 14
+  publish:
+    name: Verify and prepare Windows release
+    if: (github.event_name == 'push' && !github.event.forced && !github.event.deleted) || (github.event_name == 'workflow_dispatch' && inputs.stageReplacement && github.ref == 'refs/heads/main')
+    needs: package
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: .node-version
+      - run: node scripts/version.mjs --check
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: packages-windows-x64
+          path: artifacts/windows-x64
+      - run: node scripts/release-artifacts.mjs
+      - name: Publish only after all packages pass file checks
+        if: github.event_name == 'push'
+        run: node scripts/publish-release.mjs
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: Stage replacement without changing the public release
+        if: github.event_name == 'workflow_dispatch'
+        run: node scripts/publish-release.mjs --stage-replacement
+        env:
+          GH_TOKEN: ${{ github.token }}

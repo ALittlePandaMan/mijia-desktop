@@ -1,0 +1,5017 @@
+{
+  "source": "Actual read-only MIoT descriptions inspected 2026-10-31/2026-11-01. No cloud values, account/device identifiers or physical test claims. Service IDs recovered from their observed property/action IDs.",
+  "models": [
+    {
+      "did": "daily-contract",
+      "model": "xiaomi.sensor_occupy.03",
+      "specType": "urn:miot-spec-v2:device:occupancy-sensor:0000A0BF:xiaomi-03:3",
+      "services": [
+        {
+          "siid": 1,
+          "name": "device-information",
+          "description": "device-information",
+          "properties": [
+            {
+              "siid": 1,
+              "piid": 1,
+              "name": "manufacturer",
+              "description": "Device Manufacturer",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 2,
+              "name": "model",
+              "description": "Device Model",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 3,
+              "name": "serial-number",
+              "description": "Device ID",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 4,
+              "name": "firmware-revision",
+              "description": "Current Firmware Version",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 5,
+              "name": "serial-no",
+              "description": "Serial Number",
+              "format": "string",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 2,
+          "name": "occupancy-sensor",
+          "description": "occupancy-sensor",
+          "properties": [
+            {
+              "siid": 2,
+              "piid": 1078,
+              "name": "occupancy-status",
+              "description": "Occupancy Status",
+              "format": "uint8",
+              "access": [
+                "notify",
+                "read"
+              ],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "No One"
+                },
+                {
+                  "value": 1,
+                  "description": "Has One"
+                },
+                {
+                  "value": 2,
+                  "description": "Quick Check"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 1005,
+              "name": "illumination",
+              "description": "Illumination",
+              "format": "float",
+              "access": [
+                "notify",
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": [
+                0,
+                1000,
+                1
+              ],
+              "unit": "lux"
+            },
+            {
+              "siid": 2,
+              "piid": 1082,
+              "name": "no-one-duration",
+              "description": "No One Duration",
+              "format": "uint8",
+              "access": [
+                "notify",
+                "read"
+              ],
+              "valueList": [
+                {
+                  "value": 2,
+                  "description": "2 Min No One"
+                },
+                {
+                  "value": 5,
+                  "description": "5 Min No One"
+                },
+                {
+                  "value": 10,
+                  "description": "10 Min No One"
+                },
+                {
+                  "value": 30,
+                  "description": "30 Min No One"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 1081,
+              "name": "has-someone-duration",
+              "description": "Has Someone Duration",
+              "format": "uint8",
+              "access": [
+                "notify",
+                "read"
+              ],
+              "valueList": [
+                {
+                  "value": 2,
+                  "description": "2 Min Has People"
+                },
+                {
+                  "value": 5,
+                  "description": "5 Min Has People"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 3,
+              "name": "has-someone-detection-sensitivity",
+              "description": "Has Someone Detection Sensitivity",
+              "format": "uint8",
+              "access": [],
+              "valueList": [
+                {
+                  "value": 1,
+                  "description": "Low"
+                },
+                {
+                  "value": 2,
+                  "description": "Standard"
+                },
+                {
+                  "value": 3,
+                  "description": "High"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 4,
+              "name": "no-one-detection-sensitivity",
+              "description": "No One Detection Sensitivity",
+              "format": "uint8",
+              "access": [],
+              "valueList": [
+                {
+                  "value": 1,
+                  "description": "Low"
+                },
+                {
+                  "value": 2,
+                  "description": "Standard"
+                },
+                {
+                  "value": 3,
+                  "description": "High"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 5,
+              "name": "no-one-determine-time",
+              "description": "No One Determine Time",
+              "format": "uint16",
+              "access": [],
+              "valueList": [
+                {
+                  "value": 30,
+                  "description": "Half Min"
+                },
+                {
+                  "value": 60,
+                  "description": "One Min"
+                },
+                {
+                  "value": 120,
+                  "description": "Two Min"
+                },
+                {
+                  "value": 180,
+                  "description": "Three Min"
+                },
+                {
+                  "value": 300,
+                  "description": "Five Min"
+                },
+                {
+                  "value": 15,
+                  "description": "Qtr Min"
+                },
+                {
+                  "value": 10,
+                  "description": "Sixth Min"
+                }
+              ],
+              "valueRange": null,
+              "unit": "seconds"
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 3,
+          "name": "battery",
+          "description": "battery",
+          "properties": [
+            {
+              "siid": 3,
+              "piid": 1003,
+              "name": "battery-level",
+              "description": "Battery Level",
+              "format": "uint8",
+              "access": [
+                "notify",
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": [
+                0,
+                100,
+                1
+              ],
+              "unit": "percentage"
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 4,
+          "name": "indicator-light",
+          "description": "indicator-light",
+          "properties": [
+            {
+              "siid": 4,
+              "piid": 1,
+              "name": "on",
+              "description": "Switch Status",
+              "format": "bool",
+              "access": [],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 5,
+          "name": "customized-service-for-ble",
+          "description": "customized-service-for-ble",
+          "properties": [
+            {
+              "siid": 5,
+              "piid": 1,
+              "name": "customized-argument-4",
+              "description": "Customized Argument 4",
+              "format": "uint8",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                0,
+                255,
+                1
+              ],
+              "unit": "minutes"
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 6,
+          "name": "sensor-config",
+          "description": "sensor-config",
+          "properties": [
+            {
+              "siid": 6,
+              "piid": 1,
+              "name": "spatial-learning",
+              "description": "spatial-learning",
+              "format": "uint8",
+              "access": [],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "Start"
+                },
+                {
+                  "value": 1,
+                  "description": "Appli"
+                },
+                {
+                  "value": 2,
+                  "description": "Del"
+                },
+                {
+                  "value": 3,
+                  "description": "Reset"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 6,
+              "piid": 2,
+              "name": "presence-msg",
+              "description": "presence-msg",
+              "format": "string",
+              "access": [],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 6,
+              "piid": 3,
+              "name": "detection-distance",
+              "description": "detection-distance",
+              "format": "uint8",
+              "access": [],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "Invalid"
+                },
+                {
+                  "value": 1,
+                  "description": "Metre1.0"
+                },
+                {
+                  "value": 2,
+                  "description": "Metre1.5"
+                },
+                {
+                  "value": 3,
+                  "description": "Metre2.0"
+                },
+                {
+                  "value": 4,
+                  "description": "Metre2.5"
+                },
+                {
+                  "value": 5,
+                  "description": "Metre3.0"
+                },
+                {
+                  "value": 6,
+                  "description": "Metre3.5"
+                },
+                {
+                  "value": 7,
+                  "description": "Metre4.0"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 6,
+              "piid": 4,
+              "name": "keep-distance",
+              "description": "keep-distance",
+              "format": "uint8",
+              "access": [],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "Invalid"
+                },
+                {
+                  "value": 1,
+                  "description": "Metre1.0"
+                },
+                {
+                  "value": 2,
+                  "description": "Metre1.5"
+                },
+                {
+                  "value": 3,
+                  "description": "Metre2.0"
+                },
+                {
+                  "value": 4,
+                  "description": "Metre2.5"
+                },
+                {
+                  "value": 5,
+                  "description": "Metre3.0"
+                },
+                {
+                  "value": 6,
+                  "description": "Metre3.5"
+                },
+                {
+                  "value": 7,
+                  "description": "Metre4.0"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 6,
+              "piid": 5,
+              "name": "geek-mode",
+              "description": "",
+              "format": "bool",
+              "access": [],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 6,
+              "piid": 6,
+              "name": "light-off-detection",
+              "description": "light-off-detection",
+              "format": "bool",
+              "access": [],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": []
+        }
+      ]
+    },
+    {
+      "did": "daily-contract",
+      "model": "yeelink.ven_fan.vf3",
+      "specType": "urn:miot-spec-v2:device:ceiling-fan:0000A059:yeelink-vf3:1",
+      "services": [
+        {
+          "siid": 1,
+          "name": "device-information",
+          "description": "device-information",
+          "properties": [
+            {
+              "siid": 1,
+              "piid": 1,
+              "name": "manufacturer",
+              "description": "Device Manufacturer",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 2,
+              "name": "model",
+              "description": "Device Model",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 3,
+              "name": "serial-number",
+              "description": "Device ID",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 4,
+              "name": "firmware-revision",
+              "description": "Current Firmware Version",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 5,
+              "name": "serial-no",
+              "description": "Serial Number",
+              "format": "string",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 2,
+          "name": "ceiling-fan",
+          "description": "ceiling-fan",
+          "properties": [
+            {
+              "siid": 2,
+              "piid": 1,
+              "name": "on",
+              "description": "Switch Status",
+              "format": "bool",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 2,
+              "name": "fan-level",
+              "description": "Fan Level",
+              "format": "uint8",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 1,
+                  "description": "Low"
+                },
+                {
+                  "value": 2,
+                  "description": "High"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 3,
+              "name": "vertical-swing",
+              "description": "Vertical Swing",
+              "format": "bool",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 4,
+              "name": "off-delay-time",
+              "description": "Power Off Delay Time",
+              "format": "uint32",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": [
+                0,
+                120,
+                1
+              ],
+              "unit": "minutes"
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 3,
+          "name": "light",
+          "description": "light",
+          "properties": [
+            {
+              "siid": 3,
+              "piid": 1,
+              "name": "on",
+              "description": "Switch Status",
+              "format": "bool",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 3,
+              "piid": 2,
+              "name": "mode",
+              "description": "Mode",
+              "format": "uint8",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "Day"
+                },
+                {
+                  "value": 1,
+                  "description": "Night"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 3,
+              "piid": 3,
+              "name": "brightness",
+              "description": "Brightness",
+              "format": "uint8",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": [
+                1,
+                100,
+                1
+              ],
+              "unit": "percentage"
+            }
+          ],
+          "actions": [
+            {
+              "siid": 3,
+              "aiid": 1,
+              "name": "toggle",
+              "description": "Toggle",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            }
+          ]
+        },
+        {
+          "siid": 4,
+          "name": "yeelight",
+          "description": "yeelight",
+          "properties": [],
+          "actions": [
+            {
+              "siid": 4,
+              "aiid": 1,
+              "name": "fan-toggle",
+              "description": "fan-toggle",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "did": "daily-contract",
+      "model": "xiaomi.fryer.maf16",
+      "specType": "urn:miot-spec-v2:device:air-fryer:0000A0A4:xiaomi-maf16:2:0000D043",
+      "services": [
+        {
+          "siid": 1,
+          "name": "device-information",
+          "description": "device-information",
+          "properties": [
+            {
+              "siid": 1,
+              "piid": 1,
+              "name": "manufacturer",
+              "description": "Device Manufacturer",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 2,
+              "name": "model",
+              "description": "Device Model",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 3,
+              "name": "serial-number",
+              "description": "Device ID",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 4,
+              "name": "firmware-revision",
+              "description": "Current Firmware Version",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 5,
+              "name": "serial-no",
+              "description": "Serial Number",
+              "format": "string",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 2,
+          "name": "air-fryer",
+          "description": "air-fryer",
+          "properties": [
+            {
+              "siid": 2,
+              "piid": 2,
+              "name": "status",
+              "description": "Status",
+              "format": "uint8",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "Off"
+                },
+                {
+                  "value": 1,
+                  "description": "Idle"
+                },
+                {
+                  "value": 2,
+                  "description": "Paused"
+                },
+                {
+                  "value": 3,
+                  "description": "Delay"
+                },
+                {
+                  "value": 4,
+                  "description": "Cooking"
+                },
+                {
+                  "value": 6,
+                  "description": "Cooking Completed"
+                },
+                {
+                  "value": 9,
+                  "description": "Turn Pot Paused"
+                },
+                {
+                  "value": 10,
+                  "description": "Keep Warm"
+                },
+                {
+                  "value": 11,
+                  "description": "Keep Warm Paused"
+                },
+                {
+                  "value": 12,
+                  "description": "Keep Warm Completed"
+                },
+                {
+                  "value": 13,
+                  "description": "Quick Baking"
+                },
+                {
+                  "value": 14,
+                  "description": "Degrease"
+                },
+                {
+                  "value": 15,
+                  "description": "Tender Roast"
+                },
+                {
+                  "value": 16,
+                  "description": "During Refined Roasting"
+                },
+                {
+                  "value": 17,
+                  "description": "Water Filling Tip"
+                },
+                {
+                  "value": 18,
+                  "description": "Testing"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 3,
+              "name": "fault",
+              "description": "Device Fault",
+              "format": "uint8",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "No Faults "
+                },
+                {
+                  "value": 1,
+                  "description": "NTC Disconnect"
+                },
+                {
+                  "value": 2,
+                  "description": "NTC Short Circuit  "
+                },
+                {
+                  "value": 3,
+                  "description": "NTC Failure"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 5,
+              "name": "target-time",
+              "description": "Target Time",
+              "format": "uint32",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": [
+                1,
+                1440,
+                1
+              ],
+              "unit": "minutes"
+            },
+            {
+              "siid": 2,
+              "piid": 7,
+              "name": "target-temperature",
+              "description": "Target Temperature",
+              "format": "float",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": [
+                40,
+                230,
+                5
+              ],
+              "unit": "celsius"
+            },
+            {
+              "siid": 2,
+              "piid": 22,
+              "name": "left-time",
+              "description": "Left Time",
+              "format": "uint16",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": [
+                0,
+                1440,
+                1
+              ],
+              "unit": "minutes"
+            },
+            {
+              "siid": 2,
+              "piid": 23,
+              "name": "auto-keep-warm",
+              "description": "Auto Keep Warm",
+              "format": "bool",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 24,
+              "name": "current-keep-warm",
+              "description": "Current Keep Warm",
+              "format": "bool",
+              "access": [
+                "read",
+                "notify",
+                "write"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 25,
+              "name": "mode",
+              "description": "Mode",
+              "format": "uint8",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "Manual"
+                },
+                {
+                  "value": 1,
+                  "description": "French Fries"
+                },
+                {
+                  "value": 2,
+                  "description": "Chicken Wing"
+                },
+                {
+                  "value": 3,
+                  "description": "Sweet Potato"
+                },
+                {
+                  "value": 4,
+                  "description": "Egg Tart"
+                },
+                {
+                  "value": 5,
+                  "description": "Steak "
+                },
+                {
+                  "value": 6,
+                  "description": "Pork Belly"
+                },
+                {
+                  "value": 7,
+                  "description": "Shrimp"
+                },
+                {
+                  "value": 8,
+                  "description": "Cake"
+                },
+                {
+                  "value": 9,
+                  "description": "Pizza"
+                },
+                {
+                  "value": 10,
+                  "description": "Dried Fruit"
+                },
+                {
+                  "value": 11,
+                  "description": "Defrost"
+                },
+                {
+                  "value": 12,
+                  "description": "Reheat"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 26,
+              "name": "recipe-id",
+              "description": "Recipe Id",
+              "format": "string",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 27,
+              "name": "recipe-name",
+              "description": "Recipe Name",
+              "format": "string",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 28,
+              "name": "recipe-sync",
+              "description": "Recipe Sync",
+              "format": "string",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 29,
+              "name": "target-cooking-measure",
+              "description": "Target Cooking Measure",
+              "format": "uint8",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "Null"
+                },
+                {
+                  "value": 1,
+                  "description": "One Layer"
+                },
+                {
+                  "value": 2,
+                  "description": "Double Layer"
+                }
+              ],
+              "valueRange": null,
+              "unit": "percentage"
+            },
+            {
+              "siid": 2,
+              "piid": 30,
+              "name": "turn-pot",
+              "description": "Turn Pot",
+              "format": "uint8",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 1,
+                  "description": "No Need Turn Over Pot"
+                },
+                {
+                  "value": 2,
+                  "description": "Need Turn Over Pot"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 31,
+              "name": "turn-pot-config",
+              "description": "Turn Pot Config",
+              "format": "bool",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 32,
+              "name": "texture",
+              "description": "Texture",
+              "format": "uint8",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 1,
+                  "description": "Quick Roast"
+                },
+                {
+                  "value": 2,
+                  "description": "Fine Roast"
+                },
+                {
+                  "value": 3,
+                  "description": "Tender Roast"
+                },
+                {
+                  "value": 4,
+                  "description": "Degrease"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 33,
+              "name": "reservation-left-time",
+              "description": "Reservation Left Time",
+              "format": "uint16",
+              "access": [
+                "read",
+                "notify",
+                "write"
+              ],
+              "valueList": null,
+              "valueRange": [
+                0,
+                1440,
+                1
+              ],
+              "unit": "minutes"
+            },
+            {
+              "siid": 2,
+              "piid": 34,
+              "name": "cooking-weight",
+              "description": "Cooking Weight",
+              "format": "uint16",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": [
+                100,
+                1800,
+                100
+              ],
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 35,
+              "name": "fine-roasting-stage",
+              "description": "Fine Roasting Stage",
+              "format": "uint8",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "Stage One"
+                },
+                {
+                  "value": 1,
+                  "description": "Stage Two"
+                },
+                {
+                  "value": 2,
+                  "description": "Stage Three"
+                },
+                {
+                  "value": 3,
+                  "description": "Stage Four"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": [
+            {
+              "siid": 2,
+              "aiid": 1,
+              "name": "start-cook",
+              "description": "Start Cook",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 2,
+              "aiid": 6,
+              "name": "cancel-cooking",
+              "description": "Cancel Cooking",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 2,
+              "aiid": 7,
+              "name": "pause",
+              "description": "Pause",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 2,
+              "aiid": 8,
+              "name": "resume-cook",
+              "description": "Resume Cook",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 2,
+              "aiid": 9,
+              "name": "start-recipe-cook",
+              "description": "Start Recipe Cook",
+              "in": [
+                5,
+                7,
+                24,
+                26,
+                27,
+                29,
+                32,
+                33,
+                34
+              ],
+              "out": [],
+              "unsupportedReason": null
+            }
+          ]
+        },
+        {
+          "siid": 6,
+          "name": "self-check",
+          "description": "self-check",
+          "properties": [
+            {
+              "siid": 6,
+              "piid": 1,
+              "name": "self-check-items",
+              "description": "Self Check Items",
+              "format": "uint8",
+              "access": [],
+              "valueList": [
+                {
+                  "value": 1,
+                  "description": "E1"
+                },
+                {
+                  "value": 2,
+                  "description": "E2"
+                },
+                {
+                  "value": 3,
+                  "description": "Key"
+                },
+                {
+                  "value": 4,
+                  "description": "Draw Pot"
+                },
+                {
+                  "value": 5,
+                  "description": "Display"
+                },
+                {
+                  "value": 6,
+                  "description": "Fan"
+                },
+                {
+                  "value": 7,
+                  "description": "Power On"
+                },
+                {
+                  "value": 8,
+                  "description": "Abnormal Noise"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 6,
+              "piid": 2,
+              "name": "self-check-results",
+              "description": "Self Check Results",
+              "format": "string",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 6,
+              "piid": 3,
+              "name": "manual-check-results",
+              "description": "Manual Check Results",
+              "format": "uint8",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "True"
+                },
+                {
+                  "value": 1,
+                  "description": "Flase"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": [
+            {
+              "siid": 6,
+              "aiid": 1,
+              "name": "start-check",
+              "description": "Start Check",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 6,
+              "aiid": 2,
+              "name": "stop-check",
+              "description": "Stop Check",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 6,
+              "aiid": 3,
+              "name": "sync-manual-check",
+              "description": "Sync Manual Check",
+              "in": [
+                1,
+                3
+              ],
+              "out": [],
+              "unsupportedReason": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "did": "daily-contract",
+      "model": "lumi.sensor_gas.mcn02",
+      "specType": "urn:miot-spec-v2:device:gas-sensor:0000A022:lumi-mcn02:1",
+      "services": [
+        {
+          "siid": 1,
+          "name": "device-information",
+          "description": "device-information",
+          "properties": [
+            {
+              "siid": 1,
+              "piid": 1,
+              "name": "manufacturer",
+              "description": "Device Manufacturer",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 2,
+              "name": "model",
+              "description": "Device Model",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 3,
+              "name": "serial-number",
+              "description": "Device Serial Number",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 4,
+              "name": "firmware-revision",
+              "description": "Current Firmware Version",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 2,
+          "name": "gas-sensor",
+          "description": "gas-sensor",
+          "properties": [
+            {
+              "siid": 2,
+              "piid": 1,
+              "name": "status",
+              "description": "Status",
+              "format": "uint8",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "Preheating "
+                },
+                {
+                  "value": 1,
+                  "description": "Normal"
+                },
+                {
+                  "value": 2,
+                  "description": "Self-inspection"
+                },
+                {
+                  "value": 3,
+                  "description": "Expiry-of-equipment-life"
+                },
+                {
+                  "value": 4,
+                  "description": "Error"
+                },
+                {
+                  "value": 5,
+                  "description": "Alarming"
+                }
+              ],
+              "valueRange": null,
+              "unit": "none"
+            },
+            {
+              "siid": 2,
+              "piid": 2,
+              "name": "gas-concentration",
+              "description": "Gas Concentration",
+              "format": "float",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": [
+                0,
+                100,
+                1
+              ],
+              "unit": "percentage"
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 3,
+          "name": "gas-sensor-control",
+          "description": "gas-sensor-control",
+          "properties": [
+            {
+              "siid": 3,
+              "piid": 1,
+              "name": "self-inspection",
+              "description": "",
+              "format": "uint8",
+              "access": [
+                "write"
+              ],
+              "valueList": [
+                {
+                  "value": 1,
+                  "description": "APP下发自检命令"
+                }
+              ],
+              "valueRange": null,
+              "unit": "none"
+            },
+            {
+              "siid": 3,
+              "piid": 2,
+              "name": "mute",
+              "description": "mute",
+              "format": "uint8",
+              "access": [
+                "write"
+              ],
+              "valueList": [
+                {
+                  "value": 1,
+                  "description": "启动远程消音"
+                }
+              ],
+              "valueRange": null,
+              "unit": "none"
+            }
+          ],
+          "actions": []
+        }
+      ]
+    },
+    {
+      "did": "daily-contract",
+      "model": "lumi.sensor_smoke.mcn02",
+      "specType": "urn:miot-spec-v2:device:smoke-sensor:0000A023:lumi-mcn02:1",
+      "services": [
+        {
+          "siid": 1,
+          "name": "device-information",
+          "description": "device-information",
+          "properties": [
+            {
+              "siid": 1,
+              "piid": 1,
+              "name": "manufacturer",
+              "description": "Device Manufacturer",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 2,
+              "name": "model",
+              "description": "Device Model",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 3,
+              "name": "serial-number",
+              "description": "Device Serial Number",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 4,
+              "name": "firmware-revision",
+              "description": "Current Firmware Version",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 2,
+          "name": "smoke-sensor",
+          "description": "smoke-sensor",
+          "properties": [
+            {
+              "siid": 2,
+              "piid": 1,
+              "name": "status",
+              "description": "Status",
+              "format": "uint8",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 1,
+                  "description": "Busy"
+                },
+                {
+                  "value": 2,
+                  "description": "Fault"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 3,
+          "name": "battery",
+          "description": "battery",
+          "properties": [
+            {
+              "siid": 3,
+              "piid": 1,
+              "name": "battery-level",
+              "description": "Battery Level",
+              "format": "uint8",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": [
+                0,
+                100,
+                1
+              ],
+              "unit": "percentage"
+            }
+          ],
+          "actions": []
+        }
+      ]
+    },
+    {
+      "did": "daily-contract",
+      "model": "yeelink.bhf_light.v13",
+      "specType": "urn:miot-spec-v2:device:bath-heater:0000A028:yeelink-v13:1",
+      "services": [
+        {
+          "siid": 1,
+          "name": "device-information",
+          "description": "device-information",
+          "properties": [
+            {
+              "siid": 1,
+              "piid": 1,
+              "name": "manufacturer",
+              "description": "Device Manufacturer",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 2,
+              "name": "model",
+              "description": "Device Model",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 3,
+              "name": "serial-number",
+              "description": "Device Serial Number",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 4,
+              "name": "firmware-revision",
+              "description": "Current Firmware Version",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 2,
+          "name": "light",
+          "description": "light",
+          "properties": [
+            {
+              "siid": 2,
+              "piid": 1,
+              "name": "on",
+              "description": "Switch Status",
+              "format": "bool",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 2,
+              "name": "mode",
+              "description": "Mode",
+              "format": "uint8",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "Day"
+                },
+                {
+                  "value": 1,
+                  "description": "Night"
+                }
+              ],
+              "valueRange": null,
+              "unit": "none"
+            },
+            {
+              "siid": 2,
+              "piid": 3,
+              "name": "brightness",
+              "description": "Brightness",
+              "format": "uint8",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": [
+                1,
+                100,
+                1
+              ],
+              "unit": "percentage"
+            }
+          ],
+          "actions": [
+            {
+              "siid": 2,
+              "aiid": 1,
+              "name": "toggle",
+              "description": "Toggle",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            }
+          ]
+        },
+        {
+          "siid": 3,
+          "name": "ptc-bath-heater",
+          "description": "ptc-bath-heater",
+          "properties": [
+            {
+              "siid": 3,
+              "piid": 1,
+              "name": "mode",
+              "description": "Mode",
+              "format": "uint8",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "Idle"
+                },
+                {
+                  "value": 1,
+                  "description": "Dry"
+                },
+                {
+                  "value": 2,
+                  "description": "Defog"
+                },
+                {
+                  "value": 3,
+                  "description": "Quick Defog"
+                },
+                {
+                  "value": 4,
+                  "description": "Quick Heat"
+                },
+                {
+                  "value": 5,
+                  "description": "Other"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 3,
+              "piid": 2,
+              "name": "blow",
+              "description": "Blow",
+              "format": "bool",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 3,
+              "piid": 3,
+              "name": "heating",
+              "description": "Heating",
+              "format": "bool",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 3,
+              "piid": 4,
+              "name": "ventilation",
+              "description": "Ventilation",
+              "format": "bool",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 3,
+              "piid": 5,
+              "name": "heat-level",
+              "description": "Heat Level",
+              "format": "uint8",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 1,
+                  "description": "Level1"
+                },
+                {
+                  "value": 2,
+                  "description": "Level2"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 3,
+              "piid": 6,
+              "name": "off-delay",
+              "description": "Power Off Delay",
+              "format": "bool",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 3,
+              "piid": 7,
+              "name": "off-delay-time",
+              "description": "Power Off Delay Time",
+              "format": "uint32",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": [
+                0,
+                120,
+                1
+              ],
+              "unit": "minutes"
+            },
+            {
+              "siid": 3,
+              "piid": 8,
+              "name": "target-temperature",
+              "description": "Target Temperature",
+              "format": "uint8",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": [
+                25,
+                45,
+                1
+              ],
+              "unit": "celsius"
+            }
+          ],
+          "actions": [
+            {
+              "siid": 3,
+              "aiid": 1,
+              "name": "stop-working",
+              "description": "Stop Working",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            }
+          ]
+        },
+        {
+          "siid": 4,
+          "name": "yl-bath-heater",
+          "description": "yl-bath-heater",
+          "properties": [
+            {
+              "siid": 4,
+              "piid": 1,
+              "name": "light-delayoff",
+              "description": "light-delayoff",
+              "format": "uint8",
+              "access": [
+                "write"
+              ],
+              "valueList": null,
+              "valueRange": [
+                1,
+                90,
+                1
+              ],
+              "unit": "minutes"
+            },
+            {
+              "siid": 4,
+              "piid": 2,
+              "name": "bath-delayoff",
+              "description": "bath-delayoff",
+              "format": "uint8",
+              "access": [
+                "write"
+              ],
+              "valueList": null,
+              "valueRange": [
+                1,
+                120,
+                1
+              ],
+              "unit": "minutes"
+            }
+          ],
+          "actions": [
+            {
+              "siid": 4,
+              "aiid": 1,
+              "name": "brightness-up",
+              "description": "brightness-up",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 4,
+              "aiid": 2,
+              "name": "brightness-down",
+              "description": "brightness-down",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 4,
+              "aiid": 3,
+              "name": "stop-all",
+              "description": "stop-all",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 4,
+              "aiid": 4,
+              "name": "blow-low",
+              "description": "blow-low",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 4,
+              "aiid": 5,
+              "name": "ventilation-low",
+              "description": "ventilation-low",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "did": "daily-contract",
+      "model": "isa.magnet.dw2hl",
+      "specType": "urn:miot-spec-v2:device:magnet-sensor:0000A016:isa-dw2hl:1",
+      "services": [
+        {
+          "siid": 1,
+          "name": "device-information",
+          "description": "device-information",
+          "properties": [
+            {
+              "siid": 1,
+              "piid": 1,
+              "name": "manufacturer",
+              "description": "Device Manufacturer",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 2,
+              "name": "model",
+              "description": "Device Model",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 3,
+              "name": "serial-number",
+              "description": "Device Serial Number",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 4,
+              "name": "firmware-revision",
+              "description": "Current Firmware Version",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 2,
+          "name": "magnet-sensor",
+          "description": "magnet-sensor",
+          "properties": [
+            {
+              "siid": 2,
+              "piid": 1,
+              "name": "illumination",
+              "description": "Illumination",
+              "format": "uint8",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 1,
+                  "description": "Weak"
+                },
+                {
+                  "value": 2,
+                  "description": "Strong"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 2,
+              "name": "contact-state",
+              "description": "Contact State",
+              "format": "bool",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 3,
+          "name": "battery",
+          "description": "battery",
+          "properties": [
+            {
+              "siid": 3,
+              "piid": 1,
+              "name": "battery-level",
+              "description": "Battery Level",
+              "format": "uint8",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": [
+                0,
+                100,
+                1
+              ],
+              "unit": "percentage"
+            }
+          ],
+          "actions": []
+        }
+      ]
+    },
+    {
+      "did": "daily-contract",
+      "model": "linp.sensor_occupy.hb01",
+      "specType": "urn:miot-spec-v2:device:occupancy-sensor:0000A0BF:linp-hb01:3:0000C824",
+      "services": [
+        {
+          "siid": 1,
+          "name": "device-information",
+          "description": "device-information",
+          "properties": [
+            {
+              "siid": 1,
+              "piid": 1,
+              "name": "manufacturer",
+              "description": "Device Manufacturer",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 2,
+              "name": "model",
+              "description": "Device Model",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 3,
+              "name": "serial-number",
+              "description": "Device Serial Number",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 4,
+              "name": "firmware-revision",
+              "description": "Current Firmware Version",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 2,
+          "name": "occupancy-sensor",
+          "description": "occupancy-sensor",
+          "properties": [
+            {
+              "siid": 2,
+              "piid": 1,
+              "name": "occupancy-status",
+              "description": "Occupancy Status",
+              "format": "uint8",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "No One"
+                },
+                {
+                  "value": 1,
+                  "description": "Has One"
+                },
+                {
+                  "value": 2,
+                  "description": "None"
+                },
+                {
+                  "value": 3,
+                  "description": "None"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 2,
+              "name": "no-one-determine-time",
+              "description": "No One Determine Time",
+              "format": "uint16",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": [
+                0,
+                10000,
+                1
+              ],
+              "unit": "seconds"
+            },
+            {
+              "siid": 2,
+              "piid": 3,
+              "name": "has-someone-duration",
+              "description": "Has Someone Duration",
+              "format": "uint8",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": [
+                0,
+                255,
+                1
+              ],
+              "unit": "minutes"
+            },
+            {
+              "siid": 2,
+              "piid": 4,
+              "name": "no-one-duration",
+              "description": "No One Duration",
+              "format": "uint8",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": [
+                0,
+                255,
+                1
+              ],
+              "unit": "minutes"
+            },
+            {
+              "siid": 2,
+              "piid": 5,
+              "name": "illumination",
+              "description": "Illumination",
+              "format": "float",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": [
+                0,
+                10000,
+                1
+              ],
+              "unit": "lux"
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 4,
+          "name": "indicator-light",
+          "description": "indicator-light",
+          "properties": [
+            {
+              "siid": 4,
+              "piid": 1,
+              "name": "on",
+              "description": "Switch Status",
+              "format": "bool",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 3,
+          "name": "vendor",
+          "description": "vendor",
+          "properties": [
+            {
+              "siid": 3,
+              "piid": 1,
+              "name": "approach-aloof",
+              "description": "approach-aloof",
+              "format": "uint8",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "Stop"
+                },
+                {
+                  "value": 1,
+                  "description": "Approach"
+                },
+                {
+                  "value": 2,
+                  "description": "Aloof"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 3,
+              "piid": 2,
+              "name": "shielding-distance",
+              "description": "",
+              "format": "uint8",
+              "access": [
+                "read",
+                "notify",
+                "write"
+              ],
+              "valueList": null,
+              "valueRange": [
+                0,
+                255,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 3,
+              "piid": 3,
+              "name": "body-distance",
+              "description": "",
+              "format": "float",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": [
+                0,
+                6,
+                0.01
+              ],
+              "unit": "metre"
+            },
+            {
+              "siid": 3,
+              "piid": 4,
+              "name": "approach-distance",
+              "description": "",
+              "format": "uint8",
+              "access": [
+                "read",
+                "notify",
+                "write"
+              ],
+              "valueList": null,
+              "valueRange": [
+                1,
+                5,
+                1
+              ],
+              "unit": "metre"
+            },
+            {
+              "siid": 3,
+              "piid": 5,
+              "name": "someone-judge-time",
+              "description": "someone-judge-time",
+              "format": "uint16",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": [
+                0,
+                60000,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 3,
+              "piid": 8,
+              "name": "sensitivity",
+              "description": "sensitivity",
+              "format": "uint8",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "Low"
+                },
+                {
+                  "value": 1,
+                  "description": "Middle"
+                },
+                {
+                  "value": 2,
+                  "description": "High"
+                },
+                {
+                  "value": 3,
+                  "description": "User-defined"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 3,
+              "piid": 9,
+              "name": "move-threshold-high",
+              "description": "move-threshold-high",
+              "format": "uint32",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": [
+                0,
+                4294967295,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 3,
+              "piid": 10,
+              "name": "move-threshold-low",
+              "description": "move-threshold-low",
+              "format": "uint32",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": [
+                0,
+                4294967295,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 3,
+              "piid": 11,
+              "name": "miro-move-high",
+              "description": "miro-move-high",
+              "format": "uint32",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": [
+                0,
+                4294967295,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 3,
+              "piid": 12,
+              "name": "miro-move-low",
+              "description": "miro-move-low",
+              "format": "uint32",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": [
+                0,
+                4294967295,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 3,
+              "piid": 24,
+              "name": "distance-bitmap",
+              "description": "distance-bitmap",
+              "format": "uint16",
+              "access": [
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": [
+                0,
+                65535,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 3,
+              "piid": 31,
+              "name": "radar-function-onoff",
+              "description": "",
+              "format": "uint8",
+              "access": [
+                "write",
+                "notify",
+                "read"
+              ],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "RADAR-ON"
+                },
+                {
+                  "value": 1,
+                  "description": "RADAR-OFF"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 3,
+              "piid": 32,
+              "name": "approach-event-onoff",
+              "description": "approach-event-onoff",
+              "format": "uint8",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "APPROACH-ON"
+                },
+                {
+                  "value": 1,
+                  "description": "APPROACH-OFF"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 3,
+              "piid": 33,
+              "name": "real-time-bitmap",
+              "description": "real-time-bitmap",
+              "format": "uint16",
+              "access": [
+                "notify",
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": [
+                0,
+                65535,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 3,
+              "piid": 34,
+              "name": "human-trigger-lv",
+              "description": "",
+              "format": "uint8",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "One Region"
+                },
+                {
+                  "value": 1,
+                  "description": "Two Region"
+                },
+                {
+                  "value": 2,
+                  "description": "Three Region"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 3,
+              "piid": 35,
+              "name": "distance-display-en",
+              "description": "",
+              "format": "uint8",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "ON"
+                },
+                {
+                  "value": 1,
+                  "description": "OFF"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 3,
+              "piid": 37,
+              "name": "is-seq-near-overflow",
+              "description": "",
+              "format": "uint8",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "Seq-Safe"
+                },
+                {
+                  "value": 1,
+                  "description": "Seq-Near-Overflow"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": [
+            {
+              "siid": 3,
+              "aiid": 1,
+              "name": "bitmap-active",
+              "description": "bitmap-active",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            }
+          ]
+        },
+        {
+          "siid": 7,
+          "name": "ble-conn",
+          "description": "ble-conn",
+          "properties": [
+            {
+              "siid": 7,
+              "piid": 1,
+              "name": "conn-cmd",
+              "description": "",
+              "format": "uint8",
+              "access": [],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "OFF"
+                },
+                {
+                  "value": 1,
+                  "description": "ON"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 7,
+              "piid": 2,
+              "name": "motion-energy",
+              "description": "",
+              "format": "string",
+              "access": [],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 7,
+              "piid": 3,
+              "name": "micro-energy",
+              "description": "",
+              "format": "string",
+              "access": [],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 7,
+              "piid": 4,
+              "name": "timestamp",
+              "description": "",
+              "format": "uint32",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                0,
+                4294967295,
+                1
+              ],
+              "unit": "seconds"
+            },
+            {
+              "siid": 7,
+              "piid": 5,
+              "name": "motion-log",
+              "description": "",
+              "format": "string",
+              "access": [],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 7,
+              "piid": 7,
+              "name": "seq-number",
+              "description": "",
+              "format": "uint32",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                0,
+                4294967295,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 7,
+              "piid": 8,
+              "name": "reset-device",
+              "description": "",
+              "format": "uint8",
+              "access": [],
+              "valueList": [
+                {
+                  "value": 1,
+                  "description": "Reset-Device"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 7,
+              "piid": 9,
+              "name": "radar-module-version",
+              "description": "",
+              "format": "string",
+              "access": [],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": []
+        }
+      ]
+    },
+    {
+      "did": "daily-contract",
+      "model": "miir.tv.ir01",
+      "specType": "urn:miot-spec-v2:device:television:0000A010:miir-ir01:1",
+      "services": [
+        {
+          "siid": 1,
+          "name": "device-information",
+          "description": "device-information",
+          "properties": [
+            {
+              "siid": 1,
+              "piid": 1,
+              "name": "manufacturer",
+              "description": "Device Manufacturer",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 2,
+              "name": "model",
+              "description": "Device Model",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 3,
+              "name": "serial-number",
+              "description": "Device Serial Number",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 4,
+              "name": "firmware-revision",
+              "description": "Current Firmware Version",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 2,
+          "name": "ir-tv-control",
+          "description": "ir-tv-control",
+          "properties": [
+            {
+              "siid": 2,
+              "piid": 1,
+              "name": "volume-increase",
+              "description": "Volume Increase Value",
+              "format": "uint8",
+              "access": [
+                "write"
+              ],
+              "valueList": null,
+              "valueRange": [
+                1,
+                20,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 2,
+              "name": "volume-decrease",
+              "description": "Volume Decrease Value",
+              "format": "uint8",
+              "access": [
+                "write"
+              ],
+              "valueList": null,
+              "valueRange": [
+                1,
+                20,
+                1
+              ],
+              "unit": null
+            }
+          ],
+          "actions": [
+            {
+              "siid": 2,
+              "aiid": 1,
+              "name": "channel-down",
+              "description": "Channel Down",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 2,
+              "aiid": 2,
+              "name": "channel-up",
+              "description": "Channel Up",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 2,
+              "aiid": 3,
+              "name": "volume-down",
+              "description": "Volume Down",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 2,
+              "aiid": 4,
+              "name": "volume-up",
+              "description": "Volume Up",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 2,
+              "aiid": 5,
+              "name": "turn-on",
+              "description": "Turn On",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 2,
+              "aiid": 6,
+              "name": "turn-off",
+              "description": "Turn Off",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 2,
+              "aiid": 7,
+              "name": "mute-on",
+              "description": "Mute On",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 2,
+              "aiid": 8,
+              "name": "mute-off",
+              "description": "Mute Off",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 2,
+              "aiid": 9,
+              "name": "input-source-switch",
+              "description": "Input Source Switch",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "did": "daily-contract",
+      "model": "miir.stb.ir01",
+      "specType": "urn:miot-spec-v2:device:stb:0000A011:miir-ir01:1",
+      "services": [
+        {
+          "siid": 1,
+          "name": "device-information",
+          "description": "device-information",
+          "properties": [
+            {
+              "siid": 1,
+              "piid": 1,
+              "name": "manufacturer",
+              "description": "Device Manufacturer",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 2,
+              "name": "model",
+              "description": "Device Model",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 3,
+              "name": "serial-number",
+              "description": "Device Serial Number",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 4,
+              "name": "firmware-revision",
+              "description": "Current Firmware Version",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 2,
+          "name": "ir-stb-control",
+          "description": "ir-stb-control",
+          "properties": [
+            {
+              "siid": 2,
+              "piid": 1,
+              "name": "channel-number",
+              "description": "Channel Number",
+              "format": "uint16",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                1,
+                999,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 2,
+              "name": "channel-name",
+              "description": "Channel Name",
+              "format": "string",
+              "access": [],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": [
+            {
+              "siid": 2,
+              "aiid": 1,
+              "name": "channel-down",
+              "description": "Channel Down",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 2,
+              "aiid": 2,
+              "name": "channel-up",
+              "description": "Channel Up",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 2,
+              "aiid": 3,
+              "name": "set-channel-number",
+              "description": "Set Channel Number",
+              "in": [
+                1
+              ],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 2,
+              "aiid": 4,
+              "name": "volume-down",
+              "description": "Volume Down",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 2,
+              "aiid": 5,
+              "name": "volume-up",
+              "description": "Volume Up",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 2,
+              "aiid": 6,
+              "name": "set-channel-name",
+              "description": "Set Channel Name",
+              "in": [
+                2
+              ],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 2,
+              "aiid": 7,
+              "name": "turn-on",
+              "description": "Turn On",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 2,
+              "aiid": 8,
+              "name": "turn-off",
+              "description": "Turn Off",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 2,
+              "aiid": 9,
+              "name": "mute-on",
+              "description": "Mute On",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 2,
+              "aiid": 10,
+              "name": "mute-off",
+              "description": "Mute Off",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "did": "daily-contract",
+      "model": "fengmi.projector.015fo3",
+      "specType": "urn:miot-spec-v2:device:projector:0000A02C:fengmi-015fo3:1",
+      "services": [
+        {
+          "siid": 1,
+          "name": "device-information",
+          "description": "device-information",
+          "properties": [
+            {
+              "siid": 1,
+              "piid": 1,
+              "name": "manufacturer",
+              "description": "Device Manufacturer",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 2,
+              "name": "model",
+              "description": "Device Model",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 3,
+              "name": "serial-number",
+              "description": "Device ID",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 4,
+              "name": "firmware-revision",
+              "description": "Current Firmware Version",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 5,
+              "name": "serial-no",
+              "description": "Serial Number",
+              "format": "string",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 2,
+          "name": "projector",
+          "description": "projector",
+          "properties": [
+            {
+              "siid": 2,
+              "piid": 1,
+              "name": "input-control",
+              "description": "TV Input Control",
+              "format": "uint8",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 4,
+                  "description": "HDMI 1"
+                },
+                {
+                  "value": 0,
+                  "description": "LOCAL"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": [
+            {
+              "siid": 2,
+              "aiid": 1,
+              "name": "turn-off",
+              "description": "Turn Off",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            }
+          ]
+        },
+        {
+          "siid": 3,
+          "name": "play-control",
+          "description": "play-control",
+          "properties": [
+            {
+              "siid": 3,
+              "piid": 1,
+              "name": "playing-state",
+              "description": "Playing State",
+              "format": "uint8",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 1,
+                  "description": "Playing"
+                },
+                {
+                  "value": 2,
+                  "description": "Paused"
+                },
+                {
+                  "value": 0,
+                  "description": "Stopped"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": [
+            {
+              "siid": 3,
+              "aiid": 1,
+              "name": "play",
+              "description": "Play",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 3,
+              "aiid": 2,
+              "name": "pause",
+              "description": "Pause",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            }
+          ]
+        },
+        {
+          "siid": 4,
+          "name": "speaker",
+          "description": "speaker",
+          "properties": [
+            {
+              "siid": 4,
+              "piid": 1,
+              "name": "volume",
+              "description": "Volume",
+              "format": "uint8",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": [
+                0,
+                100,
+                1
+              ],
+              "unit": "percentage"
+            },
+            {
+              "siid": 4,
+              "piid": 2,
+              "name": "mute",
+              "description": "Mute",
+              "format": "bool",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 5,
+          "name": "message-router",
+          "description": "message-router",
+          "properties": [
+            {
+              "siid": 5,
+              "piid": 1,
+              "name": "request",
+              "description": "Request",
+              "format": "string",
+              "access": [],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 5,
+              "piid": 2,
+              "name": "response",
+              "description": "Response",
+              "format": "string",
+              "access": [],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": [
+            {
+              "siid": 5,
+              "aiid": 1,
+              "name": "post",
+              "description": "Post",
+              "in": [
+                1
+              ],
+              "out": [
+                2
+              ],
+              "unsupportedReason": null
+            }
+          ]
+        },
+        {
+          "siid": 6,
+          "name": "ble-control",
+          "description": "ble-control",
+          "properties": [],
+          "actions": [
+            {
+              "siid": 6,
+              "aiid": 1,
+              "name": "turn-on",
+              "description": "Turn On",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            }
+          ]
+        },
+        {
+          "siid": 7,
+          "name": "remote-control",
+          "description": "remote-control",
+          "properties": [
+            {
+              "siid": 7,
+              "piid": 1,
+              "name": "screen-on",
+              "description": "screen-on",
+              "format": "bool",
+              "access": [
+                "read",
+                "notify",
+                "write"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": [
+            {
+              "siid": 7,
+              "aiid": 1,
+              "name": "press-power",
+              "description": "press-power",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 7,
+              "aiid": 2,
+              "name": "press-home",
+              "description": "press-home",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 7,
+              "aiid": 3,
+              "name": "press-menu",
+              "description": "press-menu",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 7,
+              "aiid": 4,
+              "name": "press-settings",
+              "description": "press-settings",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 7,
+              "aiid": 5,
+              "name": "press-back",
+              "description": "press-back",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 7,
+              "aiid": 6,
+              "name": "press-left",
+              "description": "press-left",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 7,
+              "aiid": 7,
+              "name": "press-right",
+              "description": "press-right",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 7,
+              "aiid": 8,
+              "name": "press-up",
+              "description": "press-up",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 7,
+              "aiid": 9,
+              "name": "press-down",
+              "description": "press-down",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 7,
+              "aiid": 10,
+              "name": "press-ok",
+              "description": "press-ok",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 7,
+              "aiid": 11,
+              "name": "press-volume-down",
+              "description": "press-volume-down",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 7,
+              "aiid": 12,
+              "name": "press-volume-up",
+              "description": "press-volume-up",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 7,
+              "aiid": 13,
+              "name": "press-focus",
+              "description": "press-focus",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 7,
+              "aiid": 14,
+              "name": "press-fengmi",
+              "description": "press-fengmi",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 7,
+              "aiid": 15,
+              "name": "volume-up",
+              "description": "volume-up",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 7,
+              "aiid": 16,
+              "name": "volume-down",
+              "description": "volume-down",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "did": "daily-contract",
+      "model": "pzg.plug.0002",
+      "specType": "urn:miot-spec-v2:device:outlet:0000A002:pzg-0002:1:0000D030",
+      "services": [
+        {
+          "siid": 1,
+          "name": "device-information",
+          "description": "device-information",
+          "properties": [
+            {
+              "siid": 1,
+              "piid": 1,
+              "name": "manufacturer",
+              "description": "Device Manufacturer",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 2,
+              "name": "model",
+              "description": "Device Model",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 3,
+              "name": "serial-number",
+              "description": "Device Serial Number",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 4,
+              "name": "firmware-revision",
+              "description": "Current Firmware Version",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 2,
+          "name": "switch",
+          "description": "switch",
+          "properties": [
+            {
+              "siid": 2,
+              "piid": 1,
+              "name": "on",
+              "description": "Switch Status",
+              "format": "bool",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 5,
+              "name": "name",
+              "description": "Service Name",
+              "format": "uint8",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 1,
+                  "description": "Reset"
+                },
+                {
+                  "value": 2,
+                  "description": "ForceReset"
+                },
+                {
+                  "value": 3,
+                  "description": "ForcePowerOff"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 6,
+              "name": "name",
+              "description": "Service Name",
+              "format": "uint8",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": [
+                {
+                  "value": 1,
+                  "description": "1"
+                },
+                {
+                  "value": 2,
+                  "description": "2"
+                },
+                {
+                  "value": 3,
+                  "description": "3"
+                },
+                {
+                  "value": 4,
+                  "description": "4"
+                },
+                {
+                  "value": 5,
+                  "description": "5"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 7,
+              "name": "name",
+              "description": "Service Name",
+              "format": "bool",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 8,
+              "name": "name",
+              "description": "Service Name",
+              "format": "bool",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 9,
+              "name": "name",
+              "description": "Service Name",
+              "format": "bool",
+              "access": [
+                "read",
+                "write",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": [
+            {
+              "siid": 2,
+              "aiid": 1,
+              "name": "toggle",
+              "description": "Toggle",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "did": "daily-contract",
+      "model": "yunmai.scales.ms103",
+      "specType": "urn:miot-spec-v2:device:scale:0000A07D:yunmai-ms103:1",
+      "services": [
+        {
+          "siid": 1,
+          "name": "device-information",
+          "description": "device-information",
+          "properties": [
+            {
+              "siid": 1,
+              "piid": 1,
+              "name": "manufacturer",
+              "description": "Device Manufacturer",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 2,
+              "name": "model",
+              "description": "Device Model",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 3,
+              "name": "serial-number",
+              "description": "Device ID",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 4,
+              "name": "firmware-revision",
+              "description": "Current Firmware Version",
+              "format": "string",
+              "access": [
+                "read"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 1,
+              "piid": 5,
+              "name": "serial-no",
+              "description": "Serial Number",
+              "format": "string",
+              "access": [
+                "read",
+                "notify"
+              ],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 2,
+          "name": "scale",
+          "description": "scale",
+          "properties": [
+            {
+              "siid": 2,
+              "piid": 1,
+              "name": "unit",
+              "description": "Unit",
+              "format": "uint8",
+              "access": [],
+              "valueList": [
+                {
+                  "value": 1,
+                  "description": "Kilogram"
+                },
+                {
+                  "value": 3,
+                  "description": "Half Kilogram"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 2,
+              "name": "heart-rate-detection",
+              "description": "Heart Rate Detection",
+              "format": "bool",
+              "access": [],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 2,
+              "piid": 3,
+              "name": "current-time",
+              "description": "Current Time",
+              "format": "uint32",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                0,
+                4294967295,
+                1
+              ],
+              "unit": null
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 11,
+          "name": "customized-service-for-ble",
+          "description": "customized-service-for-ble",
+          "properties": [
+            {
+              "siid": 11,
+              "piid": 1,
+              "name": "customized-argument-5",
+              "description": "Customized Argument 5",
+              "format": "uint8",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                0,
+                255,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 11,
+              "piid": 2,
+              "name": "customized-argument-4",
+              "description": "Customized Argument 4",
+              "format": "uint32",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                0,
+                4294967295,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 11,
+              "piid": 3,
+              "name": "customized-argument-3",
+              "description": "Customized Argument 3",
+              "format": "uint32",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                0,
+                4294967295,
+                1
+              ],
+              "unit": null
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 6,
+          "name": "user-management",
+          "description": "user-management",
+          "properties": [
+            {
+              "siid": 6,
+              "piid": 1,
+              "name": "miid",
+              "description": "miid",
+              "format": "int64",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                0,
+                999999999999999,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 6,
+              "piid": 2,
+              "name": "user-age",
+              "description": "user-age",
+              "format": "uint8",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                1,
+                130,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 6,
+              "piid": 3,
+              "name": "user-sex",
+              "description": "user-sex",
+              "format": "uint8",
+              "access": [],
+              "valueList": [
+                {
+                  "value": 1,
+                  "description": "Man"
+                },
+                {
+                  "value": 2,
+                  "description": "Woman"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 6,
+              "piid": 4,
+              "name": "user-type",
+              "description": "user-type",
+              "format": "uint8",
+              "access": [],
+              "valueList": [
+                {
+                  "value": 1,
+                  "description": "Primary-user"
+                },
+                {
+                  "value": 2,
+                  "description": "Virtual-user"
+                },
+                {
+                  "value": 3,
+                  "description": "Visitor"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 6,
+              "piid": 5,
+              "name": "user-height",
+              "description": "user-height",
+              "format": "uint8",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                20,
+                250,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 6,
+              "piid": 6,
+              "name": "user-weight",
+              "description": "user-weight",
+              "format": "uint16",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                0,
+                3000,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 6,
+              "piid": 7,
+              "name": "time",
+              "description": "time",
+              "format": "uint32",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                0,
+                4294967295,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 6,
+              "piid": 8,
+              "name": "user-id",
+              "description": "user-id",
+              "format": "uint8",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                0,
+                255,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 6,
+              "piid": 9,
+              "name": "user-bfp",
+              "description": "user-bfp",
+              "format": "uint16",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                0,
+                1000,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 6,
+              "piid": 10,
+              "name": "app-version",
+              "description": "",
+              "format": "uint32",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                0,
+                4294967295,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 6,
+              "piid": 11,
+              "name": "idx",
+              "description": "",
+              "format": "uint8",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                0,
+                255,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 6,
+              "piid": 12,
+              "name": "hash-code",
+              "description": "",
+              "format": "string",
+              "access": [],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 6,
+              "piid": 13,
+              "name": "is-owner",
+              "description": "",
+              "format": "bool",
+              "access": [],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 6,
+              "piid": 14,
+              "name": "user-status",
+              "description": "",
+              "format": "uint8",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                0,
+                255,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 6,
+              "piid": 15,
+              "name": "user-count",
+              "description": "",
+              "format": "uint8",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                0,
+                255,
+                1
+              ],
+              "unit": null
+            }
+          ],
+          "actions": [
+            {
+              "siid": 6,
+              "aiid": 1,
+              "name": "update-user",
+              "description": "update-user",
+              "in": [
+                1,
+                8,
+                13,
+                4,
+                2,
+                3,
+                5,
+                6,
+                7,
+                9,
+                10
+              ],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 6,
+              "aiid": 2,
+              "name": "query-update-user",
+              "description": "query-update-user",
+              "in": [
+                1,
+                13,
+                12
+              ],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 6,
+              "aiid": 3,
+              "name": "del-user",
+              "description": "del-user",
+              "in": [
+                1,
+                8,
+                4
+              ],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 6,
+              "aiid": 4,
+              "name": "requset-user-list",
+              "description": "requset-user-list",
+              "in": [
+                1,
+                8,
+                4
+              ],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 6,
+              "aiid": 5,
+              "name": "update-base-weight",
+              "description": "update-base-weight",
+              "in": [
+                1,
+                8,
+                4,
+                6
+              ],
+              "out": [],
+              "unsupportedReason": null
+            }
+          ]
+        },
+        {
+          "siid": 8,
+          "name": "online-data",
+          "description": "online-data",
+          "properties": [
+            {
+              "siid": 8,
+              "piid": 1,
+              "name": "weight-data",
+              "description": "weight-data",
+              "format": "string",
+              "access": [],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 8,
+              "piid": 2,
+              "name": "body-composition",
+              "description": "body-composition",
+              "format": "string",
+              "access": [],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": []
+        },
+        {
+          "siid": 9,
+          "name": "offline-data",
+          "description": "offline-data",
+          "properties": [
+            {
+              "siid": 9,
+              "piid": 1,
+              "name": "report-offline-data",
+              "description": "report-offline-data",
+              "format": "string",
+              "access": [],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 9,
+              "piid": 2,
+              "name": "idx-string",
+              "description": "idx-string",
+              "format": "string",
+              "access": [],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 9,
+              "piid": 3,
+              "name": "offline-data-count",
+              "description": "offline-data-count",
+              "format": "uint8",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                0,
+                255,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 9,
+              "piid": 4,
+              "name": "only-upload-count",
+              "description": "only-upload-count",
+              "format": "uint8",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                0,
+                255,
+                1
+              ],
+              "unit": null
+            }
+          ],
+          "actions": [
+            {
+              "siid": 9,
+              "aiid": 1,
+              "name": "request-offline-data",
+              "description": "request-offline-data",
+              "in": [
+                4
+              ],
+              "out": [],
+              "unsupportedReason": null
+            },
+            {
+              "siid": 9,
+              "aiid": 2,
+              "name": "end-of-reception",
+              "description": "end-of-reception",
+              "in": [
+                2
+              ],
+              "out": [],
+              "unsupportedReason": null
+            }
+          ]
+        },
+        {
+          "siid": 10,
+          "name": "work-mode",
+          "description": "work-mode",
+          "properties": [
+            {
+              "siid": 10,
+              "piid": 1,
+              "name": "mode",
+              "description": "mode",
+              "format": "uint8",
+              "access": [],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "Normal-mode"
+                },
+                {
+                  "value": 1,
+                  "description": "Baby-mode"
+                },
+                {
+                  "value": 2,
+                  "description": "Balance-mode"
+                },
+                {
+                  "value": 3,
+                  "description": "Visitor-mode"
+                },
+                {
+                  "value": 4,
+                  "description": "Once-mode"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 10,
+              "piid": 2,
+              "name": "status",
+              "description": "status",
+              "format": "uint8",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                0,
+                255,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 10,
+              "piid": 3,
+              "name": "balance-time",
+              "description": "balance-time",
+              "format": "uint16",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                0,
+                9999,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 10,
+              "piid": 4,
+              "name": "real-weight",
+              "description": "real-weight",
+              "format": "uint16",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                0,
+                1500,
+                1
+              ],
+              "unit": null
+            }
+          ],
+          "actions": [
+            {
+              "siid": 10,
+              "aiid": 1,
+              "name": "wakeup-device",
+              "description": "wakeup-device",
+              "in": [],
+              "out": [],
+              "unsupportedReason": null
+            }
+          ]
+        },
+        {
+          "siid": 13,
+          "name": "syncinfo",
+          "description": "syncinfo",
+          "properties": [
+            {
+              "siid": 13,
+              "piid": 1,
+              "name": "pluginversion",
+              "description": "pluginversion",
+              "format": "uint16",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                1,
+                65535,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 13,
+              "piid": 2,
+              "name": "unit",
+              "description": "unit",
+              "format": "uint8",
+              "access": [],
+              "valueList": [
+                {
+                  "value": 1,
+                  "description": "Kg"
+                },
+                {
+                  "value": 3,
+                  "description": "Jin"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 13,
+              "piid": 3,
+              "name": "heart-rate-detection",
+              "description": "",
+              "format": "bool",
+              "access": [],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 13,
+              "piid": 4,
+              "name": "current-time",
+              "description": "current-time",
+              "format": "uint32",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                0,
+                4294967295,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 13,
+              "piid": 5,
+              "name": "userinfolist",
+              "description": "userinfolist",
+              "format": "string",
+              "access": [],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 13,
+              "piid": 6,
+              "name": "offline-msg-cnt",
+              "description": "offline-msg-cnt",
+              "format": "uint8",
+              "access": [],
+              "valueList": null,
+              "valueRange": [
+                0,
+                255,
+                1
+              ],
+              "unit": null
+            },
+            {
+              "siid": 13,
+              "piid": 7,
+              "name": "sn",
+              "description": "sn",
+              "format": "string",
+              "access": [],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 13,
+              "piid": 8,
+              "name": "mac",
+              "description": "mac",
+              "format": "string",
+              "access": [],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 13,
+              "piid": 9,
+              "name": "firmwareversion",
+              "description": "firmwareversion",
+              "format": "string",
+              "access": [],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            },
+            {
+              "siid": 13,
+              "piid": 10,
+              "name": "battery",
+              "description": "battery",
+              "format": "uint8",
+              "access": [],
+              "valueList": [
+                {
+                  "value": 0,
+                  "description": "Battery-enough"
+                },
+                {
+                  "value": 1,
+                  "description": "Battery-low"
+                },
+                {
+                  "value": 2,
+                  "description": "Battery-empty"
+                }
+              ],
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": [
+            {
+              "siid": 13,
+              "aiid": 1,
+              "name": "sync",
+              "description": "sync",
+              "in": [
+                1,
+                2,
+                4,
+                3,
+                5
+              ],
+              "out": [
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "unsupportedReason": null
+            }
+          ]
+        },
+        {
+          "siid": 14,
+          "name": "share-cancel",
+          "description": "share-cancel",
+          "properties": [
+            {
+              "siid": 14,
+              "piid": 1,
+              "name": "share-user-list",
+              "description": "share-user-list",
+              "format": "string",
+              "access": [],
+              "valueList": null,
+              "valueRange": null,
+              "unit": null
+            }
+          ],
+          "actions": [
+            {
+              "siid": 14,
+              "aiid": 1,
+              "name": "del-share-users",
+              "description": "del-share-users",
+              "in": [
+                1
+              ],
+              "out": [],
+              "unsupportedReason": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
