@@ -1,0 +1,28 @@
+name: Build Windows decoder
+on:
+  workflow_call:
+permissions:
+  contents: read
+jobs:
+  cross-compile:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: .node-version
+      - name: Install the Windows x64 cross compiler
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y --no-install-recommends gcc-mingw-w64-x86-64-win32 nasm
+      - name: Build and verify the pinned LGPL decoder
+        run: bash scripts/build-media-decoder-linux.sh
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: windows-x64-decoder
+          path: src-tauri/media-decoder/
+          retention-days: 3
+          if-no-files-found: error

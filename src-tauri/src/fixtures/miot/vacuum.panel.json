@@ -1,0 +1,194 @@
+{
+  "did": "model-fixture-only",
+  "model": "360sdj.vacuum.s",
+  "specType": "urn:miot-spec-v2:device:vacuum:0000A006:360sdj-s:1",
+  "services": [
+    {
+      "siid": 1,
+      "name": "battery",
+      "description": "Battery",
+      "properties": [
+        {
+          "siid": 1,
+          "piid": 1,
+          "name": "battery-level",
+          "description": "Battery Level",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": "percentage",
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": [
+            0.0,
+            100.0,
+            1.0
+          ],
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [
+        {
+          "siid": 1,
+          "aiid": 1,
+          "name": "start-charge",
+          "description": "Start Charge",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        }
+      ]
+    },
+    {
+      "siid": 2,
+      "name": "device-information",
+      "description": "Device Information",
+      "properties": [
+        {
+          "siid": 2,
+          "piid": 1,
+          "name": "firmware-revision",
+          "description": "Current Firmware Version",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 2,
+          "name": "manufacturer",
+          "description": "Device Manufacturer",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 3,
+          "name": "model",
+          "description": "Device Model",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 2,
+          "piid": 4,
+          "name": "serial-number",
+          "description": "Device Serial Number",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": null,
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": []
+    },
+    {
+      "siid": 3,
+      "name": "vacuum",
+      "description": "Robot Cleaner",
+      "properties": [
+        {
+          "siid": 3,
+          "piid": 1,
+          "name": "fault",
+          "description": "Device Fault",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": [
+            {
+              "value": 0,
+              "description": "No faults"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        },
+        {
+          "siid": 3,
+          "piid": 2,
+          "name": "status",
+          "description": "Status",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "unit": null,
+          "value": null,
+          "code": null,
+          "valueList": [
+            {
+              "value": 1,
+              "description": "Idle"
+            },
+            {
+              "value": 2,
+              "description": "Busy"
+            }
+          ],
+          "valueRange": null,
+          "unsupportedReason": null
+        }
+      ],
+      "actions": [
+        {
+          "siid": 3,
+          "aiid": 1,
+          "name": "start-sweep",
+          "description": "Start Sweep",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        },
+        {
+          "siid": 3,
+          "aiid": 2,
+          "name": "stop-sweeping",
+          "description": "Stop Sweeping",
+          "in": [],
+          "out": [],
+          "unsupportedReason": null
+        }
+      ]
+    }
+  ],
+  "unsupportedReason": null
+}

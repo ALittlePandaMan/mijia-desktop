@@ -1,0 +1,12 @@
+.device-unavailable-content .category-product h1 {
+  font-weight: 600;
+}
+.device-unavailable-content .device-unavailable-card {
+  display: flex;
+  align-items: center;
+  min-height: 72px;
+  padding: 16px var(--device-control-inset, 23px);
+  font-size: var(--device-label-size, 16px);
+  line-height: 24px;
+  overflow-wrap: anywhere;
+}

@@ -1,0 +1,1543 @@
+mod account_profile;
+pub mod account_sso;
+pub mod airer;
+#[cfg(feature = "desktop")]
+mod app_runtime;
+pub mod app_settings;
+#[cfg(feature = "desktop")]
+pub mod app_update;
+pub mod auth;
+pub mod bath_heater;
+mod bathroom;
+pub mod camera;
+#[cfg(feature = "desktop")]
+pub mod camera_decode;
+pub mod capabilities;
+pub mod ceiling_fan;
+pub mod cloud;
+mod cooking;
+mod observed_properties;
+pub mod cloud_assistant;
+pub mod crypto;
+#[cfg(feature = "desktop")]
+mod desktop_idle;
+mod device_artwork;
+pub mod dispenser;
+pub mod dispenser_config;
+pub mod dispenser_reminders;
+pub mod dispenser_selfcheck;
+pub mod dispenser_selfcheck_history;
+pub mod dispenser_sterilization;
+pub mod energy;
+pub mod error;
+pub mod fridge;
+pub mod fryer;
+pub mod fryer_control;
+pub mod history;
+pub mod home_cards;
+pub mod home_scenes;
+pub mod idle_policy;
+#[cfg(any(all(feature = "desktop", windows), test))]
+mod widget_pointer;
+pub mod ir_remote;
+pub mod light_favorites;
+pub mod light_modes;
+pub mod light_settings;
+#[cfg(feature = "desktop")]
+mod local_secret;
+#[cfg(feature = "desktop")]
+pub mod mcp;
+pub mod resource_policy;
+#[cfg(feature = "desktop")]
+mod resources;
+#[cfg(feature = "desktop")]
+mod desktop_widgets;
+pub mod mcp_core;
+pub mod media_storage;
+mod metadata_cache;
+pub mod models;
+pub mod monitor;
+pub mod monitor_catalog;
+#[cfg(feature = "desktop")]
+mod monitor_window;
+pub mod order;
+mod platform_paths;
+pub mod preferences;
+pub mod purifier;
+pub mod purifier_options;
+pub mod router;
+pub mod speaker;
+pub mod spec;
+pub mod state;
+pub mod switch_mode;
+pub mod timers;
+mod ui_resource_cache;
+pub mod ui_resources;
+pub mod vacuum;
+mod dryer;
+pub mod washer;
+pub mod washer_command;
+pub mod washer_programs;
+pub mod washer_records;
+pub mod washer_runtime;
+mod washer_zones;
+pub mod widget_layout;
+pub mod widget_grid;
+
+#[cfg(feature = "desktop")]
+mod desktop {
+    use crate::camera::saved_media::Kind as MediaKind;
+    use crate::preferences::{PreferenceChange, PreferenceView};
+    use crate::{error::Result, models::*, state::AppState};
+    use tauri::Manager;
+    #[tauri::command]
+    async fn media_storage() -> Result<crate::media_storage::View> {
+        tauri::async_runtime::spawn_blocking(crate::media_storage::get)
+            .await
+            .map_err(|_| crate::error::AppError::invalid("无法读取媒体保存位置。"))?
+    }
+    #[tauri::command]
+    async fn open_media_storage() -> Result<()> {
+        tauri::async_runtime::spawn_blocking(crate::media_storage::open)
+            .await
+            .map_err(|_| crate::error::AppError::invalid("无法打开媒体保存位置。"))?
+    }
+    #[tauri::command]
+    async fn reset_media_storage() -> Result<crate::media_storage::View> {
+        tauri::async_runtime::spawn_blocking(|| crate::media_storage::set(None))
+            .await
+            .map_err(|_| crate::error::AppError::invalid("无法恢复默认媒体保存位置。"))?
+    }
+    #[tauri::command]
+    async fn choose_media_storage(
+        window: tauri::WebviewWindow,
+    ) -> Result<Option<crate::media_storage::View>> {
+        #[cfg(target_os = "windows")]
+        {
+            let owner = window
+                .hwnd()
+                .map_err(|_| crate::error::AppError::invalid("无法取得设置窗口。"))?
+                .0 as isize;
+            tauri::async_runtime::spawn_blocking(move || crate::media_storage::choose(owner))
+                .await
+                .map_err(|_| crate::error::AppError::invalid("文件夹选择窗口意外关闭。"))?
+        }
+        #[cfg(not(target_os = "windows"))]
+        {
+            tauri::async_runtime::spawn_blocking(move || {
+                crate::media_storage::choose_window(&window)
+            })
+            .await
+            .map_err(|_| crate::error::AppError::invalid("文件夹选择窗口意外关闭。"))?
+        }
+    }
+    #[tauri::command]
+    async fn vacuum(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+    ) -> Result<crate::vacuum::Report> {
+        state.vacuum(home_id, generation, did).await
+    }
+    #[tauri::command]
+    async fn vacuum_map(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+    ) -> Result<crate::vacuum::Map> {
+        state.vacuum_map(home_id, generation, did).await
+    }
+    #[tauri::command]
+    async fn change_vacuum(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        baseline: String,
+        change: crate::vacuum::Change,
+    ) -> Result<crate::vacuum::Changed> {
+        state
+            .with_ui_control(&home_id.clone(), generation, &did.clone(), Box::pin(async {
+                state
+                    .change_vacuum(home_id, generation, did, baseline, change)
+                    .await
+            }))
+            .await
+    }
+    #[tauri::command]
+    async fn camera_care_video(
+        window: tauri::WebviewWindow,
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        date: String,
+        event_id: String,
+    ) -> Result<crate::camera::cloud_media::Video> {
+        let scoped=state.monitor_camera_context(&home_id,generation,&did).await?;
+        let state: &AppState=scoped.as_ref().unwrap_or(state.inner());
+        state
+            .camera_care_video(window.label().to_owned(), home_id, generation, did, date, event_id)
+            .await
+    }
+    #[tauri::command]
+    async fn camera_care_video_part(
+        window: tauri::WebviewWindow,
+        state: tauri::State<'_, AppState>,
+        home_id: String, generation: u64, did: String, session: String,
+        index: usize, prefetch: bool, sequence: u32,
+    ) -> Result<tauri::ipc::Response> {
+        let scoped = state.monitor_camera_context(&home_id, generation, &did).await?;
+        let state = scoped.as_ref().unwrap_or(state.inner());
+        let bytes = state.camera_care_video_part(
+            window.label(), &home_id, generation, &did, &session, index, prefetch, sequence,
+        ).await?;
+        Ok(tauri::ipc::Response::new(bytes))
+    }
+    #[tauri::command]
+    fn camera_care_video_close(window: tauri::WebviewWindow, state: tauri::State<'_, AppState>, session: String) {
+        state.cloud_playbacks.close(window.label(), &session);
+    }
+    #[tauri::command]
+    async fn camera_cloud_save(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        date: String,
+        event_id: String,
+    ) -> Result<Option<crate::camera::saved_media::SavedMedia>> {
+        let scoped=state.monitor_camera_context(&home_id,generation,&did).await?;
+        let state: &AppState=scoped.as_ref().unwrap_or(state.inner());
+        state
+            .validate_cloud_media_event(&home_id, generation, &did, &date, &event_id)
+            .await?;
+        let destination = camera_save_destination(MediaKind::Recording).await?;
+        state
+            .camera_cloud_save(home_id, generation, did, date, event_id, destination)
+            .await
+            .map(Some)
+    }
+    #[tauri::command]
+    async fn camera_care_thumbnail(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        date: String,
+        event_id: String,
+    ) -> Result<String> {
+        let scoped=state.monitor_camera_context(&home_id,generation,&did).await?;
+        let state: &AppState=scoped.as_ref().unwrap_or(state.inner());
+        state
+            .camera_care_thumbnail(home_id, generation, did, date, event_id)
+            .await
+    }
+    #[tauri::command]
+    async fn camera_care(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        date: String,
+    ) -> Result<crate::camera::events::CareReport> {
+        let scoped=state.monitor_camera_context(&home_id,generation,&did).await?;
+        let state: &AppState=scoped.as_ref().unwrap_or(state.inner());
+        state.camera_care(home_id, generation, did, date).await
+    }
+    #[tauri::command]
+    async fn doorbell_cloud(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        date: String,
+    ) -> Result<crate::camera::doorbell_cloud::Report> {
+        state.doorbell_cloud(home_id, generation, did, date).await
+    }
+    #[tauri::command]
+    async fn camera_features(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+    ) -> Result<crate::camera::media_control::Features> {
+        let scoped=state.monitor_camera_context(&home_id,generation,&did).await?;
+        let state: &AppState=scoped.as_ref().unwrap_or(state.inner());
+        state.camera_features(home_id, generation, did).await
+    }
+    #[tauri::command]
+    async fn camera_power(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+    ) -> Result<crate::camera::power::Snapshot> {
+        let scoped=state.monitor_camera_context(&home_id,generation,&did).await?;
+        let state: &AppState=scoped.as_ref().unwrap_or(state.inner());
+        state.camera_power(home_id, generation, did).await
+    }
+    #[tauri::command]
+    async fn change_camera_power(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        awake: bool,
+        expected_awake: bool,
+    ) -> Result<crate::camera::power::Changed> {
+        let scoped=state.monitor_camera_context(&home_id,generation,&did).await?;
+        let state: &AppState=scoped.as_ref().unwrap_or(state.inner());
+        state
+            .with_ui_control(&home_id.clone(), generation, &did.clone(), Box::pin(async {
+                state
+                    .change_camera_power(home_id, generation, did, awake, expected_awake)
+                    .await
+            }))
+            .await
+    }
+    #[tauri::command]
+    async fn camera_auxiliary(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+    ) -> Result<crate::camera::auxiliary::Snapshot> {
+        let scoped=state.monitor_camera_context(&home_id,generation,&did).await?;
+        let state: &AppState=scoped.as_ref().unwrap_or(state.inner());
+        state.camera_auxiliary(home_id, generation, did).await
+    }
+    #[tauri::command]
+    async fn change_camera_auxiliary(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        kind: crate::camera::auxiliary::Kind,
+        active: bool,
+        expected_active: bool,
+    ) -> Result<crate::camera::auxiliary::Changed> {
+        let scoped=state.monitor_camera_context(&home_id,generation,&did).await?;
+        let state: &AppState=scoped.as_ref().unwrap_or(state.inner());
+        state
+            .with_ui_control(&home_id.clone(), generation, &did.clone(), Box::pin(async {
+                state
+                    .change_camera_auxiliary(
+                        home_id,
+                        generation,
+                        did,
+                        kind,
+                        active,
+                        expected_active,
+                    )
+                    .await
+            }))
+            .await
+    }
+    async fn camera_save_destination(kind: MediaKind) -> Result<std::path::PathBuf> {
+        tauri::async_runtime::spawn_blocking(move || {
+            crate::media_storage::destination(kind)
+        })
+        .await
+        .map_err(|_| crate::error::AppError::invalid("无法取得媒体保存位置。"))?
+    }
+    #[tauri::command]
+    async fn camera_command(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        session_id: String,
+        operation: crate::camera::media_control::Operation,
+    ) -> Result<crate::camera::media_control::Reply> {
+        let destination = if matches!(
+            operation,
+            crate::camera::media_control::Operation::Record { enabled: true, .. }
+        ) {
+            state
+                .validate_camera_media_session(&home_id, generation, &did, &session_id)
+                .await?;
+            Some(camera_save_destination(MediaKind::Recording).await?)
+        } else {
+            None
+        };
+        state
+            .camera_command(home_id, generation, did, session_id, operation, destination)
+            .await
+    }
+    #[tauri::command]
+    async fn camera_microphone(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        session_id: String,
+        packet: String,
+    ) -> Result<()> {
+        state
+            .camera_microphone(home_id, generation, did, session_id, packet)
+            .await
+    }
+    #[tauri::command]
+    async fn camera_screenshot(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        session_id: String,
+        png: String,
+    ) -> Result<Option<crate::camera::saved_media::SavedMedia>> {
+        state
+            .validate_camera_media_session(&home_id, generation, &did, &session_id)
+            .await?;
+        let destination = camera_save_destination(MediaKind::Screenshot).await?;
+        state
+            .camera_screenshot(home_id, generation, did, session_id, png, destination)
+            .await
+            .map(Some)
+    }
+    #[tauri::command]
+    async fn camera_media_folder(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        export_id: String,
+    ) -> Result<()> {
+        let scoped=state.monitor_camera_context(&home_id,generation,&did).await?;
+        let state: &AppState=scoped.as_ref().unwrap_or(state.inner());
+        state
+            .camera_media_folder(home_id, generation, did, export_id)
+            .await
+    }
+    #[tauri::command]
+    async fn start_camera(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        quality: Option<String>,
+    ) -> Result<String> {
+        state.start_camera(home_id, generation, did, quality).await
+    }
+
+    #[tauri::command]
+    async fn monitor_detail_open(
+        state: tauri::State<'_, AppState>,
+        target: crate::monitor::actions::Target,
+    ) -> Result<crate::monitor::actions::Detail> {
+        state.monitor_detail_open(target).await
+    }
+    #[tauri::command]
+    async fn monitor_detail_command(
+        state: tauri::State<'_, AppState>,
+        target: crate::monitor::actions::Target,
+        lease_id: String,
+        operation: crate::camera::media_control::Operation,
+    ) -> Result<crate::camera::media_control::Reply> {
+        state
+            .monitor_detail_command(target, lease_id, operation)
+            .await
+    }
+    #[tauri::command]
+    async fn monitor_detail_microphone(
+        state: tauri::State<'_, AppState>,
+        target: crate::monitor::actions::Target,
+        lease_id: Option<String>,
+        packet: String,
+    ) -> Result<()> {
+        state
+            .monitor_detail_microphone(target, lease_id, packet)
+            .await
+    }
+    #[tauri::command]
+    async fn monitor_detail_close(
+        state: tauri::State<'_, AppState>,
+        target: crate::monitor::actions::Target,
+        lease_id: String,
+    ) -> Result<()> {
+        state.monitor_detail_close(target, lease_id).await
+    }
+    #[tauri::command]
+    async fn monitor_window(window: tauri::WebviewWindow, enabled: bool) -> Result<()> {
+        window
+            .state::<crate::app_runtime::Runtime>()
+            .monitor
+            .store(enabled, std::sync::atomic::Ordering::Release);
+        window
+            .state::<std::sync::Arc<crate::resources::Resources>>()
+            .wake_hint();
+        crate::monitor_window::set(&window, enabled)
+            .await
+            .map_err(|_| crate::error::AppError::invalid("无法调整监控窗口比例。"))
+    }
+    #[tauri::command]
+    async fn monitor_catalog(state:tauri::State<'_,AppState>,force:bool)->Result<crate::monitor_catalog::View>{Box::pin(state.monitor_catalog_view(force)).await}
+    #[tauri::command]
+    async fn change_monitor_selection(state:tauri::State<'_,AppState>,scope:String,home_id:String,did:String,excluded:bool)->Result<crate::monitor_catalog::View>{state.change_monitor_selection(scope,home_id,did,excluded).await}
+    #[tauri::command]
+    async fn create_monitor_all(state:tauri::State<'_,AppState>,generation:u64,dids:Vec<String>)->Result<String>{Box::pin(state.create_monitor_all(generation,dids)).await}
+    #[tauri::command]
+    async fn read_monitor_all(state:tauri::State<'_,AppState>,generation:u64,viewer_id:String)->Result<Vec<crate::monitor::Row>>{state.read_monitor_all(viewer_id,generation).await}
+    #[tauri::command]
+    async fn retry_monitor_all(state:tauri::State<'_,AppState>,generation:u64,viewer_id:String,did:String)->Result<()>{state.retry_monitor_all(viewer_id,generation,did).await}
+    #[tauri::command]
+    async fn stop_monitor_all(state:tauri::State<'_,AppState>,generation:u64,viewer_id:String)->Result<()>{state.stop_monitor_all(viewer_id,generation).await}
+    #[tauri::command]
+    async fn create_monitor(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        dids: Vec<String>,
+    ) -> Result<String> {
+        state.create_monitor(home_id, generation, dids).await
+    }
+    #[tauri::command]
+    async fn monitor_command(
+        state: tauri::State<'_, AppState>,
+        target: crate::monitor::actions::Target,
+        operation: crate::monitor::actions::Operation,
+    ) -> Result<crate::camera::media_control::Reply> {
+        let destination = if operation.starts_recording() {
+            state.validate_monitor_media_target(&target).await?;
+            Some(camera_save_destination(MediaKind::Recording).await?)
+        } else {
+            None
+        };
+        state.monitor_command(target, operation, destination).await
+    }
+    #[tauri::command]
+    async fn monitor_screenshot(
+        state: tauri::State<'_, AppState>,
+        target: crate::monitor::actions::Target,
+        png: String,
+    ) -> Result<Option<crate::camera::saved_media::SavedMedia>> {
+        state.validate_monitor_media_target(&target).await?;
+        let path = camera_save_destination(MediaKind::Screenshot).await?;
+        state.monitor_screenshot(target, png, path).await.map(Some)
+    }
+    #[tauri::command]
+    async fn read_monitor(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        viewer_id: String,
+    ) -> Result<Vec<crate::monitor::Row>> {
+        state.read_monitor(home_id, generation, viewer_id).await
+    }
+    #[tauri::command]
+    async fn retry_monitor(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        viewer_id: String,
+        did: String,
+    ) -> Result<()> {
+        state
+            .retry_monitor(home_id, generation, viewer_id, did)
+            .await
+    }
+    #[tauri::command]
+    async fn stop_monitor(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        viewer_id: String,
+    ) -> Result<()> {
+        state.stop_monitor(home_id, generation, viewer_id).await
+    }
+    #[tauri::command]
+    async fn read_camera(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        session_id: String,
+    ) -> Result<Vec<crate::camera::Event>> {
+        state
+            .read_camera(home_id, generation, did, session_id)
+            .await
+    }
+    #[tauri::command]
+    async fn stop_camera(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        session_id: String,
+    ) -> Result<()> {
+        state
+            .stop_camera(home_id, generation, did, session_id)
+            .await
+    }
+    use serde_json::Value;
+    #[tauri::command]
+    async fn session(state: tauri::State<'_, AppState>) -> Result<SessionView> {
+        state.session().await
+    }
+    #[tauri::command]
+    async fn account_profile(state: tauri::State<'_, AppState>) -> Result<AccountProfile> {
+        state.account_profile().await
+    }
+    #[tauri::command]
+    async fn washer_config(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+    ) -> Result<crate::washer::WasherConfigReport> {
+        state.washer_config(home_id, generation, did).await
+    }
+    #[tauri::command]
+    async fn washer_program_preview(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        draft: crate::washer_programs::ProgramDraft,
+    ) -> Result<crate::washer_programs::ProgramPreview> {
+        state
+            .washer_program_preview(home_id, generation, did, draft)
+            .await
+    }
+    #[tauri::command]
+    async fn start_washer_program(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        request_id: String,
+        draft: crate::washer_programs::ProgramDraft,
+    ) -> Result<crate::washer_command::CommandResult> {
+        state
+            .with_ui_control(&home_id.clone(), generation, &did.clone(), Box::pin(async {
+                state
+                    .start_washer_program(home_id, generation, did, request_id, draft)
+                    .await
+            }))
+            .await
+    }
+    #[tauri::command]
+    async fn confirm_washer_program(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        request_id: String,
+    ) -> Result<crate::washer_command::CommandResult> {
+        state
+            .confirm_washer_program(home_id, generation, did, request_id)
+            .await
+    }
+    #[tauri::command]
+    async fn home_preferences(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+    ) -> Result<PreferenceView> {
+        state.home_preferences(home_id, generation, None).await
+    }
+    #[tauri::command]
+    async fn change_home_preferences(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        change: PreferenceChange,
+    ) -> Result<PreferenceView> {
+        state
+            .home_preferences(home_id, generation, Some(change))
+            .await
+    }
+    #[tauri::command]
+    async fn start_login(state: tauri::State<'_, AppState>, region: String) -> Result<QrView> {
+        state.start_login(region).await
+    }
+    #[tauri::command]
+    async fn poll_login(state: tauri::State<'_, AppState>, attempt_id: String) -> Result<PollView> {
+        state.poll_login(attempt_id).await
+    }
+    #[tauri::command]
+    async fn cancel_login(state: tauri::State<'_, AppState>, attempt_id: String) -> Result<()> {
+        state.cancel_login(attempt_id).await
+    }
+    #[tauri::command]
+    async fn assistant_status(state:tauri::State<'_,AppState>,refresh:Option<bool>)->Result<crate::cloud_assistant::Status>{Box::pin(state.assistant_status(refresh.unwrap_or(false))).await}
+    #[tauri::command]
+    async fn start_assistant_authorization(state:tauri::State<'_,AppState>)->Result<QrView>{Box::pin(state.start_assistant_authorization()).await}
+    #[tauri::command]
+    async fn poll_assistant_authorization(state:tauri::State<'_,AppState>,attempt_id:String)->Result<crate::cloud_assistant::authorization::Poll>{Box::pin(state.poll_assistant_authorization(attempt_id)).await}
+    #[tauri::command]
+    async fn cancel_assistant_authorization(state:tauri::State<'_,AppState>,attempt_id:String)->Result<()>{state.cancel_assistant_authorization(attempt_id).await}
+    #[tauri::command]
+    async fn revoke_assistant_authorization(state:tauri::State<'_,AppState>)->Result<()>{state.revoke_assistant_authorization().await}
+    #[tauri::command]
+    async fn logout(state: tauri::State<'_, AppState>, app: tauri::AppHandle) -> Result<()> {
+        let result = state.logout().await;
+        if let Some(widgets) = app.try_state::<std::sync::Arc<crate::desktop_widgets::Widgets>>() {
+            let _ = widgets.reconcile().await;
+        }
+        app.state::<crate::app_runtime::Runtime>()
+            .mcp
+            .engine
+            .stop()
+            .await;
+        result
+    }
+    #[tauri::command]
+    async fn list_homes(state: tauri::State<'_, AppState>) -> Result<Vec<Home>> {
+        state.list_homes().await
+    }
+    #[tauri::command]
+    async fn select_home(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+    ) -> Result<HomeSnapshot> {
+        state.select_home(home_id).await
+    }
+    #[tauri::command]
+    async fn refresh_devices(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+    ) -> Result<HomeSnapshot> {
+        state.refresh_devices(home_id, generation).await
+    }
+    #[tauri::command]
+    async fn home_scenes(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+    ) -> Result<crate::home_scenes::Report> {
+        state.home_scenes(home_id, generation).await
+    }
+    #[tauri::command]
+    async fn run_home_scene(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        scene_id: String,
+        request_id: String,
+    ) -> Result<()> {
+        state
+            .run_home_scene(home_id, generation, scene_id, request_id)
+            .await
+    }
+    #[tauri::command]
+    async fn switch_group_control(app:tauri::AppHandle,state:tauri::State<'_,AppState>,home_id:String,generation:u64,did:String,group_id:String,on:bool,request_id:String,confirm_only:Option<bool>)->Result<crate::home_cards::switch_group::GroupResult>{
+        let result = state.control_switch_group(home_id, generation, did, group_id, on, request_id, confirm_only.unwrap_or(false)).await?;
+        app.state::<std::sync::Arc<crate::desktop_widgets::Widgets>>().publish_switch_group(&result);Ok(result)
+    }
+    #[tauri::command]
+    async fn home_cards(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        ids: Option<Vec<String>>,
+    ) -> Result<crate::home_cards::HomeCardReport> {
+        match ids {
+            Some(ids) if ids.len() <= 64 => state.home_cards_for(&home_id, generation, &ids).await,
+            Some(_) => Err(crate::error::AppError::invalid("设备状态批次过大。")),
+            None => state.home_cards(home_id, generation).await,
+        }
+    }
+    #[tauri::command]
+    async fn home_card_presentations(state:tauri::State<'_,AppState>,home_id:String,generation:u64,ids:Vec<String>) -> Result<Vec<crate::home_cards::presentation::PresentationUpdate>> {
+        state.home_card_presentations(home_id,generation,ids).await
+    }
+    #[tauri::command]
+    async fn home_card_large_available(state:tauri::State<'_,AppState>,home_id:String,generation:u64,did:String) -> Result<bool> {
+        state.home_card_large_available(&home_id,generation,&did).await
+    }
+    #[tauri::command]
+    async fn home_card_control(app:tauri::AppHandle,state:tauri::State<'_,AppState>,home_id:String,generation:u64,did:String,change:crate::home_cards::presentation::CardControlChange) -> Result<crate::home_cards::presentation::CardControlResult> {
+        let field=if change.value.is_boolean()||change.value.is_number(){Some(format!("template:{}:{}",change.template_id,change.control_id))}else{None};
+        let result=if change.confirm_only{state.change_home_card_control(home_id,generation,did,change).await?}else{state.with_ui_control_key(&home_id.clone(),generation,&did.clone(),field,Box::pin(async{state.change_home_card_control(home_id,generation,did,change).await})).await?};
+        app.state::<std::sync::Arc<crate::desktop_widgets::Widgets>>().publish_presentation(&result);
+        Ok(result)
+    }
+
+    #[tauri::command]
+    async fn router_overview(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+    ) -> Result<crate::router::RouterReport> {
+        state.router_overview(home_id, generation, did).await
+    }
+
+    #[tauri::command]
+    async fn change_home_card(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        intent: String,
+    ) -> Result<crate::home_cards::HomeCardResult> {
+        state.with_ui_control(&home_id.clone(),generation,&did.clone(),Box::pin(async{state.change_home_card(home_id,generation,did,intent,false).await})).await
+    }
+    #[tauri::command]
+    async fn confirm_home_card(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        intent: String,
+    ) -> Result<crate::home_cards::HomeCardResult> {
+        state
+            .change_home_card(home_id, generation, did, intent, true)
+            .await
+    }
+    #[tauri::command]
+    async fn device_panel(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+    ) -> Result<DevicePanel> {
+        state.device_panel(home_id, generation, did).await
+    }
+    #[tauri::command]
+    async fn washer_records(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        range: crate::washer_records::LogRange,
+        cursor: Option<String>,
+    ) -> Result<crate::washer_records::RecordReport> {
+        state
+            .washer_records(home_id, generation, did, range, cursor)
+            .await
+    }
+    #[tauri::command]
+    async fn washer_record_detail(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        range: crate::washer_records::LogRange,
+        cursor: Option<String>,
+        record_id: String,
+    ) -> Result<crate::washer_records::RecordDetail> {
+        state
+            .washer_record_detail(home_id, generation, did, range, cursor, record_id)
+            .await
+    }
+    #[tauri::command]
+    async fn light_modes(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+    ) -> Result<crate::light_modes::LightModeReport> {
+        state.light_modes(home_id, generation, did).await
+    }
+    #[tauri::command]
+    async fn light_settings(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+    ) -> Result<crate::light_settings::LightSettingsReport> {
+        state.light_settings(home_id, generation, did).await
+    }
+    #[tauri::command]
+    async fn change_light_settings(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        change: crate::light_settings::LightSettingsChange,
+    ) -> Result<crate::light_settings::LightSettingsResult> {
+        state
+            .with_ui_control(&home_id.clone(), generation, &did.clone(), Box::pin(async {
+                state
+                    .change_light_settings(home_id, generation, did, change)
+                    .await
+            }))
+            .await
+    }
+    #[tauri::command]
+    async fn confirm_light_settings(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        change: crate::light_settings::LightSettingsChange,
+    ) -> Result<crate::light_settings::LightSettingsResult> {
+        state
+            .confirm_light_settings(home_id, generation, did, change)
+            .await
+    }
+    #[tauri::command]
+    async fn light_favorites(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+    ) -> Result<crate::light_favorites::LightFavoritesReport> {
+        state.light_favorites(home_id, generation, did).await
+    }
+    #[tauri::command]
+    async fn change_light_favorite(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        change: crate::light_favorites::LightFavoriteChange,
+    ) -> Result<crate::light_favorites::LightFavoriteResult> {
+        state
+            .with_ui_control(&home_id.clone(), generation, &did.clone(), Box::pin(async {
+                state
+                    .change_light_favorite(home_id, generation, did, change)
+                    .await
+            }))
+            .await
+    }
+    #[tauri::command]
+    async fn confirm_light_favorite(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        change: crate::light_favorites::LightFavoriteChange,
+    ) -> Result<crate::light_favorites::LightFavoriteResult> {
+        state
+            .confirm_light_favorite(home_id, generation, did, change)
+            .await
+    }
+    #[tauri::command]
+    async fn device_ui_resources(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+    ) -> Result<crate::ui_resources::DeviceUiResources> {
+        state.device_ui_resources(home_id, generation, did).await
+    }
+    #[tauri::command]
+    async fn dispenser_reminders(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+    ) -> Result<crate::dispenser_reminders::Report> {
+        state.dispenser_reminders(home_id, generation, did).await
+    }
+    #[tauri::command]
+    async fn change_dispenser_reminder(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        change: crate::dispenser_reminders::Change,
+    ) -> Result<crate::dispenser_reminders::ChangeResult> {
+        state
+            .with_ui_control(&home_id.clone(), generation, &did.clone(), Box::pin(async {
+                state
+                    .change_dispenser_reminder(home_id, generation, did, change)
+                    .await
+            }))
+            .await
+    }
+    #[tauri::command]
+    async fn dispenser_selfcheck(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        change: crate::dispenser_selfcheck::Change,
+    ) -> Result<ControlResult> {
+        state
+            .with_ui_control(&home_id.clone(), generation, &did.clone(), Box::pin(async {
+                state
+                    .dispenser_selfcheck(home_id, generation, did, change, false)
+                    .await
+            }))
+            .await
+    }
+    #[tauri::command]
+    async fn confirm_dispenser_selfcheck(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        change: crate::dispenser_selfcheck::Change,
+    ) -> Result<ControlResult> {
+        state
+            .dispenser_selfcheck(home_id, generation, did, change, true)
+            .await
+    }
+    #[tauri::command]
+    async fn dispenser_selfcheck_records(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+    ) -> Result<crate::dispenser_selfcheck_history::Records> {
+        state
+            .dispenser_selfcheck_records(home_id, generation, did)
+            .await
+    }
+    #[tauri::command]
+    async fn dispenser_sterilization(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        change: crate::dispenser_sterilization::Change,
+    ) -> Result<ControlResult> {
+        state
+            .with_ui_control(&home_id.clone(), generation, &did.clone(), Box::pin(async {
+                state
+                    .dispenser_sterilization(home_id, generation, did, change)
+                    .await
+            }))
+            .await
+    }
+    #[tauri::command]
+    async fn change_dispenser(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        change: crate::dispenser_config::Change,
+    ) -> Result<ControlResult> {
+        state
+            .with_ui_control(&home_id.clone(), generation, &did.clone(), Box::pin(async {
+                state
+                    .change_dispenser(home_id, generation, did, change)
+                    .await
+            }))
+            .await
+    }
+    #[tauri::command]
+    async fn change_fridge(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        change: crate::fridge::Change,
+    ) -> Result<ControlResult> {
+        state
+            .with_ui_control(&home_id.clone(), generation, &did.clone(), Box::pin(async {
+                state.change_fridge(home_id, generation, did, change).await
+            }))
+            .await
+    }
+    #[tauri::command]
+    async fn airer_lift(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        change: crate::airer::LiftChange,
+    ) -> Result<ControlResult> {
+        state
+            .with_ui_control(&home_id.clone(), generation, &did.clone(), Box::pin(async {
+                state.airer_lift(home_id, generation, did, change).await
+            }))
+            .await
+    }
+    #[tauri::command]
+    async fn save_airer_night(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        change: crate::airer::NightChange,
+    ) -> Result<ControlResult> {
+        state
+            .with_ui_control(&home_id.clone(), generation, &did.clone(), Box::pin(async {
+                state
+                    .save_airer_night(home_id, generation, did, change)
+                    .await
+            }))
+            .await
+    }
+    #[tauri::command]
+    async fn purifier_options(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+    ) -> Result<crate::purifier_options::Report> {
+        state.purifier_options(home_id, generation, did).await
+    }
+    #[tauri::command]
+    async fn change_purifier_push(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        change: crate::purifier_options::Change,
+    ) -> Result<crate::purifier_options::ChangeResult> {
+        state
+            .with_ui_control(&home_id.clone(), generation, &did.clone(), Box::pin(async {
+                state
+                    .change_purifier_push(home_id, generation, did, change)
+                    .await
+            }))
+            .await
+    }
+    #[tauri::command]
+    async fn save_purifier_cups(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        expected: String,
+        cups: Vec<crate::purifier::Cup>,
+    ) -> Result<ControlResult> {
+        state
+            .with_ui_control(&home_id.clone(), generation, &did.clone(), Box::pin(async {
+                state
+                    .save_purifier_cups(home_id, generation, did, expected, cups)
+                    .await
+            }))
+            .await
+    }
+    #[tauri::command]
+    async fn read_properties(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        observed: Option<bool>,
+        washer_confirmation: Option<bool>,
+        washer_expected_state: Option<String>,
+        washer_intent: Option<String>,
+    ) -> Result<DevicePanel> {
+        if washer_confirmation.unwrap_or(false) {
+            Box::pin(state.confirm_washer_runtime(home_id, generation, did, washer_expected_state, washer_intent)).await
+        } else if observed.unwrap_or(false) {
+            state.observed_device_panel(home_id, generation, did).await
+        } else {
+            state.device_panel(home_id, generation, did).await
+        }
+    }
+    #[tauri::command]
+    async fn sensor_history(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+    ) -> Result<SensorHistory> {
+        state.sensor_history(home_id, generation, did).await
+    }
+    #[tauri::command]
+    async fn speaker_player(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+    ) -> Result<crate::speaker::Player> {
+        state.speaker_player(home_id, generation, did).await
+    }
+    #[tauri::command]
+    async fn change_speaker(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        change: crate::speaker::Change,
+    ) -> Result<()> {
+        state
+            .with_ui_control(&home_id.clone(), generation, &did.clone(), Box::pin(async {
+                state.change_speaker(home_id, generation, did, change).await
+            }))
+            .await
+    }
+    #[tauri::command]
+    async fn bath_heater(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+    ) -> Result<crate::bath_heater::Report> {
+        state.bath_heater(home_id, generation, did).await
+    }
+    #[tauri::command]
+    async fn change_bath_heater(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        baseline: String,
+        change: crate::bath_heater::Change,
+    ) -> Result<crate::bath_heater::Changed> {
+        state
+            .with_ui_control(&home_id.clone(), generation, &did.clone(), Box::pin(async {
+                state
+                    .change_bath_heater(home_id, generation, did, baseline, change)
+                    .await
+            }))
+            .await
+    }
+    #[tauri::command]
+    async fn fryer(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+    ) -> Result<crate::fryer_control::Snapshot> {
+        state.fryer(home_id, generation, did).await
+    }
+    #[tauri::command]
+    async fn change_fryer(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        baseline: String,
+        request_id: String,
+        change: crate::fryer_control::Change,
+    ) -> Result<crate::fryer_control::Changed> {
+        state
+            .with_ui_control(&home_id.clone(), generation, &did.clone(), Box::pin(async {
+                state
+                    .change_fryer(home_id, generation, did, baseline, request_id, change)
+                    .await
+            }))
+            .await
+    }
+    #[tauri::command]
+    async fn ceiling_fan(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+    ) -> Result<crate::ceiling_fan::Report> {
+        state.ceiling_fan(home_id, generation, did).await
+    }
+    #[tauri::command]
+    async fn change_ceiling_fan(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        baseline: String,
+        change: crate::ceiling_fan::Change,
+    ) -> Result<crate::ceiling_fan::Changed> {
+        state
+            .with_ui_control(&home_id.clone(), generation, &did.clone(), Box::pin(async {
+                state
+                    .change_ceiling_fan(home_id, generation, did, baseline, change)
+                    .await
+            }))
+            .await
+    }
+    #[tauri::command]
+    async fn outlet_energy(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        selection: EnergySelection,
+    ) -> Result<EnergyReport> {
+        state
+            .outlet_energy(home_id, generation, did, selection)
+            .await
+    }
+    #[tauri::command]
+    async fn device_preview(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+    ) -> Result<PanelPreview> {
+        state.device_preview(home_id, generation, did).await
+    }
+    #[tauri::command]
+    async fn confirm_property(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        siid: u32,
+        piid: u32,
+        value: serde_json::Value,
+    ) -> Result<ControlResult> {
+        state
+            .confirm_property(home_id, generation, did, siid, piid, value)
+            .await
+    }
+    #[tauri::command]
+    async fn set_property(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        siid: u32,
+        piid: u32,
+        value: Value,
+    ) -> Result<ControlResult> {
+        state.with_ui_control_key(&home_id.clone(),generation,&did.clone(),Some(format!("property:{siid}:{piid}")),Box::pin(async{state.set_property(home_id,generation,did,siid,piid,value).await})).await
+    }
+    #[tauri::command]
+    async fn ir_remote(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+    ) -> Result<crate::ir_remote::Report> {
+        state.ir_remote(home_id, generation, did).await
+    }
+    #[tauri::command]
+    async fn send_ir_key(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        baseline: String,
+        name: String,
+        nonce: String,
+    ) -> Result<String> {
+        state
+            .with_ui_control(&home_id.clone(), generation, &did.clone(), Box::pin(async {
+                state
+                    .send_ir_key(home_id, generation, did, baseline, name, nonce)
+                    .await
+            }))
+            .await
+    }
+    #[tauri::command]
+    async fn run_action(
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        siid: u32,
+        aiid: u32,
+        inputs: Vec<Value>,
+        washer_intent: Option<String>,
+    ) -> Result<ControlResult> {
+        state
+            .with_ui_control(&home_id.clone(), generation, &did.clone(), Box::pin(async {
+                state
+                    .run_action(home_id, generation, did, siid, aiid, inputs, washer_intent)
+                    .await
+            }))
+            .await
+    }
+    pub fn run() {
+        #[cfg(windows)]
+        if !crate::camera_decode::webview_runtime_available() {
+            return;
+        }
+        let context = tauri::generate_context!();
+        // Explicit opt-in inspection of this app's real WebView for integration
+        // verification. Release builds never enable a debugging endpoint.
+        #[cfg(all(feature = "ui-inspect", debug_assertions))]
+        let (context, inspect_window) = {
+            let mut context = context;
+            let window = context.config_mut().app.windows.remove(0);
+            (context, window)
+        };
+        tauri::Builder::default()
+            .plugin(tauri_plugin_single_instance::init(|app, args, _| {
+                if args.iter().any(|a| a == "--quit") {
+                    crate::app_runtime::Runtime::quit(app);
+                } else if !args.iter().any(|a| a == "--autostart") {
+                    crate::app_runtime::Runtime::show(app, "open");
+                }
+            }))
+            .plugin(tauri_plugin_autostart::init(
+                tauri_plugin_autostart::MacosLauncher::LaunchAgent,
+                Some(vec!["--autostart"]),
+            ))
+            .plugin(tauri_plugin_dialog::init())
+            .plugin(tauri_plugin_updater::Builder::new().build())
+            .plugin(crate::desktop_widgets::wallpaper_plugin())
+            .on_window_event(crate::app_runtime::Runtime::event)
+            .manage(AppState::new().expect("初始化客户端失败"))
+            .setup(move |app| {
+                app.state::<AppState>().install_ui_events(app.handle().clone());
+                crate::app_runtime::Runtime::install(app.handle())
+                    .map_err(|e| std::io::Error::other(e.message))?;
+                crate::desktop_widgets::Widgets::install(app.handle())
+                    .map_err(|e| std::io::Error::other(e.message))?;
+                crate::app_update::Updates::install(app.handle())
+                    .map_err(|e| std::io::Error::other(e.message))?;
+                tauri::async_runtime::spawn_blocking(|| {
+                    if let Err(error) = crate::media_storage::initialize() {
+                        eprintln!("{}", error.message);
+                    }
+                });
+                #[cfg(all(feature = "ui-inspect", debug_assertions))]
+                {
+                    // Builder paths are absolute; an independent folder avoids
+                    // WebView2 options conflicting with an already running app.
+                    tauri::WebviewWindowBuilder::from_config(app, &inspect_window)?
+                        .data_directory(
+                            std::env::temp_dir()
+                                .join(format!("mijia-desktop-ui-inspect-{}", std::process::id())),
+                        )
+                        .additional_browser_args(
+                            "--remote-debugging-port=9223 --remote-debugging-address=127.0.0.1",
+                        )
+                        .build()?;
+                }
+                if let (Some(window), Some(icon)) =
+                    (app.get_webview_window("main"), app.default_window_icon())
+                {
+                    window.set_icon(icon.clone())?;
+                }
+                Ok(())
+            })
+            .invoke_handler(crate::desktop_widgets::guard(tauri::generate_handler![
+                crate::camera_decode::camera_decode_open,
+                crate::camera_decode::camera_decode_viewport,
+                crate::camera_decode::camera_decode_feed,
+                crate::camera_decode::camera_decode_finish,
+                crate::camera_decode::camera_decode_ack,
+                crate::camera_decode::camera_decode_close,
+                crate::desktop_widgets::desktop_widget_support,
+                crate::desktop_widgets::grid::desktop_widget_grids,
+                crate::desktop_widgets::desktop_widget_regions,
+                crate::desktop_widgets::desktop_widget_diagnostics,
+                crate::desktop_widgets::desktop_widget_pin,
+                crate::desktop_widgets::desktop_widget_unpin,
+                crate::desktop_widgets::desktop_widget_snapshot,
+                crate::desktop_widgets::desktop_widget_control,
+                crate::desktop_widgets::desktop_widget_card_control,
+                crate::desktop_widgets::desktop_widget_switch_group,
+                crate::desktop_widgets::desktop_widget_open,
+                crate::desktop_widgets::desktop_widget_gesture,
+                crate::desktop_widgets::desktop_widget_geometry,
+                crate::desktop_widgets::desktop_widget_large_available,
+                crate::desktop_widgets::desktop_widget_viewport,
+                crate::desktop_widgets::desktop_widget_menu,
+                crate::app_runtime::application_settings,
+                crate::desktop_idle::desktop_frontend_idle,
+                crate::resources::desktop_resource_snapshot,
+                crate::app_update::app_update_status,
+                crate::app_update::check_app_update,
+                crate::app_update::start_app_update,
+                crate::app_update::result::app_update_result,
+                crate::app_update::result::acknowledge_app_update,
+                crate::app_update::result::open_app_release_notes,
+                crate::app_update::result::open_app_project,
+                crate::app_runtime::change_application_settings,
+                crate::app_runtime::mcp_connection_config,
+                crate::app_runtime::mcp_rotate_key,
+                crate::app_runtime::application_exit,
+                media_storage,
+                choose_media_storage,
+                reset_media_storage,
+                open_media_storage,
+                monitor_window,
+                monitor_detail_open,
+                monitor_detail_command,
+                monitor_detail_microphone,
+                monitor_detail_close,
+                monitor_catalog, change_monitor_selection, create_monitor_all, read_monitor_all, retry_monitor_all, stop_monitor_all,
+                create_monitor,
+                read_monitor,
+                retry_monitor,
+                stop_monitor,
+                monitor_command,
+                monitor_screenshot,
+                start_camera,
+                camera_screenshot,
+                camera_media_folder,
+                camera_features,
+                camera_power,
+                camera_auxiliary,
+                change_camera_auxiliary,
+                change_camera_power,
+                camera_care,
+                camera_care_thumbnail,
+                camera_care_video,
+                camera_care_video_part,
+                camera_care_video_close,
+                camera_cloud_save,
+                vacuum,
+                vacuum_map,
+                change_vacuum,
+                doorbell_cloud,
+                camera_command,
+                camera_microphone,
+                read_camera,
+                stop_camera,
+                ir_remote,
+                send_ir_key,
+                washer_program_preview,
+                start_washer_program,
+                confirm_washer_program,
+                session,
+                account_profile,
+                home_preferences,
+                change_home_preferences,
+                start_login,
+                poll_login,
+                cancel_login,
+                assistant_status,
+                start_assistant_authorization,
+                poll_assistant_authorization,
+                cancel_assistant_authorization,
+                revoke_assistant_authorization,
+                logout,
+                list_homes,
+                select_home,
+                refresh_devices,
+                home_cards,
+                home_card_presentations,
+                home_card_large_available,
+                home_card_control,
+                switch_group_control,
+                home_scenes,
+                run_home_scene,
+                router_overview,
+                change_home_card,
+                confirm_home_card,
+                device_panel,
+                device_ui_resources,
+                washer_config,
+                washer_records,
+                washer_record_detail,
+                light_modes,
+                light_settings,
+                change_light_settings,
+                confirm_light_settings,
+                light_favorites,
+                change_light_favorite,
+                confirm_light_favorite,
+                device_preview,
+                read_properties,
+                save_purifier_cups,
+                purifier_options,
+                airer_lift,
+                change_fridge,
+                change_dispenser,
+                dispenser_sterilization,
+                dispenser_selfcheck_records,
+                dispenser_selfcheck,
+                confirm_dispenser_selfcheck,
+                dispenser_reminders,
+                change_dispenser_reminder,
+                save_airer_night,
+                change_purifier_push,
+                sensor_history,
+                outlet_energy,
+                speaker_player,
+                change_speaker,
+                bath_heater,
+                change_bath_heater,
+                fryer,
+                change_fryer,
+                ceiling_fan,
+                change_ceiling_fan,
+                set_property,
+                confirm_property,
+                run_action
+            ]))
+            .run(context)
+            .expect("运行客户端失败");
+    }
+}
+#[cfg(feature = "desktop")]
+pub use desktop::run;

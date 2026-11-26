@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "scope": "Public MIoT Spec types absent from the bundled category screenshot and named models for camera and climate layout regression. No device state or account data.",
+  "registry": "https://miot-spec.org/miot-spec-v2/instances?status=released",
+  "registryRows": 16360,
+  "distinctModels": 15078,
+  "distinctTypes": 177,
+  "records": [
+    {
+      "category": "car",
+      "model": "z9527.car.chui2",
+      "type": "urn:miot-spec-v2:device:car:0000A074:z9527-chui2:1",
+      "file": "car--z9527.car.chui2.json",
+      "sha256": "d13dc5e9a7977f2695b2a1234315c380efac0e7ad61044ccf737ac76e89d3c4a",
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Acar%3A0000A074%3Az9527-chui2%3A1"
+      }
+    },
+    {
+      "category": "garbage-can",
+      "model": "miot.bin.c2",
+      "type": "urn:miot-spec-v2:device:garbage-can:0000A03E:miot-c2:1",
+      "file": "garbage-can--miot.bin.c2.json",
+      "sha256": "52d5719f3cb1d628f74124c1ebda35ec329f034040221da38dac972a5ec83dab",
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Agarbage-can%3A0000A03E%3Amiot-c2%3A1"
+      }
+    },
+    {
+      "category": "gesture",
+      "model": "careco.gesture.o651",
+      "type": "urn:miot-spec-v2:device:gesture:0000A0E1:careco-o651:2:0000C840",
+      "file": "gesture--careco.gesture.o651.json",
+      "sha256": "da95c8c273d16abc46ded2b5b322d7702dcfafbfb8138595355b4bd5490e4d19",
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Agesture%3A0000A0E1%3Acareco-o651%3A2%3A0000C840"
+      }
+    },
+    {
+      "category": "hand-dryer",
+      "model": "miot.handdry.hd3",
+      "type": "urn:miot-spec-v2:device:hand-dryer:0000A0BC:miot-hd3:1",
+      "file": "hand-dryer--miot.handdry.hd3.json",
+      "sha256": "0a9a660f7bb37e8b449482bc22646dbb265b64f730d333f9a1e32b15a230a2c3",
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Ahand-dryer%3A0000A0BC%3Amiot-hd3%3A1"
+      }
+    },
+    {
+      "category": "insect-killer",
+      "model": "ctest.inskil.duyr",
+      "type": "urn:miot-spec-v2:device:insect-killer:0000A0E3:ctest-duyr:1:0000D0AC",
+      "file": "insect-killer--ctest.inskil.duyr.json",
+      "sha256": "21d35a79ba0bf3fef3ff0890180a95a7e41c6b277d893f7c1a744535355eba81",
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Ainsect-killer%3A0000A0E3%3Actest-duyr%3A1%3A0000D0AC"
+      }
+    },
+    {
+      "category": "module",
+      "model": "xiaomi.dev.bl1a01",
+      "type": "urn:miot-spec-v2:device:module:0000A093:xiaomi-bl1a01:1",
+      "file": "module--xiaomi.dev.bl1a01.json",
+      "sha256": "890442d29e05f8aaa198ecd6ca0431ac7811686f3bfcc65fc156d79b714dcbc6",
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Amodule%3A0000A093%3Axiaomi-bl1a01%3A1"
+      }
+    },
+    {
+      "category": "phone",
+      "model": "miot.phone.wgqy",
+      "type": "urn:miot-spec-v2:device:phone:0000A05A:miot-wgqy:1",
+      "file": "phone--miot.phone.wgqy.json",
+      "sha256": "f80fa0d4e6c856122532066fc9bf8ea6e54d730fce1374e80792c994e892345b",
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Aphone%3A0000A05A%3Amiot-wgqy%3A1"
+      }
+    },
+    {
+      "category": "phone-holder",
+      "model": "cariot.holder.wpc100",
+      "type": "urn:miot-spec-v2:device:phone-holder:0000A0CC:cariot-wpc100:3:0000C830",
+      "file": "phone-holder--cariot.holder.wpc100.json",
+      "sha256": "9970f92b575297489c44af38df978b74a819edae7c17aadbbbaa20327b0789db",
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Aphone-holder%3A0000A0CC%3Acariot-wpc100%3A3%3A0000C830"
+      }
+    },
+    {
+      "category": "photography-video",
+      "model": "miot.phovideo.savr1",
+      "type": "urn:miot-spec-v2:device:photography-video:0000A0B9:miot-savr1:1",
+      "file": "photography-video--miot.phovideo.savr1.json",
+      "sha256": "72b7dbf157d1ff2f8c8a7dd26ab152189680a39abb11e80bbbed8769c59df1cb",
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Aphotography-video%3A0000A0B9%3Amiot-savr1%3A1"
+      }
+    },
+    {
+      "category": "smart-stove",
+      "model": "bshcn.stove.7nyv6e",
+      "type": "urn:miot-spec-v2:device:smart-stove:0000A0CA:bshcn-7nyv6e:1",
+      "file": "smart-stove--bshcn.stove.7nyv6e.json",
+      "sha256": "fb35f4cc2e34173df9f8cd844b5de6b94ec42216bb12af99a0b7930aa49e882f",
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Asmart-stove%3A0000A0CA%3Abshcn-7nyv6e%3A1"
+      }
+    },
+    {
+      "category": "split-tv",
+      "model": "xiaomi.split_tv.b1",
+      "type": "urn:miot-spec-v2:device:split-tv:0000A02B:xiaomi-b1:1",
+      "file": "split-tv--xiaomi.split_tv.b1.json",
+      "sha256": "52bc0b6f8d13d0f6e3e4f61213bebaade229c08287a471bde04ccab28ffa288c",
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Asplit-tv%3A0000A02B%3Axiaomi-b1%3A1"
+      }
+    },
+    {
+      "category": "uwb",
+      "model": "miot.uwb.1",
+      "type": "urn:miot-spec-v2:device:uwb:0000A0B3:miot-1:1",
+      "file": "uwb--miot.uwb.1.json",
+      "sha256": "c0c718e3680cc26a9f44ead20cc645ecd2260c35f65bdd2e60536d32e9eaaa5d",
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Auwb%3A0000A0B3%3Amiot-1%3A1"
+      }
+    },
+    {
+      "category": "camera",
+      "model": "chuangmi.camera.81ac1",
+      "type": "urn:miot-spec-v2:device:camera:0000A01C:chuangmi-81ac1:4",
+      "file": "camera--chuangmi.camera.81ac1.json",
+      "sha256": "765bad559dc83b7514009bb390afeeb233943d0c6e1db8c7fb2a4593d974ad22",
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Acamera%3A0000A01C%3Achuangmi-81ac1%3A4"
+      }
+    },
+    {
+      "category": "air-conditioner",
+      "model": "lumi.acpartner.mcn02",
+      "type": "urn:miot-spec-v2:device:air-conditioner:0000A004:lumi-mcn02:1",
+      "file": "air-conditioner--lumi.acpartner.mcn02.json",
+      "sha256": "67209bdd0fe64afb55bdbe820c74dc106122f49ec4e29e3e1cd6df038d4d6c4f",
+      "source": {
+        "url": "https://miot-spec.org/miot-spec-v2/instance?type=urn%3Amiot-spec-v2%3Adevice%3Aair-conditioner%3A0000A004%3Alumi-mcn02%3A1"
+      }
+    }
+  ]
+}

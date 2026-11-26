@@ -1,0 +1,21 @@
+.bathroom-content {
+  padding: 0 14px 16px;
+}
+.device-page.page-toilet {
+  background: linear-gradient(#c1d3ea, #e0e9f6);
+}
+.page-toilet .device-page-header {
+  background: transparent;
+}
+.page-toilet .device-page-title p {
+  color: var(--text-secondary, #52657b);
+}
+.device-page.page-toilet.device-surfaces .toilet-cards {
+  gap: 12px;
+  padding-top: 20px;
+}
+.device-page.page-toilet.device-surfaces .toilet-adjustment { padding-inline:0; padding-bottom:0; }
+.toilet-adjustment { margin-top:var(--device-gap); }
+[data-theme="dark"] .device-page.page-toilet {
+  background: linear-gradient(#23354d, var(--surface-page, #222));
+}

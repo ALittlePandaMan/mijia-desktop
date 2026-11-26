@@ -1,0 +1,11 @@
+.device-page.page-ceiling-fan{background:var(--ceiling-background,linear-gradient(#4d9afc,#65abfe,#62a9fe,#5ba4fc,#559ffc,#65abfe,#4d9afb,#4d9afc));color:var(--text-primary,#111);--ceiling-accent:#5daeff}
+.page-ceiling-fan .device-page-header{color:var(--on-color,#fff);background:transparent}
+.page-ceiling-fan .device-page-header h2{font-weight:400}
+.ceiling-content{padding:0!important}
+.ceiling-hero{height:228px;display:flex;align-items:center;justify-content:center}
+.ceiling-hero>.icon{width:228px;height:228px;max-width:64vw;max-height:64vw}
+.ceiling-hero.is-running>.icon{animation:ceiling-rotor 4.5s linear infinite}
+.ceiling-hero.is-running.is-high>.icon{animation-duration:2.5s}
+@keyframes ceiling-rotor{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.ceiling-hero.is-running>.icon{animation:none}}
+.ceiling-error{font-size:12px;line-height:18px;color:var(--text-primary,#444);background:var(--surface-card,#fff);border-radius:10px;padding:14px}

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+ <rect width="1200" height="630" fill="#f6f9ff"/>
+ <rect x="870" y="-140" width="480" height="850" rx="240" fill="#e6efff" transform="rotate(22 1100 300)"/>
+ <text x="80" y="110" font-family="sans-serif" font-size="30" fill="#1e293b">米家Desktop</text>
+ <text x="80" y="275" font-family="sans-serif" font-size="76" font-weight="600" fill="#1e293b">在电脑上</text>
+ <text x="80" y="375" font-family="sans-serif" font-size="76" font-weight="600" fill="#2563c7">用米家</text>
+ <text x="84" y="485" font-family="sans-serif" font-size="25" fill="#61738b">设备管理 · 多路监控 · 智能家居 MCP</text>
+ <text x="84" y="548" font-family="sans-serif" font-size="20" fill="#61738b">Windows 10 / 11（x64）</text>
+</svg>

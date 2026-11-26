@@ -1,0 +1,11 @@
+.speaker-transport { display:grid; grid-auto-columns:minmax(0,1fr); grid-auto-flow:column; gap:var(--device-gap); }
+.speaker-transport .category-action {
+  display:flex; align-items:center; justify-content:center; gap:5px; min-height:54px;
+  padding:12px 10px; min-width:0; font-size:var(--device-label-size);
+}
+.speaker-transport .category-action > .icon { width:19px; height:19px; flex:none; }
+@container (width < 340px) {
+  .speaker-transport { gap:8px; }
+  .speaker-transport .category-action { padding-inline:4px; font-size:var(--device-description-size); }
+  .speaker-transport .category-action > .icon { width:16px; height:16px; }
+}

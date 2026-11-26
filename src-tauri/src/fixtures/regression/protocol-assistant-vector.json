@@ -1,0 +1,14 @@
+{
+  "source": "independent Python hashlib + byte RC4; synthetic credentials; no network",
+  "security": "AAECAwQFBgcICQoLDA0ODw==",
+  "nonce": "AAECAwQFBgcBu5qq",
+  "path": "/miclaw/v2/voicectrl/subAgent",
+  "data": "{\"refined_request\":\"打开模拟客厅灯\",\"home_id_list\":[\"1\"]}",
+  "fields": {
+    "data": "NJrTcml+bEaqsdU6nL/8GOiYrmofxC8iShyGqcfbtVr6lP5XSQGkTSy4m4DqrrKKn6Sq1E4DlLFWWZ0GnjmwyQ==",
+    "rc4_hash__": "phrl/YPbwRh/0DbD18SxIKEUMuq0bLz8u6tqsg==",
+    "signature": "mXY6ZAVaT/Esqs/rxh1Oyv3qXyQ=",
+    "_nonce": "AAECAwQFBgcBu5qq",
+    "ssecurity": "AAECAwQFBgcICQoLDA0ODw=="
+  }
+}

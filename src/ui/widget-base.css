@@ -1,0 +1,8 @@
+@import './app-font.css';
+@import './home-card.css';
+@import '../mijia-icons.css';
+:root{font-family:"MiSans","Microsoft YaHei UI","Microsoft YaHei",sans-serif;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}body{margin:0}button{font:inherit;color:inherit;cursor:pointer}button:disabled{cursor:default}button:focus-visible{outline:3px solid var(--focus-ring,#50c0df);outline-offset:2px}h3,p{margin:0}.icon{width:20px;height:20px;flex:0 0 auto;vertical-align:middle}.status-dot{display:inline-block;border-radius:50%}
+.widget-menu{padding:5px;background:var(--surface-raised,#fff);border:1px solid var(--border-subtle,#dfe7e2);border-radius:12px;box-shadow:0 3px 12px #18374c20;color:var(--text-primary,#171717)}
+.widget-menu .account-menu-item{display:flex;align-items:center;justify-content:center;width:100%;min-height:36px;padding:6px 12px;border:0;border-radius:8px;background:transparent;font-size:14px}
+.widget-menu .account-menu-item:hover{background:var(--surface-hover,#f0f8f3)}

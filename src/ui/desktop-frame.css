@@ -1,0 +1,23 @@
+.desktop-framed{--desktop-title-height:40px;min-width:480px;}
+.desktop-titlebar{position:fixed;inset:0 0 auto;height:var(--desktop-title-height);z-index:100;display:flex;align-items:stretch;background:var(--surface-card,#fff);color:var(--text-secondary,#777);user-select:none;border-bottom:1px solid transparent;}
+.desktop-title-drag{display:flex;align-items:center;gap:8px;flex:1;min-width:0;padding:0 10px;font-size:13px;touch-action:none;}
+.desktop-title-drag>.icon{width:20px;height:20px;}
+.desktop-title-drag>span{color:var(--text-primary,#222);}
+.desktop-window-actions{display:flex;align-items:stretch;flex:none;}
+.desktop-monitor-actions{display:none;align-items:center;gap:8px;padding-right:12px;}
+.monitor-mode:not(.desktop-native-fullscreen) .desktop-monitor-actions{display:flex;}
+.desktop-monitor-action{border:0;background:#ffffff15;color:var(--on-color,#fff);border-radius:5px;padding:5px 12px;font-size:12px;}
+.desktop-monitor-action:hover{background:#ffffff30;}
+.desktop-window-button{display:grid;place-items:center;width:46px;height:var(--desktop-title-height);min-width:0;padding:0;border:0;background:transparent;color:var(--text-primary,#222);border-radius:0;}
+.desktop-window-button>.icon{width:16px;height:16px;pointer-events:none;}
+.desktop-window-button:hover{background:var(--surface-hover,#e5e5e5);}
+.desktop-window-close:hover{background:#e84141;color:var(--on-color,white);}
+.desktop-window-button:focus-visible{outline:2px solid var(--focus-ring,#50c0df);outline-offset:-4px;}
+.desktop-framed>#app{position:absolute;inset:var(--desktop-title-height) 0 0;}
+.desktop-framed .app-shell{width:100%;height:100%;}
+.desktop-framed :is(.login-screen,.account-art){height:calc(100dvh - var(--desktop-title-height));min-height:0;}
+.desktop-framed .account-layout{min-height:calc(100dvh - var(--desktop-title-height));}
+.desktop-framed .modal-backdrop{top:var(--desktop-title-height);}
+.desktop-framed .home-arrange-toolbar{top:var(--desktop-title-height);}
+.desktop-framed.monitor-mode.desktop-native-fullscreen>#app{top:0}
+.monitor-mode.desktop-native-fullscreen .desktop-titlebar{display:none}

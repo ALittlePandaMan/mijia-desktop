@@ -1,0 +1,24 @@
+{
+  "ready": ["idle", "idled", "finish", "cookfinish", "cookfinished", "cookingcompleted", "cookedandstandby", "keepwarmfinish", "keepwarmcompleted", "cleaningcompleted", "待机", "待机中", "空闲", "空闲中", "烹饪已完成"],
+  "cooking": ["busy", "cooking", "running", "cook", "heatingup", "risingtemperature", "exhaust", "inexhaust", "烹饪中", "升温中", "排气中"],
+  "warming": ["keepwarm", "keepingwarm", "保温中"],
+  "scheduled": ["appointment", "delay", "aptrunning", "cookreservation", "scheduledcooking", "scheduling", "预约中", "预约烹饪中"],
+  "paused": ["paused", "暂停中"],
+  "standardFryer": {
+    "ready": ["standby", "ready", "await", "cooked", "completed", "finished", "finish", "preheatfinish"],
+    "cooking": ["run", "preheat", "quickbaking", "tenderroast", "crispyroast", "duringrefinedroasting", "degrease", "crispy", "skim", "预热中", "预热完成", "正在烧烤"],
+    "warming": [],
+    "scheduled": ["order", "reservation", "timer"],
+    "paused": ["pause", "pausing", "turnpotpaused", "preheatpause", "keepwarmpausing", "keepwarmpaused"]
+  },
+  "recipeReservationLimitMinutes": 1439,
+  "recipeReservations": {
+    "xiaomi.cooker.cmby3": "urn:miot-spec-v2:device:cooker:0000A00B:xiaomi-cmby3:1:0000D06B",
+    "xiaomi.cooker.cmby4": "urn:miot-spec-v2:device:cooker:0000A00B:xiaomi-cmby4:1:0000D06B"
+  },
+  "pressureLids": {
+    "xiaomi.pre_cooker.eh2": { "specType": "urn:miot-spec-v2:device:pressure-cooker:0000A04B:xiaomi-eh2:1", "service": "custom", "property": "lid-status", "siid": 5, "piid": 2, "closed": false },
+    "xiaomi.pre_cooker.eh3": { "specType": "urn:miot-spec-v2:device:pressure-cooker:0000A04B:xiaomi-eh3:1", "service": "pressure-cooker", "property": "pan-status", "siid": 2, "piid": 16, "closed": 0 },
+    "xiaomi.pre_cooker.eh4": { "specType": "urn:miot-spec-v2:device:pressure-cooker:0000A04B:xiaomi-eh4:1", "service": "pressure-cooker", "property": "pan-status", "siid": 2, "piid": 16, "closed": 0 }
+  }
+}

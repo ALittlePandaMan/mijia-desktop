@@ -1,0 +1,34 @@
+{
+  "seats": ["toilet.seating-state", "toilet-jomoo.seat-status"],
+  "seated": ["hasone", "landingseat", "seated", "着座", "已着座", "有人"],
+  "unseated": ["noone", "unseat", "unseated", "离座", "无人"],
+  "modes": {
+    "rear": ["posteriorwash", "ass", "hip", "smartposterior", "autobidetwash", "臀洗模式", "臀洗自动模式"],
+    "front": ["femininewash", "woman", "women", "smartfeminine", "autofemininewash", "妇洗模式", "妇洗自动模式"],
+    "dry": ["dry", "drying", "airdry", "烘干模式"],
+    "child": ["childwash", "children", "儿童模式"],
+    "move": ["movingwash", "movingfrontalwash"],
+    "strong": ["heavyduty"],
+    "auto": ["fullyautomatic", "全自动", "畅洗模式"],
+    "stop": ["none", "off", "idle", "cleaningend", "待机模式"],
+    "foam": ["bubble"],
+    "nozzleClean": ["spraybarclean", "spraybarcleaning"]
+  },
+  "seatedActions": {
+    "rear": ["function.ass-cleaning", "function.ass-washing", "function.hip-washing", "function.autohip-washing", "custom.tunxi", "qingxi.tunxi", "custom.posterior-wash", "smart-toilet.tunwash-work", "toilet.start-hip-wash"],
+    "front": ["function.female-cleaning", "function.female-washing", "function.women-washing", "custom.fuxi", "qingxi.fuxi", "custom.feminine-wash", "smart-toilet.womenwash-work", "toilet.start-women-washing"],
+    "dry": ["function.drying", "function.stoving", "custom.honggan", "qingxi.honggan", "custom.dry", "smart-toilet.warmdry-work", "toilet.start-drying"],
+    "child": ["function.child-washing", "qingxi.ertong", "toilet.start-child-washing"],
+    "move": ["function.forback-massage", "function.move-back-and-forth", "custom.move-massage"],
+    "strong": ["function.waterpress-massage", "custom.strong-weak-massage", "function.strong-washing"],
+    "massage": ["function.hot-cold-massage", "function.cold-hot-massage", "custom.massage", "toilet.massage"],
+    "auto": ["qingxi.quanzidong", "toilet.auto"]
+  },
+  "seatedProperties": {
+    "move": ["function.repeat-clean", "mobile-cleaning.mobile-cleaning"],
+    "massage": ["function.massage"]
+  },
+  "flushStatus": ["function.flush-status", "custom.flush-status"],
+  "flushActions": ["function.flushing", "function.flsuhing", "custom.toilet-flushing", "custom.chongshui", "qingxi.chongshui", "toilet.flush", "flush.flush-work"],
+  "flushProperties": ["function.flushing", "toilet-jomoo.flushing", "toilet-ext.flushing", "flush-water.flush-water", "custom.flush"]
+}

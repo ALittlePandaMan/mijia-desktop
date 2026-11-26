@@ -1,0 +1,5 @@
+/* Asset composition only. Glyph contours and baked state discs come from the app. */
+svg[data-icon-source] { overflow:visible; }
+svg.original-right-chevron { transform:rotate(-90deg); flex:none; width:16px; height:16px; }
+.device-original-fallback { display:grid; place-items:center; width:100%; height:100%; }
+.device-original-fallback>.icon { width:100%; height:100%; }

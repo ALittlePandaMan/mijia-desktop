@@ -1,0 +1,6 @@
+{
+  "h264.264": {"url":"https://samples.ffmpeg.org/V-codecs/h264/foreman_p16x16.264","sha256":"cd8de88bd483285c2b1ff698f2ff50925add5dca55c806f4444a17d2504d6ac6"},
+  "h264.mp4": {"url":"https://samples.ffmpeg.org/V-codecs/h264/envivio-h264.mp4","sha256":"3f6a22ffe790d1570d09ad2e8f73fc432b8aa5486d59a956b98ae0452e543e31"},
+  "hevc8.bit": {"url":"https://fate-suite.ffmpeg.org/hevc-conformance/AMVP_A_MTK_4.bit","sha256":"dcbc3c321e66f8d4b06481ffbdb2e02214d83f60db5868823938715cfd275371"},
+  "hevc10.bit": {"url":"https://fate-suite.ffmpeg.org/hevc-conformance/DBLK_A_MAIN10_VIXS_3.bit","sha256":"96c4f1a6b824cc51433d87ebc11bffcc6c2fe3de3ed18339316803e8bbc9be17"}
+}

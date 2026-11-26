@@ -1,0 +1,52 @@
+{
+  "switch": {
+    "model": "linp.switch.e2db3",
+    "category": "switch",
+    "iconSource": "https://cnbj1.fds.api.xiaomi.com/iotweb-product-center/15864.png"
+  },
+  "curtain": {
+    "model": "xiaomi.curtain.acn009",
+    "category": "curtain",
+    "iconSource": "https://cnbj1.fds.api.xiaomi.com/iotweb-product-center/14195.png"
+  },
+  "fan": {
+    "model": "dmaker.fan.p28",
+    "category": "fan",
+    "iconSource": "https://cnbj1.fds.api.xiaomi.com/iotweb-product-center/7212.png"
+  },
+  "ac": {
+    "model": "xiaomi.airc.h55h00",
+    "category": "air-conditioner",
+    "iconSource": "https://cdn.cnbj1.fds.api.mi-img.com/iotweb-product-center/1881b640ec261c08689f5262b4c86678_1766064298600.png"
+  },
+  "ac-standing": {
+    "model": "xiaomi.airc.frlysj",
+    "category": "air-conditioner",
+    "iconSource": "https://cdn.cnbj1.fds.api.mi-img.com/iotweb-product-center/6364de64ee8704869f3f0d7e8fb4ecaa_1773974701631.png"
+  },
+  "tv": {
+    "model": "xiaomi.tv.mih1",
+    "category": "television",
+    "iconSource": "https://cnbj1.fds.api.xiaomi.com/iotweb-product-center/3847.png"
+  },
+  "thermo": {
+    "model": "miaomiaoce.sensor_ht.t2",
+    "category": "temperature-humidity-sensor",
+    "iconSource": "https://cnbj1.fds.api.xiaomi.com/iotweb-product-center/1371.png"
+  },
+  "light": {
+    "model": "yeelink.light.light3",
+    "category": "light",
+    "iconSource": "https://cnbj1.fds.api.xiaomi.com/iotweb-product-center/1772.png"
+  },
+  "airer": {
+    "model": "hyd.airer.1s",
+    "category": "airer",
+    "iconSource": "https://cnbj1.fds.api.xiaomi.com/iotweb-product-center/11326.png"
+  },
+  "washer": {
+    "model": "midjd8.washer.42",
+    "category": "washer",
+    "iconSource": "https://cnbj1.fds.api.xiaomi.com/iotweb-product-center/16065.png"
+  }
+}

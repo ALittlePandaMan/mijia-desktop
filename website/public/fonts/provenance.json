@@ -1,0 +1,40 @@
+{
+  "downloadedAt": "2026-10-29T09:11:55.160Z",
+  "officialPage": "https://hyperos.mi.com/font/zh/download",
+  "url": "https://hyperos.mi.com/font-download/MiSans.zip",
+  "archiveEntry": "MiSans/可变字体/MiSansVF.ttf",
+  "fontBytes": 20093424,
+  "fontSha256": "0ddef90648998900175cfdca9a6f087a2544c182f130b0ad4f7e94a03a115e79",
+  "archiveSha256": "b6aa1fc827035922612df8edf36e5609bca1c5441e25cd57572204569b7b81d9",
+  "names": [
+    {
+      "id": 1,
+      "value": "MiSans VF"
+    },
+    {
+      "id": 2,
+      "value": "Regular"
+    },
+    {
+      "id": 5,
+      "value": "Version 4.009"
+    },
+    {
+      "id": 6,
+      "value": "MiSansVF"
+    },
+    {
+      "id": 0,
+      "value": "Copyright © 2020-2025 Beijing Xiaomi Mobile Software Co.,Ltd. All Rights Reserved."
+    }
+  ],
+  "axes": [
+    {
+      "tag": "wght",
+      "min": 150,
+      "default": 330,
+      "max": 700
+    }
+  ],
+  "modified": false
+}

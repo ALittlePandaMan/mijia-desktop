@@ -1,0 +1,20 @@
+{
+  "properties": [
+    "curtain-yangshi",
+    "curtain-type",
+    "curtain-style",
+    "curtain-opening-type",
+    "curtain-opening-mode",
+    "curtain-open-mode",
+    "opening-type",
+    "opening-mode"
+  ],
+  "choices": {
+    "single-left": ["单开", "单开帘", "单向开合", "单开左", "左单开", "向左单开", "single", "singleopening", "singleleft", "singleopenleft", "leftsingle"],
+    "single-right": ["单开右", "右单开", "向右单开", "singleright", "singleopenright", "rightsingle"],
+    "double": ["双开", "双开帘", "双向开合", "对开", "double", "doubleopening", "bilateral", "centeropening", "centreopening"]
+  },
+  "propertyChoices": {
+    "curtain-yangshi": { "left": "single-left", "right": "single-right", "two": "double" }
+  }
+}

@@ -1,0 +1,13 @@
+[
+  {"input":"打开客厅灯，同时打开客厅空调","subtasks":[{"query":"打开客厅灯","complexity":"simple"},{"query":"打开客厅空调","complexity":"simple"}]},
+  {"input":"打开客厅灯，同时查询卧室温度","subtasks":[{"query":"打开客厅灯","complexity":"simple"},{"query":"查询卧室温度","complexity":"simple"}]},
+  {"input":"关闭客厅灯","subtasks":[{"query":"关闭客厅灯","complexity":"simple"}]},
+  {"input":"关闭所有灯","subtasks":[{"query":"关闭所有灯","complexity":"simple"}]},
+  {"input":"把客厅灯亮度调到25%","subtasks":[{"query":"把客厅灯亮度调到25%","complexity":"simple"}]},
+  {"input":"客厅温度多少度","subtasks":[{"query":"客厅温度多少度","complexity":"simple"}]},
+  {"input":"先打开空调，再设为26度","subtasks":[{"query":"先打开空调，再设为26度","complexity":"simple"}]},
+  {"input":"先打开客厅灯再关闭客厅灯","subtasks":[{"query":"先打开客厅灯再关闭客厅灯","complexity":"simple"}]},
+  {"input":"温度超过26度才开空调","subtasks":[{"query":"温度超过26度才开空调","complexity":"complex","home_id":"1"}]},
+  {"input":"开启观影场景","subtasks":[{"query":"开启观影场景","complexity":"complex","home_id":"1"}]},
+  {"input":"帮我营造舒适的观影环境","subtasks":[{"query":"帮我营造舒适的观影环境","complexity":"complex","home_id":"1"}]}
+]

@@ -1,0 +1,11 @@
+/* Independent translate leaves the existing press and drag transforms intact. */
+.home-screen .device-card{transition:translate var(--motion-medium) ease,box-shadow var(--motion-medium) ease}
+.home-screen .scene-task,.home-screen .scene-add{transition:background-color var(--motion-fast),transform var(--motion-fast) ease,translate var(--motion-medium) ease,box-shadow var(--motion-medium) ease}
+.home-screen :is(.device-card,.scene-task).device-drag-ghost{transition:none}
+body .home-screen :is(.device-card,.scene-task).device-drag-ghost.device-drag-landing{pointer-events:auto}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+ body:not(.device-drag-active) .home-screen:not(.is-arranging) :is(.device-card,.scene-task,.scene-add):not(.device-drag-ghost):hover{translate:0 -2px;box-shadow:0 6px 18px #163d5524}
+}
+@media(prefers-reduced-motion:reduce){
+ .home-screen :is(.device-card,.scene-task,.scene-add){translate:none;transition:none}
+}

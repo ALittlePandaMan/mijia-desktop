@@ -1,0 +1,246 @@
+{
+  "plugin": {
+    "acquiredAt": "2026-10-31T16:59:08.615Z",
+    "model": "xiaomi.fryer.maf16",
+    "pluginId": 1020290,
+    "packageId": 1692978,
+    "version": 48,
+    "bytes": 6172944,
+    "md5": "2b1f4b351074d531ce854fce28bcc849",
+    "sha256": "7c1ab3962b5546654c46ba80217889e568b77a714debc220ee2d442ec0ed60f6",
+    "scope": "Exact-model public plugin from authenticated metadata. Static analysis only; no vendor code execution."
+  },
+  "staticEvidence": [
+    "ev_26f8b280f1883f659258672672aa18fc9f330e83e4a00a66f3b469783abd1fdd",
+    "ev_c8ed0130b484d090105a0d80c7b77d46ff919119c2745aabfb37c62083e88bcb"
+  ],
+  "sourceModules": [
+    10019,
+    10277,
+    10280,
+    10493,
+    10496
+  ],
+  "assets": [
+    {
+      "mode": 0,
+      "kind": "icon",
+      "sourceModule": 10193,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_cook_icon_manual.png",
+      "output": "src/assets/mijia/fryer/0-icon.png",
+      "sha256": "f85e974e148e8a7553eb8e75ea82947ec2ef435a2ed5fca433688b8d0cd38d10"
+    },
+    {
+      "mode": 0,
+      "kind": "image",
+      "sourceModule": 10196,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_recipes_manual.png",
+      "output": "src/assets/mijia/fryer/0-image.png",
+      "sha256": "5322818893b497b6d8b18db8374ff20ee2abc9879caa4991bbcf0b6b9b1bd3b4"
+    },
+    {
+      "mode": 1,
+      "kind": "icon",
+      "sourceModule": 10199,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_cook_icon_french_fries.png",
+      "output": "src/assets/mijia/fryer/1-icon.png",
+      "sha256": "200ab8e3f732a7931dedac1627ec21e8ee308918a42e6b3c5fc3161d66f068a9"
+    },
+    {
+      "mode": 1,
+      "kind": "image",
+      "sourceModule": 10202,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_recipes_french_fries.png",
+      "output": "src/assets/mijia/fryer/1-image.png",
+      "sha256": "060ae4ed9f15862b40c375d086a0b916e6a9908f7054697aa79fe254fcf0fd5f"
+    },
+    {
+      "mode": 2,
+      "kind": "icon",
+      "sourceModule": 10205,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_cook_icon_chicken_wings.png",
+      "output": "src/assets/mijia/fryer/2-icon.png",
+      "sha256": "df6e6b0ef945882a320b8442db8884a440665086298c6b3d2d03e4aa623770e1"
+    },
+    {
+      "mode": 2,
+      "kind": "image",
+      "sourceModule": 10208,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_recipes_chicken_wings.png",
+      "output": "src/assets/mijia/fryer/2-image.png",
+      "sha256": "1de160e37e5ffb36e84eeca01bc7a8222b361828c29815d2adaba2e9a8e55d5b"
+    },
+    {
+      "mode": 3,
+      "kind": "icon",
+      "sourceModule": 10211,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_cook_icon_sweet_potato.png",
+      "output": "src/assets/mijia/fryer/3-icon.png",
+      "sha256": "a00b214d8506243ab36309610d3ecb994e9a1f2cae3a5b6a11e0215ae36ad8cf"
+    },
+    {
+      "mode": 3,
+      "kind": "image",
+      "sourceModule": 10214,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_recipes_sweet_potato.png",
+      "output": "src/assets/mijia/fryer/3-image.png",
+      "sha256": "c919da6146dccbacb49b9c46eba379c91ffe7f78cd89a83710d563ce4012eb42"
+    },
+    {
+      "mode": 4,
+      "kind": "icon",
+      "sourceModule": 10217,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_cook_icon_eggtart.png",
+      "output": "src/assets/mijia/fryer/4-icon.png",
+      "sha256": "14375d1f6c102fa1a7f623e99c22e0c8bec98b6a09db22b9941e2ca0352429f8"
+    },
+    {
+      "mode": 4,
+      "kind": "image",
+      "sourceModule": 10220,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_recipes_eggtart.png",
+      "output": "src/assets/mijia/fryer/4-image.png",
+      "sha256": "3b1364e4d18083e461c09ee06d90b27f7c8f888a0f698bf93bac1b34746ed542"
+    },
+    {
+      "mode": 5,
+      "kind": "icon",
+      "sourceModule": 10223,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_cook_icon_steak.png",
+      "output": "src/assets/mijia/fryer/5-icon.png",
+      "sha256": "2e48824aa1b2a1b09f0419501197712d4097e3f4bdc86ec2fca96c94cb85b320"
+    },
+    {
+      "mode": 5,
+      "kind": "image",
+      "sourceModule": 10226,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_recipes_steak.png",
+      "output": "src/assets/mijia/fryer/5-image.png",
+      "sha256": "a96e25bc75a53e3d6f9df66ff6c5571148c605d3b25a7e6f62db39972d6f40f1"
+    },
+    {
+      "mode": 6,
+      "kind": "icon",
+      "sourceModule": 10229,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_cook_icon_pork_belly.png",
+      "output": "src/assets/mijia/fryer/6-icon.png",
+      "sha256": "52b47c012612b5095439573e2b20355de60d724d566a24284f668dc0de3b1c80"
+    },
+    {
+      "mode": 6,
+      "kind": "image",
+      "sourceModule": 10232,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_recipes_pork_belly.png",
+      "output": "src/assets/mijia/fryer/6-image.png",
+      "sha256": "dfb0e11ca6476643683a948e737412fd001ab1722a1bd7e570e55d7ce8740073"
+    },
+    {
+      "mode": 7,
+      "kind": "icon",
+      "sourceModule": 10235,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_cook_icon_shrimp.png",
+      "output": "src/assets/mijia/fryer/7-icon.png",
+      "sha256": "e0fb5d655be98735e6b909e7a4ca6cc14d0dea99bbad0276d0b1c187592cf4a4"
+    },
+    {
+      "mode": 7,
+      "kind": "image",
+      "sourceModule": 10238,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_recipes_shrimp.png",
+      "output": "src/assets/mijia/fryer/7-image.png",
+      "sha256": "7e808bcb21724f1718bf4481b2df5d1e39bd7e3b943577b33798663220634a52"
+    },
+    {
+      "mode": 8,
+      "kind": "icon",
+      "sourceModule": 10241,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_cook_icon_cake.png",
+      "output": "src/assets/mijia/fryer/8-icon.png",
+      "sha256": "6bd0692dede17fc629a201fd008b046796427a425cf6c35eb902fb9e7966ed6b"
+    },
+    {
+      "mode": 8,
+      "kind": "image",
+      "sourceModule": 10244,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_recipes_cake.png",
+      "output": "src/assets/mijia/fryer/8-image.png",
+      "sha256": "bdf0c7de51e643c6877b20903823a2d358b02eb2e6e92f6fff5a15b31d50d2da"
+    },
+    {
+      "mode": 9,
+      "kind": "icon",
+      "sourceModule": 10247,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_cook_icon_pizza.png",
+      "output": "src/assets/mijia/fryer/9-icon.png",
+      "sha256": "edf29954e708dacdbfc9b989a713bed9d794e9dfb4e7faebcb7ec3aecc982661"
+    },
+    {
+      "mode": 9,
+      "kind": "image",
+      "sourceModule": 10250,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_recipes_pizza.png",
+      "output": "src/assets/mijia/fryer/9-image.png",
+      "sha256": "6ac302d8bb1eeb17757d93d5841f2fa06b54de0f154817f3571cb35fc9319112"
+    },
+    {
+      "mode": 10,
+      "kind": "icon",
+      "sourceModule": 10253,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_cook_icon_dryfruits.png",
+      "output": "src/assets/mijia/fryer/10-icon.png",
+      "sha256": "2ea6249268df488c7ceabb440df466b1d35c77373ab12c310c4dbac3e3de8f0f"
+    },
+    {
+      "mode": 10,
+      "kind": "image",
+      "sourceModule": 10256,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_recipes_dryfruits.png",
+      "output": "src/assets/mijia/fryer/10-image.png",
+      "sha256": "b554760000f480e86080bf6660e47241614e0faed7068c45d13c48e7d6d1b7e0"
+    },
+    {
+      "mode": 11,
+      "kind": "icon",
+      "sourceModule": 10259,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_cook_icon_grill.png",
+      "output": "src/assets/mijia/fryer/11-icon.png",
+      "sha256": "f06c657683baf7ce7fd4261ce93c307ff91303b72290a56ebf83c0326d086c3e"
+    },
+    {
+      "mode": 11,
+      "kind": "image",
+      "sourceModule": 10262,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_recipes_grill.png",
+      "output": "src/assets/mijia/fryer/11-image.png",
+      "sha256": "24946d4653f543fde55b0c4e15f00c8132777315fe3996883bc91a0eb5cdc2b0"
+    },
+    {
+      "mode": 12,
+      "kind": "icon",
+      "sourceModule": 10265,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_cook_icon_reheat.png",
+      "output": "src/assets/mijia/fryer/12-icon.png",
+      "sha256": "4236843e65406c28522749be11589654c504ba83d6378dbff53f15dd15fb0e39"
+    },
+    {
+      "mode": 12,
+      "kind": "image",
+      "sourceModule": 10268,
+      "archiveMember": "android/drawable-mdpi/projects_xiaomifryermaf16_resources_images_recipes_reheat.png",
+      "output": "src/assets/mijia/fryer/12-image.png",
+      "sha256": "1412d180960f10b7356a2c417b3de2330fc6521689e40595b0ee318bbe559f2a"
+    }
+  ],
+  "vendorCodeExecuted": false,
+  "cookingAnimation": {
+    "sourceMember": "android/raw/projects_xiaomifryermaf16_resources_animation_cookingpage_cooking.json",
+    "sourceSha256": "74fb81cac4319da9dbad125740d398e6d9174dfe2d98a92a4b45b72a4000e8b2",
+    "sourceModule": 10535,
+    "staticEvidence": "ev_93eec7b5372263e023ae9d5cf4fe314d9e97cce6d5996626539b77382c9c9849",
+    "conversion": "Known three-ellipse Lottie subset to SVG; original geometry, gradient alpha, layer opacity, spatial and temporal curves; 25fps samples; 4 second loop",
+    "outputs": {
+      "cooking-bubbles-still.svg": "4822fd4071d2304b34f8f295345ec9ae3b68c2bf77489e80e31369d0082861b8",
+      "cooking-bubbles.svg": "e7112ee0e0759c6490b3a31bdefb7e80a44dfab1bc7eefc7943c1a472de4445a"
+    }
+  }
+}

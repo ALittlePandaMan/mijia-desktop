@@ -1,0 +1,33 @@
+{
+  "name": "mijia-desktop-website",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "npm run demo:build && next dev",
+    "build": "npm run demo:build && next build",
+    "preview": "vite preview --outDir out",
+    "check": "npm run demo:sync && tsc --noEmit --incremental false && tsc -p demo --noEmit",
+    "demo:sync": "node ../scripts/export-showcase.mjs demo/desktop",
+    "demo:build": "npm run demo:sync && node scripts/build-demo.mjs",
+    "demo:check": "node scripts/check-demo.mjs",
+    "demo:cards:check": "node scripts/check-card-demo.mjs",
+    "stats:sync": "node scripts/sync-github-stats.mjs"
+  },
+  "dependencies": {
+    "echarts": "6.1.0",
+    "next": "16.3.4",
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "typescript": "5.9.3",
+    "vite": "8.0.13"
+  }
+}

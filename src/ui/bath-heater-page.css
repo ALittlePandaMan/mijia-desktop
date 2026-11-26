@@ -1,0 +1,14 @@
+.device-page.page-bath-heater{background:var(--bath-hot-background,linear-gradient(#f67d07,#f58c21 14%,#f7a243 28%,#f9b66b 43%,#f9cb8e 57%,#f9d198 71%,#f9d39a 85%,#fbd8a1));color:var(--text-primary,#111);--bath-accent:#fd970f}
+.device-page.page-bath-heater.bath-cold{background:var(--bath-cold-background,linear-gradient(#32b9bf,#3cbdc2,#49c0c6,#4dc2c8,#59c5ca,#69cbcf,#80d1d5,#8ad5d8));--bath-accent:#32b9bf}
+.page-bath-heater .device-page-header{color:var(--on-color,#fff);background:transparent}
+.page-bath-heater .device-page-header h2{font-weight:400}
+.bath-content{padding:0!important}
+.bath-hero{height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-bottom:40px;color:var(--on-color,#fff);gap:10px}
+.page-bath-heater .bath-hero h1{font-size:30px;line-height:42px;font-weight:400;text-align:center}
+.bath-hero p{font-size:18px;line-height:24px}
+.page-bath-heater { --mode-accent:var(--bath-accent); }
+.air-choice:has(.bath-mode-icon) { --mode-idle-background:#f7f7f7; --mode-idle-icon:#7f7f7f; --mode-selected-background:#fd970f; }
+.air-choice:has(.bath-mode-icon[data-icon-name="bath:bhf_switch:off"]) { --mode-idle-icon:#d3d3d3; }
+.device-page.page-bath-heater.device-surfaces .bath-adjustment { padding-inline:0; padding-bottom:0; }
+.bath-adjustment { margin-top:var(--device-gap); }
+.bath-error{font-size:12px;line-height:18px;color:var(--text-primary,#444);background:var(--surface-card,#fff);border-radius:10px;padding:14px}

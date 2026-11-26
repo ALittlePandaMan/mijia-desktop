@@ -1,0 +1,39 @@
+{
+  "provenance": "Generated locally with Node native OpenSSL RC4/SHA1/SHA256. Synthetic test inputs only; no login, credentials or cloud request.",
+  "command": "node --openssl-legacy-provider research/generate-protocol-vectors.cjs",
+  "ssecurity_base64": "AAECAwQFBgcICQoLDA0ODw==",
+  "nonce_base64": "AAECAwQFBgcICQoL",
+  "signed_nonce_base64": "Nz6YMO70n75ITJeXTWpiyXXLp6IBZ0yT0/hEJB0FDOg=",
+  "vectors": [
+    {
+      "name": "property_get_with_direct_rpc",
+      "method": "POST",
+      "request_url": "https://api.io.mi.com/app/miotspec/prop/get",
+      "signature_path": "/miotspec/prop/get",
+      "data": "{\"params\":[{\"did\":\"123456789\",\"siid\":2,\"piid\":1}],\"datasource\":2}",
+      "plaintext_canonical": "POST&/miotspec/prop/get&data={\"params\":[{\"did\":\"123456789\",\"siid\":2,\"piid\":1}],\"datasource\":2}&Nz6YMO70n75ITJeXTWpiyXXLp6IBZ0yT0/hEJB0FDOg=",
+      "plaintext_sha1_signature": "hLqzMgKg3Vqp+nGMVBCZGtbjKhs=",
+      "encrypted_data_base64": "Gjcp2tvQQivbG8/E8HqKAtVic7Vl3m7eJN4PRHasMxt7d4iptv+TlHMzSNXZSGTUjOjAxzv3Ay6jv7ezliAm4GY=",
+      "encrypted_rc4_hash_base64": "CVkoweTWZD/Kd+XP+XCkK6EaEt4QmTiBWYFEQA==",
+      "encrypted_canonical": "POST&/miotspec/prop/get&data=Gjcp2tvQQivbG8/E8HqKAtVic7Vl3m7eJN4PRHasMxt7d4iptv+TlHMzSNXZSGTUjOjAxzv3Ay6jv7ezliAm4GY=&rc4_hash__=CVkoweTWZD/Kd+XP+XCkK6EaEt4QmTiBWYFEQA==&Nz6YMO70n75ITJeXTWpiyXXLp6IBZ0yT0/hEJB0FDOg=",
+      "final_signature_base64": "lMu6C27dyYaNwTazzWVCD6poU7Y=",
+      "form_without_optional_ssecurity": "data=Gjcp2tvQQivbG8%2FE8HqKAtVic7Vl3m7eJN4PRHasMxt7d4iptv%2BTlHMzSNXZSGTUjOjAxzv3Ay6jv7ezliAm4GY%3D&rc4_hash__=CVkoweTWZD%2FKd%2BXP%2BXCkK6EaEt4QmTiBWYFEQA%3D%3D&signature=lMu6C27dyYaNwTazzWVCD6poU7Y%3D&_nonce=AAECAwQFBgcICQoL"
+    },
+    {
+      "name": "property_set_utf8",
+      "method": "POST",
+      "request_url": "https://api.io.mi.com/app/miotspec/prop/set",
+      "signature_path": "/miotspec/prop/set",
+      "data": "{\"params\":[{\"did\":\"synthetic-device\",\"siid\":3,\"piid\":7,\"value\":\"测试\"}]}",
+      "plaintext_canonical": "POST&/miotspec/prop/set&data={\"params\":[{\"did\":\"synthetic-device\",\"siid\":3,\"piid\":7,\"value\":\"测试\"}]}&Nz6YMO70n75ITJeXTWpiyXXLp6IBZ0yT0/hEJB0FDOg=",
+      "plaintext_sha1_signature": "pQ2LOl/hZHXnEBbzI3aBha6nh3I=",
+      "encrypted_data_base64": "Gjcp2tvQQivbG8/E8HqKAtVic/cugy6Dd51eHnnkdB57fYmpoO/M32o+A4vIXnfZuK2GgWC0Tn+6q6mlliAm8P1HF7HXpb2kOgk=",
+      "encrypted_rc4_hash_base64": "EURr9+bdADCjaczRl1yBHL5rMMY/jGyFetp+QA==",
+      "encrypted_canonical": "POST&/miotspec/prop/set&data=Gjcp2tvQQivbG8/E8HqKAtVic/cugy6Dd51eHnnkdB57fYmpoO/M32o+A4vIXnfZuK2GgWC0Tn+6q6mlliAm8P1HF7HXpb2kOgk=&rc4_hash__=EURr9+bdADCjaczRl1yBHL5rMMY/jGyFetp+QA==&Nz6YMO70n75ITJeXTWpiyXXLp6IBZ0yT0/hEJB0FDOg=",
+      "final_signature_base64": "LCmVl44F3JOPEtkN0kUVZDw7RcI=",
+      "form_without_optional_ssecurity": "data=Gjcp2tvQQivbG8%2FE8HqKAtVic%2Fcugy6Dd51eHnnkdB57fYmpoO%2FM32o%2BA4vIXnfZuK2GgWC0Tn%2B6q6mlliAm8P1HF7HXpb2kOgk%3D&rc4_hash__=EURr9%2BbdADCjaczRl1yBHL5rMMY%2FjGyFetp%2BQA%3D%3D&signature=LCmVl44F3JOPEtkN0kUVZDw7RcI%3D&_nonce=AAECAwQFBgcICQoL"
+    }
+  ],
+  "response_plaintext": "{\"code\":0,\"result\":[{\"did\":\"123456789\",\"siid\":2,\"piid\":1,\"code\":0,\"value\":true}]}",
+  "response_ciphertext_base64": "Gjc61M3UDWLJDbbNt22WCoN6a98szz6CdssNX2WyIlwnKNuzte+TlHAzSNXZSGeF87SLyj6hWGzg6Ka/l2c+6Cvevi8ZXOq8RU6DAV1xtQFh"
+}

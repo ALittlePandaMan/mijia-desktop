@@ -1,0 +1,26 @@
+html.desktop-widget-document,html.desktop-widget-document body,html.desktop-widget-document #app{margin:0;padding:0;width:100%;height:100%;min-width:0;min-height:0;overflow:hidden;background:transparent!important;border:0;}
+.desktop-widget-document body{display:block;user-select:none;}
+.widget-placement{position:absolute;left:0;top:0;contain:layout style;min-width:0;min-height:0}
+.widget-placement.widget-mirror{pointer-events:none}
+.desktop-widget-document .device-card{width:100%;height:100%;max-height:none;aspect-ratio:5/4;border-radius:20px;cursor:default;}
+.desktop-widget-document .device-card-open{cursor:pointer;}
+.desktop-widget-document .device-select-indicator{display:none;}
+.desktop-widget-document .device-card h3{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.desktop-widget-document .device-card{aspect-ratio:auto;}
+.widget-moving .device-card-open{cursor:grabbing;}
+.widget-menu.device-context-menu{position:absolute;width:180px;max-width:100%;z-index:2147483647;}
+.widget-menu .account-menu-item{white-space:nowrap;}
+.widget-menu .widget-unpin-menu-item{justify-content:flex-start;text-align:left;padding-inline-start:var(--card-menu-item-inset);}
+.widget-unavailable{box-sizing:border-box;width:100%;height:100%;display:grid;place-items:center;border-radius:20px;background:var(--surface,#fff);color:var(--text-secondary,#64748b);font-size:14px;text-align:center;padding:20px;}
+
+.desktop-widget-document #app{position:relative;}
+
+.widget-grid-hints{position:absolute;inset:0;pointer-events:none;z-index:0}
+.widget-grid-hint{position:absolute;border:3px solid #367d9350;border-radius:20px;pointer-events:none}
+.widget-grid-hint.valid{border-color:var(--drop-preview-border,#2464d8);background:color-mix(in srgb,var(--drop-color,var(--home-card,#f5f8faD9)) 35%,transparent)}
+.widget-grid-hint.invalid{border-color:#d78680b0}
+.widget-placement{z-index:1}
+.widget-compact .device-card[data-card-size="small"] .device-card-content{padding-block:6px;}
+.widget-compact .device-card[data-card-size="small"] .device-artwork,.widget-compact .device-card[data-card-size="small"] .device-product-image{max-height:30px;}
+
+.widget-surface{width:100%;height:100%;transform-origin:0 0}
