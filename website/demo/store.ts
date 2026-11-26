@@ -5,6 +5,7 @@ import {televisionSample} from './desktop/src/fixtures/television-sample';
 import {televisionRoles,type TelevisionRole} from './desktop/src/television';
 import {cardCaption} from './desktop/src/home-cards';
 import {demoCardStatus} from './card-status';
+import {demoCardPresentation} from './card-presentation';
 import {cardSize,type CardSize} from './desktop/src/card-size';
 import type {RoomState} from './room-state';
 import {devices,demoRooms,demoDevice,type DeviceId,type RoomId} from './catalog';
@@ -31,7 +32,12 @@ export class DemoStore {
  constructor(private options:{send?:(command:DemoCommand)=>void;visible?:()=>boolean}={}){if(!options.send)this.timer=window.setInterval(()=>this.tick(),50);}
  stateFor(id:DeviceId){return this.states[id];}
  cardSize(id:DeviceId){return cardSize(this.cardSizes[id]);}
- setCardSize(id:DeviceId,size:CardSize){if(!demoDevice(id)||!['small','medium','large'].includes(size))return;if(this.cardSize(id)===size)return;this.cardSizes={...this.cardSizes,[id]:size};this.emit();this.options.send?.({kind:'card-size',device:id,size});}
+ canUseLargeCard(id:DeviceId){const device=demoDevice(id);return !!device&&demoCardPresentation(device,this.panel(id))!==undefined;}
+ setCardSize(id:DeviceId,size:CardSize){
+  if(!demoDevice(id)||!['small','medium','large'].includes(size)||this.cardSize(id)===size)return;
+  if(size==='large'&&!this.canUseLargeCard(id))return;
+  this.cardSizes={...this.cardSizes,[id]:size};this.emit();this.options.send?.({kind:'card-size',device:id,size});
+ }
  cardOrder(room:CardRoom):readonly DeviceId[]{return this.cardOrders[room]??membersByRoom.get(room)!;}
  setCardOrder(room:CardRoom,ids:unknown){
   if(!validCardOrder(room,ids)||ids.every((id,index)=>id===this.cardOrder(room)[index]))return;

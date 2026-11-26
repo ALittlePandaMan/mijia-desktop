@@ -13,7 +13,7 @@ if(target!==inRepository&&!external)throw Error('Destination must be website/dem
 const entries=['src/home-grid.ts','src/ui/curtain-view.ts','src/ui/device-presenters.ts','src/ui/device-card-view.ts','src/ui/television-page.ts','src/ui/camera-control-view.ts','src/ui/device-surfaces.ts','src/ui/dialog-dismiss.ts','src/ui/history-chart.ts','src/fixtures/television-sample.ts','src/style.css','src/theme.css','src/ui/quiet-feedback.css','src/ui/monitor-wall.css','src/camera-player.css'];
 entries.push('src/ui/airer-page.ts','src/ui/washer-page.ts','src/ui/washer-runtime-page.ts','src/fixtures/laundry-sample.ts');
 entries.push('src/ui/camera-toolbar-motion.css');
-entries.push('src/ui/device-grid.ts','src/ui/card-size-menu.ts','src-tauri/src/fixtures/home_card_presentations.json');
+entries.push('src/ui/device-grid.ts','src/ui/card-size-menu.ts');
 entries.push('src/ui/device-drag.ts');
 const seen=new Set(),files=[];
 function visit(relative){

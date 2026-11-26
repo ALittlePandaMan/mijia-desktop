@@ -33,7 +33,7 @@ for(const asset of productImages.assets){
 }
 const manifest=JSON.parse(fs.readFileSync('demo/desktop/provenance.json','utf8'));for(const file of manifest.files)if(hash('demo/desktop/'+file.path)!==file.sha256)throw Error('Snapshot hash mismatch: '+file.path);
 for(const entry of ['src/ui/airer-page.ts','src/ui/washer-page.ts','src/ui/washer-runtime-page.ts','src/fixtures/laundry-sample.ts'])if(!manifest.entries.includes(entry))throw Error('Desktop page missing from shared export: '+entry);
-for(const entry of ['src/ui/device-grid.ts','src/ui/card-size-menu.ts','src-tauri/src/fixtures/home_card_presentations.json'])if(!manifest.entries.includes(entry))throw Error('Desktop card sizing/template export missing: '+entry);
+for(const entry of ['src/ui/device-grid.ts','src/ui/card-size-menu.ts'])if(!manifest.entries.includes(entry))throw Error('Desktop card sizing export missing: '+entry);
 const cards=fs.readFileSync('demo/cards.ts','utf8');for(const binding of ['deviceCardView(','sizeDeviceGrid(','cardSizeMenu(','updateCardControls('])if(!cards.includes(binding))throw Error('Shared desktop card behavior not connected: '+binding);
 const laundry=fs.readFileSync('demo/laundry.ts','utf8'),showcase=fs.readFileSync('demo/showcase.ts','utf8'),embeddingCss=fs.readFileSync('demo/showcase.css','utf8');
 for(const renderer of ['airerPage','washerPage','washerRuntimePage'])if(!laundry.includes(renderer+'('))throw Error('Desktop laundry renderer not connected: '+renderer);

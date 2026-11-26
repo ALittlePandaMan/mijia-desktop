@@ -1,33 +1,54 @@
-import configuration from './desktop/src-tauri/src/fixtures/home_card_presentations.json';
-import {deviceChoiceLabel} from './desktop/src/device-labels';
-import type {CardControl,Device,DevicePanel,HomeCardPresentation,Json,Property} from './desktop/src/types';
+import {curtainBindings} from './desktop/src/curtain-detail';
+import {capabilityCategory,validRange} from './desktop/src/device-capabilities';
+import {lightChannelBindings} from './desktop/src/light-bindings';
+import {booleanValue,climateBindings,climateChoiceIndex,isReadableValue,numericValue} from './desktop/src/panel-layout';
+import type {CardControl,Device,DevicePanel,HomeCardPresentation,Property} from './desktop/src/types';
 
-type Matcher={key:string;value:Json;enable_type?:string[];disable_type?:string[]};
-type Item={cardType:number;prop_key?:string;desc_sort?:string[];param_delta?:number;prop?:{prop_unit?:string};operation?:{disable_status?:Matcher[];enable_status?:Matcher[]}[]};
-type Entry={types:string[];card_items:Item[];card_instance:{instance_type:number;card_layout:number[][]}[]};
-const entries=configuration as unknown as Entry[];
-const kinds:Record<number,CardControl['kind']>={1:'toggle',3:'choices',4:'stepper',5:'slider'};
-const labels:Record<number,string>={1:'电源',3:'模式',4:'目标温度',5:'亮度'};
-const normalize=(text:string)=>text.toLowerCase().replace(/[\s_.-]/g,'');
+function rangeControl(property:Property|undefined,appearance:NonNullable<CardControl['appearance']>,label:string,unit:string,available:boolean):CardControl|undefined{
+  if(!property?.access.includes('write')||!property.access.includes('read')||!validRange(property))return;
+  const id=`${property.siid}:${property.piid}`;
+  const [min,max,step]=property.valueRange!;
+  const value=numericValue(property);
+  const hasValue=value!==undefined&&Number.isFinite(value);
+  return {
+    id,fieldId:id,appearance,kind:appearance==='temperature'?'stepper':'slider',label,
+    value:hasValue?value:null,enabled:available&&hasValue,
+    reason:null,options:[],range:{min,max,step,unit},
+  };
+}
 
-/** Bind the desktop's original templates only to the three simulated families
- * present in this demo. No cloud inventory, sessions, or device commands. */
+/** Adapt the demo's simulated properties for the shared desktop card renderer. */
 export function demoCardPresentation(device:Device,panel:DevicePanel):HomeCardPresentation|undefined{
- const category=device.specType?.split(':')[3];if(!category||!['light','air-conditioner','curtain'].includes(category))return;
- const entry=entries.find(row=>row.types.includes(category)),layout=entry?.card_instance.find(row=>row.instance_type===9)?.card_layout;
- if(!entry||!layout)return;
- const resolve=(selector:string):Property|undefined=>{const [kind,service,name]=selector.split(':');return kind==='p'?panel.services.find(s=>s.name===service)?.properties.find(p=>p.name===name):undefined;};
- const controls:CardControl[]=[];const rows:string[][]=[];
- for(const row of layout){const ids:string[]=[];for(const index of row){
-  const item=entry.card_items[index],p=item?.prop_key&&resolve(item.prop_key),kind=item&&kinds[item.cardType];
-  if(!p||!kind||!p.access.includes('write'))return;
-  const matches=(matcher:Matcher)=>{if(matcher.disable_type?.includes(device.specType??'')||matcher.enable_type&&!matcher.enable_type.includes(device.specType??''))return false;const dependency=resolve(matcher.key);if(!dependency||dependency.code!==0)return true;const semantic=dependency.valueList?.find(v=>v.value===dependency.value)?.description;return dependency.value===matcher.value||typeof matcher.value==='string'&&!!semantic&&normalize(semantic)===normalize(matcher.value);};
-  const gated=item.operation?.some(op=>op.disable_status?.some(matches)||op.enable_status?.some(m=>!matches(m)))??false;
-  const id=`${p.siid}:${p.piid}`,list=p.valueList??[],options=(item.desc_sort?item.desc_sort.flatMap(name=>list.filter(option=>normalize(option.description)===normalize(name))):list).map(option=>({label:deviceChoiceLabel(option.description),value:option.value}));
-  const range=p.valueRange?{min:p.valueRange[0],max:p.valueRange[1],step:Math.max(p.valueRange[2],item.param_delta??p.valueRange[2]),unit:item.prop?.prop_unit??(kind==='stepper'?'℃':'%')}:null;
-  const enabled=device.online&&!device.sharedReadOnly&&!gated&&p.code===0&&!p.unsupportedReason;
-  controls.push({id,fieldId:id,kind,label:labels[item.cardType],value:p.value??null,enabled,reason:enabled?null:'当前状态不允许此操作',options,range});ids.push(id);
- }rows.push(ids);}
- const headerControl=rows[0]?.length===1&&controls.find(c=>c.id===rows[0][0])?.kind==='toggle'?rows.shift()![0]:null;
- return {did:device.did,templateId:'demo-desktop-'+category,revision:1,headerControl,rows,controls};
+  const category=capabilityCategory(panel.specType);
+  const available=device.online&&!device.sharedReadOnly;
+  let adjustment:CardControl|undefined;
+  let power:CardControl|undefined;
+
+  if(category==='curtain'){
+    const bindings=curtainBindings(panel,device.controlServiceId);
+    adjustment=rangeControl(bindings?.target,'curtain-position','目标位置','%',available);
+    if(adjustment)adjustment.curtainOpening=bindings?.opening;
+  }else if(category==='light'||category==='air-conditioner'){
+    const channels=category==='light'?lightChannelBindings(panel).filter(channel=>device.controlServiceId==null||channel.service.siid===device.controlServiceId):[];
+    const light=channels.length===1?channels[0]:undefined;
+    const climate=category==='air-conditioner'?climateBindings(panel,undefined,device.controlServiceId):undefined;
+    const on=light?.on??climate?.on;
+    if(!on?.access.includes('write'))return;
+    const id=`${on.siid}:${on.piid}`,onValue=booleanValue(on);
+    power={id,fieldId:id,kind:'toggle',label:'电源',value:onValue??null,enabled:available&&onValue!==undefined,reason:null,options:[],range:null};
+    const enabled=available&&onValue===true;
+    if(light){
+      adjustment=rangeControl(light.brightness,light.color?'rgb-brightness':'white-brightness','亮度','%',enabled);
+    }else if(climate){
+      const mode=climate.mode;
+      const selectedMode=isReadableValue(mode)?mode.valueList?.find(choice=>choice.value===mode.value):undefined;
+      const temperatureAllowed=!mode||(selectedMode!==undefined&&climateChoiceIndex(selectedMode,'mode')!==2);
+      adjustment=rangeControl(climate.target,'temperature','目标温度','℃',enabled&&temperatureAllowed);
+    }
+  }
+  if(!adjustment)return;
+  return {
+    did:device.did,templateId:'demo-desktop-'+category,revision:1,
+    headerControl:power?.id??null,rows:[[adjustment.id]],controls:power?[power,adjustment]:[adjustment],
+  };
 }

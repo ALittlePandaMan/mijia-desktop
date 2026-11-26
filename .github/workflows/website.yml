@@ -10,7 +10,6 @@ on:
       - '.github/workflows/website.yml'
       - 'scripts/export-showcase.mjs'
       - 'src/**'
-      - 'src-tauri/src/fixtures/home_card_presentations.json'
       - 'licenses/**'
       - 'docs/THIRD_PARTY_NOTICES.md'
       - 'LICENSE'

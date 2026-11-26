@@ -65,7 +65,12 @@ export class DemoCards{
  private openMenu(id:DeviceId,x:number,y:number){
   if(!this.drag.settleLanding())return;
   this.closeMenu();
-  const card=this.cards.get(id)!;this.opener=card.querySelector<HTMLElement>('.device-card-open')??card;const menu=element('div','device-context-menu');menu.setAttribute('role','menu');menu.setAttribute('aria-label',demoDevice(id)!.name+'卡片大小');menu.append(cardSizeMenu(this.store.cardSize(id),size=>{this.closeMenu(true);this.store.setCardSize(id,size);}));cardMenuKeys(menu,()=>this.closeMenu(true));this.menu=menu;document.body.append(menu);menu.style.left=`${Math.max(8,Math.min(x,innerWidth-menu.offsetWidth-8))}px`;menu.style.top=`${Math.max(8,Math.min(y,innerHeight-menu.offsetHeight-8))}px`;menu.querySelector<HTMLButtonElement>('button')?.focus({preventScroll:true});
+  const card=this.cards.get(id)!;this.opener=card.querySelector<HTMLElement>('.device-card-open')??card;
+  const menu=element('div','device-context-menu');menu.setAttribute('role','menu');menu.setAttribute('aria-label',demoDevice(id)!.name+'卡片大小');
+  menu.append(cardSizeMenu(this.store.cardSize(id),size=>{this.closeMenu(true);this.store.setCardSize(id,size);},undefined,this.store.canUseLargeCard(id)));
+  cardMenuKeys(menu,()=>this.closeMenu(true));this.menu=menu;document.body.append(menu);
+  menu.style.left=`${Math.max(8,Math.min(x,innerWidth-menu.offsetWidth-8))}px`;menu.style.top=`${Math.max(8,Math.min(y,innerHeight-menu.offsetHeight-8))}px`;
+  menu.querySelector<HTMLButtonElement>('button:not([hidden]):not(:disabled)')?.focus({preventScroll:true});
  }
  private outside=(event:PointerEvent)=>{if(this.menu&&!this.menu.contains(event.target as Node))this.closeMenu();};
  private resized=()=>this.cancelInteraction();
