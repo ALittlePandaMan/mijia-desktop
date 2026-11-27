@@ -16,8 +16,13 @@ jobs:
           node-version-file: .node-version
       - name: Install the Windows x64 cross compiler
         run: |
-          sudo apt-get update -q
-          sudo apt-get install -y --no-install-recommends gcc-mingw-w64-x86-64-win32 nasm
+          # MinGW and NASM are in Ubuntu's archive. Scope APT to the runner's Ubuntu mirrors.
+          ubuntu_sources=(
+            -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/ubuntu.sources
+            -o Dir::Etc::sourceparts=-
+          )
+          sudo apt-get "${ubuntu_sources[@]}" update -q
+          sudo apt-get "${ubuntu_sources[@]}" install -y --no-install-recommends gcc-mingw-w64-x86-64-win32 nasm
       - name: Build and verify the pinned LGPL decoder
         run: bash scripts/build-media-decoder-linux.sh
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
