@@ -1,6 +1,11 @@
 {
   "repository": "ALittlePandaMan/mijia-desktop",
-  "stars": 0,
-  "downloads": 116,
-  "updatedAt": "2026-11-18T03:19:43.087Z"
+  "stars": 5,
+  "downloads": 11,
+  "latestRelease": {
+    "tag": "v0.1.0",
+    "installer": "https://github.com/ALittlePandaMan/mijia-desktop/releases/download/v0.1.0/mijia-desktop-v0.1.0-windows-x64-setup.exe",
+    "portable": "https://github.com/ALittlePandaMan/mijia-desktop/releases/download/v0.1.0/mijia-desktop-v0.1.0-windows-x64-portable.zip"
+  },
+  "updatedAt": "2026-11-27T07:49:20.289Z"
 }

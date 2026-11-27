@@ -5,7 +5,8 @@ import {useScrollReveal} from './use-scroll-reveal';
 import ThemeToggle from './theme-toggle';
 import GithubStats from './github-stats';
 import {siteAsset} from './site-path';
-import {latestReleaseEndpoint,releasesPage,repository as repo,windowsInstaller} from './windows-installer';
+import githubStats from '../data/github-stats.json';
+import {latestReleaseEndpoint,latestReleasePage,releasesPage,repository as repo,windowsRelease,type WindowsRelease} from './windows-release';
 const docs=`${repo}/blob/main/README.md#下载与使用`;
 const navigation:{label:string;href:string;external?:boolean}[]=[
  {label:'首页',href:'#top'},
@@ -85,17 +86,62 @@ const mcpSection = (
  </section>
 );
 
+const mirrors = [
+ {name:'百度网盘',href:'https://pan.baidu.com/s/1HtshhmrAXEG_JAatM8ClEA?pwd=4w96',code:'4w96'},
+ {name:'夸克网盘',href:'https://pan.quark.cn/s/3d2917cd3cff'},
+ {name:'123云盘',href:'https://1813366365.share.123pan.cn/123pan/RYuUVv-Btc5A'},
+];
+
+function Downloads({release}:{release:WindowsRelease|null}){
+ const releasePage=release?`${releasesPage}/tag/${release.tag}`:latestReleasePage;
+ return (
+  <section className="download-section" id="download" aria-labelledby="download-title">
+   <div className="shell download-content" data-reveal="download">
+    <h2 id="download-title">下载米家Desktop</h2>
+    <p className="download-description">安装后，用小米账号扫码登录，即可在电脑上管理米家设备。</p>
+    <div className="download-actions">
+     <a className="button download-primary" href={release?.installer??releasePage}><Icon name="download"/>下载 Windows 版</a>
+     <a className="button download-secondary" href={repo} target="_blank" rel="noreferrer">查看源码<Icon name="arrow"/></a>
+    </div>
+    <div className="download-meta">
+     {release?<a href={releasePage}>最新正式版 {release.tag}</a>:null}
+     {release?.portable?<a href={release.portable}>下载便携版</a>:null}
+     <a href={releasesPage}>历史版本</a>
+    </div>
+    <div className="download-mirrors">
+     <h3>网盘下载</h3>
+     <ul>
+      {mirrors.map(({name,href,code})=>(
+       <li key={name}>
+        <a className="button download-secondary" href={href} target="_blank" rel="noreferrer">
+         {name}
+         {code?<span className="download-access-code">提取码 {code}</span>:null}
+        </a>
+       </li>
+      ))}
+     </ul>
+    </div>
+    <p className="download-platform">支持 Windows · <span>macOS 和 Linux 正在适配中</span></p>
+   </div>
+  </section>
+ );
+}
+
 export default function Promo(){
  const [mode,setMode]=useState<DemoMode>('devices'),[menu,setMenu]=useState(false),toggle=useRef<HTMLButtonElement>(null),header=useRef<HTMLElement>(null),page=useRef<HTMLDivElement>(null);
- const [installer,setInstaller]=useState(releasesPage);
+ const [release,setRelease]=useState<WindowsRelease|null>(githubStats.latestRelease);
  useEffect(()=>{
   const controller=new AbortController();
   const timeout=window.setTimeout(()=>controller.abort(),5000);
   void fetch(latestReleaseEndpoint,{signal:controller.signal})
-   .then(response=>response.ok?response.json():undefined)
-   .then(release=>{
-    const url=windowsInstaller(release);
-    if(url&&!controller.signal.aborted)setInstaller(url);
+   .then(async response=>{
+    if(response.status===404){
+     if(!controller.signal.aborted)setRelease(null);
+     return;
+    }
+    if(!response.ok)return;
+    const latest=windowsRelease(await response.json());
+    if(!controller.signal.aborted)setRelease(latest);
    })
    .catch(()=>{})
    .finally(()=>window.clearTimeout(timeout));
@@ -130,11 +176,11 @@ export default function Promo(){
    <div id="mobile-navigation" className="mobile-menu" aria-hidden={!menu} inert={!menu}><nav className="mobile-menu-nav shell" aria-label="移动导航">{navigation.map(item=><a className="mobile-menu-link" key={item.href} href={item.href} target={item.external?'_blank':undefined} rel={item.external?'noreferrer':undefined} onClick={()=>setMenu(false)}>{item.label}</a>)}<div className="mobile-menu-footer"><a className="button primary" href="#download" onClick={()=>setMenu(false)}><Icon name="download"/>免费下载</a><a className="mobile-menu-github" href={repo} target="_blank" rel="noreferrer" onClick={()=>setMenu(false)}><Icon name="github"/>查看源码</a></div></nav></div>
   </header>
   <main id="main" inert={menu}>
-   <section className="hero shell"><div className="hero-copy"><h1 className="hero-brand"><img src={siteAsset('app-icon-blue.svg')} width="52" height="52" alt=""/><span>米家Desktop</span></h1><p className="hero-tagline">在电脑上用米家，<br/>管理设备，查看多路监控。</p><div className="hero-actions"><a className="button primary" href={installer}><Icon name="download"/>下载 Windows 版</a><a className="button secondary" href={docs} target="_blank" rel="noreferrer">使用指南<Icon name="arrow"/></a></div><div className="availability">Windows 10 / 11（x64）· 免费开源</div></div><div className="hero-product"><Preview instance="hero" mode="devices"/></div></section>
+   <section className="hero shell"><div className="hero-copy"><h1 className="hero-brand"><img src={siteAsset('app-icon-blue.svg')} width="52" height="52" alt=""/><span>米家Desktop</span></h1><p className="hero-tagline">在电脑上用米家，<br/>管理设备，查看多路监控。</p><div className="hero-actions"><a className="button primary" href={release?.installer??latestReleasePage}><Icon name="download"/>下载 Windows 版</a><a className="button secondary" href={docs} target="_blank" rel="noreferrer">使用指南<Icon name="arrow"/></a></div><div className="availability">Windows 10 / 11（x64）· 免费开源</div></div><div className="hero-product"><Preview instance="hero" mode="devices"/></div></section>
    <section className="features shell" id="features"><div className="section-heading" data-reveal="heading"><h2>功能亮点</h2><GithubStats/></div><div className="benefit-grid">{benefits.map(([icon,title,copy])=><article className="benefit-card" data-reveal="card" key={title}><span className="benefit-icon"><Icon name={icon}/></span><h3>{title}</h3><p>{copy}</p></article>)}</div></section>
    <section className="showcase-section shell" id="showcase"><div className="section-heading" data-reveal="heading"><h2>体验米家Desktop</h2></div><div className="mode-tabs" data-reveal="tabs" role="tablist" aria-label="交互演示模式">{([['devices','home','米家模式'],['monitor','grid','监控模式']] as const).map(([id,icon,label])=><button key={id} type="button" id={'tab-'+id} role="tab" aria-selected={mode===id} aria-controls="showcase-panel" tabIndex={mode===id?0:-1} onClick={()=>setMode(id)} onKeyDown={event=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(event.key)){event.preventDefault();const next=event.key==='Home'?'devices':event.key==='End'?'monitor':mode==='devices'?'monitor':'devices';setMode(next);document.getElementById('tab-'+next)?.focus();}}}><Icon name={icon}/>{label}</button>)}</div><div id="showcase-panel" data-reveal="preview" role="tabpanel" aria-labelledby={'tab-'+mode}><Preview instance="showcase" mode={mode} onMode={setMode}/></div></section>
    {mcpSection}
-   <section className="download-section" id="download" aria-labelledby="download-title"><div className="shell download-content" data-reveal="download"><h2 id="download-title">下载米家Desktop</h2><p className="download-description">安装后，用小米账号扫码登录，即可在电脑上管理米家设备。</p><div className="download-actions"><a className="button download-primary" href={installer}><Icon name="download"/>下载 Windows 版</a><a className="button download-secondary" href={repo} target="_blank" rel="noreferrer">查看源码<Icon name="arrow"/></a></div><p className="download-platform">支持 Windows · <span>macOS 和 Linux 正在适配中</span></p></div></section>
+   <Downloads release={release}/>
   </main><footer className="site-footer" inert={menu}><div className="shell footer-content">
    <div className="footer-main">
 

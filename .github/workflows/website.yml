@@ -14,6 +14,11 @@ on:
       - 'docs/THIRD_PARTY_NOTICES.md'
       - 'LICENSE'
       - '.node-version'
+  release:
+    types: [published, edited, unpublished, deleted]
+  workflow_run:
+    workflows: [Release]
+    types: [completed]
   schedule:
     - cron: '17 3 * * *'
   workflow_dispatch:
@@ -22,8 +27,28 @@ permissions:
   contents: read
 
 jobs:
+  refresh-after-release:
+    name: Queue Pages refresh on main
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: write
+    steps:
+      # Release refs are tags. The Pages environment accepts main only.
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run website.yml --repo "$GITHUB_REPOSITORY" --ref main
+
   build:
     name: Build and check website
+    # GITHUB_TOKEN publishes automated releases, which do not emit a workflow-triggering release event.
+    if: |
+      github.event_name != 'release' &&
+      (github.event_name != 'workflow_run' ||
+        (github.event.workflow_run.conclusion == 'success' &&
+         github.event.workflow_run.event == 'push' &&
+         startsWith(github.event.workflow_run.head_branch, 'v')))
     runs-on: ubuntu-latest
     timeout-minutes: 15
     defaults:
@@ -42,7 +67,7 @@ jobs:
           cache: npm
           cache-dependency-path: website/package-lock.json
       - run: npm ci
-      - name: Refresh public GitHub statistics
+      - name: Refresh public GitHub release and statistics
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         continue-on-error: true
         env:

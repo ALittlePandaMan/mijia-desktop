@@ -21,6 +21,8 @@
 
 ## 发布与素材
 
-Website 工作流在 PR 中执行检查，合并到 main 后发布到 GitHub Pages。发布构建刷新公开项目统计，每日再构建一次。读取统计失败时使用仓库中的有效数据快照。可用 npm run stats:sync 更新随源码保存的快照。
+Website 工作流在 PR 中执行检查，合并到 main 后发布到 GitHub Pages。正式版发布工作流完成后自动刷新网站，手动发布或编辑 GitHub Release 也会排队刷新。站点每日重建，采集 GitHub 星标和正式版 Windows 安装包、便携包的累计下载次数。
+
+下载区在静态页面中提供发布构建时的版本与下载链接，浏览器加载后向 GitHub 查询当前最新正式版。可用 `npm run stats:sync` 更新源码中的回退快照。网盘入口位于 `app/promo.tsx` 的下载区，各网盘文件由维护者更新。
 
 原创代码采用项目的 [MIT 许可证](../LICENSE)。图片、字体和依赖的权利说明见[第三方声明](public/licenses/THIRD_PARTY_NOTICES.md)及[监控素材声明](public/licenses/demo-media-NOTICE.md)。

@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import assert from 'node:assert/strict';
-import { releasesPage, windowsInstaller } from '../app/windows-installer.ts';
+import { latestReleasePage, releasesPage, repository, windowsRelease } from '../app/windows-release.ts';
 const files=[];
 function walk(dir){for(const entry of fs.readdirSync(dir,{withFileTypes:true})){const name=path.join(dir,entry.name);if(entry.isDirectory())walk(name);else files.push(name);}}
 walk('demo');
@@ -78,14 +78,36 @@ for(const index of ['public/demo/index.html','out/demo/index.html']){
 }
 const base=process.env.NEXT_PUBLIC_SITE_BASE_PATH||'';
 const page=fs.readFileSync('out/index.html','utf8');
-assert.ok(page.includes(`href="${releasesPage}"`), 'Static downloads link to Releases while metadata loads');
-const releaseTag='v0.1.0', installerName=`mijia-desktop-${releaseTag}-windows-x64-setup.exe`;
-const installerUrl=`${releasesPage}/download/${releaseTag}/${installerName}`;
-const asset={name:installerName,state:'uploaded',browser_download_url:installerUrl};
-const release={tag_name:releaseTag,draft:false,prerelease:false,assets:[asset]};
-assert.equal(windowsInstaller(release),installerUrl);
-assert.equal(windowsInstaller({...release,prerelease:true}),undefined);
-assert.equal(windowsInstaller({...release,assets:[{...asset,browser_download_url:`${releasesPage}/download/v1.0.0/${installerName}`}]}),undefined);
+const downloadSection = page.match(/<section[^>]*\bid="download"[^>]*>[\s\S]*?<\/section>/)?.[0] ?? '';
+assert.ok(downloadSection.includes(`href="${releasesPage}"`), 'Download section links to release history');
+assert.ok(downloadSection.includes(`href="${repository}"`), 'Download section keeps the source link');
+assert.ok(page.includes(`href="${repository}/stargazers"`), 'Star count links to GitHub');
+const beforeDownloads = page.slice(0, page.indexOf(downloadSection));
+for (const provider of ['https://pan.baidu.com/s/', 'https://pan.quark.cn/s/', 'https://1813366365.share.123pan.cn/123pan/']) {
+ assert.ok(downloadSection.includes(`href="${provider}`), 'Missing download mirror ' + provider);
+ assert.ok(!beforeDownloads.includes(`href="${provider}`), 'Mirror link outside download section ' + provider);
+}
+assert.ok(downloadSection.includes('提取码') && downloadSection.includes('4w96'), 'Baidu extraction code is visible');
+
+const snapshot = JSON.parse(fs.readFileSync('data/github-stats.json', 'utf8')).latestRelease;
+const releasePage = snapshot ? `${releasesPage}/tag/${snapshot.tag}` : latestReleasePage;
+assert.ok(downloadSection.includes(`href="${snapshot?.installer ?? releasePage}"`), 'Initial installer link uses the release snapshot');
+if (snapshot?.portable) assert.ok(downloadSection.includes(`href="${snapshot.portable}"`), 'Portable download is available before hydration');
+
+const tag = 'v0.2.0';
+const assets = ['setup.exe', 'portable.zip'].map(suffix => {
+ const name = `mijia-desktop-${tag}-windows-x64-${suffix}`;
+ return { name, state: 'uploaded', browser_download_url: `${releasesPage}/download/${tag}/${name}` };
+});
+const release = { tag_name: tag, draft: false, prerelease: false, assets };
+const [installer, portable] = assets;
+assert.deepEqual(windowsRelease(release), { tag, installer: installer.browser_download_url, portable: portable.browser_download_url });
+assert.equal(windowsRelease({ ...release, draft: true }), null);
+assert.equal(windowsRelease({ ...release, prerelease: true }), null);
+assert.deepEqual(windowsRelease({ ...release, assets: [
+ { ...installer, browser_download_url: installer.browser_download_url.replace('/download/v0.2.0/', '/download/v0.1.0/') },
+ { ...portable, state: 'open' },
+] }), { tag, installer: null, portable: null });
 for(const asset of ['demo/index.html','demo/fonts/MiSansVF.ttf','app-icon-blue.svg','licenses/THIRD_PARTY_NOTICES.md','_next/static/']){
  if(!page.includes(base+'/'+asset))throw Error('Missing Pages asset URL: '+asset);
 }
