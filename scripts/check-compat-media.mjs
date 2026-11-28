@@ -16,6 +16,13 @@ try{
   }
   const fixtureErrors=await client.evaluate('window.fixtureErrors??[]');
   if(fixtureErrors.length)throw Error(`Offline media fixture failed to start: ${fixtureErrors.join("; ")}`);
+  await check(`${render} auto-update label matches the footer links and uses the compact switch`,`(()=>{
+   const label=document.querySelector('.settings-about-auto-check .settings-row-label');
+   const link=document.querySelector('.settings-about-link');
+   const toggle=document.querySelector('[data-focus-key=app-update-auto]');
+   return getComputedStyle(label).fontSize===getComputedStyle(link).fontSize&&
+    toggle.offsetWidth===34&&toggle.offsetHeight===20;
+  })()`);
   for(const [mode,message]of [['current','当前已是最新版本。'],['available','发现新版本 v1.0.1，可以更新。'],['throw','检查更新失败，请重试。']]){
    await client.evaluate(`compatFixture.clearToast();compatFixture.setMode(${JSON.stringify(mode)});document.querySelector('[data-focus-key=app-update-check]').click();document.querySelector('[data-focus-key=app-update-check]').click();`);
    await until(client,`document.querySelector('.camera-media-toast')?.textContent.includes(${JSON.stringify(message)})`);
@@ -24,6 +31,17 @@ try{
   }
   await check(`${render} repeated clicks admitted three checks only`,'compatFixture.checks===3');
   await client.evaluate('compatFixture.clearToast();compatFixture.controller.acceptUpdate({...compatFixture.controller.data.update,revision:100,state:"current"})');await delay(80);await check(`${render} background status does not toast`,"!document.querySelector('.camera-media-toast')");
+  if(!render){
+   const toggle="document.querySelector('[data-focus-key=app-update-auto]')";
+   await check('automatic updates start disabled',`${toggle}.getAttribute('aria-checked')==='false'&&!compatFixture.savedAutoCheck`);
+   await client.evaluate(`compatFixture.setMode('available');compatFixture.setLatestVersion('1.0.2');${toggle}.click()`);
+   await until(client,"document.querySelector('.camera-media-toast')?.textContent.includes('v1.0.2')");
+   await check('opting in saves the preference and checks without starting installation',`compatFixture.savedAutoCheck&&${toggle}.getAttribute('aria-checked')==='true'&&!!document.querySelector('[data-focus-key=app-update-download]')&&!compatFixture.calls.some(c=>c.command==='start_app_update')`);
+   await client.evaluate('compatFixture.clearToast();compatFixture.automaticTick()');await delay(100);
+   await check('the periodic check does not repeat the same version toast',"compatFixture.checks===5&&!document.querySelector('.camera-media-toast')");
+   await client.evaluate(`compatFixture.setLatestVersion('1.0.3');compatFixture.automaticTick();${toggle}.click()`);await delay(100);
+   await check('turning off automatic checks suppresses a pending result',`!compatFixture.savedAutoCheck&&${toggle}.getAttribute('aria-checked')==='false'&&!document.querySelector('.camera-media-toast')`);
+  }
   await client.evaluate('compatFixture.watch();compatFixture.open()');await until(client,'compatFixture.state.leases===1');await client.evaluate('compatFixture.send(2.5,2560,1440,false,2560,1440)');await until(client,'compatFixture.state.ready===2&&compatFixture.acknowledged()');
   await check(`${render} software frame keeps source dimensions and clock`,'compatFixture.state.width===2560&&compatFixture.state.height===1440&&compatFixture.state.time===2.5&&compatFixture.frameCallbacks===1');
   await check(`${render} screenshot and layout screenshot use the actual software frame`,"compatFixture.shot().startsWith('iVBOR')&&compatFixture.layoutShot().startsWith('iVBOR')");
@@ -86,7 +104,7 @@ try{
   }
   if(!render)await check('unavailable or silent system decoding reuses the paused 4x stream in one software worker','compatFixture.systemStartupTimeout()');
   await until(client,'compatFixture.state.leases===0');
-  await check(`${render} all commands are local decoder, preferences, or explicit update checks`,"compatFixture.calls.every(c=>c.command.startsWith('camera_decode_')||c.command.startsWith('plugin:event|')||['home_preferences','change_home_preferences','check_app_update'].includes(c.command))");
+  await check(`${render} all commands are local decoder, preferences, or update checks`,"compatFixture.calls.every(c=>c.command.startsWith('camera_decode_')||c.command.startsWith('plugin:event|')||['home_preferences','change_home_preferences','check_app_update','change_desktop_option'].includes(c.command))");
   await check(`${render} no browser errors`,'fixtureErrors.length===0');
  }
  console.log(JSON.stringify({passed:checks.length,mockOnly:true,nativeAcceptance:false}));

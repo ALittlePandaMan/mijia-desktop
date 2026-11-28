@@ -1,5 +1,6 @@
 use crate::{
-    app_settings::{AppSettings, Store},
+    app_settings::{AppSettings, DesktopOption, Store},
+    detached_monitor::DetachedMonitor,
     error::Result,
     mcp::transport,
     state::AppState,
@@ -16,6 +17,7 @@ pub struct Runtime {
     pub mcp: Arc<transport::Manager>,
     exiting: AtomicBool,
     pub monitor: AtomicBool,
+    pub(crate) detached_monitor: DetachedMonitor,
     hidden: AtomicBool,
     power: Mutex<Option<PowerRequest>>,
 }
@@ -23,15 +25,7 @@ impl Runtime {
     pub fn install(app: &tauri::AppHandle) -> Result<()> {
         crate::desktop_idle::Idle::install(app);
         let settings = Arc::new(Store::new()?);
-        let mcp = transport::Manager::new(app.clone(), settings.clone());
-        app.manage(Self {
-            settings,
-            mcp: mcp.clone(),
-            exiting: AtomicBool::new(false),
-            monitor: AtomicBool::new(false),
-            hidden: AtomicBool::new(false),
-            power: Mutex::new(None),
-        });
+        let mcp = Self::manage(app, settings);
         crate::resources::Resources::install(app);
         let _ = rustls::crypto::ring::default_provider().install_default();
         if app.autolaunch().is_enabled().unwrap_or(false) {
@@ -44,6 +38,7 @@ impl Runtime {
         let handle = app.clone();
         tauri::async_runtime::spawn(async move {
             let mut previous = Value::Null;
+            let mut previous_detached = Value::Null;
             loop {
                 tokio::time::sleep(std::time::Duration::from_secs(1)).await;
                 let rt = handle.state::<Runtime>();
@@ -51,33 +46,50 @@ impl Runtime {
                     break;
                 }
                 rt.mcp.engine.watch_account().await;
+                let mut monitor_awake = false;
                 if let Some(window) = handle.get_webview_window("main") {
-                    let fullscreen = window.is_fullscreen().unwrap_or(false);
-                    let minimized = window.is_minimized().unwrap_or(true);
-                    let visible =
-                        window.is_visible().unwrap_or(false) && !rt.hidden.load(Ordering::Acquire);
-                    let state =
-                        json!({"fullscreen":fullscreen,"minimized":minimized,"visible":visible});
+                    let (state, fullscreen_visible) = window_state(&window, rt.hidden.load(Ordering::Acquire));
                     if state != previous {
-                        let _ = handle.emit("desktop-native-state", &state);
+                        let _ = handle.emit_to("main", "desktop-native-state", &state);
                         previous = state;
                     }
-                    let awake = fullscreen
-                        && visible
-                        && !minimized
-                        && rt.monitor.load(Ordering::Acquire)
-                        && rt.settings.get().keep_awake
-                        && desktop_unlocked();
-                    let mut power = rt.power.lock().unwrap();
-                    if awake && power.is_none() {
-                        *power = PowerRequest::new();
-                    } else if !awake {
-                        *power = None;
+                    monitor_awake = fullscreen_visible && rt.monitor.load(Ordering::Acquire);
+                }
+                if let Some(window) = rt.detached_monitor.label().and_then(|label| handle.get_webview_window(&label)) {
+                    let (state, fullscreen_visible) = window_state(&window, false);
+                    let identified = json!([window.label(), state]);
+                    if identified != previous_detached {
+                        let _ = handle.emit_to(window.label(), "desktop-native-state", &identified[1]);
+                        previous_detached = identified;
                     }
+                    monitor_awake |= fullscreen_visible;
+                }
+                let awake = monitor_awake && rt.settings.get().keep_awake && desktop_unlocked();
+                let mut power = rt.power.lock().unwrap();
+                if awake && power.is_none() {
+                    *power = PowerRequest::new();
+                } else if !awake {
+                    *power = None;
                 }
             }
         });
         Ok(())
+    }
+    pub(crate) fn manage(app: &tauri::AppHandle, settings: Arc<Store>) -> Arc<transport::Manager> {
+        let mcp = transport::Manager::new(app.clone(), settings.clone());
+        app.manage(Self {
+            settings,
+            mcp: mcp.clone(),
+            exiting: AtomicBool::new(false),
+            monitor: AtomicBool::new(false),
+            detached_monitor: DetachedMonitor::default(),
+            hidden: AtomicBool::new(false),
+            power: Mutex::new(None),
+        });
+        mcp
+    }
+    pub(crate) fn is_exiting(&self) -> bool {
+        self.exiting.load(Ordering::Acquire)
     }
     pub fn show(app: &tauri::AppHandle, action: &str) {
         // Activation may run inside a native single-instance/tray callback.
@@ -93,8 +105,20 @@ impl Runtime {
             if app.try_state::<Self>().is_some()
                 && app.try_state::<crate::desktop_idle::Idle>().is_some()
             {
-                if app.state::<Self>().exiting.load(Ordering::Acquire) {
+                let rt = app.state::<Self>();
+                if rt.is_exiting() {
                     return Err(crate::error::AppError::stale());
+                }
+                if action == "monitor" {
+                    if rt.detached_monitor.focus(app).is_some() { return Ok(()); }
+                    if rt.settings.desktop_options().monitor_separate_window {
+                        let state = app.state::<AppState>();
+                        if let Ok(target) = state.monitor_tray_target(rt.settings.get().startup_home).await {
+                            if matches!(Box::pin(rt.detached_monitor.open(app, target)).await, Ok(Some(_))) {
+                                return Ok(());
+                            }
+                        }
+                    }
                 }
                 crate::desktop_idle::Idle::show(app, action);
                 return crate::desktop_idle::Idle::wait_awake(app).await;
@@ -136,6 +160,7 @@ impl Runtime {
         tauri::async_runtime::spawn(async move {
             let rt = app.state::<Self>();
             rt.mcp.stop().await;
+            rt.detached_monitor.shutdown(&app).await;
             app.state::<AppState>().finish_camera_sessions().await;
             if install_update {
                 if let Err(_error) = app
@@ -156,36 +181,44 @@ impl Runtime {
         });
     }
     pub fn event(window: &tauri::Window, event: &tauri::WindowEvent) {
-        if window.label() != "main" {
-            return;
-        }
         let app = window.app_handle();
         let Some(rt) = app.try_state::<Self>() else {
             return;
         };
+        if DetachedMonitor::is_label(window.label()) {
+            if matches!(event, tauri::WindowEvent::Destroyed) {
+                rt.detached_monitor.destroyed(app, window.label());
+                if rt.hidden.load(Ordering::Acquire) && !rt.keep_background(app) {
+                    Self::quit(app);
+                }
+            }
+            return;
+        }
+        if window.label() != "main" {
+            return;
+        }
         match event {
             tauri::WindowEvent::CloseRequested { api, .. } => {
                 api.prevent_close();
                 if rt.exiting.load(Ordering::Acquire) {
                     return;
                 }
-                let widgets_active = app
-                    .try_state::<Arc<crate::desktop_widgets::Widgets>>()
-                    .is_some_and(|w| w.has_pins());
-                if !rt.settings.get().close_to_tray && !widgets_active {
+                if !rt.keep_background(app) {
                     Self::quit(app);
                     return;
                 }
                 if rt.hidden.swap(true, Ordering::AcqRel) {
                     return;
                 }
-                *rt.power.lock().unwrap() = None;
+                if rt.detached_monitor.label().is_none() {
+                    *rt.power.lock().unwrap() = None;
+                }
                 let _ = app.emit("desktop-action", "background");
                 let _ = window.hide();
                 app.state::<Arc<crate::resources::Resources>>().wake_hint();
             }
             tauri::WindowEvent::Destroyed => {
-                *rt.power.lock().unwrap() = None;
+                rt.monitor.store(false, Ordering::Release);
                 crate::desktop_idle::Idle::destroyed(app);
                 app.state::<Arc<crate::resources::Resources>>().forget("main");
                 app.state::<AppState>().stop_camera_sessions();
@@ -193,6 +226,17 @@ impl Runtime {
             _ => {}
         }
     }
+    fn keep_background(&self, app: &tauri::AppHandle) -> bool {
+        self.settings.get().close_to_tray || self.detached_monitor.label().is_some()
+            || app.try_state::<Arc<crate::desktop_widgets::Widgets>>().is_some_and(|w| w.has_pins())
+    }
+}
+
+fn window_state(window: &tauri::WebviewWindow, hidden: bool) -> (Value, bool) {
+    let fullscreen = window.is_fullscreen().unwrap_or(false);
+    let minimized = window.is_minimized().unwrap_or(true);
+    let visible = window.is_visible().unwrap_or(false) && !hidden;
+    (json!({"fullscreen":fullscreen,"minimized":minimized,"visible":visible}), fullscreen && visible && !minimized)
 }
 fn tray(app: &tauri::AppHandle) -> tauri::Result<()> {
     use tauri::{
@@ -200,7 +244,7 @@ fn tray(app: &tauri::AppHandle) -> tauri::Result<()> {
         tray::{MouseButton, MouseButtonState, TrayIconBuilder, TrayIconEvent},
     };
     let open = MenuItem::with_id(app, "open", "打开软件", true, None::<&str>)?;
-    let monitor = MenuItem::with_id(app, "monitor", "进入全屏监控", true, None::<&str>)?;
+    let monitor = MenuItem::with_id(app, "monitor", "进入监控", true, None::<&str>)?;
     let settings = MenuItem::with_id(app, "settings", "设置", true, None::<&str>)?;
     let exit = MenuItem::with_id(app, "exit", "退出", true, None::<&str>)?;
     let menu = Menu::with_items(app, &[&open, &monitor, &settings, &exit])?;
@@ -238,8 +282,13 @@ fn tray(app: &tauri::AppHandle) -> tauri::Result<()> {
 pub async fn application_settings(app: tauri::AppHandle) -> Result<Value> {
     let rt = app.state::<Runtime>();
     Ok(
-        json!({"settings":rt.settings.get(),"autostart":app.autolaunch().is_enabled().map_err(crate::app_settings::storage)?,"scope":app.state::<AppState>().account_scope().await.ok(),"mcpStatus":rt.mcp.status(),"update":app.state::<Arc<crate::app_update::Updates>>().status()}),
+        json!({"settings":rt.settings.get(),"desktopOptions":rt.settings.desktop_options(),"autostart":app.autolaunch().is_enabled().map_err(crate::app_settings::storage)?,"scope":app.state::<AppState>().account_scope().await.ok(),"mcpStatus":rt.mcp.status(),"update":app.state::<Arc<crate::app_update::Updates>>().status()}),
     )
+}
+#[tauri::command]
+pub async fn change_desktop_option(app: tauri::AppHandle, option: DesktopOption, enabled: bool) -> Result<Value> {
+    app.state::<Runtime>().settings.change_desktop_option(option, enabled)?;
+    application_settings(app).await
 }
 #[tauri::command]
 pub async fn change_application_settings(

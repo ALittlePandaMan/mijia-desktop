@@ -10,7 +10,7 @@ import {missingReadingText,normalizeError,reportedValueText,sameContext} from '.
 import {deviceChoiceLabel,deviceServiceLabel,deviceUnit} from '../device-labels';
 import {airPurifierBindings,environmentCategory,fanDetailBindings,simpleClimateBindings,type SimpleClimateCategory} from '../environment-controls';
 import {historyExtremes,sensorHistorySlots} from '../history';
-import {historyChart} from './history-chart';
+import {historyChart,sensorHistoryEntry} from './history-chart';
 import {deviceWait} from './device-loading';
 import {productHeader} from './product-header';
 import {switchPolicy} from '../switch-mode';
@@ -20,6 +20,7 @@ import {fanLightPower,lightChannelBindings} from '../light-bindings';
 import {climateMeter,energySupported} from '../energy';
 import {energyEntrance} from './energy-page';
 import type {ControlNode,StatusProps} from './controls';
+import {powerCardRow} from './power-button';
 import {sensorDetailReadings} from '../sensor-presentation';
 import {deviceUnavailablePage} from './device-unavailable';
 import {swingControlCard} from './swing-control';
@@ -41,10 +42,10 @@ export interface DevicePresenterHost {
 
 
 export function lightGroupPowerRow(property: Property | undefined, render: (node: ControlNode) => HTMLElement): HTMLElement {
-  return render({name:'Container', props:{className:'light-power-row detail-power-row'}, items:[true,false].map(value=>({
+  return powerCardRow('light-power-row', ...[true,false].map(value=>render({
     name:'Power',props:{property,label:value?'全开':'全关',value,className:value?'power-open':'power-close',
       glyph:value?'light-all-on':'light-all-off'},
-  }))});
+  })));
 }
 
 export function renderLightPage(this: DevicePresenterHost, device: Device, group: boolean): HTMLElement {
@@ -226,14 +227,11 @@ export function renderTemperatureHumidityPage(this: DevicePresenterHost, device:
     if (this.sensorHistory) card.dataset.fetchedAt = String(this.sensorHistory.fetchedAt);
     const displayedHistory = sensorHistorySlots(this.sensorHistory);
     for (const [name, title, unit, precision] of [['temperature', '温度', '℃', 1], ['humidity', '湿度', '%', 0]] as const) {
-      const entry = element('section', 'sensor-history-entry');
-      const heading = element('header', 'sensor-history-heading', element('h3', '', title));
-      heading.setAttribute('aria-description','云端历史');
       const channel = this.sensorHistory?.channels.find(channel => channel.name === name);
       const slots = displayedHistory[name];
       const message = this.historyError?.message ?? channel?.error ?? (!historyExtremes(slots) ? '暂无云端记录' : undefined);
-      entry.append(heading,this.historyLoading&&!this.sensorHistory?deviceWait(()=>this.deviceArtwork(device),'历史数据'):message ? element('div', 'sensor-history-placeholder', message) : historyChart(slots, unit, precision));
-      card.append(entry);
+      const content=this.historyLoading&&!this.sensorHistory?deviceWait(()=>this.deviceArtwork(device),'历史数据'):message ? element('div', 'sensor-history-placeholder', message) : historyChart(slots, unit, precision);
+      card.append(sensorHistoryEntry(title,content));
     }
     card.setAttribute('aria-description','显示最近24小时的云端记录；暂不含蓝牙设备内历史。');
     view.append(card);

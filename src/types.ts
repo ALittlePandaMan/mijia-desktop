@@ -20,6 +20,7 @@ export interface LoginPoll {
 }
 
 export interface Room { id: string; name: string }
+export type MonitorHome=Pick<Home,'id'|'name'|'shared'>;
 export interface Home {
   id: string;
   name: string;

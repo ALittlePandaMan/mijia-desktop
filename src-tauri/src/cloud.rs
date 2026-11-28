@@ -57,6 +57,66 @@ impl DeviceRpc {
 }
 
 impl Cloud {
+    pub(crate) async fn scale_index(&self, device: &Device) -> Result<Value> {
+        crate::scale::validate_eco_device(device)?;
+        let uid = &self.credentials.user_id;
+        self.request_method(Method::POST, crate::scale::INDEX,
+            json!({"uid":uid,"accountId":uid,"deviceId":device.control_did()}), Some(&device.model)).await
+    }
+
+    pub(crate) async fn scale_records(&self, device: &Device, account: &str, start: u64, before: u64, pending: bool) -> Result<Value> {
+        let family = crate::scale::validate_eco_device(device)?;
+        if pending {
+            if !family.pending_supported() {
+                return Err(AppError::invalid("此型号未接入待认领记录。"));
+            }
+            return self.request_method(Method::POST, crate::scale::PENDING, json!({
+                "uid": self.credentials.user_id, "accountId": account,
+                "did": device.control_did(), "model": device.model,
+                "beginTime": before, "endTime": start, "pageSize": crate::scale::PAGE_SIZE
+            }), Some(&device.model)).await;
+        }
+        if self.credentials.region != "cn" {
+            let account = account.parse::<u64>().map_err(|_| AppError::protocol())?;
+            return self.request_method(
+                Method::POST,
+                crate::scale::REGIONAL_RECORDS,
+                json!({
+                    "uid": self.credentials.user_id, "accountId": account,
+                    "did": device.control_did(), "model": device.model,
+                    "beginTime": before, "endTime": start, "pageSize": crate::scale::PAGE_SIZE,
+                }),
+                Some(&device.model),
+            ).await;
+        }
+        let uid = self.credentials.user_id.parse::<u64>().map_err(|_| AppError::protocol())?;
+        let account = account.parse::<u64>().map_err(|_| AppError::protocol())?;
+        let params = json!({
+            "uid": uid, "accountId": account, "did": device.control_did(), "model": device.model,
+            "param": {"filter": 0, "filterTime": 0, "filterMode": 3, "pageSize": crate::scale::PAGE_SIZE,
+                "beginTime": before, "endTime": start}
+        });
+        self.request_method(Method::POST, crate::scale::RECORDS, params, Some(&device.model)).await
+    }
+
+    pub(crate) async fn scale_pending_request(&self, device: &Device, path: &str, params: Value) -> Result<Value> {
+        use crate::scale::pending;
+        if !pending::supported(device, &self.credentials.region)
+            || !matches!(path, pending::SAVE | pending::REMOVE | pending::CALCULATE) {
+            return Err(AppError::invalid("此型号没有已核实的待认领记录操作。"));
+        }
+        let result = self.request_method(Method::POST, path, params, Some(&device.model)).await?;
+        if result.get("code").is_some_and(|code| {
+            code.as_i64().or_else(|| code.as_str()?.parse().ok()) != Some(0)
+        }) {
+            return Err(AppError::new("scaleCloud", "小米云未接受称重记录操作。", false));
+        }
+        if path == pending::REMOVE && !result.as_object().is_some_and(|object| object.is_empty()) {
+            return Err(AppError::protocol());
+        }
+        Ok(result)
+    }
+
     pub(crate) async fn bath_heater_rpc(
         &self,
         device: &Device,
@@ -431,6 +491,13 @@ impl Cloud {
                         | "/appliance/washer/log/statistics"
                         | "/appliance/washer/log/list"
                         | "/appliance/washer/log/id"
+                        | crate::scale::INDEX
+                        | crate::scale::RECORDS
+                        | crate::scale::REGIONAL_RECORDS
+                        | crate::scale::PENDING
+                        | crate::scale::pending::SAVE
+                        | crate::scale::pending::REMOVE
+                        | crate::scale::pending::CALCULATE
                 )
             {
                 "api.mijia.tech".to_owned()
@@ -591,10 +658,13 @@ impl Cloud {
         key: &str,
         start: u64,
         end: u64,
+        limit: u16,
     ) -> Result<Vec<Value>> {
         // Native month queries include the current month's future last day.
         // Public IPC accepts a validated calendar selection, never these bounds.
-        if start >= end || end > crate::models::epoch_secs().saturating_add(32 * 86400 + 1800) {
+        if start >= end || end > crate::models::epoch_secs().saturating_add(32 * 86400 + 1800)
+            || !(1..=1000).contains(&limit)
+        {
             return Err(AppError::invalid("历史记录时间范围无效。"));
         }
         let result = self
@@ -603,7 +673,7 @@ impl Cloud {
                 "/user/get_user_device_data",
                 json!({
                     "did":device.control_did(),"uid":owner_id,"key":key,"type":"prop",
-                    "time_start":start,"time_end":end,"limit":1000
+                    "time_start":start,"time_end":end,"limit":limit
                 }),
                 Some(&device.model),
             )

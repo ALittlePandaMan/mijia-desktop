@@ -112,6 +112,46 @@ pub fn validate<'a>(p: &'a DevicePanel, change: &Change) -> Result<&'a Property>
 pub fn target_matches(p: &DevicePanel, c: &Change) -> bool {
     current(p, c.field) == Some(c.value)
 }
+
+/// Only properties used by the fridge detail pages belong in their display read.
+/// Keep the full schema for controls, which perform their own live validation.
+pub(crate) fn detail_read_params(panel: &DevicePanel) -> Option<Vec<Value>> {
+    if !matches!(
+        crate::capabilities::category(panel.spec_type.as_deref()).as_deref(),
+        Some("fridge" | "refrigerator")
+    ) {
+        return None;
+    }
+    let params: Vec<_> = panel
+        .services
+        .iter()
+        .flat_map(|service| {
+            service.properties.iter().filter(move |property| {
+                property.access.iter().any(|access| access == "read")
+                    && match service.name.as_str() {
+                        "fridge" | "refrigerator" => matches!(
+                            property.name.as_str(),
+                            "mode" | "fault" | "door-not-close-remind"
+                        ),
+                        "fridge-chamber"
+                        | "refrigerating-room"
+                        | "refrigerating-chamber"
+                        | "freezing-room"
+                        | "freezing-chamber" => matches!(
+                            property.name.as_str(),
+                            "temperature" | "target-temperature" | "mode"
+                        ),
+                        _ => false,
+                    }
+            })
+        })
+        .map(
+            |property| json!({"did":panel.control_did(),"siid":property.siid,"piid":property.piid}),
+        )
+        .collect();
+    (!params.is_empty()).then_some(params)
+}
+
 /// Mode/temperature firmware coupling is observed in the original UI. Protect
 /// every readable fridge field against pre-write background responses.
 pub fn version_keys(p: &DevicePanel) -> Vec<(u32, u32)> {
@@ -132,6 +172,28 @@ mod tests {
     use super::*;
     fn panel() -> DevicePanel {
         serde_json::from_str(include_str!("fixtures/fridge-panel.json")).unwrap()
+    }
+    #[test]
+    fn detail_reads_keep_chambers_and_skip_unread_serial_number() {
+        let mut p = panel();
+        let params = detail_read_params(&p).unwrap();
+        let keys: Vec<_> = params
+            .iter()
+            .map(|row| (row["siid"].as_u64().unwrap(), row["piid"].as_u64().unwrap()))
+            .collect();
+        assert_eq!(keys.len(), 9);
+        assert!(!keys.iter().any(|(siid, _)| *siid == 1));
+        for field in [
+            Field::Mode,
+            Field::Refrigerating,
+            Field::Freezing,
+            Field::Maternal,
+        ] {
+            let property = binding(&p, field).unwrap();
+            assert!(keys.contains(&(u64::from(property.siid), u64::from(property.piid))));
+        }
+        p.spec_type = Some("urn:miot-spec-v2:device:light:0000A001:sample:1".into());
+        assert!(detail_read_params(&p).is_none());
     }
     #[test]
     fn uses_service_description_and_target_not_sensor_temperature() {

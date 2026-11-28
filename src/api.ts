@@ -12,7 +12,7 @@ import type {
 const reads=new ReadScheduler(4);
 const accountReads=new ReadScheduler(2,8);
 const accountReadCommands=new Set(['list_homes','account_profile']);
-const deduplicatedReads=new Set(['list_homes','account_profile','device_panel','device_preview','device_ui_resources','home_cards','home_card_presentations','home_card_large_available','home_scenes','home_preferences','camera_features']);
+const deduplicatedReads=new Set(['list_homes','account_profile','device_panel','device_preview','device_ui_resources','home_cards','home_card_presentations','home_card_large_available','home_scenes','home_preferences','camera_features','scale_history']);
 let lifecycleBound=false;
 async function call<T>(command: string, args?: Record<string, unknown>): Promise<T> {
   if (!isTauri()) {
@@ -26,7 +26,7 @@ async function call<T>(command: string, args?: Record<string, unknown>): Promise
     const reads=['camera_features','session','account_profile','list_homes','select_home','refresh_devices','home_cards','confirm_home_card','device_panel','device_preview','device_ui_resources','read_properties','confirm_property','sensor_history','light_modes','light_settings','confirm_light_settings','light_favorites','confirm_light_favorite','outlet_energy','home_preferences'];
     reads.push('dispenser_selfcheck_records','confirm_dispenser_selfcheck','washer_config','washer_records','washer_record_detail','washer_program_preview','confirm_washer_program','purifier_options','dispenser_reminders');
     reads.push('camera_auxiliary','camera_power','fryer','ir_remote','speaker_player','camera_care','camera_care_thumbnail','camera_care_video','vacuum','bath_heater','ceiling_fan','doorbell_cloud');
-    reads.push('router_overview');
+    reads.push('router_overview','scale_history');
     const localOnly=['change_home_preferences'];
 
     reads.push('home_scenes','application_settings','application_devices','application_mcp_channels');
@@ -59,6 +59,7 @@ export const api = {
   openAppProject:(page:'github'|'issues')=>call<void>('open_app_project',{page}),
   applicationSettings:()=>call<import('./application-settings').ApplicationSettingsView>('application_settings'),
   changeApplicationSettings:(value:import('./application-settings').ApplicationSettings,autostart?:boolean)=>call<import('./application-settings').ApplicationSettingsView>('change_application_settings',{value,autostart:autostart??null}),
+  changeDesktopOption:(option:keyof import('./application-settings').DesktopOptions,enabled:boolean)=>call<import('./application-settings').ApplicationSettingsView>('change_desktop_option',{option,enabled}),
   mcpConnectionConfig:()=>call<string>('mcp_connection_config'),
   mcpRotateKey:()=>call<import('./application-settings').ApplicationSettingsView>('mcp_rotate_key'),
 
@@ -75,9 +76,13 @@ export const api = {
   monitorMicrophone:(c:import('./monitor').MonitorContext,viewerId:string,did:string,revision:number,leaseId:string|null,packet:string)=>call<void>('monitor_detail_microphone',{target:{homeId:c.memberHomes?.[did]??c.homeId,generation:c.generation,viewerId,did,revision},leaseId,packet}),
   monitorDetailClose:(c:import('./monitor').MonitorContext,viewerId:string,did:string,revision:number,leaseId:string)=>call<void>('monitor_detail_close',{target:{homeId:c.memberHomes?.[did]??c.homeId,generation:c.generation,viewerId,did,revision},leaseId}),
   monitorWindow:(enabled:boolean)=>call<void>('monitor_window',{enabled}),
-  monitorCatalog:(force=false)=>call<import('./monitor-catalog').MonitorCatalog>('monitor_catalog',{force}),
+  openDetachedMonitor:(target:import('./application-settings').StartupMonitorTarget)=>call<string|null>('open_detached_monitor',{target}),
+  detachedMonitorStatus:()=>call<string|null>('detached_monitor_status'),
+  closeDetachedMonitor:(label:string)=>call<void>('close_detached_monitor',{label}),
+  focusCameraView:(context:DeviceContext)=>call<boolean>('focus_camera_view',{...context}),
+  monitorCatalog:(force=false,homeId?:string)=>call<import('./monitor-catalog').MonitorCatalog>('monitor_catalog',{force,homeId}),
   changeMonitorSelection:(scope:string,homeId:string,did:string,excluded:boolean)=>call<import('./monitor-catalog').MonitorCatalog>('change_monitor_selection',{scope,homeId,did,excluded}),
-  createMonitor:(c:import('./monitor').MonitorContext,dids:string[])=>c.allHomes?call<string>('create_monitor_all',{generation:c.generation,dids}):call<string>('create_monitor',{homeId:c.homeId,generation:c.generation,dids}),
+  createMonitor:(c:import('./monitor').MonitorContext,dids:string[])=>c.allHomes?call<string>('create_monitor_all',{generation:c.generation,dids,homeId:c.displayHomeId}):call<string>('create_monitor',{homeId:c.homeId,generation:c.generation,dids}),
   readMonitor:(c:import('./monitor').MonitorContext,viewerId:string)=>call<import('./monitor').MonitorRow[]>(c.allHomes?'read_monitor_all':'read_monitor',{homeId:c.homeId,generation:c.generation,viewerId}),
   retryMonitor:(c:import('./monitor').MonitorContext,viewerId:string,did:string)=>call<void>(c.allHomes?'retry_monitor_all':'retry_monitor',{homeId:c.homeId,generation:c.generation,viewerId,did}),
   stopMonitor:(c:import('./monitor').MonitorContext,viewerId:string)=>call<void>(c.allHomes?'stop_monitor_all':'stop_monitor',{homeId:c.homeId,generation:c.generation,viewerId}),
@@ -163,6 +168,10 @@ export const api = {
   observeProperties: (context: DeviceContext) => call<DevicePanel>('read_properties', { ...context, observed:true }),
   confirmWasherRuntime: (context: DeviceContext, expectedState?:string, intent?:string) => call<DevicePanel>('read_properties', { ...context, washerConfirmation:true, washerExpectedState:expectedState, washerIntent:intent }),
   sensorHistory: (context: DeviceContext) => call<SensorHistory>('sensor_history', { ...context }),
+  scaleHistory: (context:DeviceContext,query:import('./scale-history').ScaleQuery) =>
+    call<import('./scale-history').ScaleHistory>('scale_history',{...context,query}),
+  changeScalePending: (context:DeviceContext,change:import('./scale-history').ScaleRecordUpdate) =>
+    call<void>('change_scale_pending',{...context,change}),
   lightModes: (context: DeviceContext) => call<LightModeReport>('light_modes', { ...context }),
   lightSettings:(context:DeviceContext)=>call<LightSettingsReport>('light_settings',{...context}),
   changeLightSettings:(context:DeviceContext,change:LightSettingsChange)=>call<LightSettingsResult>('change_light_settings',{...context,change}),

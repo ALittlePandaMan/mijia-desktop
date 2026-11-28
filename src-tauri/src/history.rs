@@ -131,7 +131,7 @@ async fn pages(
     budget: (usize, Instant),
 ) -> Result<Pages> {
     collect_pages(start, end, budget, |cursor| {
-        cloud.history_page(device, owner, key, start, cursor)
+        cloud.history_page(device, owner, key, start, cursor, 1000)
     })
     .await
 }
@@ -180,7 +180,7 @@ where
     Ok(output)
 }
 
-fn payload(
+pub(crate) fn payload(
     row: &Value,
     did: &str,
     owner: &str,

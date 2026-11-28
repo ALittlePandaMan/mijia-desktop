@@ -1,13 +1,28 @@
-import type {Device,Home} from './types';
+import type {Device,Home,MonitorHome} from './types';
 import {api} from './api';
+import {normalizeError} from './logic';
 export interface MonitorHousehold{home:Home;devices:Device[];excludedDeviceIds:string[];error?:{message:string}|null}
-export interface MonitorCatalog{scope:string;generation:number;allHomes:boolean;homes:MonitorHousehold[];incomplete:boolean}
-export function selectedMonitorMembers(view:MonitorCatalog):{home:Home;device:Device}[]{
- const seen=new Set<string>();return view.homes.filter(h=>!h.error).flatMap(h=>h.devices.filter(d=>!h.excludedDeviceIds.includes(d.did)).map(device=>({home:h.home,device}))).filter(({device})=>{if(seen.has(device.did))return false;seen.add(device.did);return true;});
+export interface MonitorCatalog{scope:string;generation:number;allHomes:boolean;homes:MonitorHousehold[];availableHomes?:MonitorHome[];incomplete:boolean}
+export function selectedMonitorMembers(view:MonitorCatalog,homeId?:string):{home:Home;device:Device}[]{
+ const seen=new Set<string>();return view.homes.filter(h=>!h.error&&(!homeId||h.home.id===homeId)).flatMap(h=>h.devices.filter(d=>!h.excludedDeviceIds.includes(d.did)).map(device=>({home:h.home,device}))).filter(({device})=>{if(seen.has(device.did))return false;seen.add(device.did);return true;});
+}
+export async function readMonitorCatalog(force=false,homeId?:string):Promise<MonitorCatalog>{
+ let view:MonitorCatalog;
+ try{view=await api.monitorCatalog(force,homeId);}
+ catch(error){
+  if(normalizeError(error).kind!=='monitorSessionRenewed')throw error;
+  view=await api.monitorCatalog(force,homeId);
+ }
+ if(homeId!==undefined){
+  const home=view.homes.find(item=>item.home.id===homeId);
+  if(!home)throw {kind:'staleContext',message:'当前账号无法访问此家庭。',retryable:false};
+  if(home.error)throw home.error;
+ }
+ return view;
 }
 export class MonitorCatalogController{
  data?:MonitorCatalog;loading=false;pending=0;error='';private scope:string|null=null;private epoch=0;private version=0;private flight?:Promise<void>;private queue=Promise.resolve();
- constructor(private changed:()=>void,private transport={load:api.monitorCatalog,change:api.changeMonitorSelection}){}
+ constructor(private changed:()=>void,private transport={load:readMonitorCatalog,change:api.changeMonitorSelection}){}
  setAccount(scope:string|null):void{if(scope===this.scope)return;this.scope=scope;++this.epoch;++this.version;this.data=undefined;this.flight=undefined;this.loading=false;this.pending=0;this.error='';}
  load(force=false):Promise<void>{
   if(!this.scope)return Promise.resolve();if(this.flight)return this.flight;

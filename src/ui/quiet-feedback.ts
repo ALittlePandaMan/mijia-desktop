@@ -8,7 +8,7 @@ const notifications=new Set([
  'fryer-error','home-operation-feedback','ir-remote-message',
  'monitor-tile-notice','purifier-error','reminder-note',
  'router-ipv6-error','router-ipv6-note','router-password-error','router-records-feedback',
- 'router-warning','scale-error','scale-message','scale-read-note','scene-note',
+ 'router-warning','scene-note',
  'selfcheck-notice','sensor-history-warning','settings-caption','settings-error','vacuum-feedback',
 ]);
 export function quietFeedback(node:HTMLElement):void{

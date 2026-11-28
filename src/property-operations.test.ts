@@ -4,6 +4,16 @@ const tick=async()=>{for(let i=0;i<20;i++)await Promise.resolve();};
 const done=(actual:boolean):PropertyReply=>({outcome:'confirmed',actual,message:'confirmed'});
 const deferred=()=>{let resolve!:(value:PropertyReply)=>void;const promise=new Promise<PropertyReply>(r=>resolve=r);return{promise,resolve};};
 describe('property operation ordering and confirmation',()=>{
+ it('settles a write-only command after submission without recording a device confirmation',async()=>{
+  const send=vi.fn().mockResolvedValue({outcome:'submitted',message:''}),read=vi.fn();
+  const ops=new PropertyOperations(send,read,vi.fn());
+  ops.write('motor',2,null);
+  expect(ops.display('motor',null).value).toBe(2);
+  await tick();
+  expect(ops.get('motor')).toMatchObject({pending:false,confirmed:null,outcome:undefined});
+  expect(read).not.toHaveBeenCalled();
+  expect(send).toHaveBeenCalledTimes(1);
+ });
  it('expires prerequisite and dependent projections together without touching an unrelated field',async()=>{vi.useFakeTimers();try{const ops=new PropertyOperations(()=>new Promise(()=>{}),vi.fn(),vi.fn());ops.write('power',true,false);const revision=ops.get('power')!.revision;await vi.advanceTimersByTimeAsync(100);ops.write('brightness',60,30,[{key:'power',revision}]);ops.write('other',8,7);await vi.advanceTimersByTimeAsync(29900);expect(ops.get('power')?.pending).toBe(false);expect(ops.get('brightness')?.pending).toBe(false);expect(ops.get('brightness')?.target).toBe(30);expect(ops.get('other')?.pending).toBe(true);ops.reset();}finally{vi.useRealTimers();}});
  it('silently rolls back on the first verification read error',async()=>{const ops=new PropertyOperations(async()=>({outcome:'pending',message:'accepted'}),async()=>{throw{kind:'offline',message:'query offline'};},vi.fn(),async()=>{});ops.write('position',41,100);await tick();expect(ops.get('position')?.target).toBe(100);expect(ops.get('position')?.pending).toBe(false);expect(ops.get('position')?.outcome).toBe('rejected');ops.reset();});
  it('does not let an obsolete query block a newer write or adopt its late failure',async()=>{const old=deferred(),send=vi.fn().mockResolvedValue({outcome:'pending',message:'accepted'}),read=vi.fn().mockImplementationOnce(()=>old.promise).mockResolvedValue(done(false));const ops=new PropertyOperations(send,read,vi.fn(),async()=>{});ops.write('switch',true,false);await tick();expect(read).toHaveBeenCalledTimes(1);ops.write('switch',false,false);await tick();expect(send).toHaveBeenCalledTimes(2);expect(ops.get('switch')?.pending).toBe(false);old.resolve({outcome:'rejected',actual:true,message:'old refusal'});await tick();expect(ops.display('switch',false).value).toBe(false);expect(ops.get('switch')?.outcome).toBe('confirmed');ops.reset();});

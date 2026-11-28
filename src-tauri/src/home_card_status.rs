@@ -102,9 +102,8 @@ pub(super) async fn compile(
     {
         return Ok(result);
     }
-    let group_capable = matches!(device.spec_type.as_deref().and_then(urn_name), Some("switch" | "relay" | "control-panel"))
-        && device.control_service_id.is_none();
-    if !group_capable && device.spec_type.as_deref().is_some_and(|urn| {
+    let relay = device.spec_type.as_deref().is_some_and(relay_category);
+    if !relay && device.spec_type.as_deref().is_some_and(|urn| {
         urn_name(urn)
             .and_then(|name| category_entry(config, name))
             .is_none_or(|entry| {
@@ -124,7 +123,9 @@ pub(super) async fn compile(
         result.items=compile_items(config,device,&panel);
         return Ok(result);
     }
-    if group_capable { result.group = super::switch_group::GroupPlan::new(device, panel.clone()); }
+    if relay && device.control_service_id.is_none() {
+        result.group = super::switch_group::GroupPlan::new(device, panel.clone());
+    }
     result.switch_states = panel
         .services
         .iter()

@@ -91,29 +91,62 @@ impl AppSettings {
         Ok(())
     }
 }
+// Keep the original settings file readable by the released 0.1.0 client.
+#[derive(Clone, Copy, Debug, Default, Serialize, Deserialize, PartialEq, Eq)]
+#[serde(default, rename_all = "camelCase", deny_unknown_fields)]
+pub struct DesktopOptions {
+    pub auto_check_updates: bool,
+    pub monitor_separate_window: bool,
+}
+
+#[derive(Clone, Copy, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub enum DesktopOption {
+    AutoCheckUpdates,
+    MonitorSeparateWindow,
+}
+
 pub struct Store {
     value: RwLock<AppSettings>,
+    desktop: RwLock<DesktopOptions>,
     pub revision: AtomicU64,
     pub grant_epoch: AtomicU64,
     path: PathBuf,
 }
 impl Store {
     pub fn new() -> Result<Self> {
-        let path = directory()?.join("app-settings-v1.json");
-        archive_retired_memory(path.parent().ok_or_else(|| storage("path"))?)?;
+        let root = directory()?;
+        archive_retired_memory(&root)?;
+        Self::open(root.join("app-settings-v1.json"))
+    }
+    pub(crate) fn open(path: PathBuf) -> Result<Self> {
+        let desktop_path = path.with_file_name("desktop-options-v1.json");
+        let saved_desktop = match std::fs::read(&desktop_path) {
+            Ok(bytes) => Some(serde_json::from_slice(&bytes).map_err(storage)?),
+            Err(error) if error.kind() == std::io::ErrorKind::NotFound => None,
+            Err(error) => return Err(storage(error)),
+        };
+        let mut desktop = saved_desktop.unwrap_or_default();
         let value = if path.exists() {
             if std::fs::metadata(&path).map_err(storage)?.len() > 2 * 1024 * 1024 {
                 return Err(AppError::invalid("应用设置文件过大。"));
             }
             let bytes = std::fs::read(&path).map_err(storage)?;
-            let (stored, migrated) = migrate(&bytes)?;
+            let (mut stored, migrated) = migrate(&bytes)?;
+            let old_desktop = take_desktop_options(&mut stored)?;
             let value: AppSettings = serde_json::from_value(stored).map_err(storage)?;
             value.validate()?;
+            if let (None, Some(options)) = (saved_desktop, old_desktop) {
+                atomic_write(&desktop_path, &serde_json::to_vec_pretty(&options).map_err(storage)?)?;
+                desktop = options;
+            }
             if migrated {
                 let backup = path.with_file_name("app-settings-before-family-mcp-v1.json");
                 if !backup.exists() {
                     std::fs::write(&backup, &bytes).map_err(storage)?;
                 }
+            }
+            if migrated || old_desktop.is_some() {
                 atomic_write(&path, &serde_json::to_vec_pretty(&value).map_err(storage)?)?;
             }
             value
@@ -123,6 +156,7 @@ impl Store {
         value.validate()?;
         Ok(Self {
             value: RwLock::new(value),
+            desktop: RwLock::new(desktop),
             revision: AtomicU64::new(0),
             grant_epoch: AtomicU64::new(0),
             path,
@@ -130,6 +164,22 @@ impl Store {
     }
     pub fn get(&self) -> AppSettings {
         self.value.read().unwrap_or_else(|e| e.into_inner()).clone()
+    }
+    pub fn desktop_options(&self) -> DesktopOptions {
+        *self.desktop.read().unwrap_or_else(|e| e.into_inner())
+    }
+    pub fn change_desktop_option(&self, option: DesktopOption, enabled: bool) -> Result<()> {
+        let mut guard = self.desktop.write().map_err(storage)?;
+        let mut next = *guard;
+        match option {
+            DesktopOption::AutoCheckUpdates => next.auto_check_updates = enabled,
+            DesktopOption::MonitorSeparateWindow => next.monitor_separate_window = enabled,
+        }
+        if next != *guard {
+            atomic_write(&self.path.with_file_name("desktop-options-v1.json"), &serde_json::to_vec_pretty(&next).map_err(storage)?)?;
+            *guard = next;
+        }
+        Ok(())
     }
     pub fn save(&self, value: AppSettings) -> Result<()> {
         let mut guard = self.value.write().map_err(storage)?;
@@ -200,6 +250,16 @@ fn migrate(bytes: &[u8]) -> Result<(serde_json::Value, bool)> {
     Ok((stored, changed))
 }
 
+fn take_desktop_options(stored: &mut serde_json::Value) -> Result<Option<DesktopOptions>> {
+    let Some(object) = stored.as_object_mut() else { return Ok(None) };
+    let migrated: serde_json::Map<_, _> = ["autoCheckUpdates", "monitorSeparateWindow"]
+        .into_iter()
+        .filter_map(|key| object.remove(key).map(|value| (key.to_owned(), value)))
+        .collect();
+    if migrated.is_empty() { return Ok(None) }
+    serde_json::from_value(serde_json::Value::Object(migrated)).map(Some).map_err(storage)
+}
+
 pub fn directory() -> Result<PathBuf> {
     Ok(crate::platform_paths::local_data_dir()
         .ok_or_else(|| AppError::new("storage", "无法取得用户目录。", false))?
@@ -239,6 +299,7 @@ mod tests {
         });
         let store = Store {
             value: RwLock::new(value),
+            desktop: RwLock::new(DesktopOptions::default()),
             revision: AtomicU64::new(0),
             grant_epoch: AtomicU64::new(0),
             path: PathBuf::new(),
@@ -271,6 +332,27 @@ mod tests {
         s.mcp.excluded_homes = vec![h.clone(), h];
         assert!(s.validate().is_err());
         assert!(serde_json::from_value::<McpSettings>(serde_json::json!({"grants":[]})).is_err());
+    }
+    #[test]
+    fn desktop_options_migrate_without_changing_the_released_settings_schema() {
+        let root = std::env::temp_dir().join(format!("mijia-desktop-options-{}", uuid::Uuid::new_v4()));
+        let path = root.join("app-settings-v1.json");
+        atomic_write(&path, br#"{"version":1,"closeToTray":false,"autoUpdate":true}"#).unwrap();
+        assert_eq!(Store::open(path.clone()).unwrap().desktop_options(), DesktopOptions::default());
+        let early = br#"{"version":1,"closeToTray":false,"autoCheckUpdates":true}"#;
+        atomic_write(&path, early).unwrap();
+        let store = Store::open(path.clone()).unwrap();
+        assert!(store.desktop_options().auto_check_updates);
+        assert!(!store.desktop_options().monitor_separate_window);
+        store.change_desktop_option(DesktopOption::MonitorSeparateWindow, true).unwrap();
+        assert!(serde_json::from_slice::<AppSettings>(&std::fs::read(&path).unwrap()).is_ok());
+        assert!(!store.get().close_to_tray);
+        // Simulate restarting after the sidecar was written, before cleanup.
+        store.change_desktop_option(DesktopOption::AutoCheckUpdates, false).unwrap();
+        atomic_write(&path, early).unwrap();
+        let reopened = Store::open(path).unwrap();
+        assert!(!reopened.desktop_options().auto_check_updates);
+        assert!(reopened.desktop_options().monitor_separate_window);
     }
     #[test]
     fn retired_memories_are_archived_once_without_changing_other_preferences() {

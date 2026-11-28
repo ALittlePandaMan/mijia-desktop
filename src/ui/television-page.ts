@@ -1,5 +1,5 @@
 import type {Device,DevicePanel} from '../types';
-import {televisionCategory,televisionCommand,televisionExtraKeys,televisionRoles,televisionSettings,type TelevisionCommand,type TelevisionRole} from '../television';
+import {televisionCategory,televisionCommand,televisionExtraKeys,televisionRoles,televisionSettings,televisionSourceIcon,televisionSourceLabel,type TelevisionCommand,type TelevisionRole} from '../television';
 import {button,element} from './dom';
 import {deviceUnavailablePage} from './device-unavailable';
 import {remoteControlPage,type RemoteKey} from './remote-control-page';
@@ -32,7 +32,11 @@ export function televisionPage(o:{device:Device;panel:DevicePanel;busy:boolean;c
   write:(property,value)=>o.pressExtra?.({kind:'property',property,value}),error:()=>{}};
  const extras=element('div','ir-extra-content');
  if(o.pressExtra){
-  if(source)extras.append(renderControl({name:'Selector',props:{label:'信号源',property:source,showValue:true}},env));
+  if(source)extras.append(renderControl({name:'Selector',props:{
+   label:'信号源',property:source,showValue:true,
+   choiceLabel:(description,choice)=>televisionSourceLabel(description,choice?.localizedDescription)??(choice?`信号源 ${choice.value}`:undefined),
+   choiceIcon:televisionSourceIcon,
+  }},env));
   if(mute)extras.append(renderControl({name:'Power',props:{label:'静音',property:mute,glyph:'volume-off'}},env));
   const grid=element('div','ir-key-grid');
   for(const {label,command}of televisionExtraKeys(o.panel)){

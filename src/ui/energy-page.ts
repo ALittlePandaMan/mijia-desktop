@@ -25,7 +25,7 @@ export function powerReading(panel:DevicePanel|undefined):{value:number|null;sou
   return {value:prop?.unit==='watt'&&typeof reading.value==='number'&&Number.isFinite(reading.value)&&reading.value>=0?reading.value/outletPowerDivisor(panel?.model??''):null,source:reading.source==='reported'&&prop?`功率为云端记录 · ${reportedTime(prop)}`:reading.source==='live'?'功率为本次直接读取':undefined};
 }
 export function energyEntrance(report:EnergyReport|undefined,panel:DevicePanel|undefined,hasHistory:boolean,loading:boolean,readingsOnly=false):HTMLElement {
-  const power=powerReading(panel),card=element('section','native-card outlet-energy-card');
+  const power=powerReading(panel),card=element('section','native-card outlet-energy-card reading-summary-card');
   card.setAttribute('aria-label','用电信息');
   const consumption=meterProperty(panel,'power-consumption');
   const powerProperty=meterProperty(panel,'electric-power'),powerMetric=boundMetric(metric(power.value,'当前功率(W)'),powerProperty);
@@ -42,8 +42,13 @@ export function energyEntrance(report:EnergyReport|undefined,panel:DevicePanel|u
   }
   if(consumption)for(const view of history)boundMetric(view,consumption);
   if(!hasHistory)for(const view of history)view.setAttribute('aria-description','此型号的云端用电统计协议尚未核实。');
-  const values=element('div','energy-card-metrics',...metrics);values.style.setProperty('--energy-metric-count',String(metrics.length));
-  card.append(element('div','energy-card-title',element('span','','用电信息')),values);
+  for(const view of metrics){
+    view.querySelector('strong')?.classList.add('reading-summary-value');
+    view.querySelector('span')?.classList.add('reading-summary-label');
+  }
+  const values=element('div','reading-summary-grid',...metrics);
+  values.style.setProperty('--reading-columns',String(metrics.length || 1));
+  card.append(element('h3','reading-summary-title','用电信息'),values);
   card.dataset.historyAvailable=String(hasHistory);
   const description=loading?'正在读取云端统计…':power.source;
   if(description)card.setAttribute('aria-description',description);

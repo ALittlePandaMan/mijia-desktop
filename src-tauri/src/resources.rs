@@ -159,6 +159,10 @@ impl Resources {
             targets.push(("main".into(), vec![], false));
             drop(main);
         }
+        let runtime = app.state::<crate::app_runtime::Runtime>();
+        if let Some(label) = runtime.detached_monitor.label() {
+            targets.push((label, vec![], false));
+        }
         let labels: HashSet<_> = targets.iter().map(|(l, _, _)| l.clone()).collect();
         self.states
             .lock()
@@ -202,7 +206,8 @@ impl Resources {
             #[cfg(not(windows))]
             let visible =
                 window.is_visible().unwrap_or(true) && !window.is_minimized().unwrap_or(false);
-            let monitor_background = (label == "main").then(|| {
+            let detached = crate::detached_monitor::DetachedMonitor::is_label(&label);
+            let monitor_background = (label == "main" || detached).then(|| {
                 #[cfg(windows)]
                 let locked = scene.locked();
                 #[cfg(not(windows))]
@@ -213,7 +218,7 @@ impl Resources {
                     locked,
                 )
             });
-            let visible_cards = if label == "main" {
+            let visible_cards = if label == "main" || detached {
                 None
             } else {
                 Some(
@@ -265,7 +270,9 @@ impl Resources {
                 (changed, entry.idle.clone())
             };
             if let Some(background) = monitor_background {
-                if let Some(state) = app.try_state::<crate::state::AppState>() {
+                if detached {
+                    runtime.detached_monitor.set_background(&label, background);
+                } else if let Some(state) = app.try_state::<crate::state::AppState>() {
                     state.set_monitor_background(background);
                 }
             }
@@ -274,6 +281,7 @@ impl Resources {
                 let _ = app.emit_to(&label, "desktop-resource-state", self.state(&label));
             }
             if let Some(background) = monitor_background {
+                if detached { continue; }
                 let monitoring = app
                     .state::<crate::app_runtime::Runtime>()
                     .monitor
@@ -318,6 +326,7 @@ pub fn desktop_resource_snapshot(
     app: tauri::AppHandle,
 ) -> Result<ResourceState> {
     if window.label() != "main"
+        && app.state::<crate::app_runtime::Runtime>().detached_monitor.viewer(window.label()).is_err()
         && !app
             .state::<Arc<crate::desktop_widgets::Widgets>>()
             .owns_host(window.label())

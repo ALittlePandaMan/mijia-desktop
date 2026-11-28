@@ -375,6 +375,46 @@ impl LensStream {
         self.revision = revision;
     }
 }
+/// A camera can have only one stream reader across the app's two windows.
+/// A claim spans negotiation, streaming and the worker's final transport cleanup.
+#[derive(Default)]
+pub(crate) struct Connections(Mutex<std::collections::HashMap<String, String>>);
+
+pub(crate) struct ConnectionClaim {
+    connections: Arc<Connections>,
+    did: String,
+    cloud: Arc<Cloud>,
+}
+
+impl Connections {
+    pub(crate) fn claim(
+        self: &Arc<Self>,
+        did: &str,
+        owner: &str,
+        cloud: Arc<Cloud>,
+    ) -> Result<ConnectionClaim> {
+        let mut active = self.0.lock().map_err(|_| AppError::stale())?;
+        if active.contains_key(did) {
+            return Err(AppError::new("cameraInUse", "摄像机正在另一个窗口播放。", false));
+        }
+        active.insert(did.to_owned(), owner.to_owned());
+        Ok(ConnectionClaim { connections: self.clone(), did: did.into(), cloud })
+    }
+
+    #[cfg(feature = "desktop")]
+    pub(crate) fn owner(&self, did: &str) -> Option<String> {
+        self.0.lock().ok()?.get(did).cloned()
+    }
+}
+
+impl Drop for ConnectionClaim {
+    fn drop(&mut self) {
+        if let Ok(mut active) = self.connections.0.lock() {
+            active.remove(&self.did);
+        }
+    }
+}
+
 struct Session {
     id: String,
     home: String,
@@ -388,6 +428,7 @@ struct Session {
     commands: std::sync::mpsc::SyncSender<media_control::Request>,
     terminal: Arc<Mutex<Option<Event>>>,
     terminal_delivered: AtomicBool,
+    origin: Option<Arc<Cloud>>,
 }
 #[derive(Default)]
 pub struct Sessions(
@@ -456,6 +497,7 @@ impl Sessions {
             commands: sync_channel(1).0,
             terminal: Arc::new(Mutex::new(None)),
             terminal_delivered: AtomicBool::new(false),
+            origin: None,
         });
         (sessions, tx, stop)
     }
@@ -542,15 +584,16 @@ impl Sessions {
         config: Config,
     ) -> Result<String> {
         let ticket = self.begin();
-        self.start_reserved(home, generation, did, config, ticket)
+        self.start_reserved(home, generation, did, config, ticket, None)
     }
-    pub fn start_reserved(
+    pub(crate) fn start_reserved(
         &self,
         home: String,
         generation: u64,
         did: String,
         mut config: Config,
         ticket: u64,
+        claim: Option<ConnectionClaim>,
     ) -> Result<String> {
         let mut slot = self.0.lock().map_err(|_| AppError::stale())?;
         if ticket == 0 || self.1.load(Ordering::Acquire) != ticket {
@@ -570,6 +613,7 @@ impl Sessions {
         let done = Arc::new(AtomicBool::new(false));
         let worker_done = done.clone();
         let worker_poll = poll.clone();
+        let origin = claim.as_ref().map(|claim| claim.cloud.clone());
         std::thread::spawn(move || {
             let result = (|| -> Result<()> {
                 let remote = || -> Result<transport::Connection> {
@@ -895,6 +939,7 @@ impl Sessions {
             if let Ok(mut slot) = worker_terminal.lock() {
                 *slot = Some(ended);
             }
+            drop(claim);
             worker_done.store(true, Ordering::Release);
         });
         *slot = Some(Session {
@@ -910,6 +955,7 @@ impl Sessions {
             commands,
             terminal,
             terminal_delivered: AtomicBool::new(false),
+            origin,
         });
         Ok(id)
     }
@@ -972,6 +1018,13 @@ impl Sessions {
     }
     pub fn stop(&self, home: &str, generation: u64, did: &str, id: &str) -> Result<()> {
         self.stop_request(home, generation, did, id).map(|_| ())
+    }
+    pub(crate) fn origin(&self, home: &str, generation: u64, did: &str, id: &str) -> Option<Arc<Cloud>> {
+        let slot = self.0.lock().ok()?;
+        let session = slot.as_ref().filter(|s| {
+            s.id == id && s.home == home && s.generation == generation && s.did == did
+        })?;
+        session.origin.clone()
     }
     pub fn stop_request(
         &self,
@@ -1104,7 +1157,7 @@ mod tests {
             startup: None,
         };
         assert!(sessions
-            .start_reserved("h".into(), 1, "d".into(), config, first)
+            .start_reserved("h".into(), 1, "d".into(), config, first, None)
             .is_err());
     }
     #[test]
@@ -1117,6 +1170,7 @@ mod tests {
             commands: sync_channel(1).0,
             terminal: Arc::new(Mutex::new(None)),
             terminal_delivered: AtomicBool::new(false),
+            origin: None,
             id: "opaque".into(),
             home: "h".into(),
             generation: 2,

@@ -1,6 +1,9 @@
-import type {AppError,DeviceContext} from './types';
+import type {AppError,Device,DeviceContext} from './types';
 import {ReportOperations} from './report-operations';
 export const ceilingFanModel='yeelink.ven_fan.vf3';
+export function hasDedicatedCeilingFan(device:Device|undefined):boolean{
+ return device?.model===ceilingFanModel&&device.controlServiceId==null;
+}
 export interface CeilingFanReport{did:string;model:string;lightOn:boolean;fanOn:boolean;gear:0|1;swingAction:'swing'|'stop'|'angle';swingAngle:number;brightness:number;lightMode:'daylight'|'nightlight';revision:string}
 export type CeilingFanChange={operation:'fan';on:boolean;gear?:0|1}|{operation:'gear';gear:0|1}|{operation:'light';on:boolean}|{operation:'swing';on:boolean}|{operation:'angle'|'brightness';value:number};
 export function projectCeiling(r:CeilingFanReport,c:CeilingFanChange):CeilingFanReport{

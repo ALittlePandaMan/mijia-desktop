@@ -26,5 +26,5 @@ export function controlHeading(title: string, options: HeadingOptions = {}) {
     if (!value.parentElement) name.after(...(divider ? [divider, value] : [value]));
   }
 
-  return { root, setValue };
+  return { root, setValue, setTitle: (title: string) => { name.textContent = title; } };
 }

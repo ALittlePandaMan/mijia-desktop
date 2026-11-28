@@ -2,7 +2,7 @@
 
 <!-- 由 docs/mcp-guide.json 与固定工具 Schema 生成；运行 npm run mcp:docs -->
 
-指南版本 5，应用版本 0.1.0。内置 resources 与打包 Skill 使用同源内容。
+指南版本 5，应用版本 0.1.1。内置 resources 与打包 Skill 使用同源内容。
 
 ## quickstart
 

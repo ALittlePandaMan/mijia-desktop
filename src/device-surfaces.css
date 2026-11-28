@@ -3,9 +3,11 @@
  --device-gap:14px; --device-edge:14px; --device-section-gap:24px;
  --device-control-inset:23px; --device-text-row-height:64px; --device-row-height:80px; --device-row-gap:16px;
  --device-function-disc:45px; --device-function-icon:26px; --device-arrow:16px;
- --device-slider-height:154px; --device-track-height:46px; --device-slider-gap:24px;
+ --adjustment-card-padding:19px 15px 15px; --device-track-height:44px; --device-slider-gap:25px;
  --device-option-disc:54px; --device-option-icon:28px; --device-option-gap:10px;
- --device-setting-height:64px; --device-action-height:48px;
+ --device-setting-height:var(--device-text-row-height); --device-action-height:48px;
+ --device-action-accent:#0ad2c7; --device-action-disabled-bg:#abf0ec;
+ --device-action-ink:#10383a; --device-action-disabled-ink:#546c6d; --media-button-size:44px;
 }
 .device-page.device-surfaces .device-controls-region { padding-inline:var(--device-edge); padding-bottom:var(--device-edge); }
 .device-page.device-surfaces .device-controls-region:not(.device-backdrop-offset) { padding-top:0; }
@@ -35,16 +37,17 @@
 .device-page.device-surfaces .device-function-disc { flex:none; width:var(--device-function-disc); height:var(--device-function-disc); padding:0; margin:0; display:grid; place-items:center; }
 .device-page.device-surfaces .device-function-disc :is(.icon,svg) { width:var(--device-function-icon); height:var(--device-function-icon); stroke-width:2; }
 .device-page.device-surfaces .device-row-card > .icon:last-child:not(:first-child) { width:var(--device-arrow); height:var(--device-arrow); padding:0; margin-left:auto; }
-.device-page.device-surfaces .device-slider-card { min-height:var(--device-slider-height); padding:23px var(--device-control-inset); }
-.device-page.device-surfaces .native-slider-heading { min-height:24px; margin:0; }
+.native-card:is(.air-temperature-card,.device-slider-card,.light-color-card) { min-height:128px; padding:var(--adjustment-card-padding); }
+.device-page.device-surfaces .native-slider-heading { min-height:19px; margin:0; }
 .device-page.device-surfaces .native-slider { margin:var(--device-slider-gap) 0 0; }
 .device-page.device-surfaces .native-slider:not(.round-thumb-slider) { height:var(--device-track-height); border-radius:50px; }
 .device-page.device-surfaces .brightness-track { height:var(--device-track-height); margin-top:var(--device-slider-gap); }
 .device-page.device-surfaces :is(.brightness-track,.illumination-track) .native-slider { margin:0; }
 .device-page.device-surfaces .native-slider:not(.brightness-slider,.round-thumb-slider)::-webkit-slider-thumb { box-sizing:border-box; width:7px; height:24px; margin:0 10px; border:0; border-radius:5px; }
 .device-page.device-surfaces .native-slider:not(.brightness-slider,.round-thumb-slider)::-moz-range-thumb { box-sizing:border-box; width:7px; height:24px; border:0; border-radius:5px; }
-.device-page.device-surfaces .light-page-content .slider-brightness { min-height:0; padding-block:18px; }
-.device-page.device-surfaces .light-page-content .brightness-track { margin-top:12px; }
+.p69-swing-card:has(> :is(.device-slider-card,.p69-angle-row)) { padding:var(--adjustment-card-padding); }
+.p69-swing-card:has(> :is(.device-slider-card,.p69-angle-row)) > :is(.detail-power-card,.device-slider-card) { min-height:0; padding:0; }
+.device-page.device-surfaces .p69-swing-card > :is(.device-slider-card,.p69-angle-row) { margin-block-start:var(--device-slider-gap); }
 .device-page.device-surfaces .device-option { gap:var(--device-option-gap); min-width:0; font-size:var(--device-description-size); }
 /* Keep the direction dial's proportions when a short window narrows the page. */
 .device-page.device-surfaces .p69-direction-disc { width:min(250px,100%); height:auto; aspect-ratio:1; }
@@ -73,7 +76,7 @@
 .device-page.device-surfaces .device-action { min-height:var(--device-action-height); height:auto; font-size:var(--device-label-size); line-height:24px; }
 /* The scroll region owns the final inset; terminal actions must not add a
    second bottom margin after their visible content. */
-.device-page.device-surfaces :is(.purifier-pipeline-control,.purifier-settings-list,.router-wifi-save):last-child,
+.device-page.device-surfaces :is(.purifier-pipeline-control,.purifier-settings-list,.router-wifi-save):last-child { margin-bottom:0; }
 /* These original plugin families keep their artwork and accent, while their
    content surfaces use the same desktop spacing and text hierarchy. */
 .device-page.device-surfaces :is(.bath-cards,.ceiling-cards) { padding:0 var(--device-edge) var(--device-edge); }

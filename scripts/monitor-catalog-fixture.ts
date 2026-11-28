@@ -20,10 +20,10 @@ saved.homes[1].devices[1]={...saved.homes[1].devices[1],model:'other.camera.mock
 const prefs:LocalPreferences={hideOffline:false,dragLocked:false,splitSwitches:false,hiddenDeviceIds:[],homeHiddenDeviceIds:[],roomOrders:{},monitor:{enabled:false,excludedDeviceIds:saved.homes[0].excludedDeviceIds}};
 let failSave=false;const view=createSettingsViewState('monitor');
 const catalog=new MonitorCatalogController(render,{load:async()=>{calls.push({command:'catalog'});await wait();return structuredClone(saved);},change:async(_scope,home,did,excluded)=>{calls.push({command:'selection',args:{home,did,excluded}});await wait();if(failSave){failSave=false;throw Error('disk');}const h=saved.homes.find(h=>h.home.id===home)!;h.excludedDeviceIds=excluded?[...new Set([...h.excludedDeviceIds,did])]:h.excludedDeviceIds.filter(d=>d!==did);return structuredClone(saved);}});catalog.setAccount('mock-account');
-const app=new ApplicationSettingsController(render);app.data={settings:{version:1,startupMonitor:true,startupHome:{scope:'mock-account',homeId:'a'},closeToTray:true,keepAwake:false,mcp:{enabled:false,localPort:8765,excludedHomes:[]}},scope:'mock-account',autostart:false,mcpStatus:{state:'stopped'},update:{revision:1,state:'idle',currentVersion:'mock',latestVersion:null,notes:null,checkedAt:null,downloadedBytes:0,totalBytes:null,message:'',packageKind:'portable',supported:false,canInstall:false,canDownload:false}};
-(window as any).__TAURI_INTERNALS__={invoke:async(command:string,args:any)=>{calls.push({command,args});if(command==='change_application_settings'){app.data!.settings=structuredClone(args.value);return structuredClone(app.data);}if(command==='monitor_window')return;throw Error('Denied offline IPC: '+command);}};
+const app=new ApplicationSettingsController(render);app.data={settings:{version:1,startupMonitor:true,startupHome:{scope:'mock-account',homeId:'a'},closeToTray:true,keepAwake:false,mcp:{enabled:false,localPort:8765,excludedHomes:[]}},desktopOptions:{autoCheckUpdates:false,monitorSeparateWindow:false},scope:'mock-account',autostart:false,mcpStatus:{state:'stopped'},update:{revision:1,state:'idle',currentVersion:'mock',latestVersion:null,notes:null,checkedAt:null,downloadedBytes:0,totalBytes:null,message:'',packageKind:'portable',supported:false,canInstall:false,canDownload:false}};
+(window as any).__TAURI_INTERNALS__={invoke:async(command:string,args:any)=>{calls.push({command,args});if(command==='change_application_settings'){app.data!.settings=structuredClone(args.value);return structuredClone(app.data);}if(command==='change_desktop_option'){app.data!.desktopOptions.monitorSeparateWindow=args.enabled;return structuredClone(app.data);}if(command==='monitor_window')return;throw Error('Denied offline IPC: '+command);}};
 function change(value:PreferenceChange){if(value.operation==='setMonitorAllHomes'){prefs.monitorAllHomes=value.value;render();if(value.value)void catalog.load();}if(value.operation==='setMonitorExcluded'){catalog.select('a',value.did,value.excluded);}if(value.operation==='setMonitorEnabled'){prefs.monitor!.enabled=value.value;render();}}
-function render(){root.replaceChildren(settingsPage({view,homeAvailable:true,homeName:'家庭 a',devices:saved.homes[0].devices.map(d=>({...d,productIcon:existingArtwork})),preferences:prefs,monitorCatalog:catalog,loading:false,pending:false,changed:render,change,back(){},retry(){},artwork(){return document.createElement('span');},application:{card:(category,panel)=>app.card(category,panel,saved.homes.map(h=>h.home),'a')}}));}
+function render(){root.replaceChildren(settingsPage({view,homeAvailable:true,homeName:'家庭 a',devices:saved.homes[0].devices.map(d=>({...d,productIcon:existingArtwork})),preferences:prefs,monitorCatalog:catalog,monitorWindow:{separate:app.data!.desktopOptions.monitorSeparateWindow,opening:false,saving:app.saving,change:enabled=>app.changeDesktopOption('monitorSeparateWindow',enabled)},loading:false,pending:false,changed:render,change,back(){},retry(){},artwork(){return document.createElement('span');},application:{card:(category,panel)=>app.card(category,panel,saved.homes.map(h=>h.home),'a')}}));}
 const click=(key:string)=>{root.querySelector<HTMLButtonElement>(`[data-focus-key="${key}"]`)!.click();};
 async function checkAudio(MonitorWall:typeof import('../src/ui/monitor-wall').MonitorWall){
  const OriginalAudioContext=window.AudioContext;
@@ -220,9 +220,10 @@ async function run(){
  check('one wall uses one aggregate group',calls.filter(c=>c.command==='create').length===1&&viewer.root.querySelectorAll('.monitor-tile').length===1);
  check('home and room labels survive poll updates',viewer.root.querySelector('.monitor-name')?.textContent?.includes('家庭 a · 客厅'));
  check('monitor title buttons appear only while the windowed wall is active',getComputedStyle(actions).display==='flex');
- adoptFullscreen(true);viewer.reveal();
- check('fullscreen hides the title bar even with monitor controls revealed',getComputedStyle(titlebar).display==='none'&&root.getBoundingClientRect().top===0);
- adoptFullscreen(false);viewer.reveal();
+ adoptFullscreen(true);
+ check('monitor fullscreen keeps the action bar over the wall and hides window buttons',getComputedStyle(actions).display==='flex'&&
+  getComputedStyle(titlebar.querySelector('.desktop-window-actions')!).display==='none'&&root.getBoundingClientRect().top===0);
+ adoptFullscreen(false);
  check('leaving fullscreen restores the windowed monitor controls',getComputedStyle(titlebar).display==='flex'&&titlebar.querySelectorAll('.desktop-monitor-action')[1]?.textContent==='全屏');
  const videos=[...viewer.root.querySelectorAll('video')];for(let i=0;i<10;i++){document.body.classList.toggle('desktop-native-fullscreen');window.dispatchEvent(new Event('resize'));viewer.updateAll(catalog.data!);}
  check('fullscreen resize preserves videos and the aggregate group',videos.every((v,i)=>v===viewer.root.querySelectorAll('video')[i])&&calls.filter(c=>c.command==='create').length===1);
@@ -252,7 +253,8 @@ async function run(){
  fullscreenButton.click();
  check('leaving one camera with the button returns to the same fullscreen wall',nativeFullscreen()&&!single.hasAttribute('data-wall-fullscreen')&&single.querySelector('video')===singleVideo&&pageOpens.length===1);
  fullscreenButton.click();current.handleEscape();
- check('first Escape leaves single camera fullscreen without leaving wall fullscreen',nativeFullscreen()&&!single.hasAttribute('data-wall-fullscreen')&&getComputedStyle(titlebar).display==='none'&&pageOpens.length===1);
+ check('first Escape leaves single camera fullscreen without leaving wall fullscreen',nativeFullscreen()&&!single.hasAttribute('data-wall-fullscreen')&&
+  getComputedStyle(titlebar.querySelector('.desktop-window-actions')!).display==='none'&&pageOpens.length===1);
  fullscreenButton.click();adoptFullscreen(false);
  check('an external fullscreen exit clears the single-camera view and restores the grid',!single.hasAttribute('data-wall-fullscreen')&&pageButton(1).closest('nav')?.hidden===false);
  recording=true;await new Promise(resolve=>setTimeout(resolve,180));pageButton(1).click();

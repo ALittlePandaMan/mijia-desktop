@@ -243,7 +243,7 @@ impl AppState {
         id: &str,
     ) -> Result<()> {
         let (cloud, device) = self.device(home, generation, did).await?;
-        crate::camera::events::record(&cloud, &device, date, id).await?;
+        self.handle(&cloud, crate::camera::events::record(&cloud, &device, date, id).await).await?;
         self.device(home, generation, did).await?;
         Ok(())
     }
@@ -556,11 +556,16 @@ impl AppState {
     ) -> Result<String> {
         let _lifecycle = self.camera_lifecycle.lock().await;
         let (cloud, device) = self.device(&home_id, generation, &did).await?;
+        let account_epoch = self.inner.lock().await.auth_version;
         self.close_camera_sessions().await?;
+        let claim = self.camera_connections.claim(&did, &self.media_window, cloud.clone())?;
         let panel = self.specs.panel(&device).await?;
         if crate::camera::power::binding(&panel).is_some()
-            && crate::camera::power::read(&cloud, &panel, device.shared_read_only, device.online)
-                .await?
+            && self.handle_monitor_transport(
+                &cloud,
+                account_epoch,
+                crate::camera::power::read(&cloud, &panel, device.shared_read_only, device.online).await,
+            ).await?
                 .awake
                 == Some(false)
         {
@@ -577,8 +582,9 @@ impl AppState {
             .cloned()
             .ok_or_else(AppError::stale)?;
         let mut config = self
-            .handle(
+            .handle_monitor_transport(
                 &cloud,
+                account_epoch,
                 crate::camera::negotiate(&cloud, &home, &device).await,
             )
             .await?;
@@ -596,7 +602,7 @@ impl AppState {
             return Err(AppError::stale());
         }
         self.cameras
-            .start_reserved(home_id, generation, did, config, ticket)
+            .start_reserved(home_id, generation, did, config, ticket, Some(claim))
     }
     pub async fn read_camera(
         &self,
@@ -614,7 +620,16 @@ impl AppState {
         {
             return Err(AppError::stale());
         }
-        self.cameras.read(&home_id, generation, &did, &session_id)
+        let account_epoch = inner.auth_version;
+        let origin = self.cameras.origin(&home_id, generation, &did, &session_id);
+        let events = self.cameras.read(&home_id, generation, &did, &session_id)?;
+        drop(inner);
+        if let Some(source) = origin {
+            if let Some(error) = events.iter().filter_map(|event| event.error.as_ref()).find(|error| error.kind == "authExpired") {
+                return self.handle_monitor_transport(&source, account_epoch, Err(error.clone())).await;
+            }
+        }
+        Ok(events)
     }
     pub async fn stop_camera(
         &self,

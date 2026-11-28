@@ -2438,7 +2438,201 @@
           "value": 1
         }
       ],
-      "minimumFirmware": null
+      "minimumFirmware": null,
+      "lenses": [
+        {
+          "id": 0,
+          "label": "云台镜头",
+          "ptz": true,
+          "qualityField": "videoquality",
+          "defaultQuality": 2
+        },
+        {
+          "id": 10,
+          "label": "固定镜头",
+          "ptz": false,
+          "qualityField": "videoquality2",
+          "defaultQuality": 2
+        }
+      ],
+      "lensSource": "Official MISS v6 frame_type=1 and default_res/default_res2=2; Mi Home Android DeviceModelManager.isSwitchCamera and AllPanelCameraPlayer use the 0/10 live pair and both quality fields."
+    },
+    {
+      "models": [
+        "mxiang.camera.c500ch",
+        "mxiang.camera.c500os",
+        "chuangmi.camera.72ac1",
+        "chuangmi.camera.072ae2",
+        "xiaomi.camera.cw501d",
+        "xiaomi.camera.cw5014",
+        "xiaomi.camera.qp2c",
+        "xiaomi.camera.4dc304"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": false,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null,
+      "lenses": [
+        {
+          "id": 0,
+          "label": "云台镜头",
+          "ptz": true,
+          "qualityField": "videoquality",
+          "defaultQuality": 1
+        },
+        {
+          "id": 10,
+          "label": "固定镜头",
+          "ptz": false,
+          "qualityField": "videoquality2",
+          "defaultQuality": 1
+        }
+      ],
+      "lensSource": "Official MISS v6 type=1, frame_type=1; original standard live pair channels 0/10, quality fields videoquality/videoquality2 and MIStream flags bits 21..26."
+    },
+    {
+      "models": [
+        "chuangmi.camera.068ac1",
+        "chuangmi.camera.111ae1",
+        "chuangmi.camera.111ac1"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": true,
+      "care": false,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null,
+      "lenses": [
+        {
+          "id": 0,
+          "label": "云台镜头",
+          "ptz": true,
+          "qualityField": "videoquality",
+          "defaultQuality": 1
+        },
+        {
+          "id": 10,
+          "label": "固定镜头",
+          "ptz": false,
+          "qualityField": "videoquality2",
+          "defaultQuality": 2
+        }
+      ],
+      "lensSource": "Official MISS v6 type=1, frame_type=1; original standard live pair channels 0/10, quality fields videoquality/videoquality2 and MIStream flags bits 21..26."
+    },
+    {
+      "models": [
+        "chuangmi.camera.075ae1"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "opus",
+        "sampleRate": 16000
+      },
+      "ptz": false,
+      "care": false,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null,
+      "lenses": [
+        {
+          "id": 0,
+          "label": "镜头 1",
+          "ptz": false,
+          "qualityField": "videoquality",
+          "defaultQuality": 1
+        },
+        {
+          "id": 10,
+          "label": "镜头 2",
+          "ptz": false,
+          "qualityField": "videoquality2",
+          "defaultQuality": 2
+        }
+      ],
+      "lensSource": "Official MISS v6 type=1, frame_type=1; original standard live pair channels 0/10, quality fields videoquality/videoquality2 and MIStream flags bits 21..26."
+    },
+    {
+      "models": [
+        "xiaovv.camera.xvvc10"
+      ],
+      "family": "miss",
+      "talk": {
+        "codec": "pcma",
+        "sampleRate": 8000
+      },
+      "ptz": true,
+      "care": false,
+      "qualities": [
+        {
+          "id": "auto",
+          "label": "自动",
+          "value": 0
+        },
+        {
+          "id": "sd",
+          "label": "流畅",
+          "value": 1
+        }
+      ],
+      "minimumFirmware": null,
+      "lenses": [
+        {
+          "id": 0,
+          "label": "云台镜头",
+          "ptz": true,
+          "qualityField": "videoquality",
+          "defaultQuality": 1
+        },
+        {
+          "id": 10,
+          "label": "固定镜头",
+          "ptz": false,
+          "qualityField": "videoquality2",
+          "defaultQuality": 1
+        }
+      ],
+      "lensSource": "Official MISS v6 type=1, frame_type=1; original standard live pair channels 0/10, quality fields videoquality/videoquality2 and MIStream flags bits 21..26."
     },
     {
       "models": [

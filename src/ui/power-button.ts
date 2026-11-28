@@ -2,6 +2,7 @@ import { button, element } from './dom';
 
 export function roundPowerButton(options: {
   label: string;
+  ariaLabel?: string;
   graphic: Node;
   on?: boolean;
   pressed?: boolean | 'mixed';
@@ -19,7 +20,7 @@ export function roundPowerButton(options: {
     control.append(disc, element('span', 'detail-power-label', options.label));
   } else control.append(options.graphic);
   control.disabled = !options.press;
-  control.setAttribute('aria-label', options.label);
+  control.setAttribute('aria-label', options.ariaLabel ?? options.label);
   if (options.pressed !== undefined) control.setAttribute('aria-pressed', String(options.pressed));
   return control;
 }
@@ -27,4 +28,8 @@ export function roundPowerButton(options: {
 export function powerCard(label: string, control: HTMLButtonElement): HTMLElement {
   const caption = element('span', 'detail-power-label', label);
   return element('div', 'native-card detail-power-card', control, caption);
+}
+
+export function powerCardRow(className: string, ...cards: HTMLElement[]): HTMLElement {
+  return element('div', `detail-power-row ${className}`, ...cards);
 }

@@ -22,6 +22,7 @@ export interface ControlEnvironment {
 interface BoundControl { property?: Property; label: string; disabledReason?: string; locked?:boolean }
 interface PowerProps extends BoundControl {
   compact?: boolean;
+  wholeCard?: boolean;
   className?: string;
   glyph?: IconName;
   // An explicit value supports the light group's separate all-on/all-off cards.
@@ -38,13 +39,16 @@ interface SliderProps extends BoundControl {
   brightnessTone?: BrightnessTone;
   endpoints?: readonly [IconName,IconName];
   valueProperty?: Property;
+  previewLabel?: string;
+  liveReadout?: number;
   discrete?: boolean;
   choiceLabel?: (description: string) => string;
   previewValue?: (value: number | undefined) => void;
 }
 interface SelectorProps extends BoundControl {
+  presentation?: 'options';
   showValue?: boolean;
-  choiceLabel?: (description: string) => string;
+  choiceLabel?: (description: string, choice?: NonNullable<Property['valueList']>[number]) => string | undefined;
   choiceVisible?: (description: string) => boolean;
   choiceOrder?: (choice: NonNullable<Property['valueList']>[number]) => number;
   choiceIcon?: (description: string, selected: boolean) => IconName | undefined;
@@ -83,9 +87,10 @@ function renderPower(props: PowerProps, env: ControlEnvironment): HTMLElement {
   const state=props.values?reading===props.values[1]?true:reading===props.values[0]?false:undefined:booleanValue(props.property);
   const reason = reasonFor(props, env);
   const label = props.value !== undefined || state === undefined ? props.label : state ? props.closeLabel ?? props.label : props.openLabel ?? props.label;
-  const wholeCard = props.value !== undefined && !props.compact;
+  const wholeCard = !props.compact && (props.wholeCard || props.value !== undefined);
   const control = roundPowerButton({
-    label: props.value !== undefined || state === undefined ? label : `${label}：${state ? '已开启' : '已关闭'}`,
+    label,
+    ariaLabel: props.value !== undefined || state === undefined ? undefined : `${label}：${state ? '已开启' : '已关闭'}`,
     graphic: icon(props.glyph ?? 'power'),
     on: props.value ?? state,
     pressed: props.value === undefined ? state ?? 'mixed' : undefined,
@@ -125,6 +130,7 @@ function renderSlider(props: SliderProps, env: ControlEnvironment): HTMLElement 
     separator: !illumination,
   });
   if (usable) heading.setValue(temperature ? `${range[0]}-${range[1]}${props.unit ?? ''}` : readingText(value));
+  if (props.liveReadout !== undefined) heading.setValue(readingText(props.liveReadout));
   const theme = props.theme ?? (property && ['target-humidity','relative-humidity','humidity'].includes(property.name) ? 'humidity' : '');
   const card = bound(element('section', `native-card ${temperature ? 'air-temperature-card' : `native-slider-card device-slider-card slider-${theme}`}${props.disabledReason ? ' control-off' : ''}`, heading.root), 'Slider', property);
   if (!property || !range) return card;
@@ -157,10 +163,12 @@ function renderSlider(props: SliderProps, env: ControlEnvironment): HTMLElement 
     const output = temperature ? card.querySelector('.air-temperature-current') : null;
     const update = (fromInput: boolean) => {
       const value=Number(slider.value),label=text(value);
+      const displayed=fromInput ? value : props.liveReadout ?? value;
       if (output) output.textContent = label;
-      if (!temperature) heading.setValue(readingText(value));
-      setRangeReadout(slider, label);
-      const progress=Math.max(0,Math.min(1,(value-min)/(max-min)));
+      if (props.previewLabel) heading.setTitle(fromInput ? props.previewLabel : props.label);
+      if (!temperature) heading.setValue(readingText(displayed));
+      setRangeReadout(slider, text(displayed));
+      const progress=Math.max(0,Math.min(1,(displayed-min)/(max-min)));
       const percent=progress*100;
       if(illumination)track.style.setProperty('--illumination-progress',String(progress));
       else slider.style.setProperty('--fill', `${percent}%`);
@@ -205,18 +213,21 @@ function selectorIcon(description:string,caption:string):IconName{
 
 function renderSelector(props: SelectorProps, env: ControlEnvironment): HTMLElement {
   const property = props.property;
-  if(property&&!props.choiceVisible&&!props.choiceOrder&&validChoices(property)&&property.valueList!.length>1
+  if(property&&props.presentation!=='options'&&!props.choiceVisible&&!props.choiceOrder&&validChoices(property)&&property.valueList!.length>1
     &&property.valueList!.every(choice=>typeof choice.value==='number')
     &&(/^(fan-level|fan-speed|wind-speed|speed-level|drying-level|ventilation-level|ventilate-level|ventilate-gear|blow-level)$/.test(property.name)
       ||/^(风速(?:档位|挡位)?|风量(?:档位|挡位)?|(?:换气|吹风|烘干)(?:档位|挡位))$/.test(props.label))){
     return renderSlider({property,label:props.label==='风速'?'风速档位':props.label,theme:'fan',discrete:true,
       disabledReason:props.disabledReason,locked:props.locked,
-      choiceLabel:description=>props.choiceLabel?.(description)??property.valueList!.find(choice=>choice.description===description)?.localizedDescription??description},env);
+      choiceLabel:description=>{
+        const choice=property.valueList!.find(item=>item.description===description);
+        return props.choiceLabel?.(description,choice)??choice?.localizedDescription??description;
+      }},env);
   }
   const current = isReadableValue(property) ? property.valueList?.find(choice => JSON.stringify(choice.value) === JSON.stringify(property.value)) : undefined;
   const mode=/(?:^|-)mode$|^(?:program|washing-program)$/.test(property?.name??'')||/(模式|程序)$/.test(props.label);
   const label = (option:NonNullable<Property['valueList']>[number],index:number): string|undefined => {
-    const translated=props.choiceLabel?.(option.description);
+    const translated=props.choiceLabel?.(option.description,option);
     if(mode)return deviceModeLabel(translated,option.localizedDescription,option.description);
     const fallback=`选项${index+1}`;
     return translated&&translated!=='未识别状态'?translated:deviceChoiceLabel(option.localizedDescription??option.description,fallback);

@@ -19,8 +19,9 @@ import {deviceArtwork as renderDeviceArtwork} from './ui/device-artwork';
 import {deviceUnavailableContent,deviceUnavailablePage} from './ui/device-unavailable';
 import * as sharedDeviceViews from './ui/device-presenters';
 import {monitorEligible} from './monitor';
-import {MonitorCatalogController,selectedMonitorMembers} from './monitor-catalog';
+import {MonitorCatalogController,readMonitorCatalog,selectedMonitorMembers,type MonitorCatalog} from './monitor-catalog';
 import {ApplicationSettingsController} from './ui/application-settings';
+import type {StartupMonitorTarget} from './application-settings';
 import {showAppUpdateResult} from './ui/app-update-result';
 import {isTauri,invoke} from '@tauri-apps/api/core';
 import {listen} from '@tauri-apps/api/event';
@@ -47,7 +48,7 @@ import {BathHeaterState,bathHeaterModel} from './bath-heater';
 import {bathHeaterPage} from './ui/bath-heater-page';
 import {bathroomBattery,bathroomCategory,bathroomTemperature,type BathroomCommand} from './bathroom';
 import {bathroomHeatingPage,standardBathHeaterPage,toiletPage} from './ui/bathroom-page';
-import {CeilingFanState,ceilingFanModel} from './ceiling-fan';
+import {CeilingFanState,ceilingFanModel,hasDedicatedCeilingFan} from './ceiling-fan';
 import {FryerState,fryerModel,type FryerView} from './fryer';
 import {fryerPage} from './ui/fryer-page';
 import {ceilingFanPage,standardCeilingFanPage} from './ui/ceiling-fan-page';
@@ -59,6 +60,7 @@ import {devicePropertyLabel} from './device-labels';
 import './style.css';
 import './login.css';
 import './theme.css';
+import {showToast} from './ui/toast';
 import './ui/quiet-feedback.css';
 import { api } from './api';
 import { PropertyOperations,type PropertyReply } from './property-operations';
@@ -96,10 +98,14 @@ import {SpecAirerCommands} from './airer-spec-commands';
 import {batteryOnlyCleaner,cleanerBattery,currentCleanerBattery} from './cleaner-battery';
 import {securityCategory,securityReadings} from './security-readings';
 import {sensorDetailCategory,sensorDetailReadings} from './sensor-presentation';
+import {ScaleHistoryState} from './scale-history';
+import {scalePage} from './ui/scale-page';
 import {FridgeCommands,fridgeModel,fridgeProfile,fridgeCurrent} from './fridge';
 import {fridgePage,standardFridgePage} from './ui/fridge-page';
 import {applianceDetailCategory,cardSwitchPower,matchingPanel,simpleLivingDetail,unavailableApplianceDetail} from './appliance-details';
 import {curtainBindings,curtainExplicitlyPaused,curtainFeedback,curtainJourney,curtainMotorMeaning,curtainOpeningChoices,curtainOpeningLabels,curtainStatus} from './curtain-detail';
+import {windowOpenerRails} from './window-opener';
+import {windowOpenerPage} from './ui/window-opener-page';
 import {clothesDryerPower} from './living-details';
 import {livingDetailPage} from './ui/living-detail-page';
 import {cookingCategory,cookingCommandAllowed,cookingPanel,fryerStyleCategory,type CookingCommand,type CookingView} from './cooking';
@@ -121,7 +127,8 @@ import { dateKey } from './history';
 import { coercePropertyInput, displayValue, isSessionError, missingReadingText, normalizeError, reportedValueText, sameContext, writeUnsupportedReason } from './logic';
 import { booleanValue, climateBindings, controlReason, findProperty, isReadableValue, numericValue, hasObservedDeviceLayout, miotCategory, panelLayout, propertyReading, splitChildren } from './panel-layout';
 import {airPurifierBindings,environmentCategory,fanDetailBindings,simpleClimateBindings,simpleClimateCategory} from './environment-controls';
-import {HomeScenesState} from './home-scenes';
+import {HomeScenesState,sceneRooms} from './home-scenes';
+import { readHomeInventory } from './home-inventory-read';
 import {HomeScenesView,sceneShortcuts,sizeSceneShortcuts} from './ui/home-scenes-page';
 import {visibleSceneShortcuts,addSceneShortcuts,removeSceneShortcuts,type SceneShortcutLayout} from './scene-shortcut-preferences';
 import {sceneShortcutPicker,updateSceneShortcutPicker} from './ui/scene-shortcut-picker';
@@ -230,7 +237,7 @@ export class App {
       ()=>{if(speakerMetadataSupported(this.currentDevice()?.model??''))this.render(true);},e=>this.handleSessionError(e));
     this.bathHeater = new BathHeaterState({read:this.transport.bathHeater,change:this.transport.changeBathHeater},()=>{if(this.currentDevice()?.model===bathHeaterModel)this.render(true)},e=>this.handleSessionError(e));
     this.fryer = new FryerState({read:this.transport.fryer,change:this.transport.changeFryer},()=>{if(this.currentDevice()?.model===fryerModel&&!this.fryerView.picker&&!this.fryerView.confirmation)this.render(true);},e=>this.handleSessionError(e));
-    this.ceilingFan = new CeilingFanState({read:this.transport.ceilingFan,change:this.transport.changeCeilingFan},()=>{if(this.currentDevice()?.model===ceilingFanModel)this.render(true)},e=>this.handleSessionError(e));
+    this.ceilingFan = new CeilingFanState({read:this.transport.ceilingFan,change:this.transport.changeCeilingFan},()=>{if(hasDedicatedCeilingFan(this.currentDevice()))this.render(true)},e=>this.handleSessionError(e));
     this.vacuum = new VacuumState({read:this.transport.vacuum,readMap:this.transport.vacuumMap,change:this.transport.changeVacuum},()=>{if(!this.vacuum.loading)this.deviceOpening.ready();if(this.currentDevice()?.model===vacuumModel)this.render(true);},e=>this.handleSessionError(e));
     this.specVacuum = new SpecVacuumState({read:this.transport.readProperties,readMap:this.transport.vacuumMap,
       send:(context,change)=>submitPanelControl(context,()=>'setting' in change
@@ -254,6 +261,8 @@ export class App {
     },error=>this.handleSessionError(error));
     this.purifierCommands = new PurifierCommands({save:this.transport.savePurifierCups,read:this.transport.readProperties},()=>this.render(true),(context,panel)=>{if(sameContext(context,this.context)){this.acceptPanel(panel,this.propertyOps.version);this.panelIsCached=false;this.panelHasCachedState=false;}},error=>{this.handleSessionError(error);});
     this.irRemote = new IrRemoteState({read:this.transport.irRemote,send:this.transport.sendIrKey},()=>{if(!this.irRemote.loading)this.deviceOpening.ready();this.render(true);},e=>this.handleSessionError(e));
+    this.scaleHistory = new ScaleHistoryState(this.transport.scaleHistory,()=>this.render(true),e=>this.handleSessionError(e),
+      this.transport.changeScalePending);
   }
 
   private templateCards?:CardPresentationState;
@@ -409,6 +418,7 @@ export class App {
   private homesLoading = false;
   private homeContentLoading = false;
   private homeError: AppError | undefined;
+  private homeInventoryRead?: AbortController;
   private selectedHomeId = '';
   private snapshot: HomeSnapshot | undefined;
   private homeEpoch = 0;
@@ -479,6 +489,7 @@ export class App {
   private historyError: AppError | undefined;
   private historyReadAt = 0;
   private renderedHistoryKey = '';
+  private scaleReportReturn?: {scrollTop:number;focusKey?:string};
   private energyData:EnergyReport|undefined;
   private energyLoading=false;
   private energyError:AppError|undefined;
@@ -520,10 +531,9 @@ export class App {
   private confirmedPanels=new Map<string,DevicePanel>();
   private confirmedPanelVersions=new Map<string,number>();
   private homeCardsPropertyReadVersion=0;
-  private propertyContexts=new Map<string,{context:DeviceContext;homeEpoch:number;homePower?:boolean;homeCamera?:boolean;homeCurtain?:boolean;playbackEpoch?:number}>();
+  private propertyContexts=new Map<string,{context:DeviceContext;homeEpoch:number;homePower?:boolean;homeCamera?:boolean;homeCurtain?:boolean;windowOpener?:boolean;playbackEpoch?:number}>();
   private deviceSends=new Map<string,Promise<void>>();
   
-  private sessionNotice: AppError | undefined;
   private logoutBusy = false;
   private homeRefreshTimer: ReturnType<typeof setTimeout> | undefined;
   private panelRefreshTimer: ReturnType<typeof setTimeout> | undefined;
@@ -538,6 +548,11 @@ export class App {
   private settingsView=createSettingsViewState();
   private monitorSettingsReturn?:typeof this.settingsView;
   private monitorRunning=false;private monitorAllActive=false;private monitorStartEpoch=0;
+  private monitorHome?:{id:string|null;catalog:MonitorCatalog};
+  private monitorHomeSwitching=false;
+  private detachedMonitor:string|null=null;
+  private detachedMonitorRequest=0;
+  private detachedMonitorBusy=false;
   private monitorCatalog=new MonitorCatalogController(()=>this.render());
   private monitorExitLatch=false;private suppressStartupMonitor=false;
   private monitorMinimized=false;
@@ -592,8 +607,9 @@ export class App {
     const sessionRead=this.transport.session().then(session=>({session}),error=>({error}));
     const applicationRead=isTauri()?this.application.load():undefined;
     window.addEventListener('pagehide',()=>{
-      this.disposed=true;this.disposeCardPresentations();this.lifetime.abort();++this.loginEpoch;++this.homeEpoch;
-      for(const timer of [this.loginTimer,this.homeRefreshTimer,this.panelRefreshTimer,this.stateTimer,this.idleHeartbeat,this.startupRetry,this.uiResourcesRefreshTimer])clearTimeout(timer);
+      this.disposed=true;this.application.dispose();this.disposeCardPresentations();this.lifetime.abort();++this.loginEpoch;++this.homeEpoch;
+      this.cancelHomeInventoryRead();
+      for(const timer of [this.loginTimer,this.homeRefreshTimer,this.panelRefreshTimer,this.stateTimer,this.idleHeartbeat,this.uiResourcesRefreshTimer])clearTimeout(timer);
       this.monitorWall?.close();this.clearPanel();this.resetLocalView();this.devicePreviewCache.clear();disposeHistoryCharts();
     },{once:true});
     if(isTauri()){
@@ -610,6 +626,8 @@ export class App {
         listen<{homeId:string;did:string;intent:HomeCardIntent;revision:number;origin?:string}>('desktop-card-intent',event=>{const v=event.payload;if(v.homeId===this.snapshot?.homeId&&this.widgetRevisions.accept(v.homeId,v.did,v.revision)){this.acceptForeignCardIntent(v.did,v.intent,v.origin);this.widgetIntents.set(v.did,v.intent);this.homeCardChanged();}}),
         listen<{homeId:string;did:string;revision:number;result:import('./types').HomeCardResult|null}>('desktop-card-result',event=>{const v=event.payload;if(v.homeId===this.snapshot?.homeId&&this.widgetRevisions.accept(v.homeId,v.did,v.revision)){this.widgetIntents.delete(v.did);this.acceptDesktopCard(v.did,v.result?.card,v.result?.status);this.homeCardChanged();}}),
         listen('application-settings-changed',()=>{void this.application.load();}),
+        listen('desktop-session-expired',()=>{void this.verifySessionExpiry();}),
+        listen('desktop-monitor-window-changed',()=>{void this.refreshDetachedMonitor();}),
         listenResourceState('main',state=>this.acceptResourceState(state)),
         listen<import('./application-settings').AppUpdateStatus>('desktop-update-state',event=>{this.application.acceptUpdate(event.payload,this.settingsOpen);}),
       ]);
@@ -618,6 +636,7 @@ export class App {
       this.lifetime.signal.addEventListener('abort',cleanup,{once:true});
       void this.refreshWidgetSupport();
       void invoke<ResourceState>('desktop_resource_snapshot').then(state=>this.acceptResourceState(state)).catch(()=>{});
+      void this.refreshDetachedMonitor();
       void showAppUpdateResult();
     }
     document.addEventListener('click',event=>{if(this.startupIntent==='pending'&&this.session?.loggedIn&&(event.target as Element)?.closest('.home-topbar,.room-tabs,.settings-page,.device-card'))this.startupIntent='cancelled';},{capture:true,signal:this.lifetime.signal});
@@ -673,7 +692,7 @@ export class App {
         else if(this.washerDraft?.selector){this.washerDraft={...this.washerDraft,selector:undefined};this.render(true);}
         else if(this.washerView==='runtime')this.backFromWasherRuntime();
         else if(this.washerView!=='home')this.backFromWasherFunctions();
-        else if (this.context) this.closePanel();
+        else if (this.context&&!this.scaleHistory.back()) this.closePanel();
       }
     },{signal:this.lifetime.signal});
     document.addEventListener('scroll',()=>this.closeDeviceMenu(),{capture:true,signal:this.lifetime.signal});
@@ -692,7 +711,7 @@ export class App {
   private async loadAccountProfile():Promise<void>{
     const session=this.session;if(!session?.loggedIn)return;
     try{const profile=await this.transport.accountProfile();if(this.session!==session)return;this.accountProfile=profile;this.profileError=false;this.render();}
-    catch{if(this.session!==session)return;this.profileError=true;this.render();}
+    catch(error){if(this.session!==session)return;this.handleSessionError(normalizeError(error));if(this.session===session){this.profileError=true;this.render();}}
   }
 
   private accountAvatar(className:string):HTMLElement{
@@ -711,10 +730,22 @@ export class App {
   private readonly cardIndex=new IdentityIndex<HomeCardEntry>();
   private currentDevice(): Device | undefined { return this.deviceIndex.find(this.snapshot?.devices,this.context?.did); }
 
+  private async verifySessionExpiry():Promise<void>{
+    const session=this.session;
+    if(!session?.loggedIn||this.disposed)return;
+    try{
+      const current=await this.transport.session();
+      if(!this.disposed&&this.session===session&&!current.loggedIn)
+        this.handleSessionError({kind:'authExpired',message:'登录已失效，请重新扫码登录。',retryable:false});
+    }catch{/* The local session check is retried on the next foreground or expiry event. */}
+  }
+
   private handleSessionError(error: AppError): void {
-    if (!isSessionError(error)) return;
+    if (!this.session?.loggedIn || !isSessionError(error)) return;
+    const wasMonitoring=this.monitorRunning||this.monitorWall?.active;
     this.region = this.session?.region ?? this.region;
     ++this.loginEpoch; ++this.homeEpoch;
+    this.cancelHomeInventoryRead();
     if (this.loginTimer) clearTimeout(this.loginTimer);
     if (this.homeRefreshTimer) clearTimeout(this.homeRefreshTimer);
     this.loginTimer = undefined; this.homeRefreshTimer = undefined;
@@ -722,12 +753,16 @@ export class App {
     void this.application.load();this.session = undefined; this.accountProfile=undefined;this.profileError=false;this.homes = []; this.snapshot = undefined; this.selectedHomeId = '';
     this.homesLoading = false; this.homeBusy = false; this.homeError = undefined;
     this.roomId = '*'; this.homeMenuOpen = false; this.resetLocalView();
-    this.accountOpen = false; this.logoutBusy = false; this.uiNotice = undefined; this.sessionNotice = undefined;
+    this.accountOpen = false; this.logoutBusy = false; this.uiNotice = undefined;
     this.qr = undefined; this.loginError = error; this.loginState = 'error'; this.starting = false;
     // The backend has already invalidated this session. Rendering immediately
     // is necessary because old async operations must now fail their epoch
     // guards and therefore cannot be relied on to render from their finally.
     // Do not call logout here: an obsolete failure must not delete a new login.
+    if(wasMonitoring){
+      void setNativeFullscreen(false);
+      if(document.fullscreenElement)void document.exitFullscreen().catch(()=>{});
+    }
     this.render();
   }
 
@@ -742,9 +777,13 @@ export class App {
     if(this.settingsOpen&&this.settingsView.category==='monitor'&&this.preferences.view?.monitorAllHomes&&!this.monitorCatalog.data&&!this.monitorCatalog.loading&&!this.monitorCatalog.error)void this.monitorCatalog.load();
     if(!this.settingsOpen&&this.session?.loggedIn&&this.snapshot&&this.monitorWall&&this.monitorRunning&&!this.monitorExitLatch&&!this.suppressStartupMonitor&&!this.context){
       if(!this.root.contains(this.monitorWall.root))this.root.replaceChildren(this.monitorWall.root);
-      if(this.monitorAllActive&&this.monitorCatalog.data)this.monitorWall.updateAll(this.monitorCatalog.data);
-      else this.monitorWall.update(this.snapshot,monitor?.excludedDeviceIds??[],undefined,
-        this.session.userId?JSON.stringify([this.session.region,this.session.userId]):undefined);
+      const catalog=this.monitorHome?.catalog??(this.monitorAllActive?this.monitorCatalog.data:undefined);
+      const homeId=this.monitorHome?this.monitorHome.id:catalog?null:this.snapshot.homeId;
+      const localAccount=this.session.userId?JSON.stringify([this.session.region,this.session.userId]):undefined;
+      if(catalog)this.monitorWall.updateAll(catalog,homeId??undefined,homeId===null?catalog.scope:localAccount);
+      else this.monitorWall.update(this.snapshot,monitor?.excludedDeviceIds??[],undefined,localAccount);
+      this.monitorWall.setHomeChoices(this.homes,homeId,this.monitorAllActive,
+        id=>{void this.switchMonitorHome(id);},this.monitorHomeSwitching);
       return;
     }
     if(this.monitorWall?.active)this.monitorWall?.close();
@@ -760,8 +799,19 @@ export class App {
     const focusedControl=active?.closest<HTMLElement>('[data-control]');
     const focusKey=focusedControl?{kind:focusedControl.dataset.control,siid:focusedControl.dataset.siid,piid:focusedControl.dataset.piid,index:[...this.root.querySelectorAll<HTMLElement>('[data-control]')].filter(node=>node.dataset.control===focusedControl.dataset.control&&node.dataset.siid===focusedControl.dataset.siid&&node.dataset.piid===focusedControl.dataset.piid).indexOf(focusedControl),child:active===focusedControl?-1:[...focusedControl.querySelectorAll('button,input,select,[tabindex]')].indexOf(active!)}:undefined;
     const keepFocus=sameContext(this.renderedContext,this.context);
-    const historyKey = this.currentDevice()?.model===dispenserModel?`dispenser/${this.dispenserView.page}/${this.dispenserView.modeId??""}/${this.dispenserView.page==='reminders'?this.dispenserReminderView.page:""}`:this.currentDevice()?.model===airerModel?`airer/${this.airerView.page}`:this.currentDevice()?.model==='xiaomi.waterpuri.lx32'?`purifier/${this.purifierView.page}/${this.purifierView.filter}/${this.purifierView.draft?.index??''}`:washerPageEligible(this.currentDevice(),this.panel)?`washer/${this.washerView}/${this.washerDraft?.program??''}`:'';
-    const scrollTop = sameContext(this.renderedContext, this.context) && this.renderedHistoryKey === historyKey ? this.root.querySelector('.device-page-scroll')?.scrollTop ?? 0 : 0;
+    const previousScroll=this.root.querySelector<HTMLElement>('.device-page-scroll');
+    const previousScaleView=previousScroll?.closest<HTMLElement>('.page-scale')?.dataset.scaleView;
+    const scaleView=this.scaleHistory.view;
+    if(keepFocus&&previousScaleView&&previousScaleView!=='report'&&scaleView==='report'){
+      this.scaleReportReturn={scrollTop:previousScroll?.scrollTop??0,focusKey:localFocusKey};
+    }
+    const fromScaleReport=keepFocus&&previousScaleView==='report'&&scaleView!=='report';
+    const restoredScaleReturn=fromScaleReport?this.scaleReportReturn:undefined;
+    if(!keepFocus||fromScaleReport)this.scaleReportReturn=undefined;
+    const historyKey = this.scaleHistory.view!=='overview'?`scale/${this.scaleHistory.view}`:
+      this.currentDevice()?.model===dispenserModel?`dispenser/${this.dispenserView.page}/${this.dispenserView.modeId??""}/${this.dispenserView.page==='reminders'?this.dispenserReminderView.page:""}`:this.currentDevice()?.model===airerModel?`airer/${this.airerView.page}`:this.currentDevice()?.model==='xiaomi.waterpuri.lx32'?`purifier/${this.purifierView.page}/${this.purifierView.filter}/${this.purifierView.draft?.index??''}`:washerPageEligible(this.currentDevice(),this.panel)?`washer/${this.washerView}/${this.washerDraft?.program??''}`:'';
+    const scrollTop=restoredScaleReturn?.scrollTop??
+      (keepFocus&&this.renderedHistoryKey===historyKey?previousScroll?.scrollTop??0:0);
     const homeScroll=this.renderedHomeId===this.selectedHomeId?this.root.querySelector('.home-screen')?.scrollTop??this.homeScrollTop:0;
     const roomsScroll=this.renderedHomeId===this.selectedHomeId?this.root.querySelector('.room-tabs')?.scrollLeft??this.roomsScrollLeft:0;
     this.homeScrollTop=homeScroll;
@@ -797,7 +847,8 @@ export class App {
     if (this.accountOpen) this.root.append(this.renderAccount());
     if (this.deviceMenu&&!this.context&&!this.settingsOpen) this.root.append(this.renderDeviceMenu());
     if(localFocusKey&&!this.context&&!this.settingsOpen){const target=[...this.root.querySelectorAll<HTMLElement>('[data-focus-key]')].find(node=>node.dataset.focusKey===localFocusKey)??this.root.querySelector<HTMLElement>('.hidden-devices button,.settings-header button');target?.focus({preventScroll:true});}
-    if(keepFocus&&localFocusKey&&this.context)this.root.querySelector<HTMLElement>(`[data-focus-key="${CSS.escape(localFocusKey)}"]`)?.focus({preventScroll:true});
+    const restoredFocusKey=restoredScaleReturn?.focusKey??localFocusKey;
+    if(keepFocus&&restoredFocusKey&&this.context)this.root.querySelector<HTMLElement>(`[data-focus-key="${CSS.escape(restoredFocusKey)}"]`)?.focus({preventScroll:true});
     if(keepFocus&&focusKey){const control=[...this.root.querySelectorAll<HTMLElement>('[data-control]')].filter(node=>node.dataset.control===focusKey.kind&&node.dataset.siid===focusKey.siid&&node.dataset.piid===focusKey.piid)[focusKey.index];const target=focusKey.child<0?control:control?.querySelectorAll<HTMLElement>('button,input,select,[tabindex]')[focusKey.child];if(target&&!target.matches(':disabled'))target.focus({preventScroll:true});}
     if(devicePage&&!devicePage.contains(document.activeElement))devicePage.focus({preventScroll:true});
     if(this.settingsOpen&&!this.context&&!this.accountOpen)restoreSettingsView(this.root,this.settingsView);
@@ -854,7 +905,7 @@ export class App {
         const session = result.session ?? await this.transport.session();
         if (epoch !== this.loginEpoch) return;
         if (!session.loggedIn) throw new Error('登录确认尚未完成，请重新获取二维码。');
-        this.session = session; this.sessionNotice = undefined; this.qr = undefined; this.loginState = 'idle';
+        this.session = session; this.qr = undefined; this.loginState = 'idle';
         this.accountProfile=undefined;this.profileError=false;void this.loadAccountProfile();
         ++this.loginEpoch; this.render(); await this.application.load(); await this.loadHomes();
       } else if (result.status === 'expired') { this.loginState = 'expired'; this.render(); }
@@ -876,13 +927,33 @@ export class App {
     }
   }
 
-  private retryStartup():void{if(this.startupRetry)clearTimeout(this.startupRetry);if(this.startupIntent==='pending'&&this.application.data?.settings.startupMonitor)this.startupRetry=setTimeout(()=>{if(this.startupIntent==='pending'&&this.session?.loggedIn)void this.loadHomes();},20000);}
+  private retryStartup():void{
+    clearTimeout(this.startupRetry);
+    const epoch=this.homeEpoch;
+    if(this.startupIntent==='pending'&&this.application.data?.settings.startupMonitor)
+      this.startupRetry=setTimeout(()=>{
+        if(epoch===this.homeEpoch&&this.startupIntent==='pending'&&this.session?.loggedIn&&!this.logoutBusy)
+          void this.loadHomes();
+      },20_000);
+  }
   private async maybeStartupMonitor(force=false):Promise<void>{
     const data=this.application.data;if(!data||!this.session?.loggedIn)return;
     force=force||this.startupForced;if(force)this.startupForced=true;
     if(!force&&this.startupIntent!=='pending')return;
     if(!force&&!data.settings.startupMonitor){this.startupIntent='done';return;}
-    const target=data.settings.startupHome??(force&&data.scope&&this.selectedHomeId?{scope:data.scope,homeId:this.selectedHomeId}:null);if(!target||target.scope!==data.scope){this.startupIntent='done';this.suppressStartupMonitor=true;this.monitorWall?.close();this.render();return;}
+    const useSeparate=data.desktopOptions.monitorSeparateWindow||!!this.detachedMonitor;
+    const scope=data.scope,current=this.selectedHomeId;
+    const fallback=force&&scope&&current
+      ?useSeparate&&this.preferences.view?.monitorAllHomes?{scope,allHomes:true}as const:{scope,homeId:current}
+      :null;
+    const saved=data.settings.startupHome;
+    const target=saved?.scope===scope?saved:fallback;
+    if(!target){this.startupIntent='done';this.suppressStartupMonitor=true;this.monitorWall?.close();this.render();return;}
+    if(useSeparate&&!this.monitorWall?.active){
+      this.startupIntent='done';this.startupForced=false;
+      await this.launchDetachedMonitor(target);
+      return;
+    }
     if('allHomes' in target){
       this.startupIntent='done';this.startupForced=false;this.preferences.change({operation:'setMonitorAllHomes',value:true});
       await this.beginMonitor(true);if(this.monitorRunning){await this.monitorModule?.settleMonitorWindow();await setNativeFullscreen(true);}return;
@@ -899,38 +970,63 @@ export class App {
     if(action==='settings'){this.startupIntent='cancelled';this.settingsView=createSettingsViewState();this.monitorSettingsReturn=undefined;this.settingsOpen=true;this.clearPanel();this.render();await this.application.load();return;}
     if(action==='monitor'){await this.application.load();await this.maybeStartupMonitor(true);return;}
   }
+  private cancelHomeInventoryRead(): void {
+    this.homeInventoryRead?.abort();
+    this.homeInventoryRead = undefined;
+    clearTimeout(this.startupRetry);
+    this.startupRetry = undefined;
+  }
+
+  private beginHomeInventoryRead(): AbortSignal {
+    this.cancelHomeInventoryRead();
+    clearTimeout(this.homeRefreshTimer);
+    this.homeInventoryRead = new AbortController();
+    return this.homeInventoryRead.signal;
+  }
+
   private async loadHomes(): Promise<void> {
+    const session = this.session;
+    if (!session?.loggedIn || this.disposed || this.logoutBusy) return;
     const epoch = ++this.homeEpoch;
-    this.homesLoading = true; this.homeError = undefined; this.render();
+    const signal = this.beginHomeInventoryRead();
+    this.homesLoading = true; this.homeContentLoading = false; this.homeBusy = false;
+    this.homeError = undefined; this.render();
+    if(this.application.data?.desktopOptions.monitorSeparateWindow)void this.maybeStartupMonitor();
     try {
-      const homes = await this.transport.listHomes();
-      if (epoch !== this.homeEpoch || !this.session?.loggedIn) return;
+      const homes = await readHomeInventory(() => this.transport.listHomes(), signal);
+      if (epoch !== this.homeEpoch || this.session !== session) return;
       this.homes = homes; this.homesLoading = false; this.render();
       const target=this.application.data?.settings.startupHome;
       const startup=this.startupIntent==='pending'&&this.application.data?.settings.startupMonitor&&target?.scope===this.application.data.scope;
       if(startup&&target&&'homeId' in target&&!homes.some(h=>h.id===target.homeId)){this.startupIntent='done';this.suppressStartupMonitor=true;}
-      const homeId=preferredHome(homes,this.session,this.selectedHomeId,startup&&target&&'homeId' in target?target.homeId:undefined);
+      const inline=startup&&!this.application.data?.desktopOptions.monitorSeparateWindow;
+      const homeId=preferredHome(homes,this.session,this.selectedHomeId,inline&&target&&'homeId' in target?target.homeId:undefined);
       if (homeId) await this.selectHome(homeId);
       else { this.selectedHomeId = ''; this.snapshot = undefined; this.render(); }
     } catch (error) {
-      if (epoch !== this.homeEpoch) return;
-      this.homesLoading = false; this.homeError = normalizeError(error); this.handleSessionError(this.homeError); this.render();this.retryStartup();
+      if (epoch !== this.homeEpoch || signal.aborted) return;
+      const failure = normalizeError(error);
+      this.homesLoading = false; this.homeError = failure; this.handleSessionError(failure); this.render();
+      if (failure.retryable && !isSessionError(failure)) this.retryStartup();
+      if (this.snapshot) this.scheduleHomeRefresh();
     }
   }
 
   private pendingHomeChoice?:{session:SessionView;homeId:string};
   private async selectHome(homeId: string, userChoice=false): Promise<void> {
-    const epoch = ++this.homeEpoch;
     const session=this.session;
-    if(userChoice&&session?.loggedIn)this.pendingHomeChoice={session,homeId};
+    if (!session?.loggedIn || this.disposed || this.logoutBusy) return;
+    const epoch = ++this.homeEpoch;
+    const signal = this.beginHomeInventoryRead();
+    this.homesLoading = false;
+    if(userChoice)this.pendingHomeChoice={session,homeId};
     else if(this.pendingHomeChoice?.session!==session||this.pendingHomeChoice?.homeId!==homeId)this.pendingHomeChoice=undefined;
-    if (this.homeRefreshTimer) clearTimeout(this.homeRefreshTimer);
     this.widgetIntents.clear();this.selectedHomeId = homeId; this.snapshot = undefined; this.homeBusy = true;
     this.resetLocalView(); this.homeContentLoading = true; this.homeScrollTop=0;
     this.homeError = undefined; this.roomId = '*'; this.clearPanel(); this.render();
     try {
-      const snapshot = await this.transport.selectHome(homeId);
-      if (epoch !== this.homeEpoch || this.selectedHomeId !== homeId || !session?.loggedIn || this.session!==session) return;
+      const snapshot = await readHomeInventory(() => this.transport.selectHome(homeId), signal);
+      if (epoch !== this.homeEpoch || this.selectedHomeId !== homeId || this.session !== session) return;
       if (snapshot.homeId !== homeId) throw new Error('家庭返回数据不匹配，请重新选择家庭。');
       if(this.pendingHomeChoice?.session===session&&this.pendingHomeChoice.homeId===homeId){rememberHome(session,homeId);this.pendingHomeChoice=undefined;}
       this.snapshot = snapshot;
@@ -946,8 +1042,10 @@ export class App {
       void this.refreshVisibleState();
       this.scheduleHomeRefresh(); await this.maybeStartupMonitor();
     } catch (error) {
-      if (epoch !== this.homeEpoch) return;
-      this.homeContentLoading = false; this.homeBusy = false; this.homeError = normalizeError(error); this.handleSessionError(this.homeError); this.render();this.retryStartup();
+      if (epoch !== this.homeEpoch || signal.aborted) return;
+      const failure = normalizeError(error);
+      this.homeContentLoading = false; this.homeBusy = false; this.homeError = failure; this.handleSessionError(failure); this.render();
+      if (failure.retryable && !isSessionError(failure)) this.retryStartup();
     }
   }
 
@@ -967,7 +1065,7 @@ export class App {
     if(this.disposed)return;
     this.scheduleVisibleState();
     if (this.homeRefreshTimer) clearTimeout(this.homeRefreshTimer);
-    if (this.backgroundPaused() || !this.session?.loggedIn || !this.snapshot || this.sessionNotice) return;
+    if (this.backgroundPaused() || !this.session?.loggedIn || !this.snapshot) return;
     this.homeRefreshTimer = setTimeout(() => {
       if (this.editing() || this.homeBusy || this.context || this.settingsOpen || this.monitorWall?.active) this.scheduleHomeRefresh();
       else void this.refreshDevices(true);
@@ -978,10 +1076,17 @@ export class App {
   private stateCursor=0;
   private stateViewport='';
   private visibleStateIds():string[]{
+    if(this.roomId==='@scenes'){
+      // Group controls also cover rooms outside the visible scroll area.
+      const devices=this.sceneDevices([]).filter(device=>device.online&&!device.sharedReadOnly);
+      const rooms=this.currentHome()?.rooms??[];
+      return [...new Set((['light','curtain'] as const).flatMap(kind=>
+        sceneRooms(devices,rooms,[],kind).flatMap(room=>room.devices.map(device=>device.did))))];
+    }
     const viewport=this.root.querySelector('.home-screen')?.getBoundingClientRect();
     if(!viewport)return [];
     const ids=new Set<string>();
-    for(const node of this.root.querySelectorAll<HTMLElement>('.device-grid > .device-card,.scene-dashboard [data-device-id]')){
+    for(const node of this.root.querySelectorAll<HTMLElement>('.device-grid > .device-card')){
       const id=node.dataset.deviceId,bounds=node.getBoundingClientRect();
       if(id&&bounds.bottom>viewport.top&&bounds.top<viewport.bottom&&bounds.right>viewport.left&&bounds.left<viewport.right)ids.add(id);
     }
@@ -996,10 +1101,10 @@ export class App {
     this.scheduleVisibleState(0);
   }
   private scheduleVisibleState(delay=this.stateDelay):void{
-    if(this.stateTimer||this.disposed||this.backgroundPaused()||!this.snapshot||!this.session?.loggedIn||this.sessionNotice||this.context||this.settingsOpen||this.accountOpen||this.monitorWall?.active)return;
+    if(this.stateTimer||this.disposed||this.backgroundPaused()||!this.snapshot||!this.session?.loggedIn||this.context||this.settingsOpen||this.accountOpen||this.monitorWall?.active)return;
     this.stateTimer=setTimeout(async()=>{
       this.stateTimer=undefined;
-      if(this.backgroundPaused()||this.disposed||this.sessionNotice)return;
+      if(this.backgroundPaused()||this.disposed||!this.session?.loggedIn)return;
       try{
         if(!this.context&&!this.settingsOpen&&!this.accountOpen&&!this.monitorWall?.active&&!this.drag.active&&!this.sceneDrag.active&&!this.homeContentLoading&&!this.homeCardsRequest){
           const all=this.visibleStateIds(),count=Math.min(all.length,64);
@@ -1047,6 +1152,7 @@ export class App {
       if(paused)this.cameraPlayer?.backgroundPause();else this.cameraPlayer?.backgroundResume();
       if(!paused&&this.resourceRenderPending){this.resourceRenderPending=false;this.render();}
     }
+    if(resumed)void this.verifySessionExpiry();
     this.publishFrontendIdle();
     if(this.backgroundPaused()){clearTimeout(this.homeRefreshTimer);clearTimeout(this.panelRefreshTimer);clearTimeout(this.stateTimer);this.stateTimer=undefined;}
     else{this.scheduleVisibleState(resumed?0:undefined);this.scheduleHomeRefresh();this.schedulePanelRefresh(resumed);}
@@ -1059,7 +1165,7 @@ export class App {
   private schedulePanelRefresh(resumed=false): void {
     if(this.disposed)return;
     if (this.panelRefreshTimer) clearTimeout(this.panelRefreshTimer);
-    if (this.backgroundPaused() || !this.context || !this.panel || this.sessionNotice || this.settingsOpen || this.accountOpen || this.monitorWall?.active) return;
+    if (this.backgroundPaused() || !this.context || !this.panel || this.settingsOpen || this.accountOpen || this.monitorWall?.active) return;
     const device=this.currentDevice();
     if(vacuumPageEligible(device,this.panel)||device?.model!==airerModel&&airerPageEligible(device,this.panel))return;
     if(device?.model!==fryerModel&&cookingCategory(this.panel.specType))return;
@@ -1130,7 +1236,8 @@ export class App {
 
   private renderWorkspace(): HTMLElement {
     this.scenesView.dispose();
-    if(this.settingsOpen)return settingsPage({application:{card:(category,view)=>this.application.card(category,view,this.homes,this.selectedHomeId)},homeAvailable:!!this.session?.loggedIn&&!!this.selectedHomeId,changed:()=>this.render(),view:this.settingsView,homeName:this.currentHome()?.name??'',devices:this.snapshot?.devices??[],monitorCatalog:this.monitorCatalog,preferences:this.preferences.view?{...this.preferences.view,monitor:{enabled:this.monitorRunning,excludedDeviceIds:this.preferences.view.monitor?.excludedDeviceIds??[]}}:undefined,loading:this.preferencesLoading,pending:this.preferences.pendingCount>0,error:this.preferencesError??this.preferences.error,
+    if(this.settingsOpen)return settingsPage({application:{card:(category,view)=>this.application.card(category,view,this.homes,this.selectedHomeId)},homeAvailable:!!this.session?.loggedIn&&!!this.selectedHomeId,changed:()=>this.render(),view:this.settingsView,homeName:this.currentHome()?.name??'',devices:this.snapshot?.devices??[],monitorCatalog:this.monitorCatalog,preferences:this.preferences.view?{...this.preferences.view,monitor:{enabled:this.monitorRunning||!!this.detachedMonitor,excludedDeviceIds:this.preferences.view.monitor?.excludedDeviceIds??[]}}:undefined,loading:this.preferencesLoading,pending:this.preferences.pendingCount>0,error:this.preferencesError??this.preferences.error,
+      monitorWindow:this.application.data?{separate:this.application.data.desktopOptions.monitorSeparateWindow,opening:this.detachedMonitorBusy,saving:this.application.saving,change:value=>this.application.changeDesktopOption('monitorSeparateWindow',value)}:undefined,
       back:()=>leave(this.root.querySelector('.settings-page'),()=>{++this.monitorStartEpoch;this.settingsOpen=false;this.render();}),retry:()=>{void this.loadPreferences();},change:change=>this.changePreferences(change),artwork:device=>this.deviceArtwork(device)});
     const devices = visibleHomeDevices(this.snapshot?.devices ?? [], !!this.preferences.view?.splitSwitches);
     const main = element('main', 'home-screen');
@@ -1157,7 +1264,7 @@ export class App {
     if(this.accountMenuOpen)main.append(dropdownMenu({label:'账号菜单',className:'account-menu',id:'account-actions-menu',items:[{value:'settings',label:'设置',className:'account-menu-item',focusKey:'account-menu-settings'},{value:'profile',label:'个人信息',className:'account-menu-item',focusKey:'account-menu-profile'}],choose:value=>{this.accountMenuOpen=false;if(value==='settings'){this.settingsView=createSettingsViewState();this.monitorSettingsReturn=undefined;this.settingsOpen=true;}else this.accountOpen=true;this.render();},dismiss:()=>{this.accountMenuOpen=false;this.render();this.root.querySelector<HTMLButtonElement>('.home-account')?.focus({preventScroll:true});}}));
     if(this.homeMenuOpen)main.append(dropdownMenu({label:'切换家庭',className:'home-menu',id:'home-switcher-menu',selection:true,items:this.homes.map(home=>({value:home.id,label:`${home.name}${home.shared?' · 共享':''}`,selected:home.id===this.selectedHomeId,className:'home-choice',focusKey:`home-choice-${home.id}`})),choose:value=>{this.homeMenuOpen=false;void this.selectHome(value,true);},dismiss:()=>{this.homeMenuOpen=false;this.render();this.root.querySelector<HTMLButtonElement>('.home-title')?.focus({preventScroll:true});}}));
     const rooms = element('nav', 'room-tabs'); rooms.setAttribute('aria-label', '房间');
-    rooms.append(button('场景',`room-tab${this.roomId==='@scenes'?' active':''}`,()=>{this.roomId='@scenes';this.render();void this.scenes.load();void this.scenes.loadEnvironment(this.sceneDevices());}));
+    rooms.append(button('场景',`room-tab${this.roomId==='@scenes'?' active':''}`,()=>{this.roomId='@scenes';this.render();void this.scenes.load();void this.scenes.loadEnvironment(this.sceneDevices());void this.refreshVisibleState();}));
     rooms.append(button('全屋', `room-tab${this.roomId === '*' ? ' active' : ''}`, () => { this.roomId = '*'; this.render(); }));
     for (const room of orderedRooms(this.currentHome()?.rooms ?? [], this.snapshot?.order)) rooms.append(button(room.name, `room-tab${this.roomId === room.id ? ' active' : ''}`, () => { this.roomId = room.id; this.render(); }));
     if (devices.some(device => !device.roomId || !this.currentHome()?.rooms.some(room => room.id === device.roomId))) rooms.append(button('未分配', `room-tab${this.roomId === '?' ? ' active' : ''}`, () => { this.roomId = '?'; this.render(); }));
@@ -1165,10 +1272,7 @@ export class App {
     const content = element('div', 'home-content');
     content.tabIndex=0;content.setAttribute('aria-label',this.roomId==='@scenes'?'家庭场景':'设备列表');
     if(this.snapshot&&this.preferences.view&&!this.homeContentLoading)content.append(this.renderSceneShortcuts());
-    if (this.sessionNotice) {
-      const box = notice({ tone: 'error', title: '登录已失效', message: this.sessionNotice.message }); box.append(button('重新登录', 'button button-small button-secondary', () => { void this.logout(); })); content.append(box);
-    }
-    if (this.homeError && !this.sessionNotice) {
+    if (this.homeError) {
       const box = notice({ tone: 'error', title: this.homeError.message });
       if (this.homeError.retryable) box.append(button('重试', 'button button-small button-secondary', () => { if (this.selectedHomeId) void this.selectHome(this.selectedHomeId); else void this.loadHomes(); })); content.append(box);
     }
@@ -1209,6 +1313,7 @@ export class App {
     this.scenes.reset();this.scenesView.dispose();
     this.devicePreviewCache.clear();
     this.monitorWall?.close();this.monitorRunning=false;++this.monitorStartEpoch;this.monitorExitLatch=false;
+    this.monitorHome=undefined;this.monitorHomeSwitching=false;
     this.propertyOps.reset();this.propertyContexts.clear();this.deviceSends.clear();this.confirmedPanels.clear();this.confirmedPanelVersions.clear();this.recentPanel.values.clear();for(const motion of this.curtainMotions.values())motion.reset();this.curtainMotions.clear();this.curtainMotion.reset();this.homeCardsPropertyReadVersion=0;this.operationNoticeRevision=0;
     this.homeCards=undefined;this.homeCardsRequest=undefined;this.homeCardOps.reset();this.homeCardsReadVersion=0;
     this.arrangement=undefined;document.body.classList.remove('home-is-arranging');
@@ -1245,28 +1350,93 @@ export class App {
     if(changed){sizeDeviceGrid(grid,this.arrangement?.order,true);this.scheduleCardPresentations();}
     return true;
   }
+  private async refreshDetachedMonitor():Promise<void>{
+    const request=++this.detachedMonitorRequest;
+    try{
+      const label=await api.detachedMonitorStatus();
+      if(this.disposed||request!==this.detachedMonitorRequest||label===this.detachedMonitor)return;
+      this.detachedMonitor=label;
+      if(this.settingsOpen&&this.settingsView.category==='monitor')this.render();
+    }catch{/* A failed status read leaves the last confirmed window state visible. */}
+  }
+  private async launchDetachedMonitor(target:StartupMonitorTarget):Promise<boolean>{
+    if(this.detachedMonitorBusy)return true;
+    this.detachedMonitorBusy=true;
+    if(this.settingsOpen)this.render();
+    try{
+      const opened=await api.openDetachedMonitor(target);
+      if(opened)await this.refreshDetachedMonitor();
+      return !!opened;
+    }catch(error){
+      const failure=normalizeError(error);
+      if(isSessionError(failure))void this.verifySessionExpiry();
+      else if(!this.disposed&&failure.kind!=='staleContext')showToast(document.body,failure.message,false);
+      return true;
+    }finally{
+      this.detachedMonitorBusy=false;
+      if(!this.disposed&&this.settingsOpen)this.render();
+    }
+  }
+  private async stopDetachedMonitor(label:string):Promise<void>{
+    if(this.detachedMonitorBusy)return;
+    this.detachedMonitorBusy=true;this.render();
+    try{await api.closeDetachedMonitor(label);}
+    catch(error){if(!this.disposed)showToast(document.body,normalizeError(error).message,false);}
+    finally{this.detachedMonitorBusy=false;if(!this.disposed&&this.settingsOpen)this.render();}
+  }
   private async beginMonitor(allHomes=this.preferences.view?.monitorAllHomes??false):Promise<void>{
     const epoch=++this.monitorStartEpoch;
+    const scope=this.application.data?.scope,homeId=this.snapshot?.homeId;
+    if(scope&&this.session?.loggedIn&&!this.monitorWall?.active&&(this.application.data?.desktopOptions.monitorSeparateWindow||this.detachedMonitor)){
+      const target=allHomes?{scope,allHomes:true}as const:homeId?{scope,homeId}:undefined;
+      if(target&&await this.launchDetachedMonitor(target))return;
+      if(epoch!==this.monitorStartEpoch)return;
+    }
     if(allHomes){this.monitorCatalog.setAccount(this.application.data?.scope??null);await this.monitorCatalog.load();if(epoch!==this.monitorStartEpoch)return;if(!this.monitorCatalog.data||!selectedMonitorMembers(this.monitorCatalog.data).length)return;}
     else if(!this.snapshot?.devices.some(d=>monitorEligible(d)&&!this.preferences.view?.monitor?.excludedDeviceIds.includes(d.did)))return;
     if(!this.session?.loggedIn||epoch!==this.monitorStartEpoch)return;
     try{this.monitorModule??=await import('./ui/monitor-wall');}catch{if(epoch===this.monitorStartEpoch){this.uiNotice={tone:'error',title:'监控暂时无法加载，请重试。'};this.render();}return;}
     if(this.disposed||!this.session?.loggedIn||epoch!==this.monitorStartEpoch)return;
-    this.monitorWall??=new this.monitorModule.MonitorWall(()=>this.exitMonitor(),error=>this.handleSessionError(normalizeError(error)));
+    this.monitorWall??=new this.monitorModule.MonitorWall(()=>this.exitMonitor(),error=>{
+      const failure=normalizeError(error);
+      if(failure.kind==='monitorWindowOpen'){this.exitMonitor();void this.refreshDetachedMonitor();}
+      else if(isSessionError(failure))void this.verifySessionExpiry();
+    });
     this.monitorWall.setPaused(this.monitorBackground(),this.resourcePaused||document.hidden);
+    this.monitorHome=undefined;this.monitorHomeSwitching=false;
     this.suppressStartupMonitor=false;this.monitorExitLatch=false;this.monitorAllActive=allHomes;this.monitorRunning=true;
     if(this.settingsOpen){captureSettingsView(this.root,this.settingsView);this.monitorSettingsReturn=this.settingsView;}else this.monitorSettingsReturn=undefined;
     this.settingsOpen=false;this.clearPanel();this.render();
   }
+  private async switchMonitorHome(homeId:string|null):Promise<void>{
+    const wall=this.monitorWall,epoch=this.monitorStartEpoch,account=this.application.data?.scope;
+    if(!account||!wall?.active||!wall.canSwitchHome||this.monitorHomeSwitching||
+      (homeId===null?!this.monitorAllActive:!this.homes.some(home=>home.id===homeId)))return;
+    const current=()=>epoch===this.monitorStartEpoch&&wall.active&&this.application.data?.scope===account;
+    this.monitorHomeSwitching=true;this.render();
+    try{
+      const catalog=await readMonitorCatalog(false,homeId??undefined);
+      if(current()&&wall.canSwitchHome&&catalog.scope===account)this.monitorHome={id:homeId,catalog};
+    }catch(error){
+      if(!current())return;
+      const failure=normalizeError(error);
+      if(isSessionError(failure))void this.verifySessionExpiry();
+      else showToast(this.root,failure.message,false);
+    }finally{
+      if(epoch===this.monitorStartEpoch){this.monitorHomeSwitching=false;this.render();}
+    }
+  }
   private changePreferences(change:PreferenceChange):void{
     if(change.operation==='setMonitorEnabled'){
-      if(change.value)void this.beginMonitor();else{++this.monitorStartEpoch;this.monitorRunning=false;this.monitorExitLatch=true;this.monitorWall?.close();}
+      if(change.value)void this.beginMonitor();
+      else if(this.detachedMonitor)void this.stopDetachedMonitor(this.detachedMonitor);
+      else{++this.monitorStartEpoch;this.monitorRunning=false;this.monitorExitLatch=true;this.monitorWall?.close();}
       this.render();return;
     }
     if(change.operation==='setMonitorAllHomes'){++this.monitorStartEpoch;if(change.value)this.monitorCatalog.data=undefined;}
     this.preferencesError=undefined;this.deviceMenu=undefined;this.preferences.change(change);
   }
-  private exitMonitor():void {++this.monitorStartEpoch;this.monitorRunning=false;void setNativeFullscreen(false);this.monitorExitLatch=true;this.monitorWall?.close();if(document.fullscreenElement)void document.exitFullscreen().catch(()=>{});this.settingsView=this.monitorSettingsReturn??createSettingsViewState('monitor');this.monitorSettingsReturn=undefined;this.settingsOpen=true;void this.loadPreferences();void this.monitorCatalog.load();this.render();}
+  private exitMonitor():void {++this.monitorStartEpoch;this.monitorRunning=false;this.monitorHome=undefined;this.monitorHomeSwitching=false;void setNativeFullscreen(false);this.monitorExitLatch=true;this.monitorWall?.close();if(document.fullscreenElement)void document.exitFullscreen().catch(()=>{});this.settingsView=this.monitorSettingsReturn??createSettingsViewState('monitor');this.monitorSettingsReturn=undefined;this.settingsOpen=true;void this.loadPreferences();void this.monitorCatalog.load();this.render();}
   private beginArrangement(id:string,sceneId?:string,pointerDrag=false):boolean{
     const view=this.preferences.view,snapshot=this.snapshot;
     if(!view||!snapshot||view.dragLocked||this.preferences.pendingCount||this.context||this.settingsOpen||this.sceneDrag.active)return false;
@@ -1397,9 +1567,9 @@ export class App {
     const preferences=this.preferences.view;
     return preferences?localDevices(this.snapshot?.devices??[],this.snapshot?.order,this.currentHome()?.rooms??[],this.roomId,preferences,false,this.homeCards?.cards):[];
   }
-  private sceneDevices():Device[]{
+  private sceneDevices(cards=this.homeCards?.cards):Device[]{
     const preferences=this.preferences.view;
-    return preferences?localDevices(this.snapshot?.devices??[],this.snapshot?.order,this.currentHome()?.rooms??[],'*',{...preferences,splitSwitches:true},false,this.homeCards?.cards):[];
+    return preferences?localDevices(this.snapshot?.devices??[],this.snapshot?.order,this.currentHome()?.rooms??[],'*',{...preferences,splitSwitches:true},false,cards):[];
   }
   private renderHomeScenes():HTMLElement{
     const devices=this.sceneDevices(),cards=devices.map(d=>this.displayedHomeCard(d)).filter((c):c is HomeCardEntry=>!!c);
@@ -1589,6 +1759,8 @@ export class App {
     this.doorbell.close();
     this.doorbellPlayer?.dispose();
     this.irRemote.close();
+    this.scaleHistory.close();
+    this.scaleReportReturn=undefined;
     this.fridgeCommands.close();
     this.dispenserCommands.close();this.dispenserView={page:'home'};
     this.dispenserSelfCheck.close();this.dispenserSterilization.close();
@@ -1649,7 +1821,7 @@ export class App {
   private rememberDevice(panel:DevicePanel):void{
     const device=this.deviceIndex.find(this.snapshot?.devices,panel.did);if(!device||!this.context)return;
     const key=this.deviceCacheKey(device,{...this.context,did:panel.did}),previous=this.devicePreviewCache.get(key);
-    this.devicePreviewCache.delete(key);this.devicePreviewCache.set(key,{panel,cachedAt:Date.now()/1000,hasCachedState:panel.services.some(s=>s.properties.some(p=>p.code===0||!!p.lastReported)),washerConfig:panel.did===this.context.did?this.washerConfig:previous?.washerConfig,at:Date.now()});
+    this.devicePreviewCache.delete(key);this.devicePreviewCache.set(key,{panel,cachedAt:Date.now()/1000,hasCachedState:panel.services.some(s=>s.properties.some(p=>isReadableValue(p)||!!p.lastReported)),washerConfig:panel.did===this.context.did?this.washerConfig:previous?.washerConfig,at:Date.now()});
     if(this.devicePreviewCache.size>64)this.devicePreviewCache.delete(this.devicePreviewCache.keys().next().value!);
   }
   private deviceContentReady():void{
@@ -1665,7 +1837,19 @@ export class App {
     this.context = context; this.panelLoading = true;
     this.propertyOps.setActive(true);
     const detail=applianceDetailCategory(device);
+    if(detail==='scale'){
+      this.panelLoading=false;
+      this.scaleHistory.open(context,device.model);
+      return;
+    }
     if(unavailableApplianceDetail(detail,device.model)){this.panelLoading=false;this.render();return;}
+    if(hasDedicatedCeilingFan(device)){
+      this.panelLoading=false;
+      this.ceilingFan.bind(context,JSON.stringify([this.session?.region,this.session?.userId]));
+      void this.ceilingFan.read();
+      this.render();
+      return;
+    }
     if(isIrRemote(device.model)){this.panelLoading=false;this.deviceOpening.begin();this.irRemote.bind(context,device.model,JSON.stringify([this.session?.region,this.session?.userId]));void this.irRemote.read();this.render();return;}
     if(device.model===vacuumModel){this.panelLoading=false;this.deviceOpening.begin();this.vacuum.bind(context,JSON.stringify([this.session?.region,this.session?.userId]));void this.vacuum.read();this.render();return;}
     const cached=this.devicePreviewCache.get(this.deviceCacheKey(device,context));
@@ -1676,7 +1860,6 @@ export class App {
     if(speakerMetadataSupported(device.model)&&device.online){this.speaker.bind(context,JSON.stringify([this.session?.region,this.session?.userId]));void this.speaker.read();}
     if(device.model===bathHeaterModel){this.bathHeater.bind(context,JSON.stringify([this.session?.region,this.session?.userId]));void this.bathHeater.read();}
     if(device.model===fryerModel){this.fryer.bind(context,JSON.stringify([this.session?.region,this.session?.userId]));void this.fryer.read();}
-    if(device.model===ceilingFanModel){this.ceilingFan.bind(context,JSON.stringify([this.session?.region,this.session?.userId]));void this.ceilingFan.read();}
     if(isCloudDoorbell(device.model)){this.doorbell.bind(context,JSON.stringify([this.session?.region,this.session?.userId]));void this.doorbell.read();}
     // Resource acquisition must never serialize or gate device state/preview.
     void this.loadDeviceUiResources(context, epoch);
@@ -1873,6 +2056,7 @@ export class App {
   
 
   private irRemote:IrRemoteState;
+  private scaleHistory:ScaleHistoryState;
   private renderDrawer(previous?:HTMLElement|null): HTMLElement {
     const washer=this.currentDevice();
     const dedicated=washer?dedicatedPage(washer.model):undefined;
@@ -1882,8 +2066,16 @@ export class App {
     const panel=washer?matchingPanel(washer,this.panel):undefined;
     const appliance=washer&&applianceDetailCategory(washer,panel);
     const environment=washer&&environmentCategory(washer,panel);
+    if(washer&&appliance==='scale'){
+      const account=this.session?.userId&&this.accountProfile
+        ?{id:this.session.userId,profile:this.accountProfile}:undefined;
+      const page=scalePage(washer,this.scaleHistory,artwork,()=>this.closePanel(),account);
+      return this.withUiResourceMetadata(element('div','device-stage',page));
+    }
     if(washer&&unavailableApplianceDetail(appliance,washer.model))
       return this.withUiResourceMetadata(deviceUnavailablePage(washer,()=>this.closePanel()));
+    if(washer&&hasDedicatedCeilingFan(washer))
+      return this.withUiResourceMetadata(ceilingFanPage({device:washer,state:this.ceilingFan,back:()=>this.closePanel()}));
     if(washer&&!this.deviceOpening.waiting&&routerPageEligible(washer,panel))
       return this.withUiResourceMetadata(routerPage({device:washer,state:this.router,panel:this.panelIsCached||this.panelError?undefined:panel,artwork,back:()=>this.closePanel()}));
     if(washer&&panel&&panel.did===washer.did&&panel.model===washer.model&&
@@ -1971,6 +2163,14 @@ export class App {
       if(simpleLivingDetail(appliance)&&panel)
         return this.withUiResourceMetadata(livingDetailPage({device:washer,panel,category:appliance,back,
           artwork:()=>this.deviceArtwork(washer,'',3,true),control:node=>this.control(node,washer)}));
+      if(appliance==='window-opener'&&panel){
+        const context={...this.context},epoch=this.panelEpoch;
+        return this.withUiResourceMetadata(windowOpenerPage({device:washer,panel,back,locked:this.controlBusy||this.panelIsCached,
+          control:node=>this.control(node,washer),write:(property,value)=>{
+            if(epoch!==this.panelEpoch||!sameContext(context,this.context))return;
+            void this.setProperty(property,value);this.schedulePanelRefresh();
+          }}));
+      }
       if(appliance==='curtain'&&panel){
         const content=this.renderCurtainPage(washer);
         if(!content.querySelector('.native-card'))return this.withUiResourceMetadata(deviceUnavailablePage(washer,back));
@@ -2117,7 +2317,6 @@ export class App {
       return this.withUiResourceMetadata(sharedDeviceViews.renderStatusReadingsPage.call(this.presenterHost(),washer,bathroom,readings,back));
     }
     if(washer?.model===fryerModel&&this.panel)return this.withUiResourceMetadata(fryerPage({device:washer,state:this.fryer,view:this.fryerView,changed:()=>this.render(true),back:()=>this.closePanel()}));
-    if(washer?.model===ceilingFanModel&&this.panel&&pinnedLayout!=='light')return this.withUiResourceMetadata(ceilingFanPage({device:washer,state:this.ceilingFan,back:()=>this.closePanel()}));
     if(washer?.model===dispenserModel&&this.panel&&dispenserProfile(this.panel)){
       const context={...this.context!},epoch=this.panelEpoch,current=()=>epoch===this.panelEpoch&&sameContext(context,this.context);this.dispenserCommands.bind(context,JSON.stringify([this.session?.region,this.session?.userId]));
       this.dispenserSterilization.bind(context,JSON.stringify([this.session?.region,this.session?.userId]));
@@ -2657,10 +2856,14 @@ export class App {
       color?.siid===property.siid&&color.piid===property.piid))return false;
     const actual=(this.confirmedPanels.get(did)??panel)?.services.flatMap(s=>s.properties).find(p=>p.siid===property.siid&&p.piid===property.piid)??property;
     if(!panel||!device?.online||device.sharedReadOnly||!actual.access.includes('write')||writeUnsupportedReason(actual))return false;
-    const key=this.operationKey(did,property.siid,property.piid);this.propertyContexts.set(key,{context:{...this.context,did},homeEpoch:this.homeEpoch});
-    if(actual.name==='motor-control'||actual.name==='target-position'){
+    const opener=windowOpenerRails(panel,device.controlServiceId).find(rail=>rail.siid===actual.siid&&
+      (rail.motor?.piid===actual.piid||rail.target?.piid===actual.piid));
+    const key=this.operationKey(did,property.siid,property.piid);
+    this.propertyContexts.set(key,{context:{...this.context,did},homeEpoch:this.homeEpoch,windowOpener:!!opener});
+    if(opener||actual.name==='motor-control'||actual.name==='target-position'){
       const curtain=curtainBindings(panel,actual.siid);
-      const alternate=actual.name==='motor-control'?curtain?.target:curtain?.motor;
+      const movement=opener??curtain;
+      const alternate=actual.piid===movement?.motor?.piid?movement?.target:movement?.motor;
       if(alternate){
         const alternateKey=this.operationKey(did,alternate.siid,alternate.piid);
         if(this.propertyOps.get(alternateKey)?.pending)this.propertyOps.cancel(alternateKey,false);
@@ -2679,12 +2882,17 @@ export class App {
     }
     const previous=this.confirmedPanels.get(panel.did);
     const carried=new Set<Property>();
+    const openerRails=windowOpenerRails(panel);
     panel={...panel,services:panel.services.map(s=>{
-      const motionRevision=s.name==='curtain'?Math.max(-1,...s.properties.filter(p=>p.name==='motor-control'||p.name==='target-position')
+      const opener=openerRails.find(rail=>rail.siid===s.siid);
+      const motionRevision=opener?Math.max(-1,...[opener.motor,opener.target].flatMap(p=>p?
+        [this.propertyOps.get(this.operationKey(panel.did,p.siid,p.piid))?.revision??-1]:[])):
+        s.name==='curtain'?Math.max(-1,...s.properties.filter(p=>p.name==='motor-control'||p.name==='target-position')
         .map(p=>this.propertyOps.get(this.operationKey(panel.did,p.siid,p.piid))?.revision??-1)):-1;
       return {...s,properties:s.properties.map(p=>{
         const op=this.propertyOps.get(this.operationKey(panel.did,p.siid,p.piid));
-        if(previous&&(op&&op.revision>readVersion||['current-position','status'].includes(p.name)&&motionRevision>readVersion)){
+        const motionReport=p.piid===opener?.position?.piid||['current-position','status'].includes(p.name);
+        if(previous&&(op&&op.revision>readVersion||motionReport&&motionRevision>readVersion)){
           const old=previous.services.find(s=>s.siid===p.siid)?.properties.find(q=>q.piid===p.piid);
           if(old){carried.add(old);return old;}
         }
@@ -2762,14 +2970,22 @@ export class App {
       }
       const p=confirmed?.services.find(s=>s.siid===siid)?.properties.find(p=>p.piid===piid);
       const curtain=p?.name==='motor-control'||p?.name==='target-position'?curtainBindings(confirmed,siid):undefined;
-      const targetPosition=curtain?.position;
+      const device=binding.windowOpener?this.deviceIndex.find(this.snapshot?.devices,did):undefined;
+      const opener=device&&windowOpenerRails(confirmed,device.controlServiceId).find(rail=>rail.siid===siid&&
+        (rail.motor?.piid===piid||rail.target?.piid===piid));
+      if(binding.windowOpener&&(!device?.online||device.sharedReadOnly||!opener?.online))
+        throw {kind:'unavailable',message:''};
+      const movement=opener||curtain;
+      const targetPosition=movement?.position;
       const range=targetPosition?.valueRange;
       const position=binding.homeCurtain?{siid:2,piid:4}:
-        p?.name==='target-position'&&range&&typeof value==='number'&&value>=range[0]&&value<=range[1]&&
+        p===movement?.target&&range&&typeof value==='number'&&value>=range[0]&&value<=range[1]&&
         Math.abs((value-range[0])/range[2]-Math.round((value-range[0])/range[2]))<1e-7?targetPosition:undefined;
-      const writeOnlyMotor=p===curtain?.motor&&!!p&&!p.access.includes('read');
+      const writeOnlyMotor=p===movement?.motor&&!!p&&!p.access.includes('read');
       const meaning=writeOnlyMotor&&p?curtainMotorMeaning(p,value):undefined;
-      const feedback=curtain&&meaning?curtainFeedback(curtain,meaning):undefined;
+      const feedback=movement&&meaning?
+        (opener?curtainFeedback({position:opener.position},meaning):undefined)??curtainFeedback(movement,meaning):undefined;
+      const submitOnly=!!opener&&writeOnlyMotor&&!feedback;
       const expected=feedback?.value??value,observed=feedback?.property??position;
       if(read&&writeOnlyMotor&&!feedback)throw {kind:'readbackFailed',message:''};
       const result=await(read?this.transport.confirmProperty(context,observed?.siid??siid,observed?.piid??piid,expected):
@@ -2778,6 +2994,7 @@ export class App {
       if(result.panel.did!==did)throw {kind:'protocol',message:'设备回读标识不匹配，仍待确认。'};
       const actual=result.panel.services.find(service=>service.siid===(observed?.siid??siid))?.properties.find(property=>property.piid===(observed?.piid??piid));
       this.acceptPanel(result.panel,version);
+      if(submitOnly)return {outcome:'submitted',message:''};
       if(writeOnlyMotor)return {outcome:read&&actual?.code===0&&actual.value===expected?'confirmed':'pending',actual:undefined,message:result.message};
       return{outcome:(position?actual&&isReadableValue(actual)&&actual.value===value:result.verified)?'confirmed':'pending',actual:actual&&isReadableValue(actual)?actual.value:undefined,message:result.message};
     }catch(error){const failure=normalizeError(error);if(current())this.handleSessionError(failure);throw failure;}
@@ -2861,10 +3078,11 @@ export class App {
     try {
       await this.transport.logout();
       ++this.loginEpoch; ++this.homeEpoch;
+      this.cancelHomeInventoryRead();
       if (this.loginTimer) clearTimeout(this.loginTimer);
       if (this.homeRefreshTimer) clearTimeout(this.homeRefreshTimer);
       this.session = undefined;this.accountProfile=undefined;this.profileError=false;this.homes = []; this.selectedHomeId = ''; this.snapshot = undefined;
-      this.clearPanel(); this.resetLocalView(); this.homeError = undefined; this.sessionNotice = undefined; this.loginError = undefined; this.loginState = 'idle'; this.homeBusy = false;
+      this.clearPanel(); this.resetLocalView(); this.homeError = undefined; this.loginError = undefined; this.loginState = 'idle'; this.homesLoading = false; this.homeBusy = false;
     } catch (error) { this.homeError = normalizeError(error); }
     this.logoutBusy = false; this.render();
   }

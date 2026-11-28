@@ -1,4 +1,34 @@
-import type {AppError,ControlResult,DeviceContext,DevicePanel} from './types';
+import type {AppError,ControlResult,Device,DeviceContext,DevicePanel,Property} from './types';
+import {detailProperty,detailServices,matchingPanel} from './appliance-details';
+import {propertyReading} from './panel-layout';
+
+export function purifierReadings(device:Device,candidate:DevicePanel|undefined){
+ const panel=matchingPanel(device,candidate);
+ const services=detailServices(panel);
+ const numeric=(role:string,serviceNames:string[],units:string[])=>{
+  const matches=services.flatMap(service=>{
+   if(!serviceNames.includes(service.name))return [];
+   const p=detailProperty(service,role);
+   return p&&/^(u?int(8|16|32|64)|float|double)$/.test(p.format)&&units.includes(p.unit??'')?[p]:[];
+  });
+  return matches.length===1?matches[0]:undefined;
+ };
+ const tds=numeric('tds-out',['tds-sensor','water-purifier'],['','none','ppm']);
+ const temperature=numeric('temperature',['water-purifier'],['celsius']);
+ const report=device.model==='xiaomi.waterpuri.lx32'&&!panel?.unsupportedReason?panel?.purifier:undefined;
+ const read=(property:Property|undefined,fallback:number|null|undefined,valid:(value:number)=>boolean)=>{
+  if(!device.online)return {value:undefined,source:'missing'} as const;
+  const reading=propertyReading(property);
+  const value=reading.value??fallback;
+  return typeof value==='number'&&Number.isFinite(value)&&valid(value)?
+   {value,source:reading.source==='missing'?'live':reading.source}:{value:undefined,source:'missing'} as const;
+ };
+ return {
+  tds,temperature,report,
+  tdsReading:read(tds,report?.tds,value=>value>=0&&value<10000),
+  temperatureReading:read(temperature,report?.temperature,()=>true),
+ };
+}
 export interface PurifierCup {id:number;volumeMl:number}
 export interface PurifierSnapshot {status:'idle'|'busy'|'waiting'|'unknown';tds:number|null;temperature:number|null;fault:number|null;cups:PurifierCup[];cupSource:string|null;cupError:string|null;canEditCups:boolean;editReason:string|null;filters:{siid:number;name:string;description:string;percent:number|null;days:number|null;antiFake:boolean|null}[]}
 export const cupLabel=(ml:number):string=>ml<1000?`${ml}ml`:`${ml/1000}L`;

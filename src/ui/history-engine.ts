@@ -1,12 +1,12 @@
 import * as echarts from 'echarts/core';
 import { BarChart, LineChart } from 'echarts/charts';
-import { GridComponent, MarkPointComponent, TooltipComponent } from 'echarts/components';
+import { GridComponent, MarkLineComponent, MarkPointComponent, TooltipComponent } from 'echarts/components';
 import { SVGRenderer } from 'echarts/renderers';
 import type { EChartsType } from 'echarts/core';
 import { LegacyGridContainLabel } from 'echarts/features';
 import 'echarts/theme/v5';
 import { bindSvgChartPointer } from './chart-pointer';
-echarts.use([LineChart, BarChart, GridComponent, MarkPointComponent, TooltipComponent, SVGRenderer, LegacyGridContainLabel]);
+echarts.use([LineChart, BarChart, GridComponent, MarkLineComponent, MarkPointComponent, TooltipComponent, SVGRenderer, LegacyGridContainLabel]);
 
 /** Historical series are bounded (hours, days or months). Keep their text and
  * paths as vectors: a canvas backing store sized for devicePixelRatio alone is

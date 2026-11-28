@@ -86,7 +86,7 @@ export function curtainJourney(journey:Property|undefined):number|undefined {
   if(journey?.unit==='seconds')return numericValue(journey);
 }
 
-export function curtainFeedback(bindings:NonNullable<ReturnType<typeof curtainBindings>>,meaning:CurtainCommand) {
+export function curtainFeedback(bindings:{status?:Property;position?:Property},meaning:CurtainCommand) {
   const {status,position}=bindings;
   const state=matchingChoice(status,states[meaning]);
   if(status&&state!==undefined)return {property:status,value:state};
@@ -98,6 +98,10 @@ export function curtainMotorMeaning(motor:Property,desired:Json):CurtainCommand|
   return (Object.keys(commands) as CurtainCommand[]).find(meaning=>matchingChoice(motor,commands[meaning])===desired);
 }
 
+export function curtainMotorValue(motor:Property|undefined,meaning:CurtainCommand):Json|undefined {
+  return matchingChoice(motor,commands[meaning]);
+}
+
 export function curtainCommand(bindings:ReturnType<typeof curtainBindings>,meaning:CurtainCommand) {
   if(!bindings)return;
   const {target,motor}=bindings;
@@ -105,7 +109,7 @@ export function curtainCommand(bindings:ReturnType<typeof curtainBindings>,meani
   if(meaning!=='pause'&&target?.access.includes('write')&&target.valueRange?.[meaning==='open'?1:0]===end){
     return {property:target,value:end};
   }
-  const value=matchingChoice(motor,commands[meaning]);
+  const value=curtainMotorValue(motor,meaning);
   if(motor?.access.includes('write')&&value!==undefined&&(motor.access.includes('read')||curtainFeedback(bindings,meaning))){
     return {property:motor,value};
   }

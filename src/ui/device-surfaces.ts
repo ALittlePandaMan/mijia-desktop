@@ -44,7 +44,8 @@ export function deviceSurfaces<T extends HTMLElement>(stage:T):T {
  // Direct rows inside one surface remain a list; the surface owns its spacing.
  const parents=new Set([...page.querySelectorAll<HTMLElement>('.device-control-unit')].map(n=>n.parentElement!));
  for(const parent of parents){
-  if(parent.matches('.native-card,.detail-power-row,.daily-actions,.speaker-transport,.device-card-stack')||parent.closest('.native-card')||parent.closest('[role="dialog"]'))continue;
+  if(parent.matches('.native-card,.detail-power-row,.daily-actions,.speaker-transport,.device-card-stack,.scale-overview-content,.scale-entries')||
+    parent.closest('.native-card')||parent.closest('[role="dialog"]'))continue;
   if(parent.matches('.schema-panel')){parent.classList.add('device-card-stack','device-nested-stack');continue;}
   if(parent.matches('.device-page-scroll')&&!parent.closest('.device-controls-region'))parent.classList.add('device-controls-region');
   const children=[...parent.children];let stack:HTMLElement|undefined;

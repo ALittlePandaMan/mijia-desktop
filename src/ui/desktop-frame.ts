@@ -38,13 +38,13 @@ function captionIcon(kind:CaptionIcon):SVGSVGElement {
 }
 
 /** Separate from App renders so device updates never recreate the window frame. */
-export function mountDesktopFrame(native:DesktopWindow):HTMLElement {
+export function mountDesktopFrame(native:DesktopWindow,title='米家'):HTMLElement {
   const lifetime=new AbortController();let disposed=false,unlisten:(()=>void)|undefined;
   window.addEventListener('pagehide',()=>{disposed=true;lifetime.abort();unlisten?.();},{once:true});
   document.body.classList.add('desktop-framed');
   const bar=element('header','desktop-titlebar');
   const appIcon=element('img','icon');appIcon.src=appIconUrl;appIcon.alt='';appIcon.draggable=false;appIcon.dataset.iconName='desktop:app';appIcon.dataset.iconSource='project-brand';
-  const drag=element('div','desktop-title-drag',appIcon,element('span','','米家'));
+  const drag=element('div','desktop-title-drag',appIcon,element('span','',title));
   const actions=element('div','desktop-window-actions');
   const monitorActions=element('div','desktop-monitor-actions');
   const exit=element('button','desktop-monitor-action','退出监控');exit.type='button';exit.addEventListener('click',()=>window.dispatchEvent(new Event('monitor-exit')));
@@ -90,6 +90,6 @@ export function mountDesktopFrame(native:DesktopWindow):HTMLElement {
   bar.append(drag,monitorActions,actions);document.body.prepend(bar);return bar;
 }
 
-export function setupDesktopFrame():void {
-  if(isTauri()){mountDesktopFrame(getCurrentWindow());void showThemedWindow().catch(error=>console.warn('Window show failed',error));}
+export function setupDesktopFrame(title?:string):void {
+  if(isTauri()){mountDesktopFrame(getCurrentWindow(),title);void showThemedWindow().catch(error=>console.warn('Window show failed',error));}
 }

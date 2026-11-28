@@ -1,7 +1,7 @@
 import './ir-remote.css';
 import type {Device} from '../types';
 import {televisionLabels,type TelevisionRole} from '../television';
-import {officialIcon} from '../icons';
+import {icon,officialIcon} from '../icons';
 import {button,element} from './dom';
 import {deviceWait} from './device-loading';
 import {deviceSurfaces} from './device-surfaces';
@@ -43,7 +43,8 @@ export function remoteControlPage(p:RemotePageProps):HTMLElement{
     if(p.retry)failure.append(button('重试','button button-small button-secondary',p.retry));
     body.append(failure);
   }else{
-    const extra=p.extras?element('details','ir-extra-keys',element('summary','','更多功能'),p.extras):undefined;
+    const extra=p.extras?element('details','ir-extra-keys',
+      element('summary','ir-extra-heading',element('span','','更多功能'),icon('chevron')),p.extras):undefined;
     if(extra)extra.open=!!p.extrasOpen;
     const make=(role:TelevisionRole)=>{
       const key=p.keys?.[role],more=role==='menu'&&!key?extra:undefined;

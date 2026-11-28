@@ -42,6 +42,7 @@ export class Tile {
  private recoveryQuality?:string;private qualityRecoveries=0;private pendingQuality?:string;private qualityWriting=false;private quality='sd';private qualities:CameraFeatures['qualities']=[];private recording=false;private busy=false;private actionEpoch=0;
  get blocksSuspension():boolean{return this.resourcePaused?this.protectedWork:this.recording||this.busy||this.qualityWriting||this.page.blocksSuspension;}
  private resourcePaused=false;
+ private playingElsewhere=false;
  get resourceIsPaused():boolean{return this.resourcePaused;}
  get protectedWork():boolean{return this.recording||this.busy||this.qualityWriting||this.page.controls.mode!=='live'||this.page.protectedWork;}
  setResourcePaused(paused:boolean,presentationHidden=false):boolean{
@@ -92,7 +93,7 @@ export class Tile {
    cameraScreenshot:(_c,_id,png)=>this.actions.screenshot(this.revision,png),
   },()=>this.fail());
   this.root.dataset.did=device.did;this.label.textContent=actions.label??device.name;this.page.video.setAttribute('aria-label',device.name+'实时画面');
-  this.retry=button('重新连接','monitor-retry',()=>{if(this.root.dataset.state==='closed')void this.wakeCamera();else reconnect();});this.state.append(this.spinner,this.text,this.retry);
+  this.retry=button('重新连接','monitor-retry',()=>{void this.retryConnection();});this.state.append(this.spinner,this.text,this.retry);
   this.qualityButton.setAttribute('aria-description','切换画质');this.qualityButton.setAttribute('aria-label','切换画质');this.qualityButton.setAttribute('aria-expanded','false');this.qualityButton.setAttribute('aria-haspopup','menu');
   this.soundButton.classList.add('monitor-audio-button');this.talkButton.classList.add('monitor-audio-button');this.talkGlyph.append(...this.talkButton.childNodes);this.talkButton.append(this.talkGlyph);
   this.tools.setAttribute('role','toolbar');this.tools.setAttribute('aria-label','摄像头工具');this.tools.append(this.fullscreenButton,this.shotButton,this.recordButton,this.soundButton,this.talkButton,this.qualityButton);
@@ -188,7 +189,7 @@ export class Tile {
   if(row.timings)this.root.dataset.startupTimings=JSON.stringify(row.timings);
   const unavailable=['offline','closed','error'].includes(row.state),context=this.actions.context??{homeId:'monitor',generation:1,did:this.device.did};
   const viewKey=JSON.stringify([this.revision,this.device.name,this.device.online,unavailable]);if(this.viewKey!==viewKey){this.viewKey=viewKey;this.page.update(context,this.device,{loading:unavailable});}this.page.syncControls(this.quality,this.recording);
-  if(unavailable){this.disposePlayer();this.page.unavailable(row.state);this.status(row.state);return;}
+  if(unavailable){this.disposePlayer();this.page.unavailable(row.state);this.status(row.state,row.error?.kind==='cameraInUse');return;}
   if(this.failed)return;
   const cloud=this.page.controls.mode==='cloud';
   if(cloud)this.events.length=0;
@@ -213,10 +214,19 @@ export class Tile {
   if(!ready||changed)this.updateButtons();
   if(this.recoveryQuality&&!this.qualityWriting){const quality=this.recoveryQuality;this.recoveryQuality=undefined;void this.changeQuality(quality,true);}
  }
- private status(state:string):void {
+ private async retryConnection():Promise<void>{
+  if(this.root.dataset.state==='closed'){await this.wakeCamera();return;}
+  if(this.playingElsewhere&&this.actions.context){
+   const revision=this.revision;
+   if(await api.focusCameraView(this.actions.context).catch(()=>false)||this.disposed||this.revision!==revision)return;
+  }
+  this.reconnect();
+ }
+ private status(state:string,playingElsewhere=false):void {
+  this.playingElsewhere=playingElsewhere;
   this.state.hidden=false;this.spinner.hidden=state!=='connecting';this.retry.hidden=!['error','closed'].includes(state);
-  this.text.textContent=state==='offline'?'摄像机离线':state==='closed'?'摄像机休眠中':state==='error'?'无法连接':this.page.waitingForDecoder?DECODER_WAITING:'';
-  this.retry.textContent=state==='closed'?'唤醒摄像机':'重新连接';
+  this.text.textContent=playingElsewhere?'摄像机正在另一个窗口播放':state==='offline'?'摄像机离线':state==='closed'?'摄像机休眠中':state==='error'?'无法连接':this.page.waitingForDecoder?DECODER_WAITING:'';
+  this.retry.textContent=playingElsewhere?'查看播放窗口':state==='closed'?'唤醒摄像机':'重新连接';
   this.root.dataset.state=state;
   if(['offline','closed','error'].includes(state)){++this.actionEpoch;this.busy=false;this.qualityWriting=false;this.pendingQuality=undefined;this.recording=false;this.hideQuality();}this.updateButtons();
  }

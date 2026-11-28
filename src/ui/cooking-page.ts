@@ -5,7 +5,7 @@ import {booleanValue,controlReason,numericValue} from '../panel-layout';
 import {validRange} from '../device-capabilities';
 import {icon,type IconName} from '../icons';
 import {button,element} from './dom';
-import {cycleActions,cycleButton} from './cycle-actions';
+import {actionFooter,footerButton} from './action-footer';
 import {cookingBubbles,fryerDetailHero,fryerModeArtwork,fryerSettingRow,fryerStopDialog,fryerValuePicker,fryerWarmRow,type FryerSetting} from './fryer-page';
 import {deviceUnavailablePage} from './device-unavailable';
 import {reservationPicker} from './reservation-picker';
@@ -107,17 +107,18 @@ export function cookingPage(p:{device:Device;panel?:DevicePanel;category:Cooking
       }
       if(settings.childElementCount)body.append(settings);
     }
-    const footer=cycleActions('fryer-actions');
+    const footer=actionFooter('fryer-actions');
     const add=(label:string,command:CookingCommand|undefined,primary=false)=>{
       if(!command)return;
-      const kind=command.kind==='pause'||command.kind==='resume'?'suspend':primary?'primary':'secondary';
-      const action=cycleButton(label,()=>p.execute(command),kind);
+      const kind=primary||command.kind==='pause'||command.kind==='resume'?'primary':'secondary';
+      const action=footerButton(label,()=>p.execute(command),kind);
+      if(command.kind==='pause'||command.kind==='resume')action.classList.add('action-white-text');
       action.disabled=disabled||!!p.actionBusy;footer.append(action);
     };
     if(running){
       if(state.stop){
         const stop=state.stop,reserved=state.phase==='scheduled';
-        const end=cycleButton(reserved?'取消预约':standard?'终止':'结束烹饪',()=>{p.editor.confirmStop=true;p.changed();});
+        const end=footerButton(reserved?'取消预约':standard?'终止':'结束烹饪',()=>{p.editor.confirmStop=true;p.changed();});
         end.disabled=disabled||!!p.actionBusy;footer.append(end);
         if(p.editor.confirmStop){
           const close=()=>{p.editor.confirmStop=false;p.changed();};
@@ -130,7 +131,7 @@ export function cookingPage(p:{device:Device;panel?:DevicePanel;category:Cooking
       const reservation=state.reservation;
       if(reservation?.schedulable&&reservation.mode===selected.value){
         const locked=disabled||!!p.actionBusy||!reservation.available;
-        const reserve=cycleButton('预约',()=>{p.editor.reservation=true;p.changed();});
+        const reserve=footerButton('预约',()=>{p.editor.reservation=true;p.changed();});
         reserve.disabled=locked;
         footer.append(reserve);
         if(p.editor.reservation){
@@ -148,7 +149,7 @@ export function cookingPage(p:{device:Device;panel?:DevicePanel;category:Cooking
       const field=state.modeSetting;
       if(start)add('开始',start,true);
       else if(field&&selected.value!==null&&selected.value!==state.selected?.value){
-        const select=cycleButton('设为当前模式',()=>{if(!select.disabled)p.write(field,selected.value);},'primary');
+        const select=footerButton('设为当前模式',()=>{if(!select.disabled)p.write(field,selected.value);},'primary');
         select.disabled=disabled||!!p.actionBusy||state.phase!=='ready'||!!controlReason(field,p.device.online,p.busy);
         footer.append(select);
       }

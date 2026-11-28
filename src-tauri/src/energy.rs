@@ -275,7 +275,7 @@ pub async fn load(
         if device.model == "cuco.plug.v3" {
             if let Some(key) = &on_key {
                 return cloud
-                    .history_page(device, owner, key, today_start, epoch_secs())
+                    .history_page(device, owner, key, today_start, epoch_secs(), 1000)
                     .await
                     .map(Some);
             }

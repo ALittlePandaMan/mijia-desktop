@@ -16,7 +16,7 @@ export function loginPage(p:LoginPageProps):HTMLElement {
   const art=element('aside','account-art');art.setAttribute('aria-hidden','true');
   const content=element('section','account-layout');
   const card=element('section','account-login-content');card.setAttribute('aria-label','扫码登录');
-  const qr=element('div','account-qr',element('h2','','扫码登录'),element('p','account-qr-help','一次扫码，登录米家并自动连接智能家居助手'));
+  const qr=element('div','account-qr',element('h2','','扫码登录'));
   const imageBox=element('div','account-qr-image-box');imageBox.setAttribute('aria-live','polite');
   if(p.qrState==='ready'&&p.qr){
     imageBox.append(qrImage(p.qr.qrDataUrl));

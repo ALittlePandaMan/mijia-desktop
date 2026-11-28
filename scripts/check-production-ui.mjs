@@ -26,6 +26,7 @@ try {
       desktop_widget_support: { supported: false, enabledDisplays: 0, pins: [] },
       application_settings: { scope: loggedIn ? 'fixture-account' : null, autostart: false, mcpStatus: { state: 'stopped' },
         settings: { startupMonitor: false, startupHome: null, closeToTray: true, keepAwake: false, mcp: { enabled: false, localPort: 8765, excludedHomes: [] } },
+        desktopOptions: { autoCheckUpdates: false, monitorSeparateWindow: false },
         update: { state: 'idle', revision: 0, currentVersion: 'fixture', supported: false } },
     };
     let next = 0;

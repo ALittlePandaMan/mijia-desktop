@@ -1,7 +1,7 @@
 import {dropdownSelect} from './dropdown';
 import {isTauri} from '@tauri-apps/api/core';
 import {api} from '../api';
-import type {ApplicationSettingsView,AppUpdateStatus} from '../application-settings';
+import type {ApplicationSettingsView,AppUpdateStatus,DesktopOptions} from '../application-settings';
 import {mcpHomeSelected,selectMcpHome} from '../application-settings';
 import type {Home} from '../types';
 import type {SettingsPanelState} from './settings-page';
@@ -15,18 +15,57 @@ import {updateCheckMessage} from '../update-feedback';
 import {AssistantAuthorizationController} from '../assistant-authorization';
 import {assistantAuthorization} from './assistant-authorization';
 
+const UPDATE_CHECK_INTERVAL = 6 * 60 * 60 * 1000;
+
 export class ApplicationSettingsController{
  data?:ApplicationSettingsView;private queue=Promise.resolve();private version=0;private pending=0;private error='';
   constructor(private changed:()=>void){}
  private readonly assistant=new AssistantAuthorizationController(api,()=>this.changed());
  private updateBusy=false;private updateError='';private aboutNotesOpen=false;
+ private disposed=false;
+ private automaticCheck?:ReturnType<typeof setInterval>;
+ private notifiedVersion?:string;
+ get saving():boolean{return this.pending>0;}
 
- private async checkUpdate():Promise<void>{
-  if(this.updateBusy)return;this.updateBusy=true;this.updateError='';this.changed();
-  try{const status=await api.checkAppUpdate();if(status.revision>=(this.data?.update.revision??0)){
-   this.acceptUpdate(status,false);const message=updateCheckMessage(status);if(message)showToast(document.body,message,status.state!=='error');
-  }}catch{showToast(document.body,'检查更新失败，请重试。',false);}
-  finally{this.updateBusy=false;this.changed();}
+ dispose():void{
+  this.disposed=true;
+  ++this.version;
+  clearInterval(this.automaticCheck);
+  this.automaticCheck=undefined;
+ }
+ private syncAutomaticCheck():void{
+  if(this.disposed||!this.data?.desktopOptions.autoCheckUpdates||!this.data.update.supported){
+   clearInterval(this.automaticCheck);
+   this.automaticCheck=undefined;
+   return;
+  }
+  if(this.automaticCheck!==undefined)return;
+  this.automaticCheck=setInterval(()=>{void this.checkUpdate(true);},UPDATE_CHECK_INTERVAL);
+  void this.checkUpdate(true);
+ }
+ private async checkUpdate(automatic=false):Promise<void>{
+  const timer=this.automaticCheck;
+  if(this.disposed||this.updateBusy||automatic&&timer===undefined)return;
+  if(['checking','downloading','ready','installing'].includes(this.data?.update.state??''))return;
+  this.updateBusy=true;
+  this.updateError='';
+  this.changed();
+  try{
+   const status=await api.checkAppUpdate();
+   if(this.disposed||status.revision<(this.data?.update.revision??0))return;
+   this.acceptUpdate(status,false);
+   if(automatic&&(timer!==this.automaticCheck||status.state!=='available'||status.latestVersion===this.notifiedVersion))return;
+   const message=updateCheckMessage(status);
+   if(message){
+    if(status.state==='available'&&status.latestVersion)this.notifiedVersion=status.latestVersion;
+    showToast(document.body,message,status.state!=='error');
+   }
+  }catch{
+   if(!automatic&&!this.disposed)showToast(document.body,'检查更新失败，请重试。',false);
+  }finally{
+   this.updateBusy=false;
+   if(!this.disposed)this.changed();
+  }
  }
 
  acceptUpdate(status:AppUpdateStatus,notify=true):void{if(this.data&&status.revision>=this.data.update.revision){this.data.update=status;if(status.state!=='error')this.updateError='';if(notify)this.changed();}}
@@ -62,13 +101,38 @@ export class ApplicationSettingsController{
   if(status.notes&&status.latestVersion&&status.latestVersion!==status.currentVersion){const notes=element('details','settings-update-notes');notes.open=this.aboutNotesOpen;notes.addEventListener('toggle',()=>{this.aboutNotesOpen=notes.open;});notes.append(element('summary','',`版本 ${status.latestVersion} 更新内容`),element('p','',status.notes.slice(0,16000)));card.append(notes);}
   const footer=element('footer','settings-about-description');
   for(const [label,page,glyph]of [['GitHub','github','link'],['问题反馈','issues','info']]as const){const action=button(label,'settings-action settings-about-link',()=>{void this.updateAction(()=>api.openAppProject(page));});action.prepend(icon(glyph));footer.append(action);}
-  const history=button('更新日志','settings-action settings-about-link',()=>{void this.updateAction(()=>api.openAppReleaseNotes());});history.prepend(icon('records'));history.dataset.focusKey='app-update-history';footer.append(history);card.append(footer);
+  const history=button('更新日志','settings-action settings-about-link',()=>{void this.updateAction(()=>api.openAppReleaseNotes());});history.prepend(icon('records'));history.dataset.focusKey='app-update-history';footer.append(history);
+  const autoCheck=settingsSwitch('自动检查更新',this.data!.desktopOptions.autoCheckUpdates,value=>this.changeDesktopOption('autoCheckUpdates',value));
+  autoCheck.dataset.focusKey='app-update-auto';
+  autoCheck.disabled=!status.supported;
+  footer.append(element('div','settings-about-auto-check',settingsCopy('自动检查更新'),autoCheck));
+  card.append(footer);
   return card;
  }
- async load(force=false):Promise<void>{if(!isTauri())return;const version=this.version;try{const data=await api.applicationSettings();if(version!==this.version)return;if(this.data&&this.data.update.revision>data.update.revision)data.update=this.data.update;if(data.scope!==this.data?.scope){this.assistant.setAccount(data.scope);++this.version;}else if(this.data&&this.pending&&!force){data.settings=this.data.settings;data.autostart=this.data.autostart;}this.data=data;this.error='';}catch{this.error='设置不可用';}this.changed();}
+ async load(force=false):Promise<void>{
+  if(!isTauri()||this.disposed)return;
+  const version=this.version;
+  try{
+   const data=await api.applicationSettings();
+   if(version!==this.version)return;
+   if(this.data&&this.data.update.revision>data.update.revision)data.update=this.data.update;
+   if(data.scope!==this.data?.scope){this.assistant.setAccount(data.scope);++this.version;}
+   else if(this.data&&this.pending&&!force){data.settings=this.data.settings;data.desktopOptions=this.data.desktopOptions;data.autostart=this.data.autostart;}
+   this.data=data;this.error='';
+   if(!this.pending||force)this.syncAutomaticCheck();
+  }catch{if(version===this.version)this.error='设置不可用';}
+  if(!this.disposed)this.changed();
+ }
  private save(change:(data:ApplicationSettingsView)=>void,autostart?:boolean):void{
+  this.queueSave(change,next=>api.changeApplicationSettings(next.settings,autostart));
+ }
+ changeDesktopOption(option:keyof DesktopOptions,enabled:boolean):void{
+  this.queueSave(data=>{data.desktopOptions[option]=enabled;},()=>api.changeDesktopOption(option,enabled));
+ }
+ private queueSave(change:(data:ApplicationSettingsView)=>void,save:(next:ApplicationSettingsView)=>Promise<ApplicationSettingsView>):void{
   if(!this.data)return;const next=structuredClone(this.data);change(next);this.data=next;const version=++this.version;++this.pending;this.changed();
-  this.queue=this.queue.catch(()=>{}).then(async()=>{try{const result=await api.changeApplicationSettings(next.settings,autostart);if(this.version===version){if(this.data&&this.data.update.revision>result.update.revision)result.update=this.data.update;this.data=result;this.error='';}}catch{if(this.version===version){await this.load(true);this.error='设置未保存';}}finally{--this.pending;}this.changed();});
+  if(!next.desktopOptions.autoCheckUpdates)this.syncAutomaticCheck();
+  this.queue=this.queue.catch(()=>{}).then(async()=>{try{const result=await save(next);if(this.version===version){if(this.data&&this.data.update.revision>result.update.revision)result.update=this.data.update;this.data=result;this.error='';this.syncAutomaticCheck();}}catch{if(this.version===version){await this.load(true);this.error='设置未保存';}}finally{--this.pending;}if(!this.disposed)this.changed();});
  }
  private row(label:string,control:HTMLElement,description=''):HTMLElement{return element('div','settings-row',settingsCopy(label,description),control);}
  private toggle(key:string,label:string,value:boolean,change:(value:boolean)=>void,description=''):HTMLElement{
@@ -90,9 +154,9 @@ export class ApplicationSettingsController{
   if(category==='application'){
   const application=element('div','settings-groups'),startup=element('div','settings-card'),background=element('div','settings-card');
   startup.append(this.toggle('app-autostart','开机自启',data.autostart,value=>this.save(d=>{d.autostart=value;},value),'登录 Windows 后自动启动米家 Desktop'),
-   this.toggle('app-start-monitor','启动后进入全屏监控',settings.startupMonitor,value=>this.save(d=>{d.settings.startupMonitor=value;if(value&&!d.settings.startupHome&&d.scope){const home=homes.find(h=>h.id===currentHome)??homes[0];if(home)d.settings.startupHome={scope:d.scope,homeId:home.id};}}),'启动应用时，直接打开指定家庭的监控画面'));
+   this.toggle('app-start-monitor','启动后打开监控',settings.startupMonitor,value=>this.save(d=>{d.settings.startupMonitor=value;if(value&&!d.settings.startupHome&&d.scope){const home=homes.find(h=>h.id===currentHome)??homes[0];if(home)d.settings.startupHome={scope:d.scope,homeId:home.id};}}),'启动应用时，直接打开指定家庭的监控画面'));
   const home=this.choice('app-start-home','启动监控的家庭',settings.startupHome?.scope===data.scope?(settings.startupHome&&'allHomes' in settings.startupHome?'@all':settings.startupHome?.homeId??''):'',
-   [{value:'',label:'选择家庭'},{value:'@all',label:'全屋'},...homes.map(h=>({value:h.id,label:h.name}))],value=>this.save(d=>{d.settings.startupHome=value&&d.scope?(value==='@all'?{scope:d.scope,allHomes:true}:{scope:d.scope,homeId:value}):null;}),'仅在启动后进入全屏监控时生效');
+   [{value:'',label:'选择家庭'},{value:'@all',label:'全屋'},...homes.map(h=>({value:h.id,label:h.name}))],value=>this.save(d=>{d.settings.startupHome=value&&d.scope?(value==='@all'?{scope:d.scope,allHomes:true}:{scope:d.scope,homeId:value}):null;}),'仅在启动后打开监控时生效');
   home.querySelector<HTMLButtonElement>('.settings-select')!.disabled=!settings.startupMonitor;
   startup.append(home);
   background.append(this.toggle('app-close-tray','关闭后在后台运行',settings.closeToTray,value=>this.save(d=>{d.settings.closeToTray=value;}),'关闭窗口后保留托盘图标与后台服务'),

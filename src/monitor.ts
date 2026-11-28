@@ -3,7 +3,7 @@ import type {CameraEvent,CameraFeatures,CameraReply,SavedCameraMedia,CameraOpera
 import {CAMERA_READ_BATCH} from './camera-types';
 import {normalizeError} from './logic';
 import {cloudDoorbellProfile} from './camera-profiles';
-export interface MonitorContext {homeId:string;generation:number;allHomes?:boolean;memberHomes?:Record<string,string>;homeNames?:Record<string,string>}
+export interface MonitorContext {homeId:string;generation:number;allHomes?:boolean;displayHomeId?:string;memberHomes?:Record<string,string>;homeNames?:Record<string,string>}
 export interface MonitorTimings {cloudStartMs?:number|null;cloudReadyMs?:number|null;connectStartMs?:number|null;connectedMs?:number|null;authenticatedMs?:number|null;firstPacketMs?:number|null;route?:string|null}
 export interface MonitorRow {did:string;revision:number;state:string;events:CameraEvent[];error?:AppError|null;timings?:MonitorTimings|null;qualities?:CameraFeatures['qualities'];features?:CameraFeatures;diagnostics?:{queuedBytes:number;peakBytes:number;recoveries:number}}
 export type MonitorOperation={kind:'quality';quality:string}|{kind:'listen'|'talk';enabled:boolean}|{kind:'record';enabled:boolean;width?:number;height?:number;lensId?:number;atTimestamp?:number;mediaGeneration?:number};

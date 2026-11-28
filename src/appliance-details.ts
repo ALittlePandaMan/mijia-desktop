@@ -19,6 +19,7 @@ export function applianceDetailCategory(device:Device,panel?:DevicePanel):string
   if(category)return category;
   if(device.model==='xiaomi.station.rp05')return 'nas';
   const modelType=device.model.split('.')[1];
+  if(modelType==='scales'||modelType==='scale')return 'scale';
   if(modelType==='cs')return 'card-switch';
   if(modelType==='waterpuri'||modelType==='waterpurifier')return 'water-purifier';
   const kitchen:Record<string,string>={microwave:'microwave-oven',coffee:'coffee-machine',ihcooker:'induction-cooker',
@@ -42,12 +43,12 @@ const personalOtherModels=new Set(['doco.fcb.docov001','guoshi.other.sem01','kol
 const unavailableApplianceCategories=new Set([
   'gateway','nas','intercom','microwave-oven','coffee-machine','induction-cooker','juicer',
   'oven','health-pot','cooking-machine','fruit-vegetable-purifier','baby-bottle-warmer','garbage-disposal','ice-maker',
-  'toothbrush','mattress','motor-controller','bed','window-opener','pillow','electronic-valve',
+  'toothbrush','mattress','motor-controller','bed','pillow','electronic-valve',
   'beauty-instrument','roller-shutter','shaver','hair-drier','oral-irrigator',
   ...Object.values(petAndPlantCategories),
   // 运动健康
   'ab-wheel','analyzer','bracelet','cup','dumbbell','foot-bath','jump-rope','massage','massager',
-  'moxibustion','scale','shoes','sleep-monitor','sphygmomanometer','stationary-bicycle','thermometer','treadmill','walking-pad','watch',
+  'moxibustion','shoes','sleep-monitor','sphygmomanometer','stationary-bicycle','thermometer','treadmill','walking-pad','watch',
   // 出行车载
   'bike','car-air-purifier','carlight','charging-pile','driving-recorder','electric-power',
   'head-up-display','rearview-mirror','safety-seat','scooter','suitcase',
@@ -60,7 +61,7 @@ const unavailableApplianceCategories=new Set([
 // Model types used in these four groups also identify devices whose account has no usable Spec.
 const unavailableGroupModelTypes=new Set([
   'abwheel','ajh','analyzer','bleshoes','bp','bpm','bracelet','cup','db','exbike',
-  'foot_bath','jmprope','lunar','magic_touch','massage','ro_skates','scales','thermo','treadmill','walkingpad','watch',
+  'foot_bath','jmprope','lunar','magic_touch','massage','ro_skates','thermo','treadmill','walkingpad','watch',
   'bike','carairpuri','cardvr','carlight','carseat','enstor','evc','hud','rv_mirror','scooter',
   'chair','desk','laptop','printer','sxb',
   'etool','fitting','intercom','ir','pump',

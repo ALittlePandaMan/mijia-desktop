@@ -1,5 +1,5 @@
 import type {EChartsType} from 'echarts/core';
-import {HomeScenesState,environmentSeries,sceneRooms,thermometer,type SceneRoom,type EnvironmentMetric} from '../home-scenes';
+import {HomeScenesState,environmentSeries,sceneControlAvailable,sceneRooms,thermometer,type SceneRoom,type EnvironmentMetric} from '../home-scenes';
 import type {HomeScene} from '../home-scenes';
 import {visibleSceneShortcuts,type SceneShortcutLayout} from '../scene-shortcut-preferences';
 import {sceneRoomColumns} from '../home-scene-layout';
@@ -81,7 +81,7 @@ export class HomeScenesView {
   const make=(devices:Device[],label:string,intent:HomeCardIntent,iconName:typeof controls[number][2],small=false)=>{
    const targets=()=>devices.flatMap(d=>{const current=this.devicesById.get(d.did);return current?[current]:[];});
    const control=button(small?'':label,small?'scene-all-button':'scene-room-control',()=>{const {state,cards}=this.input!;state.control(targets(),intent,cards);});control.prepend(officialIcon(iconName==='scene:curtain-pause'?iconName:'scene:'+iconName));control.setAttribute('aria-label',small?`全屋${kind==='light'?'灯光':'窗帘'}${label}`:label);
-   this.updates.push(()=>{control.disabled=!targets().some(d=>{const card=this.cardsById.get(d.did);return d.online&&!d.sharedReadOnly&&card?.enabled&&card.modeAllowed!==false;});});return control;
+   this.updates.push(()=>{control.disabled=!targets().some(d=>sceneControlAvailable(d,this.cardsById.get(d.did),intent));});return control;
   };
   const all=groups.flatMap(g=>g.devices),global=element('div','scene-section-actions');
   for(const [intent,label,iconName] of controls)if(intent!=='pause')global.append(make(all,label,intent,iconName,true));header.append(global);section.append(header);

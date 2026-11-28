@@ -30,6 +30,8 @@ mod camera_state;
 mod ceiling_fan_state;
 #[path = "state_ir_remote.rs"]
 mod ir_remote_state;
+#[path = "state_scale.rs"]
+mod scale_state;
 #[path = "state_monitor.rs"]
 mod monitor_state;
 #[path = "state_monitor_catalog.rs"]
@@ -42,9 +44,14 @@ mod fryer_state;
 
 pub struct AppState {
     pub(crate) assistant: Arc<crate::cloud_assistant::Authorization>,
+    session_owner: Option<Arc<Mutex<Inner>>>,
+    #[cfg(feature = "desktop")]
+    desktop_app: Arc<std::sync::OnceLock<tauri::AppHandle>>,
     ui_controls: Arc<ui_control::UiControls>,
     pub(crate) card_changes: tokio::sync::broadcast::Sender<(String, String)>,
     cameras: crate::camera::Sessions,
+    camera_connections: Arc<crate::camera::Connections>,
+    media_window: String,
     monitors: Arc<crate::monitor::Registry>,
     monitor_catalog: Arc<crate::monitor_catalog::Catalog>,
     camera_lifecycle: Arc<Mutex<()>>,
@@ -52,7 +59,7 @@ pub struct AppState {
     vacuum_write: Arc<Mutex<()>>,
     camera_exports: Arc<crate::camera::saved_media::Exports>,
     pub(crate) cloud_playbacks: Arc<crate::camera::cloud_media::PlaybackSessions>,
-    inner: Mutex<Inner>,
+    inner: Arc<Mutex<Inner>>,
     inventory_time: Mutex<Option<(String, std::time::Instant)>>,
     specs: Arc<SpecRepository>,
     pub(crate) property_intents: Arc<crate::mcp_core::intent::Intents>,
@@ -61,6 +68,7 @@ pub struct AppState {
     local_preferences: Arc<Mutex<()>>,
     washer_program_write: Arc<Mutex<HashMap<String, WasherCommandRecord>>>,
     purifier_write: Arc<Mutex<()>>,
+    scale_pending_write: Arc<Mutex<()>>,
     airer_write: Arc<Mutex<()>>,
     fridge_write: Arc<Mutex<()>>,
     bath_heater_write: Arc<Mutex<()>>,
@@ -384,16 +392,23 @@ impl AppState {
         crate::mcp_core::metrics::count("sharedContextForks");
         Ok(Self {
             assistant: self.assistant.clone(),
+            session_owner: Some(self.session_owner.as_ref().unwrap_or(&self.inner).clone()),
+            #[cfg(feature = "desktop")]
+            desktop_app: self.desktop_app.clone(),
             card_changes: self.card_changes.clone(),
             cameras: crate::camera::Sessions::default(),
-            monitors: Arc::new(crate::monitor::Registry::default()),
+            camera_connections: self.camera_connections.clone(),
+            media_window: self.media_window.clone(),
+            monitors: Arc::new(crate::monitor::Registry::with_owner(
+                self.camera_connections.clone(), self.media_window.clone(), None,
+            )),
             monitor_catalog: Arc::new(crate::monitor_catalog::Catalog::default()),
             camera_lifecycle: self.camera_lifecycle.clone(),
             camera_power_write: self.camera_power_write.clone(),
             vacuum_write: self.vacuum_write.clone(),
             camera_exports: self.camera_exports.clone(),
             cloud_playbacks: self.cloud_playbacks.clone(),
-            inner: Mutex::new(inner),
+            inner: Arc::new(Mutex::new(inner)),
             inventory_time: Mutex::new(self.inventory_time.lock().await.clone()),
             specs: self.specs.clone(),
             property_intents: self.property_intents.clone(),
@@ -402,6 +417,7 @@ impl AppState {
             local_preferences: self.local_preferences.clone(),
             washer_program_write: self.washer_program_write.clone(),
             purifier_write: self.purifier_write.clone(),
+            scale_pending_write: self.scale_pending_write.clone(),
             airer_write: self.airer_write.clone(),
             fridge_write: self.fridge_write.clone(),
             bath_heater_write: self.bath_heater_write.clone(),
@@ -479,13 +495,22 @@ impl AppState {
         };
         Self::with_session(cloud, boot_error)
     }
-    fn with_session(cloud: Option<Arc<Cloud>>, boot_error: Option<AppError>) -> Result<Self> {
+    pub(crate) fn with_session(cloud: Option<Arc<Cloud>>, boot_error: Option<AppError>) -> Result<Self> {
+        let camera_connections = Arc::new(crate::camera::Connections::default());
+        let monitors = Arc::new(crate::monitor::Registry::with_owner(
+            camera_connections.clone(), "main".into(), None,
+        ));
         Ok(Self {
+            session_owner: None,
+            #[cfg(feature = "desktop")]
+            desktop_app: Arc::default(),
             assistant: Arc::new(crate::cloud_assistant::Authorization::production()?),
             card_changes: tokio::sync::broadcast::channel(128).0,
             cameras: crate::camera::Sessions::default(),
+            camera_connections,
+            media_window: "main".into(),
             camera_power_write: Arc::new(Mutex::new(())),
-            monitors: Arc::new(crate::monitor::Registry::default()),
+            monitors,
             monitor_catalog: Arc::new(crate::monitor_catalog::Catalog::default()),
             camera_lifecycle: Arc::new(Mutex::new(())),
             vacuum_write: Arc::new(Mutex::new(())),
@@ -499,6 +524,7 @@ impl AppState {
             local_preferences: Arc::new(Mutex::new(())),
             washer_program_write: Arc::new(Mutex::new(HashMap::new())),
             purifier_write: Arc::new(Mutex::new(())),
+            scale_pending_write: Arc::new(Mutex::new(())),
             airer_write: Arc::new(Mutex::new(())),
             fridge_write: Arc::new(Mutex::new(())),
             bath_heater_write: Arc::new(Mutex::new(())),
@@ -513,7 +539,7 @@ impl AppState {
             dispenser_selfcheck_pending: Arc::new(Mutex::new(HashMap::new())),
             dispenser_selfcheck_completed: Arc::new(Mutex::new(HashMap::new())),
             inventory_time: Mutex::new(None),
-            inner: Mutex::new(Inner {
+            inner: Arc::new(Mutex::new(Inner {
                 auth_epoch: Arc::new(std::sync::atomic::AtomicU64::new(0)),
                 auth_version: 0,
                 monitor_alive: None,
@@ -529,7 +555,7 @@ impl AppState {
                 panel_updated_at: HashMap::new(),
                 state_revision: 0,
                 property_versions: HashMap::new(),
-            }),
+            })),
             specs: Arc::new(SpecRepository::new()?),
             property_intents: Arc::new(crate::mcp_core::intent::Intents::default()),
             light_settings_write: Arc::new(Mutex::new(())),
@@ -538,9 +564,14 @@ impl AppState {
             ui_resources: Arc::new(crate::ui_resources::UiResourceRepository::new()),
         })
     }
+    // A widget or monitor fork owns a household snapshot. Only the primary
+    // session can replace or invalidate the account's credentials.
+    fn session_state(&self) -> &Mutex<Inner> {
+        self.session_owner.as_deref().unwrap_or(self.inner.as_ref())
+    }
     pub async fn session(&self) -> Result<SessionView> {
         let inner = self.inner.lock().await;
-        if inner.cloud.is_some() && !inner.authenticated() {
+        if (inner.cloud.is_some() || inner.auth_version > 0) && !inner.authenticated() {
             return Ok(SessionView {
                 logged_in: false,
                 user_id: None,
@@ -562,8 +593,15 @@ impl AppState {
     }
     pub async fn account_profile(&self) -> Result<AccountProfile> {
         let cloud = self.cloud().await?;
-        // Ancillary profile errors must not delete an otherwise working MIoT login.
-        let profile = cloud.account_profile().await?;
+        let profile = match cloud.account_profile().await {
+            Err(error) if error.kind == "authExpired" => {
+                // The optional profile route can reject an otherwise valid
+                // session. Confirm expiry against the home API before clearing it.
+                self.handle(&cloud, Box::pin(cloud.homes()).await).await?;
+                return Err(AppError::new("profileUnavailable", "暂时无法读取账号信息。", true));
+            }
+            result => result?,
+        };
         let inner = self.inner.lock().await;
         if !inner
             .cloud
@@ -638,6 +676,9 @@ impl AppState {
                 let same_account=inner.cloud.as_ref().is_some_and(|old|old.credentials.user_id==cloud.credentials.user_id&&old.credentials.region==cloud.credentials.region);
                 if !same_account{let _=self.assistant.logout().await;}
                 auth::save(&cloud.credentials)?;
+                #[cfg(feature = "desktop")]
+                let ended_epoch = inner.auth_version;
+                self.stop_camera_sessions();
                 inner.auth_version = inner
                     .auth_epoch
                     .fetch_add(1, std::sync::atomic::Ordering::AcqRel)
@@ -653,6 +694,9 @@ impl AppState {
                 inner.epoch += 1;
                 inner.clear_home();
                 inner.homes.clear();
+                drop(inner);
+                #[cfg(feature = "desktop")]
+                self.end_detached_monitor(ended_epoch);
                 Ok(PollView {
                     status: "success".into(),
                     session: Some(view),
@@ -661,8 +705,10 @@ impl AppState {
         }
     }
     pub async fn logout(&self) -> Result<()> {
+        let mut inner = self.session_state().lock().await;
+        #[cfg(feature = "desktop")]
+        let ended_epoch = inner.auth_version;
         let assistant_result=self.assistant.logout().await;
-        let mut inner = self.inner.lock().await;
         self.stop_camera_sessions();
         inner.auth_version = inner
             .auth_epoch
@@ -676,6 +722,8 @@ impl AppState {
         inner.boot_error = None;
         let result = auth::delete();
         drop(inner);
+        #[cfg(feature = "desktop")]
+        self.end_detached_monitor(ended_epoch);
         self.dispenser_selfcheck_pending.lock().await.clear();
         self.dispenser_selfcheck_completed.lock().await.clear();
         result.and(assistant_result)
@@ -693,39 +741,67 @@ impl AppState {
             .err()
             .is_some_and(|e| e.kind == "authExpired")
         {
-            let current={let inner=self.inner.lock().await;inner.cloud.as_ref().is_some_and(|c|Arc::ptr_eq(c,cloud))};
+            let current = {
+                let inner = self.session_state().lock().await;
+                inner.authenticated() && inner.cloud.as_ref().is_some_and(|c| Arc::ptr_eq(c, cloud))
+            };
             if !current{return Err(AppError::stale());}
-            if Box::pin(self.refresh_mijia_for(cloud)).await.is_ok(){
-                // The original request is never replayed, including uncertain
-                // writes. Subsequent input uses the refreshed same-account SID.
+            let refresh_error = match Box::pin(self.refresh_mijia_for(cloud)).await {
+                // Subsequent input uses the refreshed SID, with no replay.
+                Ok(()) => return Err(AppError::stale()),
+                Err(error) => error,
+            };
+            let mut inner = self.session_state().lock().await;
+            if !inner.authenticated() || !inner.cloud.as_ref().is_some_and(|c| Arc::ptr_eq(c, cloud)) {
                 return Err(AppError::stale());
             }
-            let mut inner = self.inner.lock().await;
-            if inner.cloud.as_ref().is_some_and(|c| Arc::ptr_eq(c, cloud)) {
-                let _ = self.assistant.logout().await;
-                self.stop_camera_sessions();
-                inner.auth_version = inner
-                    .auth_epoch
-                    .fetch_add(1, std::sync::atomic::Ordering::AcqRel)
-                    + 1;
-                inner.cloud = None;
-                inner.login = None;
-                inner.epoch += 1;
-                inner.clear_home();
-                inner.homes.clear();
-                if let Err(error) = auth::delete() {
-                    inner.boot_error = Some(error);
-                }
+            if refresh_error.retryable {
+                return Err(refresh_error);
+            }
+            #[cfg(feature = "desktop")]
+            let ended_epoch = inner.auth_version;
+            let _ = self.assistant.logout().await;
+            self.stop_camera_sessions();
+            inner.auth_version = inner
+                .auth_epoch
+                .fetch_add(1, std::sync::atomic::Ordering::AcqRel)
+                + 1;
+            inner.cloud = None;
+            inner.login = None;
+            inner.epoch += 1;
+            inner.clear_home();
+            inner.homes.clear();
+            if let Err(error) = auth::delete() {
+                inner.boot_error = Some(error);
+            }
 
-                if let Ok(mut records) = self.dispenser_selfcheck_pending.try_lock() {
-                    records.clear();
+            if let Ok(mut records) = self.dispenser_selfcheck_pending.try_lock() {
+                records.clear();
+            }
+            if let Ok(mut records) = self.dispenser_selfcheck_completed.try_lock() {
+                records.clear();
+            }
+            #[cfg(feature = "desktop")]
+            if let Some(app) = self.desktop_app.get() {
+                use tauri::{Emitter, Manager};
+                if self.session_owner.is_some() {
+                    app.state::<AppState>().stop_camera_sessions();
                 }
-                if let Ok(mut records) = self.dispenser_selfcheck_completed.try_lock() {
-                    records.clear();
-                }
+                self.end_detached_monitor(ended_epoch);
+                let _ = app.emit_to("main", "desktop-session-expired", ());
             }
         }
         result
+    }
+
+    #[cfg(feature = "desktop")]
+    fn end_detached_monitor(&self, epoch: u64) {
+        use tauri::Manager;
+        if let Some(app) = self.desktop_app.get() {
+            if let Some(runtime) = app.try_state::<crate::app_runtime::Runtime>() {
+                runtime.detached_monitor.account_ended(app, epoch);
+            }
+        }
     }
     pub async fn home_preferences(
         &self,
@@ -3139,14 +3215,29 @@ impl AppState {
             inner.check_panel(home_id, generation, &panel)?;
             inner.state_revision
         };
-        let params = spec::read_params(&panel);
-        if !params.is_empty() {
-            let result=if observed{cloud.read_observed_panel(home_id,&panel).await}
-                else{cloud.read_panel_properties(&panel).await};
+        let fridge_params = display_records
+            .then(|| crate::fridge::detail_read_params(&panel))
+            .flatten();
+        let fridge_detail = fridge_params.is_some();
+        if let Some(params) = fridge_params {
+            let result = if observed {
+                cloud.read_observed(home_id, params).await
+            } else {
+                cloud.read(params).await
+            };
+            let rows = self.handle(cloud, result).await?;
+            spec::apply_reads(&mut panel, &rows);
+        } else if !spec::read_params(&panel).is_empty() {
+            let result = if observed {
+                cloud.read_observed_panel(home_id, &panel).await
+            } else {
+                cloud.read_panel_properties(&panel).await
+            };
             let rows=self.handle(cloud,result).await?;
             spec::apply_reads(&mut panel, &rows);
         }
-        if display_records {
+        // Fridge detail uses live values. Missing readings remain unavailable.
+        if display_records && !fridge_detail {
             self.inner
                 .lock()
                 .await
@@ -4128,6 +4219,19 @@ mod tests {
         assert!(inner.panels.contains_key(&first.did));
         assert!(!inner.panels.contains_key(&second.did));
         assert_eq!(inner.property_versions.len(), 1);
+    }
+    #[tokio::test]
+    async fn an_expired_fork_cannot_invalidate_a_renewed_primary_session() {
+        let (inner, old_cloud, _) = light_modes_context();
+        let root = AppState::with_session(Some(old_cloud.clone()), None).unwrap();
+        *root.inner.lock().await = inner;
+        let fork = root.card_context().await.unwrap();
+        let (_, replacement, _) = light_modes_context();
+        root.inner.lock().await.cloud = Some(replacement.clone());
+        let result = fork.handle::<()>(&old_cloud, Err(AppError::auth())).await;
+        assert_eq!(result.unwrap_err().kind, "staleContext");
+        assert!(root.session().await.unwrap().logged_in);
+        assert!(Arc::ptr_eq(&root.cloud().await.unwrap(), &replacement));
     }
     #[test]
     fn washer_records_reject_inflight_results_after_refresh_model_change_home_switch_and_logout() {

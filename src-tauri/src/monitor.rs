@@ -70,6 +70,8 @@ struct Group {
     aggregate: bool,
     entries: Mutex<BTreeMap<String, Entry>>,
     cloud: Arc<Cloud>,
+    connections: Arc<camera::Connections>,
+    owner: String,
     specs: Arc<SpecRepository>,
     slots: Arc<Semaphore>,
     cloud_slots: Arc<Semaphore>,
@@ -85,6 +87,9 @@ pub struct Registry {
     hints: Mutex<(String, Hints)>,
     closing: Mutex<Vec<Arc<AtomicBool>>>,
     background: Arc<AtomicBool>,
+    connections: Arc<camera::Connections>,
+    owner: String,
+    window_alive: Option<Arc<AtomicBool>>,
 }
 #[derive(Default)]
 struct InitialGate {
@@ -206,6 +211,7 @@ impl Group {
                         ));
                     }
                 }
+                let claim = group.connections.claim(&device.did, &group.owner, group.cloud.clone())?;
                 let cloud_permit = group
                     .cloud_slots
                     .clone()
@@ -278,6 +284,7 @@ impl Group {
                     device.did.clone(),
                     config,
                     ticket,
+                    Some(claim),
                 )
             }
             .await;
@@ -358,6 +365,21 @@ impl Group {
     }
 }
 impl Registry {
+    pub(crate) fn with_owner(connections: Arc<camera::Connections>, owner: String, window_alive: Option<Arc<AtomicBool>>) -> Self {
+        Self {
+            active: Mutex::default(),
+            hints: Mutex::default(),
+            closing: Mutex::default(),
+            background: Arc::default(),
+            connections,
+            owner,
+            window_alive,
+        }
+    }
+
+    pub(crate) fn source(&self, home: &str, generation: u64, id: &str) -> Result<Arc<Cloud>> {
+        Ok(self.group(home, generation, id)?.cloud.clone())
+    }
     pub(crate) fn set_background(&self, background: bool) {
         self.background.store(background, Ordering::Release);
     }
@@ -440,6 +462,8 @@ impl Registry {
             home,
             generation,
             cloud,
+            connections: self.connections.clone(),
+            owner: self.owner.clone(),
             specs: Arc::new(SpecRepository::new()?),
             alive: Arc::new(AtomicBool::new(true)),
             aggregate,
@@ -457,6 +481,9 @@ impl Registry {
             background: self.background.clone(),
         });
         let mut active = self.active.lock().map_err(|_| AppError::stale())?;
+        if self.window_alive.as_ref().is_some_and(|alive| !alive.load(Ordering::Acquire)) {
+            return Err(AppError::stale());
+        }
         if let Some(old) = active.take() {
             self.retain_closing(old.close());
         }
@@ -754,6 +781,8 @@ mod tests {
             aggregate: false,
             entries: Mutex::new(entries),
             cloud: Arc::new(Cloud::new(credentials).unwrap()),
+            connections: r.connections.clone(),
+            owner: r.owner.clone(),
             specs: Arc::new(SpecRepository::new().unwrap()),
             slots,
             cloud_slots: Arc::new(Semaphore::new(2)),

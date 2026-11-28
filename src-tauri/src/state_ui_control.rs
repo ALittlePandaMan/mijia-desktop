@@ -330,6 +330,7 @@ impl AppState {
     }
     #[cfg(feature="desktop")]
     pub(crate) fn install_ui_events(&self, app: tauri::AppHandle) {
+        let _ = self.desktop_app.set(app.clone());
         let failure_app = app.clone();
         *self.ui_controls.publish_failure.lock().unwrap() = Some(Arc::new(move |event| {
             let _ = failure_app.emit("ui-control-readback-failed", event);

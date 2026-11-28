@@ -6,7 +6,7 @@ import {element,button} from './dom';
 import {icon} from '../icons';
 import {purifierWheel} from './purifier-wheel';
 import {reservationPicker,trapWheelDialog} from './reservation-picker';
-import {cycleActions,cycleButton} from './cycle-actions';
+import {actionFooter,footerButton} from './action-footer';
 import cookingAnimation from '../assets/mijia/fryer/cooking-bubbles.svg?raw';
 const images=import.meta.glob('../assets/mijia/fryer/*.png',{eager:true,query:'?url',import:'default'}) as Record<string,string>;
 export function fryerModeArtwork(mode:number,kind:'icon'|'image'){const img=element('img','fryer-mode-art');img.src=images[`../assets/mijia/fryer/${mode}-${kind}.png`];img.alt='';img.draggable=false;return img;}
@@ -127,12 +127,16 @@ export function fryerPage(p:Props):HTMLElement {
  if(m.keepWarm)fields.append(fryerWarmRow(draft.keepWarm,()=>edit({keepWarm:!draft.keepWarm}),!editable||draft.temperature<=80||!r?.autoKeepWarm||current&&r.keepWarm===null));
  for(const kind of ['temperature','time']as const)fields.append(fryerSettingRow(kind,kind==='temperature'?`${draft.temperature}℃`:`${draft.minutes}分钟`,()=>{v.picker=kind;p.changed();},!editable));
  body.append(fields);
- const actions=cycleActions('fryer-actions');
- if(current&&r){const stop=cycleButton(r.status===3?'取消预约':'终止',()=>{v.confirmation='stop';p.changed();});stop.disabled=!p.device.online||!!p.device.sharedReadOnly||!actual||p.state.taskPending;actions.append(stop);
-  if(fryerCooking(r.status)||r.status===2){const b=cycleButton(r.status===2?'继续':'暂停',()=>void p.state.change({operation:r.status===2?'resume':'pause'}),'suspend');b.disabled=blocked;actions.append(b);}
+ const actions=actionFooter('fryer-actions');
+ if(current&&r){const stop=footerButton(r.status===3?'取消预约':'终止',()=>{v.confirmation='stop';p.changed();});stop.disabled=!p.device.online||!!p.device.sharedReadOnly||!actual||p.state.taskPending;actions.append(stop);
+  if(fryerCooking(r.status)||r.status===2){
+   const resume=r.status===2;
+   const action=footerButton(resume?'继续':'暂停',()=>void p.state.change({operation:resume?'resume':'pause'}),'primary');
+   action.classList.add('action-white-text');action.disabled=blocked;actions.append(action);
+  }
  }else{
-  if(m.reservation){const b=cycleButton('预约',()=>{v.picker='reservation';p.changed();});b.disabled=blocked||!!r&&fryerActive(r.status)||!!fryerSettingsProblem(draft,r);actions.append(b);}
-  const start=cycleButton('开始',()=>void p.state.change({operation:'start',...draft,finishAt:null}),'primary');start.disabled=blocked||!!r&&fryerActive(r.status)||!!fryerSettingsProblem(draft,r);actions.append(start);
+  if(m.reservation){const b=footerButton('预约',()=>{v.picker='reservation';p.changed();});b.disabled=blocked||!!r&&fryerActive(r.status)||!!fryerSettingsProblem(draft,r);actions.append(b);}
+  const start=footerButton('开始',()=>void p.state.change({operation:'start',...draft,finishAt:null}),'primary');start.disabled=blocked||!!r&&fryerActive(r.status)||!!fryerSettingsProblem(draft,r);actions.append(start);
  }body.append(actions);
  if(v.picker){
   const kind=v.picker,close=()=>{v.picker=undefined;p.changed();};

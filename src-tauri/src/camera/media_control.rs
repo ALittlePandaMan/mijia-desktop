@@ -1150,6 +1150,52 @@ mod tests {
     }
 
     #[test]
+    fn verified_dual_models_start_and_route_both_live_lenses() {
+        for model in [
+            "isa.camera.hlmax",
+            "mxiang.camera.c500ch",
+            "mxiang.camera.c500os",
+            "chuangmi.camera.72ac1",
+            "chuangmi.camera.072ae2",
+            "xiaomi.camera.cw501d",
+            "xiaomi.camera.cw5014",
+            "xiaomi.camera.qp2c",
+            "xiaomi.camera.4dc304",
+            "chuangmi.camera.068ac1",
+            "chuangmi.camera.111ae1",
+            "chuangmi.camera.111ac1",
+            "chuangmi.camera.075ae1",
+            "xiaovv.camera.xvvc10",
+        ] {
+            let lenses = features(model).lenses.expect(model);
+            let ids: Vec<_> = lenses.iter().map(|lens| lens.id).collect();
+            assert_eq!(ids, [0, 10], "{model}");
+            assert_eq!(lenses[0].ptz, model != "chuangmi.camera.075ae1", "{model}");
+            assert!(!lenses[1].ptz, "{model}");
+            for (quality, value) in [("auto", 0), ("sd", 1)] {
+                assert_eq!(quality_value(model, quality).unwrap(), value, "{model}");
+                assert_eq!(
+                    super::super::profiles::quality_body(model, value),
+                    serde_json::json!({"videoquality": value, "videoquality2": value}),
+                    "{model}"
+                );
+            }
+            let (_tx, rx) = std::sync::mpsc::sync_channel(1);
+            let control = Control::new(rx, model.into());
+            assert_eq!(control.video_lens(1), Some(0), "{model}");
+            assert_eq!(control.video_lens((10 << 21) | 1), Some(10), "{model}");
+            assert_eq!(control.video_lens((11 << 21) | 1), None, "{model}");
+        }
+
+        let single = "isa.camera.cw500";
+        assert!(features(single).lenses.is_none());
+        assert_eq!(
+            super::super::profiles::quality_body(single, 1),
+            serde_json::json!({"videoquality": 1})
+        );
+    }
+
+    #[test]
     fn c700_four_profiles_are_model_scoped() {
         let model = "chuangmi.camera.81ac1";
         let choices = features(model).qualities;

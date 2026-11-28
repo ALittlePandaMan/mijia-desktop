@@ -1,11 +1,31 @@
 import {describe,it,expect} from 'vitest';
-import {PurifierCommands,cupDraft,cupLabel,type PurifierSnapshot} from './purifier';
-import type {ControlResult,DeviceContext,DevicePanel} from './types';
+import {PurifierCommands,cupDraft,cupLabel,purifierReadings,type PurifierSnapshot} from './purifier';
+import type {ControlResult,Device,DeviceContext,DevicePanel,Property} from './types';
 const snapshot:PurifierSnapshot={status:'idle',tds:21,temperature:29,fault:0,cups:[{id:1,volumeMl:300},{id:2,volumeMl:1200}],cupSource:'[1,300],[2,1200]',cupError:null,canEditCups:true,editReason:null,filters:[]};
 const context:DeviceContext={homeId:'fixture-home',generation:1,did:'fixture-purifier'};
 const panel=():DevicePanel=>({did:context.did,model:'xiaomi.waterpuri.lx32',services:[],purifier:structuredClone(snapshot)});
 const draft=()=>cupDraft(snapshot,0)!;
 const reply=(verified:boolean):ControlResult=>({verified,message:verified?'确认':'待确认',panel:panel()});
+describe('净水器详情读数',()=>{
+ const device:Device={did:'purifier',name:'净水器',model:'xiaomi.waterpuri.lx40',online:true,roomId:'room',roomName:'厨房'};
+ const tds:Property={siid:4,piid:2,name:'tds-out',description:'出水水质',format:'uint16',access:['read'],value:null,code:-704042011,lastReported:{value:19,updatedAt:1700000000,retrievedAt:1700000005}};
+ const makePanel=(property:Property,service='tds-sensor'):DevicePanel=>({did:device.did,model:device.model,services:[
+  {siid:property.siid,name:service,description:'',properties:[property],actions:[]},
+ ]});
+ it('shows the last report when the live request fails, and replaces it with a genuine live zero',()=>{
+  expect(purifierReadings(device,makePanel(tds)).tdsReading).toEqual({value:19,source:'reported'});
+  expect(purifierReadings(device,makePanel({...tds,code:0,value:0})).tdsReading).toEqual({value:0,source:'live'});
+  expect(purifierReadings(device,makePanel(tds)).tds?.code).toBe(-704042011);
+ });
+ it('accepts the verified purifier service variant and rejects missing, ambiguous and foreign readings',()=>{
+  expect(purifierReadings(device,makePanel(tds,'water-purifier')).tdsReading.value).toBe(19);
+  const p=makePanel(tds);
+  p.services.push({...p.services[0],siid:5,properties:[{...tds,siid:5}]});
+  expect(purifierReadings(device,p).tds).toBeUndefined();
+  expect(purifierReadings(device,{...makePanel(tds),did:'different'}).tdsReading.source).toBe('missing');
+  expect(purifierReadings(device,makePanel({...tds,code:0,value:10000})).tdsReading.source).toBe('missing');
+ });
+});
 describe('净水器杯量草稿与确认',()=>{
  it('进入编辑只复制当前杯量，新增使用空闲编号，取消不修改源',()=>{const d=draft();d.cups[0].volumeMl=500;expect(snapshot.cups[0].volumeMl).toBe(300);expect(cupDraft(snapshot,2)?.cups.at(-1)).toEqual({id:3,volumeMl:800});expect(cupDraft({...snapshot,canEditCups:false},0)).toBeUndefined();expect([300,1200,20000,999000].map(cupLabel)).toEqual(['300ml','1.2L','20L','999L']);});
  it('提交期间双击与未确认重开不会重复发送',async()=>{let send=0,finish!:(r:ControlResult)=>void;const commands=new PurifierCommands({save:async()=>{send++;return new Promise(r=>finish=r);},read:async()=>panel()},()=>{},()=>{},()=>{});commands.bind(context,'account');const operation=commands.save(context,draft());await commands.save(context,draft());expect(send).toBe(1);finish(reply(false));expect(await operation).toBe(false);commands.bind({...context,generation:2},'account');await commands.save({...context,generation:2},draft());expect(send).toBe(1);expect(commands.blocked).toBe(true);expect(await commands.refresh({...context,generation:2})).toBe(true);expect(commands.blocked).toBe(false);});

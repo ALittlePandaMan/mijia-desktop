@@ -26,26 +26,40 @@ pub struct View {
     pub generation: u64,
     pub all_homes: bool,
     pub homes: Vec<Household>,
+    pub available_homes: Vec<HomeChoice>,
     pub incomplete: bool,
+}
+#[derive(Clone, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct HomeChoice {
+    pub id: String,
+    pub name: String,
+    pub shared: bool,
+}
+#[derive(Clone, Default)]
+pub(crate) struct Directory {
+    pub homes: Vec<Household>,
+    pub choices: Vec<HomeChoice>,
 }
 #[derive(Default)]
 pub struct Catalog {
-    cache: Mutex<Option<(String, Instant, Vec<Household>)>>,
+    cache: Mutex<Option<(String, Instant, Directory)>>,
     flight: Mutex<()>,
 }
 impl Catalog {
-    pub async fn load(
+    pub(crate) async fn load(
         &self,
         key: String,
         force: bool,
         cloud: Arc<Cloud>,
-    ) -> Result<Vec<Household>> {
-        self.cached(key, force, || fetch(cloud)).await
+        home_id: Option<&str>,
+    ) -> Result<Directory> {
+        self.cached(key, force, || fetch(cloud, home_id)).await
     }
-    async fn cached<F, Fut>(&self, key: String, force: bool, fetch: F) -> Result<Vec<Household>>
+    async fn cached<F, Fut>(&self, key: String, force: bool, fetch: F) -> Result<Directory>
     where
         F: FnOnce() -> Fut,
-        Fut: std::future::Future<Output = Result<Vec<Household>>>,
+        Fut: std::future::Future<Output = Result<Directory>>,
     {
         let requested = Instant::now();
         let _flight = self.flight.lock().await;
@@ -62,8 +76,19 @@ impl Catalog {
         Ok(homes)
     }
 }
-async fn fetch(cloud: Arc<Cloud>) -> Result<Vec<Household>> {
-    let homes = cloud.homes().await?;
+async fn fetch(cloud: Arc<Cloud>, home_id: Option<&str>) -> Result<Directory> {
+    let mut homes = cloud.homes().await?;
+    let choices = homes.iter().map(|home| HomeChoice {
+        id: home.id.clone(),
+        name: home.name.clone(),
+        shared: home.shared,
+    }).collect();
+    if let Some(home_id) = home_id {
+        homes.retain(|home| home.id == home_id);
+        if homes.is_empty() {
+            return Err(AppError::new("permissionDenied", "当前账号无法访问此家庭。", false));
+        }
+    }
     let metadata_cloud = cloud.clone();
     let mut homes = collect(homes, move |home| {
         let cloud = metadata_cloud.clone();
@@ -84,7 +109,7 @@ async fn fetch(cloud: Arc<Cloud>) -> Result<Vec<Household>> {
     {
         *device = artwork;
     }
-    Ok(homes)
+    Ok(Directory { homes, choices })
 }
 async fn collect<F, Fut>(homes: Vec<Home>, load: F) -> Result<Vec<Household>>
 where
@@ -109,6 +134,7 @@ where
                     d.into_iter().filter(crate::monitor::eligible).collect(),
                     None,
                 ),
+                Err(e) if e.kind == "authExpired" => return Err(e),
                 Err(e) => (vec![], Some(e)),
             };
             rows.push((
@@ -213,6 +239,13 @@ mod tests {
     }
 
     #[tokio::test]
+    async fn an_expired_account_is_not_cached_as_a_partial_household_result() {
+        let result = collect(vec![home("a"), home("b")], |home| async move {
+            if home.id == "b" { Err(AppError::auth()) } else { Ok(vec![device("a")]) }
+        }).await;
+        assert_eq!(result.err().unwrap().kind, "authExpired");
+    }
+    #[tokio::test]
     async fn three_households_at_most_partial_failure_order_and_first_selected_identity() {
         use std::sync::atomic::{AtomicUsize, Ordering};
         let active = Arc::new(AtomicUsize::new(0));
@@ -274,7 +307,7 @@ mod tests {
         let fetch = || async {
             calls.fetch_add(1, std::sync::atomic::Ordering::SeqCst);
             tokio::task::yield_now().await;
-            Ok(vec![])
+            Ok(Directory::default())
         };
         let (a, b) = tokio::join!(
             cache.cached("a".into(), false, fetch),

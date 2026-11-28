@@ -5,7 +5,9 @@ import {icon,officialIcon,type IconName} from '../icons';
 import {cameraQualityOptions,type CameraQualitySizes} from '../camera-quality';
 import type {CameraFeatures} from '../camera-types';
 import {monitorPresetGrid,monitorPresets,type MonitorPreset} from '../monitor-layout';
-import {dropdownMenu} from './dropdown';
+import type {MonitorHome} from '../types';
+import {dropdownMenu,type DropdownOption} from './dropdown';
+import {dismissOutsideMenu} from './dialog-dismiss';
 
 const cameraGlyphs:Partial<Record<IconName,string>>={power:'power',microphone:'microphone',camera:'snapshot',video:'record',ptz:'ptz',volume:'sound','volume-off':'muted',fullscreen:'fullscreen',play:'playback'};
 export function cameraIcon(glyph:IconName):SVGSVGElement {
@@ -91,6 +93,56 @@ export function monitorSplitMenu(current:MonitorPreset,max:MonitorPreset,blocked
  heading.setAttribute('aria-hidden','true');menu.prepend(heading);
  menu.addEventListener('focusin',event=>(event.target as HTMLElement).scrollIntoView({block:'nearest'}));
  return menu;
+}
+
+export function monitorHomePicker(){
+ let options:DropdownOption[]=[];
+ let choose:(id:string|null)=>void=()=>{};
+ let popup:HTMLElement|undefined;
+ let cleanup:(()=>void)|undefined;
+ const label=element('span','monitor-home-label');
+ const trigger=button('','desktop-monitor-action monitor-home-trigger',()=>{
+  if(dismiss(true)||trigger.disabled||!options.length)return;
+  popup=dropdownMenu({label:'切换家庭',className:'monitor-split-menu monitor-home-menu',selection:true,
+   items:options,choose:id=>{
+    dismiss(true);
+    if(!trigger.disabled&&!options.some(option=>option.value===id&&option.selected))choose(id||null);
+   },dismiss:()=>dismiss(true)});
+  root.append(popup);
+  trigger.setAttribute('aria-expanded','true');
+  trigger.setAttribute('aria-controls',popup.id);
+  cleanup=dismissOutsideMenu(trigger,popup,()=>dismiss());
+  (popup.querySelector<HTMLButtonElement>('[aria-checked=true]')??popup.querySelector('button'))?.focus({preventScroll:true});
+ });
+ trigger.append(label,icon('chevron'));
+ trigger.setAttribute('aria-label','切换家庭');
+ trigger.setAttribute('aria-haspopup','menu');
+ trigger.setAttribute('aria-expanded','false');
+ const root=element('div','monitor-home-picker',trigger);
+ root.hidden=true;
+ function dismiss(restoreFocus=false):boolean{
+  if(!popup)return false;
+  cleanup?.();cleanup=undefined;
+  popup.remove();popup=undefined;
+  trigger.setAttribute('aria-expanded','false');
+  trigger.removeAttribute('aria-controls');
+  if(restoreFocus)trigger.focus({preventScroll:true});
+  return true;
+ }
+ return {root,dismiss,setBlocked(blocked:boolean){
+  trigger.disabled=blocked||options.length<2;
+  if(trigger.disabled)dismiss();
+ },update(homes:readonly MonitorHome[],current:string|null,allowAll:boolean,select:(homeId:string|null)=>void){
+  choose=select;
+  const choices=homes.map(home=>({value:home.id,label:home.name+(home.shared?' · 共享':''),selected:home.id===current}));
+  if(allowAll)choices.unshift({value:'',label:'全部家庭',selected:current===null});
+  if(choices.length===options.length&&choices.every((option,i)=>
+   option.value===options[i].value&&option.label===options[i].label&&option.selected===options[i].selected))return;
+  dismiss(!!popup?.contains(document.activeElement));
+  options=choices;
+  root.hidden=!options.length;
+  label.textContent=options.find(option=>option.selected)?.label??'切换家庭';
+ }};
 }
 
 export function monitorPager(move:(delta:number)=>void) {

@@ -8,13 +8,19 @@ impl AppState {
         self.refresh_mijia_for(&cloud).await
     }
     pub(super) async fn refresh_mijia_for(&self, expected:&Arc<Cloud>) -> Result<()> {
-        let (cloud,epoch)=self.assistant_identity().await?;
-        if !Arc::ptr_eq(&cloud,expected){return Err(AppError::stale());}
+        let epoch = {
+            let inner = self.session_state().lock().await;
+            if !inner.authenticated() || !inner.cloud.as_ref().is_some_and(|v| Arc::ptr_eq(v, expected)) {
+                return Err(AppError::stale());
+            }
+            inner.auth_version
+        };
+        let cloud = expected;
         let credentials=Box::pin(self.assistant.refresh_mijia(&cloud.credentials,epoch)).await?;
         if credentials.user_id!=cloud.credentials.user_id||credentials.region!=cloud.credentials.region{return Err(AppError::stale());}
         let refreshed=Arc::new(Cloud::new(credentials)?);
-        let mut inner=self.inner.lock().await;
-        if inner.auth_version!=epoch||!inner.cloud.as_ref().is_some_and(|v|Arc::ptr_eq(v,&cloud)){return Err(AppError::stale());}
+        let mut inner=self.session_state().lock().await;
+        if !inner.authenticated()||inner.auth_version!=epoch||!inner.cloud.as_ref().is_some_and(|v|Arc::ptr_eq(v,cloud)){return Err(AppError::stale());}
         auth::save(&refreshed.credentials)?;
         inner.cloud=Some(refreshed);
         // Same account and permissions: keep auth_version/auth_epoch and logical
@@ -77,8 +83,8 @@ impl AppState {
             let credentials=self.assistant.saved_mijia(&cloud.credentials,epoch).await?;
             if credentials.user_id!=cloud.credentials.user_id||credentials.region!=cloud.credentials.region{return Err(AppError::stale());}
             let refreshed=Arc::new(Cloud::new(credentials)?);
-            let mut inner=self.inner.lock().await;
-            if inner.auth_version!=epoch||!inner.cloud.as_ref().is_some_and(|v|Arc::ptr_eq(v,&cloud)){return Err(AppError::stale());}
+            let mut inner=self.session_state().lock().await;
+            if !inner.authenticated()||inner.auth_version!=epoch||!inner.cloud.as_ref().is_some_and(|v|Arc::ptr_eq(v,&cloud)){return Err(AppError::stale());}
             auth::save(&refreshed.credentials)?;inner.cloud=Some(refreshed);
         }
         Ok(result)

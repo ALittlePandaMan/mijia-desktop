@@ -29,6 +29,7 @@
   "include": [
     "app/**/*.ts",
     "app/**/*.tsx",
+    "demo/env.d.ts",
     "next.config.ts",
     "next-env.d.ts",
     ".next/types/**/*.ts",

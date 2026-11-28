@@ -505,7 +505,7 @@ fn apply_selected_reads(panel: &mut DevicePanel, rows: &[Value], target: Option<
         });
         property.code = Some(row.and_then(|r| r["code"].as_i64()).unwrap_or(-1));
         if property.code == Some(0) {
-            property.value = row.and_then(|r| r.get("value")).cloned();
+            property.value = row.and_then(|r| r.get("value")).filter(|value| !value.is_null()).cloned();
         }
     }
     crate::washer_runtime::refresh(panel);
@@ -725,6 +725,25 @@ mod tests {
         assert_eq!(panel.services[0].properties[0].value, Some(json!(30)));
         assert!(panel.services[0].properties[0].last_reported.is_none());
         assert!(missing_read_params(&panel).is_empty());
+
+        // A successful response can omit the live value while a report exists.
+        apply_reads(
+            &mut panel,
+            &[json!({"did":"physical","siid":2,"piid":1,"code":0,"value":null})],
+        );
+        assert_eq!(
+            missing_read_params(&panel),
+            vec![json!({"did":"physical","siid":2,"piid":1})]
+        );
+        apply_reported(
+            &mut panel,
+            &[json!({"did":"physical","siid":2,"piid":1,"code":0,"value":25})],
+            1_793_001_000,
+        );
+        let prop = &panel.services[0].properties[0];
+        assert_eq!(prop.code, Some(0));
+        assert!(prop.value.is_none());
+        assert_eq!(prop.last_reported.as_ref().unwrap().value, json!(25));
     }
     #[test]
     fn cached_record_rejects_wrong_type_and_does_not_invent_timestamp_units() {

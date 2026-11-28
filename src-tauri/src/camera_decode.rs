@@ -74,6 +74,16 @@ fn remove(id:&str,l:&Arc<Lease>){
  let _=l.app.emit("camera-decoder-available",());
 }
 
+pub(crate) fn close_for_window(owner: &str) {
+ let leases: Vec<_> = registry().lock().unwrap().iter()
+  .filter(|(_, lease)| lease.owner == owner).map(|(id, lease)| (id.clone(), lease.clone())).collect();
+ if !leases.is_empty() {
+  tauri::async_runtime::spawn_blocking(move || {
+   for (id, lease) in leases { remove(&id, &lease); }
+  });
+ }
+}
+
 #[cfg(windows)]
 use decoder_job::contain;
 
@@ -212,7 +222,7 @@ async fn check_shared_buffers(window:&tauri::WebviewWindow)->Result<()>{
 async fn check_shared_buffers(_window:&tauri::WebviewWindow)->Result<()>{Err(error("decodeUnsupported"))}
 
 #[tauri::command]
-pub async fn camera_decode_open(window:tauri::WebviewWindow,state:tauri::State<'_,AppState>,id:String,context:Context,format:String,size:u32,offset:f64,width:Option<u32>,height:Option<u32>,preserve_source:Option<bool>,low_power:Option<bool>,replay:Option<bool>)->Result<()>{
+pub async fn camera_decode_open(window:tauri::WebviewWindow,id:String,context:Context,format:String,size:u32,offset:f64,width:Option<u32>,height:Option<u32>,preserve_source:Option<bool>,low_power:Option<bool>,replay:Option<bool>)->Result<()>{
  let transport=format=="mpegts";
  let preserve_source=preserve_source.unwrap_or(false);
  let low_power=low_power.unwrap_or(false);
@@ -220,6 +230,7 @@ pub async fn camera_decode_open(window:tauri::WebviewWindow,state:tauri::State<'
  if uuid::Uuid::parse_str(&id).is_err()||!matches!(format.as_str(),"mpegts"|"mp4")||!offset.is_finite()||!(0.0..=600.0).contains(&offset)||size>48*1024*1024||transport&&size!=0||!transport&&(size==0||preserve_source||low_power||replay)||preserve_source&&(low_power||replay){return Err(AppError::invalid("视频解码参数无效。"));}
  let realtime=transport&&!replay;
  let viewport=Viewport::checked(width.unwrap_or(1280),height.unwrap_or(1080))?;
+ let state=crate::detached_monitor::media_state(window.app_handle(),window.label()).await?;
  let identity=state.validate_camera_decoder(&context.home_id,context.generation,&context.did).await?;
  check_shared_buffers(&window).await?;
  if state.validate_camera_decoder(&context.home_id,context.generation,&context.did).await?!=identity{return Err(AppError::stale());}
@@ -313,7 +324,7 @@ pub async fn camera_decode_open(window:tauri::WebviewWindow,state:tauri::State<'
  }).map_err(|_|{remove(&id,&l);error("decodeWorker")})?;
  let app=window.app_handle().clone();let lifetime=l.clone();let lifetime_id=id.clone();std::thread::Builder::new().name("preview-lifetime".into()).spawn(move||{
   let l=lifetime;let id=lifetime_id;
-  while !l.stop.load(Ordering::Acquire){std::thread::sleep(Duration::from_secs(2));if app.get_webview_window(&l.owner).is_none()||tauri::async_runtime::block_on(async{let state=app.state::<AppState>();valid(state.inner(),&l).await}).is_err(){let _=app.emit_to(&l.owner,"camera-decoder-error",serde_json::json!({"id":id,"kind":"staleContext"}));remove(&id,&l);break;}}
+  while !l.stop.load(Ordering::Acquire){std::thread::sleep(Duration::from_secs(2));if app.get_webview_window(&l.owner).is_none()||tauri::async_runtime::block_on(async{let state=crate::detached_monitor::media_state(&app,&l.owner).await?;valid(&state,&l).await}).is_err(){let _=app.emit_to(&l.owner,"camera-decoder-error",serde_json::json!({"id":id,"kind":"staleContext"}));remove(&id,&l);break;}}
  }).map_err(|_|{remove(&id,&l);error("decodeWorker")})?;Ok(())
 }
 
@@ -322,8 +333,8 @@ fn admit_viewport(map:&HashMap<String,Arc<Lease>>,id:&str,viewport:Viewport)->Vi
 }
 
 #[tauri::command]
-pub async fn camera_decode_viewport(window:tauri::WebviewWindow,state:tauri::State<'_,AppState>,id:String,width:u32,height:u32)->Result<()>{
- let l=lease(&window,&id)?;valid(state.inner(),&l).await?;
+pub async fn camera_decode_viewport(window:tauri::WebviewWindow,id:String,width:u32,height:u32)->Result<()>{
+ let l=lease(&window,&id)?;let state=crate::detached_monitor::media_state(window.app_handle(),window.label()).await?;valid(&state,&l).await?;
  let viewport=Viewport::checked(width,height)?;
  let map=registry().lock().unwrap();
  let viewport=admit_viewport(&map,&id,viewport);
@@ -353,8 +364,8 @@ fn post_frame(window:&tauri::WebviewWindow,id:&str,sequence:u64,frame:&Frame,pix
 #[cfg(not(windows))]
 fn post_frame(_window:&tauri::WebviewWindow,_id:&str,_sequence:u64,_frame:&Frame,_pixels:Vec<u8>)->Result<Vec<u8>>{Err(error("decodeUnsupported"))}
 #[tauri::command]
-pub async fn camera_decode_feed(window:tauri::WebviewWindow,state:tauri::State<'_,AppState>,id:String,data:String)->Result<()>{
- let l=lease(&window,&id)?;valid(state.inner(),&l).await?;
+pub async fn camera_decode_feed(window:tauri::WebviewWindow,id:String,data:String)->Result<()>{
+ let l=lease(&window,&id)?;let state=crate::detached_monitor::media_state(window.app_handle(),window.label()).await?;valid(&state,&l).await?;
  if data.len()>350000{return Err(AppError::invalid("视频解码数据过大。"));}let bytes=STANDARD.decode(data).map_err(|_|AppError::invalid("视频解码数据无效。"))?;
  if l.remaining.load(Ordering::Acquire)!=u64::MAX&&l.remaining.fetch_update(Ordering::AcqRel,Ordering::Acquire,|remaining|remaining.checked_sub(bytes.len() as u64)).is_err(){remove(&id,&l);return Err(AppError::invalid("视频解码长度无效。"));}
  let sender=l.input.lock().unwrap().as_ref().cloned().ok_or_else(AppError::stale)?;

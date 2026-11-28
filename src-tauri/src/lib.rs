@@ -21,6 +21,8 @@ pub mod cloud_assistant;
 pub mod crypto;
 #[cfg(feature = "desktop")]
 mod desktop_idle;
+#[cfg(feature = "desktop")]
+mod detached_monitor;
 mod device_artwork;
 pub mod dispenser;
 pub mod dispenser_config;
@@ -66,6 +68,7 @@ pub mod preferences;
 pub mod purifier;
 pub mod purifier_options;
 pub mod router;
+mod scale;
 pub mod speaker;
 pub mod spec;
 pub mod state;
@@ -87,6 +90,7 @@ pub mod widget_grid;
 #[cfg(feature = "desktop")]
 mod desktop {
     use crate::camera::saved_media::Kind as MediaKind;
+    use crate::detached_monitor::{self, DetachedMonitor, media_state};
     use crate::preferences::{PreferenceChange, PreferenceView};
     use crate::{error::Result, models::*, state::AppState};
     use tauri::Manager;
@@ -169,15 +173,15 @@ mod desktop {
     #[tauri::command]
     async fn camera_care_video(
         window: tauri::WebviewWindow,
-        state: tauri::State<'_, AppState>,
         home_id: String,
         generation: u64,
         did: String,
         date: String,
         event_id: String,
     ) -> Result<crate::camera::cloud_media::Video> {
-        let scoped=state.monitor_camera_context(&home_id,generation,&did).await?;
-        let state: &AppState=scoped.as_ref().unwrap_or(state.inner());
+        let media = media_state(window.app_handle(), window.label()).await?;
+        let scoped = media.monitor_camera_context(&home_id, generation, &did).await?;
+        let state = scoped.as_ref().unwrap_or(&media);
         state
             .camera_care_video(window.label().to_owned(), home_id, generation, did, date, event_id)
             .await
@@ -185,32 +189,35 @@ mod desktop {
     #[tauri::command]
     async fn camera_care_video_part(
         window: tauri::WebviewWindow,
-        state: tauri::State<'_, AppState>,
         home_id: String, generation: u64, did: String, session: String,
         index: usize, prefetch: bool, sequence: u32,
     ) -> Result<tauri::ipc::Response> {
-        let scoped = state.monitor_camera_context(&home_id, generation, &did).await?;
-        let state = scoped.as_ref().unwrap_or(state.inner());
+        let media = media_state(window.app_handle(), window.label()).await?;
+        let scoped = media.monitor_camera_context(&home_id, generation, &did).await?;
+        let state = scoped.as_ref().unwrap_or(&media);
         let bytes = state.camera_care_video_part(
             window.label(), &home_id, generation, &did, &session, index, prefetch, sequence,
         ).await?;
         Ok(tauri::ipc::Response::new(bytes))
     }
     #[tauri::command]
-    fn camera_care_video_close(window: tauri::WebviewWindow, state: tauri::State<'_, AppState>, session: String) {
+    async fn camera_care_video_close(window: tauri::WebviewWindow, session: String) -> Result<()> {
+        let state = media_state(window.app_handle(), window.label()).await?;
         state.cloud_playbacks.close(window.label(), &session);
+        Ok(())
     }
     #[tauri::command]
     async fn camera_cloud_save(
-        state: tauri::State<'_, AppState>,
+        window: tauri::WebviewWindow,
         home_id: String,
         generation: u64,
         did: String,
         date: String,
         event_id: String,
     ) -> Result<Option<crate::camera::saved_media::SavedMedia>> {
-        let scoped=state.monitor_camera_context(&home_id,generation,&did).await?;
-        let state: &AppState=scoped.as_ref().unwrap_or(state.inner());
+        let media = media_state(window.app_handle(), window.label()).await?;
+        let scoped = media.monitor_camera_context(&home_id, generation, &did).await?;
+        let state = scoped.as_ref().unwrap_or(&media);
         state
             .validate_cloud_media_event(&home_id, generation, &did, &date, &event_id)
             .await?;
@@ -222,29 +229,31 @@ mod desktop {
     }
     #[tauri::command]
     async fn camera_care_thumbnail(
-        state: tauri::State<'_, AppState>,
+        window: tauri::WebviewWindow,
         home_id: String,
         generation: u64,
         did: String,
         date: String,
         event_id: String,
     ) -> Result<String> {
-        let scoped=state.monitor_camera_context(&home_id,generation,&did).await?;
-        let state: &AppState=scoped.as_ref().unwrap_or(state.inner());
+        let media = media_state(window.app_handle(), window.label()).await?;
+        let scoped = media.monitor_camera_context(&home_id, generation, &did).await?;
+        let state = scoped.as_ref().unwrap_or(&media);
         state
             .camera_care_thumbnail(home_id, generation, did, date, event_id)
             .await
     }
     #[tauri::command]
     async fn camera_care(
-        state: tauri::State<'_, AppState>,
+        window: tauri::WebviewWindow,
         home_id: String,
         generation: u64,
         did: String,
         date: String,
     ) -> Result<crate::camera::events::CareReport> {
-        let scoped=state.monitor_camera_context(&home_id,generation,&did).await?;
-        let state: &AppState=scoped.as_ref().unwrap_or(state.inner());
+        let media = media_state(window.app_handle(), window.label()).await?;
+        let scoped = media.monitor_camera_context(&home_id, generation, &did).await?;
+        let state = scoped.as_ref().unwrap_or(&media);
         state.camera_care(home_id, generation, did, date).await
     }
     #[tauri::command]
@@ -270,26 +279,28 @@ mod desktop {
     }
     #[tauri::command]
     async fn camera_power(
-        state: tauri::State<'_, AppState>,
+        window: tauri::WebviewWindow,
         home_id: String,
         generation: u64,
         did: String,
     ) -> Result<crate::camera::power::Snapshot> {
-        let scoped=state.monitor_camera_context(&home_id,generation,&did).await?;
-        let state: &AppState=scoped.as_ref().unwrap_or(state.inner());
+        let media = media_state(window.app_handle(), window.label()).await?;
+        let scoped = media.monitor_camera_context(&home_id, generation, &did).await?;
+        let state = scoped.as_ref().unwrap_or(&media);
         state.camera_power(home_id, generation, did).await
     }
     #[tauri::command]
     async fn change_camera_power(
-        state: tauri::State<'_, AppState>,
+        window: tauri::WebviewWindow,
         home_id: String,
         generation: u64,
         did: String,
         awake: bool,
         expected_awake: bool,
     ) -> Result<crate::camera::power::Changed> {
-        let scoped=state.monitor_camera_context(&home_id,generation,&did).await?;
-        let state: &AppState=scoped.as_ref().unwrap_or(state.inner());
+        let media = media_state(window.app_handle(), window.label()).await?;
+        let scoped = media.monitor_camera_context(&home_id, generation, &did).await?;
+        let state = scoped.as_ref().unwrap_or(&media);
         state
             .with_ui_control(&home_id.clone(), generation, &did.clone(), Box::pin(async {
                 state
@@ -300,18 +311,19 @@ mod desktop {
     }
     #[tauri::command]
     async fn camera_auxiliary(
-        state: tauri::State<'_, AppState>,
+        window: tauri::WebviewWindow,
         home_id: String,
         generation: u64,
         did: String,
     ) -> Result<crate::camera::auxiliary::Snapshot> {
-        let scoped=state.monitor_camera_context(&home_id,generation,&did).await?;
-        let state: &AppState=scoped.as_ref().unwrap_or(state.inner());
+        let media = media_state(window.app_handle(), window.label()).await?;
+        let scoped = media.monitor_camera_context(&home_id, generation, &did).await?;
+        let state = scoped.as_ref().unwrap_or(&media);
         state.camera_auxiliary(home_id, generation, did).await
     }
     #[tauri::command]
     async fn change_camera_auxiliary(
-        state: tauri::State<'_, AppState>,
+        window: tauri::WebviewWindow,
         home_id: String,
         generation: u64,
         did: String,
@@ -319,8 +331,9 @@ mod desktop {
         active: bool,
         expected_active: bool,
     ) -> Result<crate::camera::auxiliary::Changed> {
-        let scoped=state.monitor_camera_context(&home_id,generation,&did).await?;
-        let state: &AppState=scoped.as_ref().unwrap_or(state.inner());
+        let media = media_state(window.app_handle(), window.label()).await?;
+        let scoped = media.monitor_camera_context(&home_id, generation, &did).await?;
+        let state = scoped.as_ref().unwrap_or(&media);
         state
             .with_ui_control(&home_id.clone(), generation, &did.clone(), Box::pin(async {
                 state
@@ -400,14 +413,15 @@ mod desktop {
     }
     #[tauri::command]
     async fn camera_media_folder(
-        state: tauri::State<'_, AppState>,
+        window: tauri::WebviewWindow,
         home_id: String,
         generation: u64,
         did: String,
         export_id: String,
     ) -> Result<()> {
-        let scoped=state.monitor_camera_context(&home_id,generation,&did).await?;
-        let state: &AppState=scoped.as_ref().unwrap_or(state.inner());
+        let media = media_state(window.app_handle(), window.label()).await?;
+        let scoped = media.monitor_camera_context(&home_id, generation, &did).await?;
+        let state = scoped.as_ref().unwrap_or(&media);
         state
             .camera_media_folder(home_id, generation, did, export_id)
             .await
@@ -425,47 +439,49 @@ mod desktop {
 
     #[tauri::command]
     async fn monitor_detail_open(
-        state: tauri::State<'_, AppState>,
+        window: tauri::WebviewWindow,
         target: crate::monitor::actions::Target,
     ) -> Result<crate::monitor::actions::Detail> {
-        state.monitor_detail_open(target).await
+        media_state(window.app_handle(), window.label()).await?.monitor_detail_open(target).await
     }
     #[tauri::command]
     async fn monitor_detail_command(
-        state: tauri::State<'_, AppState>,
+        window: tauri::WebviewWindow,
         target: crate::monitor::actions::Target,
         lease_id: String,
         operation: crate::camera::media_control::Operation,
     ) -> Result<crate::camera::media_control::Reply> {
-        state
+        media_state(window.app_handle(), window.label()).await?
             .monitor_detail_command(target, lease_id, operation)
             .await
     }
     #[tauri::command]
     async fn monitor_detail_microphone(
-        state: tauri::State<'_, AppState>,
+        window: tauri::WebviewWindow,
         target: crate::monitor::actions::Target,
         lease_id: Option<String>,
         packet: String,
     ) -> Result<()> {
-        state
+        media_state(window.app_handle(), window.label()).await?
             .monitor_detail_microphone(target, lease_id, packet)
             .await
     }
     #[tauri::command]
     async fn monitor_detail_close(
-        state: tauri::State<'_, AppState>,
+        window: tauri::WebviewWindow,
         target: crate::monitor::actions::Target,
         lease_id: String,
     ) -> Result<()> {
-        state.monitor_detail_close(target, lease_id).await
+        media_state(window.app_handle(), window.label()).await?.monitor_detail_close(target, lease_id).await
     }
     #[tauri::command]
     async fn monitor_window(window: tauri::WebviewWindow, enabled: bool) -> Result<()> {
-        window
-            .state::<crate::app_runtime::Runtime>()
-            .monitor
-            .store(enabled, std::sync::atomic::Ordering::Release);
+        let runtime = window.state::<crate::app_runtime::Runtime>();
+        if enabled {
+            runtime.detached_monitor.enter_inline(&runtime).await?;
+        } else {
+            runtime.monitor.store(false, std::sync::atomic::Ordering::Release);
+        }
         window
             .state::<std::sync::Arc<crate::resources::Resources>>()
             .wake_hint();
@@ -474,32 +490,67 @@ mod desktop {
             .map_err(|_| crate::error::AppError::invalid("无法调整监控窗口比例。"))
     }
     #[tauri::command]
-    async fn monitor_catalog(state:tauri::State<'_,AppState>,force:bool)->Result<crate::monitor_catalog::View>{Box::pin(state.monitor_catalog_view(force)).await}
+    async fn monitor_catalog(window: tauri::WebviewWindow, force: bool, home_id: Option<String>) -> Result<crate::monitor_catalog::View> {
+        let app = window.app_handle();
+        let state = media_state(app, window.label()).await?;
+        if DetachedMonitor::is_label(window.label()) {
+            let viewer = app.state::<crate::app_runtime::Runtime>().detached_monitor.viewer(window.label())?;
+            let home = home_id.as_deref().or(viewer.home_id.as_deref());
+            let mut view = Box::pin(state.monitor_catalog_for(force, home)).await?;
+            view.all_homes = home.is_none();
+            return Ok(view);
+        }
+        Box::pin(state.monitor_catalog_for(force, home_id.as_deref())).await
+    }
     #[tauri::command]
     async fn change_monitor_selection(state:tauri::State<'_,AppState>,scope:String,home_id:String,did:String,excluded:bool)->Result<crate::monitor_catalog::View>{state.change_monitor_selection(scope,home_id,did,excluded).await}
     #[tauri::command]
-    async fn create_monitor_all(state:tauri::State<'_,AppState>,generation:u64,dids:Vec<String>)->Result<String>{Box::pin(state.create_monitor_all(generation,dids)).await}
+    async fn create_monitor_all(window: tauri::WebviewWindow, generation: u64, dids: Vec<String>, home_id: Option<String>) -> Result<String> {
+        let app = window.app_handle();
+        let state = media_state(app, window.label()).await?;
+        let rt = app.state::<crate::app_runtime::Runtime>();
+        if DetachedMonitor::is_label(window.label()) {
+            let viewer = rt.detached_monitor.viewer(window.label())?;
+            let home = home_id.as_deref().or(viewer.home_id.as_deref());
+            return Box::pin(state.create_monitor_for(generation, dids, home)).await;
+        }
+        rt.detached_monitor.check_inline(&rt)?;
+        match home_id.as_deref() {
+            Some(home) => Box::pin(state.create_monitor_for(generation, dids, Some(home))).await,
+            None => Box::pin(state.create_monitor_all(generation, dids)).await,
+        }
+    }
     #[tauri::command]
-    async fn read_monitor_all(state:tauri::State<'_,AppState>,generation:u64,viewer_id:String)->Result<Vec<crate::monitor::Row>>{state.read_monitor_all(viewer_id,generation).await}
+    async fn read_monitor_all(window: tauri::WebviewWindow, generation: u64, viewer_id: String) -> Result<Vec<crate::monitor::Row>> {
+        media_state(window.app_handle(), window.label()).await?.read_monitor_all(viewer_id, generation).await
+    }
     #[tauri::command]
-    async fn retry_monitor_all(state:tauri::State<'_,AppState>,generation:u64,viewer_id:String,did:String)->Result<()>{state.retry_monitor_all(viewer_id,generation,did).await}
+    async fn retry_monitor_all(window: tauri::WebviewWindow, generation: u64, viewer_id: String, did: String) -> Result<()> {
+        media_state(window.app_handle(), window.label()).await?.retry_monitor_all(viewer_id, generation, did).await
+    }
     #[tauri::command]
-    async fn stop_monitor_all(state:tauri::State<'_,AppState>,generation:u64,viewer_id:String)->Result<()>{state.stop_monitor_all(viewer_id,generation).await}
+    async fn stop_monitor_all(window: tauri::WebviewWindow, generation: u64, viewer_id: String) -> Result<()> {
+        media_state(window.app_handle(), window.label()).await?.stop_monitor_all(viewer_id, generation).await
+    }
     #[tauri::command]
     async fn create_monitor(
+        window: tauri::WebviewWindow,
         state: tauri::State<'_, AppState>,
         home_id: String,
         generation: u64,
         dids: Vec<String>,
     ) -> Result<String> {
+        let runtime = window.state::<crate::app_runtime::Runtime>();
+        runtime.detached_monitor.check_inline(&runtime)?;
         state.create_monitor(home_id, generation, dids).await
     }
     #[tauri::command]
     async fn monitor_command(
-        state: tauri::State<'_, AppState>,
+        window: tauri::WebviewWindow,
         target: crate::monitor::actions::Target,
         operation: crate::monitor::actions::Operation,
     ) -> Result<crate::camera::media_control::Reply> {
+        let state = media_state(window.app_handle(), window.label()).await?;
         let destination = if operation.starts_recording() {
             state.validate_monitor_media_target(&target).await?;
             Some(camera_save_destination(MediaKind::Recording).await?)
@@ -510,10 +561,11 @@ mod desktop {
     }
     #[tauri::command]
     async fn monitor_screenshot(
-        state: tauri::State<'_, AppState>,
+        window: tauri::WebviewWindow,
         target: crate::monitor::actions::Target,
         png: String,
     ) -> Result<Option<crate::camera::saved_media::SavedMedia>> {
+        let state = media_state(window.app_handle(), window.label()).await?;
         state.validate_monitor_media_target(&target).await?;
         let path = camera_save_destination(MediaKind::Screenshot).await?;
         state.monitor_screenshot(target, png, path).await.map(Some)
@@ -1129,6 +1181,34 @@ mod desktop {
         state.sensor_history(home_id, generation, did).await
     }
     #[tauri::command]
+    async fn scale_history(
+        window: tauri::WebviewWindow,
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        query: crate::scale::Query,
+    ) -> Result<crate::scale::History> {
+        if window.label() != "main" {
+            return Err(crate::error::AppError::invalid("请在主窗口查看称重记录。"));
+        }
+        Box::pin(state.scale_history(home_id, generation, did, query)).await
+    }
+    #[tauri::command]
+    async fn change_scale_pending(
+        window: tauri::WebviewWindow,
+        state: tauri::State<'_, AppState>,
+        home_id: String,
+        generation: u64,
+        did: String,
+        change: crate::scale::pending::Change,
+    ) -> Result<()> {
+        if window.label() != "main" {
+            return Err(crate::error::AppError::invalid("请在主窗口处理待认领记录。"));
+        }
+        Box::pin(state.change_scale_pending(home_id, generation, did, change)).await
+    }
+    #[tauri::command]
     async fn speaker_player(
         state: tauri::State<'_, AppState>,
         home_id: String,
@@ -1388,7 +1468,7 @@ mod desktop {
                 }
                 Ok(())
             })
-            .invoke_handler(crate::desktop_widgets::guard(tauri::generate_handler![
+            .invoke_handler(crate::desktop_widgets::guard(detached_monitor::guard(tauri::generate_handler![
                 crate::camera_decode::camera_decode_open,
                 crate::camera_decode::camera_decode_viewport,
                 crate::camera_decode::camera_decode_feed,
@@ -1412,6 +1492,7 @@ mod desktop {
                 crate::desktop_widgets::desktop_widget_viewport,
                 crate::desktop_widgets::desktop_widget_menu,
                 crate::app_runtime::application_settings,
+                crate::app_runtime::change_desktop_option,
                 crate::desktop_idle::desktop_frontend_idle,
                 crate::resources::desktop_resource_snapshot,
                 crate::app_update::app_update_status,
@@ -1430,6 +1511,10 @@ mod desktop {
                 reset_media_storage,
                 open_media_storage,
                 monitor_window,
+                detached_monitor::open_detached_monitor,
+                detached_monitor::close_detached_monitor,
+                detached_monitor::detached_monitor_status,
+                detached_monitor::focus_camera_view,
                 monitor_detail_open,
                 monitor_detail_command,
                 monitor_detail_microphone,
@@ -1522,6 +1607,8 @@ mod desktop {
                 save_airer_night,
                 change_purifier_push,
                 sensor_history,
+                scale_history,
+                change_scale_pending,
                 outlet_energy,
                 speaker_player,
                 change_speaker,
@@ -1534,7 +1621,7 @@ mod desktop {
                 set_property,
                 confirm_property,
                 run_action
-            ]))
+            ])))
             .run(context)
             .expect("运行客户端失败");
     }

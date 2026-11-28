@@ -149,6 +149,7 @@ try{
  check('insufficient space falls back as a whole instead of clipping buttons',await c.evaluate('!document.querySelector("[data-device-id=c]").classList.contains("has-card-template")&&document.querySelector("[data-device-id=c] .card-template-controls").hidden'));
  await load(false);
  await c.evaluate('window.templateFixture.detail("climate")');
+ const adjustmentPadding=await c.evaluate('getComputedStyle(document.querySelector("#template-detail .air-temperature-card")).padding');
  check('temperature detail and large card use the same circular controls and track',await c.evaluate('(()=>{const d=document.querySelector("#template-detail .air-temperature-controls"),c=document.querySelector("[data-device-id=b] .air-temperature-controls");return [d,c].every(control=>control.querySelectorAll(".air-temperature-step").length===2&&control.querySelector("input.air-temperature-slider")&&getComputedStyle(control.querySelector("button")).borderRadius==="50%")})()'));
  check('air-conditioner temperature, mode and fan speed use the common blue selection',await c.evaluate('(()=>{const n=document.querySelector("#template-detail");return getComputedStyle(n.querySelector(".air-temperature-slider")).backgroundImage.includes("rgb(85, 142, 255)")&&[...n.querySelectorAll(".air-choice.selected .air-choice-symbol")].length===2&&[...n.querySelectorAll(".air-choice.selected .air-choice-symbol")].every(b=>getComputedStyle(b).backgroundColor==="rgb(85, 142, 255)")&&n.textContent.includes("风速|低速")})()'));
  check('detail and large-card captions share mode text colors at their respective sizes',await c.evaluate(`(()=>{
@@ -180,7 +181,12 @@ try{
  check('light group boxes remain blocked for a shared read-only device',await c.evaluate(`document.querySelectorAll('${groupPowers}:disabled').length===2`));
  await c.evaluate('window.templateFixture.detail("rgb")');
  check('RGB uses one switchable color surface without preset or mode panels',await c.evaluate('(()=>{const n=document.querySelector("#template-detail");return n.querySelector(".brightness-rgb input")&&n.querySelectorAll("[role=tab]").length===2&&n.querySelector(".light-color-plane")&&!/我的模式|情景模式|自定义/.test(n.textContent)})()'));
- check('production light tabs have the same inset as the component preview',await c.evaluate('(()=>{const card=document.querySelector("#template-detail .light-color-card");return getComputedStyle(card).paddingInlineStart==="25px"&&getComputedStyle(card.querySelector("[role=tablist]")).padding==="5px"&&!card.querySelector(".native-slider-heading")&&!!card.querySelector(".light-color-marker:not([hidden])")})()'));
+ check('the color tabs share the target-temperature card inset',await c.evaluate(`(()=>{
+   const card=document.querySelector("#template-detail .light-color-card");
+   return getComputedStyle(card).padding===${JSON.stringify(adjustmentPadding)}&&
+     getComputedStyle(card.querySelector("[role=tablist]")).padding==="5px"&&
+     !card.querySelector(".native-slider-heading")&&!!card.querySelector(".light-color-marker:not([hidden])");
+ })()`));
  check('RGB brightness uses an amber fill and both endpoint icons',await c.evaluate('(()=>{const b=document.querySelector("#template-detail .brightness-track");return getComputedStyle(b.querySelector("input")).backgroundImage.includes("rgb(255, 188, 57)")&&[...b.querySelectorAll(".brightness-endpoint")].filter(n=>n.getClientRects().length).length===2})()'));
  const beforeTab=await c.evaluate('window.templateFixture.detailTrace().writes.length');
  await c.evaluate('document.querySelector("#template-detail [role=tab]").click()');

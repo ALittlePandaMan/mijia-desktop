@@ -3,6 +3,8 @@ import {capabilityCategory,validChoices,validRange} from './device-capabilities'
 import {isReadableValue} from './panel-layout';
 import {coercePropertyInput,inputUnsupportedReason} from './logic';
 import {isIrRemote} from './ir-remote';
+import {deviceModeLabel} from './device-labels';
+import type {IconName} from './icons';
 
 export const televisionRoles=['power','volume-down','volume-up','up','left','center','right','down','home','back','menu'] as const;
 export type TelevisionRole=typeof televisionRoles[number];
@@ -90,6 +92,21 @@ export function televisionSettings(panel:DevicePanel){
   mute:setting(panel,'mute',['speaker',...deviceServices(panel)],boolSetting),
   hasStatefulKeys:!!(televisionPower(panel)||televisionVolume(panel)),
  };
+}
+
+function televisionSource(description:string):{label:string;icon:IconName}|undefined {
+ const source=description.trim().toUpperCase().replace(/[\s_-]+/g,'');
+ const hdmi=/^(?:HDMI|高清接口)(\d*)$/.exec(source);
+ if(hdmi)return {label:hdmi[1]?'HDMI '+hdmi[1]:'HDMI',icon:'tv-hdmi'};
+ if(/^(ATV|ANALOG(?:UE)?TV|模拟电视)$/.test(source))return {label:'模拟电视',icon:'tv-analog'};
+ if(/^(DTV|DTMB|DIGITALTV|数字电视)$/.test(source))return {label:'数字电视',icon:'tv-digital'};
+ if(source==='AV')return {label:'AV',icon:'tv-av'};
+}
+export function televisionSourceLabel(description:string,localized?:string):string|undefined {
+ return televisionSource(description)?.label??deviceModeLabel(localized,description);
+}
+export function televisionSourceIcon(description:string):IconName {
+ return televisionSource(description)?.icon??'tv-input';
 }
 
 export function televisionExtraKeys(panel:DevicePanel){

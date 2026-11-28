@@ -1,5 +1,20 @@
 use super::*;
 impl AppState {
+    pub(super) async fn handle_monitor_transport<T>(
+        &self, source: &Arc<Cloud>, account_epoch: u64, result: Result<T>,
+    ) -> Result<T> {
+        if !result.as_ref().err().is_some_and(|e| e.kind == "authExpired") {
+            return result;
+        }
+        let result = Box::pin(self.handle(source, result)).await;
+        let session = self.session_state().lock().await;
+        if session.auth_version == account_epoch && session.authenticated()
+            && session.cloud.as_ref().is_some_and(|current| !Arc::ptr_eq(current, source))
+        {
+            return Err(AppError::new("monitorSessionRenewed", "登录已更新，正在重新连接。", true));
+        }
+        result
+    }
     pub(crate) fn set_monitor_background(&self, background: bool) {
         self.monitors.set_background(background);
     }
@@ -251,16 +266,17 @@ impl AppState {
         generation: u64,
         viewer_id: String,
     ) -> Result<Vec<crate::monitor::Row>> {
-        let (cloud, devices) = {
+        let (account_epoch, devices) = {
             let inner = self.inner.lock().await;
             inner.check(&home_id, generation)?;
             (
-                inner.cloud.clone().ok_or_else(AppError::auth)?,
+                inner.auth_version,
                 inner.devices.clone(),
             )
         };
-        self.handle(
-            &cloud,
+        let source = self.monitors.source(&home_id, generation, &viewer_id)?;
+        self.handle_monitor_transport(
+            &source, account_epoch,
             self.monitors
                 .read(&home_id, generation, &viewer_id, &devices),
         )

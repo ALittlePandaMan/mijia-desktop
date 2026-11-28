@@ -6,7 +6,7 @@ import {washerHomeStatus,washerRuntimeControls,washerRuntimeFinish,washerRuntime
 import {dismissOnBackdrop} from './dialog-dismiss';
 import {button,element} from './dom';
 import {icon,officialIcon} from '../icons';
-import {cycleActions,cycleButton} from './cycle-actions';
+import {actionFooter,footerButton} from './action-footer';
 
 interface Props {device:Device;panel:DevicePanel;programs:WasherProgram[];commands:Pick<WasherRuntimeCommands,'pending'|'message'|'blocked'> & Partial<Pick<WasherRuntimeCommands,'display'>>;cached:boolean;readAt?:number;drum?:string;confirmation?:WasherRuntimeControl;back:()=>void;refresh:()=>void;choose:(control:WasherRuntimeControl)=>void;cancel:()=>void;submit:()=>void}
 function runtimeIcon(state:string):HTMLElement{
@@ -44,10 +44,10 @@ export function washerRuntimePage(p:Props):HTMLElement{
   runtime:s,readAt:p.readAt,drum:p.drum,back:p.back});
  page.dataset.runtimePending=String(p.commands.pending);
  const controls=s&&!p.device.sharedReadOnly?washerRuntimeControls(s):[],blocked=p.cached||!p.device.online||p.commands.blocked;
- const buttons=cycleActions('washer-runtime-footer');
+ const buttons=actionFooter('washer-runtime-footer');
  for(const control of controls){
   const suspend=control.key==='pause'||control.key==='resume';
-  const b=cycleButton(control.label,()=>p.choose(control),suspend?'suspend':'secondary');
+  const b=footerButton(control.label,()=>p.choose(control),suspend?'primary':'secondary');
   b.dataset.runtimeControl=control.key;
   b.dataset.focusKey=`washer-runtime-${suspend?'suspend':control.key}`;
   b.disabled=blocked||!control.enabled;

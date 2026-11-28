@@ -5,12 +5,13 @@ export function selectMcpHome(settings:ApplicationSettings['mcp'],scope:string,h
  if(!selected)settings.excludedHomes.push({scope,homeId});
 }
 export type StartupMonitorTarget=HomeTarget|{scope:string;allHomes:true};
+export interface DesktopOptions{autoCheckUpdates:boolean;monitorSeparateWindow:boolean}
 export interface ApplicationSettings{
  version:1;startupMonitor:boolean;startupHome:StartupMonitorTarget|null;closeToTray:boolean;keepAwake:boolean;
  mcp:{enabled:boolean;localPort:number;excludedHomes:HomeTarget[]};
 }
 export interface ApplicationSettingsView{
- settings:ApplicationSettings;autostart:boolean;scope:string|null;
+ settings:ApplicationSettings;desktopOptions:DesktopOptions;autostart:boolean;scope:string|null;
   mcpStatus:{state:'running'|'stopped'|'error';localUrl?:string;error?:{message:string}};
   update:AppUpdateStatus;
 }

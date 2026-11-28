@@ -35,7 +35,7 @@ export function presentationReady(device:Device|undefined,panel:DevicePanel|unde
  if(panel.unsupportedReason)return false;
  if(dedicatedPage(device.model)==='purifier')return !!panel.purifier;
  const appliance=applianceDetailCategory(device,panel);
- if(['card-switch','water-purifier','fridge','curtain'].includes(appliance??'')||simpleLivingDetail(appliance))return true;
+ if(['card-switch','water-purifier','fridge','curtain','window-opener'].includes(appliance??'')||simpleLivingDetail(appliance))return true;
  if(dedicatedPage(device.model)==='dispenser'||audioDetailEligible(device,panel))return true;
  if(environmentCategory(device,panel))return true;
  if(specializedKitchenDetail(appliance))return true;

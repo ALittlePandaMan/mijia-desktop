@@ -7,7 +7,7 @@ import {deviceWait} from './device-loading';
 import {monitorEligible} from '../monitor';
 import {mediaStorageSettings} from './media-storage-settings';
 import {settingsNavigationIcon} from './settings-navigation-icons';
-import {settingsCopy,settingsGroup} from './settings-content';
+import {settingsCopy,settingsGroup,settingsSwitch} from './settings-content';
 import {deviceArtwork} from './device-artwork';
 import {desktopGridSettings} from './settings-desktop-grid';
 import './settings-page.css';
@@ -64,6 +64,7 @@ export function restoreSettingsView(root:ParentNode,view:SettingsViewState):void
 interface SettingsProps{
  application?:{card:(category:'application'|'mcp'|'about',view:SettingsPanelState)=>HTMLElement};
  monitorCatalog?:MonitorCatalogController;
+ monitorWindow?:{separate:boolean;opening:boolean;saving:boolean;change:(enabled:boolean)=>void};
  homeAvailable:boolean;changed:()=>void;
  homeName:string;devices:readonly Device[];preferences?:LocalPreferences;loading:boolean;pending:boolean;error?:AppError;
  view:SettingsViewState;back:()=>void;retry:()=>void;change:(change:PreferenceChange)=>void;artwork:(device:Device)=>HTMLElement;
@@ -135,10 +136,17 @@ export function settingsPage(props:SettingsProps):HTMLElement{
  const cameraCount=all?new Set(cameras.map(d=>d.did)).size:cameras.length;
  if(!panelView.listContext){panelView.listContext='monitor';panelView.expanded='monitor';}
  const monitorContent=element('div','settings-groups'),monitorCard=element('div','settings-card'),monitorToggle=button('',`settings-toggle${monitor.enabled?' checked':''}`,()=>props.change({operation:'setMonitorEnabled',value:!monitor.enabled}));
- monitorToggle.setAttribute('role','switch');monitorToggle.setAttribute('aria-checked',String(monitor.enabled));monitorToggle.setAttribute('aria-label','监控模式');monitorToggle.dataset.focusKey='monitor-mode';monitorToggle.disabled=selected===0||props.pending||!!(all&&(catalog?.loading||catalog?.pending));
+ monitorToggle.setAttribute('role','switch');monitorToggle.setAttribute('aria-checked',String(monitor.enabled));monitorToggle.setAttribute('aria-label','监控模式');monitorToggle.dataset.focusKey='monitor-mode';
+ monitorToggle.disabled=!!(props.monitorWindow?.opening||props.monitorWindow?.saving)||!monitor.enabled&&(selected===0||props.pending||!!(all&&(catalog?.loading||catalog?.pending)));
  const scope=button('全屋监控',`settings-action settings-monitor-scope${all?' checked':''}`,()=>props.change({operation:'setMonitorAllHomes',value:!all}));scope.dataset.focusKey='monitor-all-homes';scope.setAttribute('aria-pressed',String(all));scope.disabled=props.pending||!!catalog?.pending;
  monitorCard.append(element('div','settings-row',settingsCopy('监控范围',all?'所有家庭':'当前家庭'),scope));
- monitorCard.append(element('div','settings-row',settingsCopy('监控模式','在独立画面中集中查看选中的摄像机'),monitorToggle));monitorContent.append(monitorCard,disclosure('monitor','参与监控的设备',cameraCount,`已选择 ${selected} / ${cameraCount} 台`,()=>{
+ monitorCard.append(element('div','settings-row',settingsCopy('监控模式'),monitorToggle));
+ if(props.monitorWindow){
+  const separate=settingsSwitch('独立窗口',props.monitorWindow.separate,props.monitorWindow.change);
+  separate.dataset.focusKey='monitor-separate-window';separate.disabled=props.monitorWindow.opening;
+  monitorCard.append(element('div','settings-row',settingsCopy('独立窗口'),separate));
+ }
+ monitorContent.append(monitorCard,disclosure('monitor','参与监控的设备',cameraCount,`已选择 ${selected} / ${cameraCount} 台`,()=>{
   const list=element('div','settings-monitor-devices');
   const knownDevices=new Map(props.devices.map(device=>[device.did,device]));
   const appendDevice=(device:Device,homeId?:string,excluded=monitor.excludedDeviceIds,homeName?:string)=>{const check=element('input');check.type='checkbox';check.checked=!excluded.includes(device.did);check.setAttribute('aria-label',`监控${[homeName,device.name].filter(Boolean).join(' ')}`);check.dataset.focusKey=`monitor-device-${homeId??''}-${device.did}`;check.addEventListener('change',()=>{if(homeId)catalog?.select(homeId,device.did,!check.checked);else props.change({operation:'setMonitorExcluded',did:device.did,excluded:!check.checked});});

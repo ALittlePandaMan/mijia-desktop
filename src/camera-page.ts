@@ -31,7 +31,7 @@ import {CAMERA_READ_BATCH} from './camera-types';
 import type{CameraFeatures,CameraOperation,CameraClip,CameraPower,CameraAuxSnapshot,CameraEvent,SavedCameraMedia}from './camera-types';
 export type CameraSource=Pick<typeof api,'cameraFeatures'|'startCamera'|'stopCamera'|'readCamera'|'cameraCommand'|'cameraMicrophone'|'cameraScreenshot'|
  'cameraPower'|'changeCameraPower'|'cameraAuxiliary'|'changeCameraAuxiliary'|
- 'cameraCare'|'cameraCareVideo'|'cameraCareThumbnail'|'saveCloudVideo'>&{monitor?:boolean};
+ 'cameraCare'|'cameraCareVideo'|'cameraCareThumbnail'|'saveCloudVideo'>&Partial<Pick<typeof api,'focusCameraView'>>&{monitor?:boolean};
 import './camera-player.css';
 import {CloudVideoControls} from './ui/cloud-video-controls';
 import {CameraLiveToolbar} from './ui/camera-live-toolbar';
@@ -68,7 +68,8 @@ export class CameraPlayer{
  private auxiliaryVersion=0;private qualityReturn?:HTMLButtonElement;
  private qualityHost?:HTMLElement;
  private alarmButton=tool('警报','warning',()=>{void this.changeAuxiliary('alarm');});private lightButton=tool('补光灯','light',()=>{void this.changeAuxiliary('light');});
- private retry=button('重新连接','camera-retry',()=>{if(this.browserView==='care'&&this.cloudEvent)void this.playCare(this.cloudEvent,true);else if(this.browserView==='playback')void this.retryPlayback();else void this.start();});
+ private playingElsewhere=false;
+ private retry=button('重新连接','camera-retry',()=>{void this.retryConnection();});
  private powerButton=tool('休眠摄像机','power',()=>{void this.changePower();});private soundButton=tool('打开声音','volume-off',()=>{void this.toggleSound();});
  private wake=button('唤醒摄像机','camera-retry camera-wake',()=>{void this.changePower(true);});
  private powerSnapshot?:CameraPower;private powerTimer?:ReturnType<typeof setTimeout>;private powerEpoch=0;private powerActive=false;private powerReading=false;private powerReadVersion=0;private auxiliaryReadVersion=0;
@@ -512,9 +513,28 @@ export class CameraPlayer{
   });
   return this.featureLoad=request;
  }
- private async start():Promise<void>{
+ private async retryConnection():Promise<void>{
+  if(this.browserView==='care'&&this.cloudEvent){await this.playCare(this.cloudEvent,true);return;}
+  if(this.browserView==='playback'){await this.retryPlayback();return;}
+  const context=this.context,epoch=this.epoch;
+  if(this.playingElsewhere&&context&&this.source.focusCameraView){
+   if(await this.source.focusCameraView(context).catch(()=>false)||epoch!==this.epoch)return;
+  }
+  await this.start();
+ }
+ private streamFailure(error:unknown,allowRenewal:boolean):void{
+  const failure=normalizeError(error);
+  this.fail(failure.message);
+  this.playingElsewhere=failure.kind==='cameraInUse'&&!!this.source.focusCameraView;
+  if(this.playingElsewhere)this.retry.textContent='查看播放窗口';
+  if(allowRenewal&&failure.kind==='monitorSessionRenewed'){
+   const epoch=this.epoch;
+   this.timer=setTimeout(()=>{if(epoch===this.epoch)void this.start(false);},1000);
+  }
+ }
+ private async start(allowRenewal=true):Promise<void>{
   if(!this.context||this.busy||!this.online||this.powerValue()===false)return;if(this.stopping){try{await this.stopping;}catch{return;}if(!this.context||this.busy)return;}
-  this.cleanup();this.primaryMediaKey=undefined;this.switchingMedia=false;this.clip=undefined;this.renderLenses();this.stage.dataset.videoMode=this.replayEmpty?'playback':'live';const context={...this.context},epoch=this.epoch;
+  this.cleanup();this.playingElsewhere=false;this.primaryMediaKey=undefined;this.switchingMedia=false;this.clip=undefined;this.renderLenses();this.stage.dataset.videoMode=this.replayEmpty?'playback':'live';const context={...this.context},epoch=this.epoch;
   this.busy=true;this.updateButtons();if(!this.replayEmpty)this.setState('connecting','正在连接摄像机…');this.stage.dataset.decodedFrames='0';
   try{
    await loadVideoEngine();if(epoch!==this.epoch||!sameContext(context,this.context))return;
@@ -525,7 +545,7 @@ export class CameraPlayer{
    const opening=this.source.startCamera(context,quality);this.starting=opening;const session=await opening;if(this.starting===opening)this.starting=undefined;
    if(epoch!==this.epoch){if(!this.stopping)void this.source.stopCamera(context,session).catch(()=>{});return;}this.session=session;this.updateButtons();
    void this.poll(context,session,epoch);
-  }catch(error){this.starting=undefined;if(epoch===this.epoch)this.fail(normalizeError(error).message);}
+  }catch(error){if(epoch===this.epoch){this.starting=undefined;this.streamFailure(error,allowRenewal);}}
  }
  private updateVideoAspect():void{
   const {videoWidth,videoHeight}=mediaView(this.video);if(!videoWidth||!videoHeight)return;
@@ -641,7 +661,7 @@ export class CameraPlayer{
    const catchUp=this.acceleratedReplay&&events.length>=CAMERA_READ_BATCH;
    this.timer=setTimeout(()=>{void this.poll(context,session,epoch);},catchUp?0:40);
   }
-  catch(error){if(current())this.fail(normalizeError(error).message);}
+  catch(error){if(current())this.streamFailure(error,this.browserView==='live');}
  }
  private async command(operation:CameraOperation,propagate=false,clearMessage=true,current=()=>true){
   if(!this.context||!this.session)return;

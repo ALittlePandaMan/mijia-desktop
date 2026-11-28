@@ -15,11 +15,16 @@ export function sceneRooms(devices:readonly Device[],rooms:readonly Room[],cards
  const targets=devices.filter(device=>{
   const category=miotCategory(device.specType),card=byCard.get(device.did);
   if(card?.modeAllowed===false)return false;
-  return kind==='curtain'?category==='curtain'||card?.kind==='curtain':['light','light-group','switch'].includes(category??'')&&card?.kind!=='curtain';
+  return kind==='curtain'?category==='curtain'||card?.kind==='curtain':
+    ['light','light-group','switch','relay','control-panel'].includes(category??'')&&card?.kind!=='curtain';
  });
  const known=new Set(rooms.map(r=>r.id)),groups=new Map<string,Device[]>();
  for(const device of targets){const key=known.has(device.roomId)?device.roomId:'?',group=groups.get(key)??[];group.push(device);groups.set(key,group);}
  return [...rooms,{id:'?',name:'未分配'}].flatMap(room=>{const devices=groups.get(room.id);return devices?.length?[{...room,devices}]:[];});
+}
+export function sceneControlAvailable(device:Device,card:HomeCardEntry|undefined,intent:HomeCardIntent):boolean{
+ const kind=intent==='on'||intent==='off'?'power':'curtain';
+ return device.online&&!device.sharedReadOnly&&card?.did===device.did&&card.kind===kind&&card.enabled&&card.modeAllowed!==false;
 }
 export function sceneShortcutGroups(scenes:readonly HomeScene[],rooms:readonly Room[]):{id:string;name:string;scenes:HomeScene[]}[]{
  const known=new Set(rooms.map(room=>room.id)),groups=new Map<string,HomeScene[]>(),global:HomeScene[]=[],unassigned:HomeScene[]=[];
@@ -95,8 +100,9 @@ export class HomeScenesState {
  }
  control(devices:readonly Device[],intent:HomeCardIntent,cards:readonly HomeCardEntry[]):void{
   if(!this.context)return;
-  const enabled=new Set(cards.filter(c=>c.enabled&&c.modeAllowed!==false).map(c=>c.did));
-  const targets=devices.filter(d=>d.online&&!d.sharedReadOnly&&enabled.has(d.did));if(!targets.length)return;
+  const byId=new Map<string,HomeCardEntry>();
+  for(const card of cards)if(!byId.has(card.did))byId.set(card.did,card);
+  const targets=devices.filter(d=>sceneControlAvailable(d,byId.get(d.did),intent));if(!targets.length)return;
   const epoch=this.epoch;this.roomMessage=undefined;
   for(const device of targets){if(epoch!==this.epoch)break;this.transport.write(device,intent);}
  }

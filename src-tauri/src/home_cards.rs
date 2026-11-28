@@ -849,7 +849,7 @@ async fn compile_device(
     }
     // Avoid fetching public Spec for categories whose configured grid has no
     // property shortcut. Devices missing a URN can still resolve via registry.
-    if let Some(typ) = device.spec_type.as_deref() {
+    if let Some(typ) = device.spec_type.as_deref().filter(|urn| !relay_category(urn)) {
         let Some(entry) = urn_name(typ).and_then(|name| category_entry(config, name)) else {
             return Ok(None);
         };
@@ -868,6 +868,9 @@ async fn compile_device(
     }
     let panel = specs.panel(device).await?;
     compile_panel(config, device, &panel)
+}
+fn relay_category(urn: &str) -> bool {
+    matches!(urn_name(urn), Some("switch" | "relay" | "control-panel"))
 }
 fn battery_only_cleaner(model: &str, spec: Option<&str>) -> bool {
     matches!(spec.and_then(urn_name), Some("mopping-machine" | "vacuum-cleaner"))
@@ -906,12 +909,13 @@ fn compile_panel(
     let Some(urn) = panel.spec_type.as_deref() else {
         return Ok(None);
     };
-    let Some(entry) = urn_name(urn).and_then(|name| category_entry(config, name)) else {
+    let entry = urn_name(urn).and_then(|name| category_entry(config, name));
+    if entry.is_some_and(|entry| contains_urn(&entry["disable_type"], urn)) {
         return Ok(None);
-    };
+    }
     let all_nodes = nodes(panel);
-    let Some(bound) = select_layout(entry, &all_nodes, urn) else {
-        return Ok(None);
+    let Some(bound) = entry.and_then(|entry| select_layout(entry, &all_nodes, urn)) else {
+        return Ok(relay_shortcut(device, panel, urn));
     };
     // Only the first shortcut State is rendered by q8h.OooOo00.
     for bound in bound {
@@ -1046,7 +1050,68 @@ fn compile_panel(
             urn: urn.into(),
         }));
     }
-    Ok(None)
+    Ok(relay_shortcut(device, panel, urn))
+}
+
+/// Bind a single standard relay when the vendor grid offers only status text.
+/// An authenticated split route still confines the binding to its own service.
+fn relay_shortcut(device: &Device, panel: &DevicePanel, urn: &str) -> Option<CardPlan> {
+    if !relay_category(urn) {
+        return None;
+    }
+    let mut relays = panel.services.iter().filter(|service| {
+        service.name == "switch"
+            && device.control_service_id.is_none_or(|id| service.siid == id)
+            && service.properties.iter().any(|p| p.name == "on")
+    });
+    let service = relays.next()?;
+    if relays.next().is_some() || panel.services.iter().filter(|s| s.siid == service.siid).count() != 1 {
+        return None;
+    }
+    let mut powers = service.properties.iter().filter(|p| p.name == "on");
+    let on = powers.next()?;
+    if powers.next().is_some()
+        || on.siid != service.siid
+        || service.properties.iter().filter(|p| p.piid == on.piid).count() != 1
+        || on.unsupported_reason.is_some()
+        || !["read", "write"].iter().all(|access| on.access.iter().any(|a| a == access))
+        || power_value(on, true).is_none()
+        || power_value(on, false).is_none()
+        || !crate::capabilities::property_write_allowed(panel, on.siid, on.piid)
+    {
+        return None;
+    }
+    let mut modes = service.properties.iter().filter(|p| p.name == "mode");
+    let (operations, dependencies) = if let Some(mode) = modes.next() {
+        let wired = "Wired And Wireless";
+        if modes.next().is_some()
+            || mode.siid != service.siid
+            || service.properties.iter().filter(|p| p.piid == mode.piid).count() != 1
+            || mode.unsupported_reason.is_some()
+            || !mode.access.iter().any(|a| a == "read")
+            || enum_value(mode, wired).is_none()
+        {
+            return None;
+        }
+        let matcher = json!({"value": wired});
+        (
+            vec![json!({"enable_status": [matcher.clone()]})],
+            vec![Dependency { matcher, property: mode.clone() }],
+        )
+    } else {
+        (vec![], vec![])
+    };
+    Some(CardPlan {
+        device: device.clone(),
+        kind: "power",
+        card_type: 1,
+        primary: on.clone(),
+        target: on.clone(),
+        operations,
+        dependencies,
+        unresolved_dependency: false,
+        urn: urn.into(),
+    })
 }
 
 type Values = HashMap<(String, u32, u32), Value>;
@@ -1341,6 +1406,20 @@ mod tests {
         compile_panel(&config(), &d, &panel(&d, vec![switch_service(2)]))
             .unwrap()
             .unwrap()
+    }
+    #[test]
+    fn relay_without_a_mobile_shortcut_checks_the_actual_split_mode() {
+        let mut device = device("control-panel");
+        device.control_service_id = Some(3);
+        let panel = panel(&device, vec![switch_service(2), switch_service(3)]);
+        let status_only = ConfigBundle { miot: json!([]), ..config() };
+        let plan = compile_panel(&status_only, &device, &panel).unwrap().unwrap();
+        assert_eq!(plan.target.siid, 3);
+        assert!(describe(&plan, &values(&plan, json!(false), json!(7))).enabled);
+        assert!(!describe(&plan, &values(&plan, json!(false), json!(9))).enabled);
+        assert!(!describe(&plan, &Values::from([(key(&device, &plan.primary), json!(false))])).enabled);
+        device.control_service_id = None;
+        assert!(compile_panel(&status_only, &device, &panel).unwrap().is_none());
     }
     fn values(plan: &CardPlan, power: Value, mode: Value) -> Values {
         let mut values = Values::from([(key(&plan.device, &plan.primary), power)]);

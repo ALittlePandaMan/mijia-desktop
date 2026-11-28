@@ -1,5 +1,6 @@
 // Offline fixture only. No account credentials or device commands.
 import '../src/style.css';import '../src/theme.css';
+import '../src/ui/settings-content.css';
 import {CompatVideo} from '../src/software-video';
 import {CloudVideoSequence} from '../src/cloud-video-sequence';
 import {loadVideoEngine,nativeVideoPlayer} from '../src/native-video';
@@ -16,7 +17,14 @@ let heldDecoderClose:Promise<void>|undefined;
 function emit(event:string,payload:unknown){for(const [id,name]of subscriptions){if(name===event)callbacks.get(id)?.({event,payload});}}
 let primeCloud=false;
 const bridge=new EventTarget() as EventTarget&{releaseBuffer:(buffer:ArrayBuffer)=>void};bridge.releaseBuffer=()=>{released++;};(window as any).chrome??={};(window as any).chrome.webview=bridge;
-const data:any={scope:'mock',update:{revision:1,state:'idle',currentVersion:'1.0.0',latestVersion:null,notes:null,checkedAt:null,downloadedBytes:0,totalBytes:null,message:'',packageKind:'portable',supported:true,canInstall:false,canDownload:false}};
+let savedAutoCheck=false,latestVersion='1.0.1';
+let runAutomaticCheck:(()=>void)|undefined;
+const originalInterval=window.setInterval;
+window.setInterval=(fn,ms,...args)=>{
+ if(ms===6*60*60*1000&&typeof fn==='function')runAutomaticCheck=()=>fn(...args);
+ return originalInterval(fn,ms,...args);
+};
+const data:any={scope:'mock',settings:{},desktopOptions:{autoCheckUpdates:false,monitorSeparateWindow:false},update:{revision:1,state:'idle',currentVersion:'1.0.0',latestVersion:null,notes:null,checkedAt:null,downloadedBytes:0,totalBytes:null,message:'',packageKind:'portable',supported:true,canInstall:false,canDownload:false}};
 const invoke=async(command:string,args:any={})=>{
  calls.push({command,args});
  if(command==='plugin:event|listen'){subscriptions.set(args.handler,args.event);return args.handler;}
@@ -27,12 +35,14 @@ const invoke=async(command:string,args:any={})=>{
  if(command==='camera_decode_finish'&&primeCloud){setTimeout(()=>{if(leases.has(args.id))sendFrame({id:args.id},0,640,360,false,320,180);},0);return;}
  if(command==='camera_decode_feed'||command==='camera_decode_finish'||command==='camera_decode_viewport')return;
  if(command==='home_preferences'||command==='change_home_preferences')return {cameraPrimaryLenses:{}};
- if(command==='check_app_update'){checks++;await new Promise(r=>setTimeout(r,50));if(mode==='throw')throw Error('mock network');return {...data.update,revision:++data.update.revision,state:mode,latestVersion:mode==='available'?'1.0.1':null,canDownload:mode==='available',message:'DO NOT DISPLAY BACKEND PROSE'};}
+ if(command==='change_desktop_option'&&args.option==='autoCheckUpdates'){savedAutoCheck=args.enabled;return {...data,desktopOptions:{...data.desktopOptions,autoCheckUpdates:savedAutoCheck}};}
+ if(command==='check_app_update'){checks++;await new Promise(r=>setTimeout(r,50));if(mode==='throw')throw Error('mock network');return {...data.update,revision:++data.update.revision,state:mode,latestVersion:mode==='available'?latestVersion:null,canDownload:mode==='available',message:'DO NOT DISPLAY BACKEND PROSE'};}
  throw Error('Mock denied: '+command);
 };
 (window as any).__TAURI_INTERNALS__={invoke,transformCallback:(fn:any)=>{const id=++callbackId;callbacks.set(id,fn);return id;},unregisterCallback:(id:number)=>callbacks.delete(id)};(window as any).isTauri=true;
 (window as any).__TAURI_EVENT_PLUGIN_INTERNALS__={unregisterListener:(_event:string,id:number)=>callbacks.delete(id)};
 const root=document.querySelector<HTMLElement>('#app')!,settings=document.createElement('section'),viewport=document.createElement('section'),video=document.createElement('video');
+settings.className='settings-page';
 viewport.style.cssText='position:relative;width:640px;height:360px;background:#000';video.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:contain';video.autoplay=true;video.muted=true;video.setAttribute('aria-label','模拟镜头');viewport.append(video);root.append(settings,viewport);setMediaContext(video,()=>({homeId:'mock-home',generation:7,did:'mock-camera'}));
 const controller=new ApplicationSettingsController(()=>render());controller.data=data;function render(){settings.replaceChildren(controller.card('about',{} as any,[],''));}render();
 let surface:CompatVideo|undefined,frameCallbacks=0,seeks:number[]=[];
@@ -45,7 +55,7 @@ function sendFrame(target:Pick<CompatVideo,'id'>,pts:number,sourceWidth:number,s
  event.additionalData={kind:'mijia-software-media',id:target.id,sequence,frame:{kind:1,width,height,sourceWidth,sourceHeight,pts,duration:0,bytes:bytes.length+(malformed?1:0),rate:0}};
  event.getBuffer=()=>bytes.buffer;bridge.dispatchEvent(event);
 }
-const fixture={calls,controller,viewport,video,errors,seeks,get released(){return released;},get checks(){return checks;},get frameCallbacks(){return frameCallbacks;},get state(){const v=mediaView(video);return {width:v.videoWidth,height:v.videoHeight,ready:v.readyState,time:v.currentTime,paused:v.paused,ended:v.ended,leases:leases.size,canvas:!!viewport.querySelector('canvas')};},setMode(value:string){mode=value;},render,clearToast(){clearToast(document.body);},
+const fixture={calls,controller,viewport,video,errors,seeks,get released(){return released;},get checks(){return checks;},get savedAutoCheck(){return savedAutoCheck;},get frameCallbacks(){return frameCallbacks;},get state(){const v=mediaView(video);return {width:v.videoWidth,height:v.videoHeight,ready:v.readyState,time:v.currentTime,paused:v.paused,ended:v.ended,leases:leases.size,canvas:!!viewport.querySelector('canvas')};},setMode(value:string){mode=value;},setLatestVersion(version:string){latestVersion=version;},automaticTick(){runAutomaticCheck?.();},render,clearToast(){clearToast(document.body);},
  async releaseClosingFrame(){
   const surface=await CompatVideo.open(video,{format:'mpegts',error:message=>errors.push(message)});
   let finishClose!:()=>void;
@@ -89,8 +99,12 @@ const fixture={calls,controller,viewport,video,errors,seeks,get released(){retur
    for(let i=0;i<25&&(opens().length<3||tile.page.waitingForDecoder);i++)await delay();
    const admitted=opens().at(-1);
    if(opens().length!==3||!admitted||!leases.has(admitted.args.id)||leases.size!==1)return false;
-   const drawn=new Promise<void>(resolve=>requestMediaFrame(tile.page.video,()=>resolve()));
-   sendFrame(admitted.args,0,640,360,false,320,180);await drawn;
+   sendFrame(admitted.args,0,640,360,false,320,180);
+   for(let i=0;i<50&&mediaView(tile.page.video).readyState<2;i++)await delay();
+   if(mediaView(tile.page.video).readyState<2)throw Error('Mock monitor frame was not presented: '+JSON.stringify({
+    released,lease:leases.get(admitted.args.id),decoder:tile.page.video.dataset.decoder,
+    state:tile.root.dataset.state,errors
+   }));
    return reconnects===0&&tile.routeRevision===1&&errors.length===failureCount&&mediaView(tile.page.video).readyState===2&&
     calls.slice(before).some(call=>call.command==='camera_decode_feed'&&call.args.id===admitted.args.id&&call.args.data==='RwE=')&&
     !calls.slice(before).some(call=>call.command==='camera_decode_feed'&&call.args.data==='RwI=');
