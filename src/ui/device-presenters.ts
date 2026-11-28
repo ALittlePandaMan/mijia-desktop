@@ -380,7 +380,7 @@ export function renderFanPage(this: DevicePresenterHost, device: Device): HTMLEl
         write:(endpoint,value)=>{void this.setProperty(endpoint,value);},
         error:error=>{this.panelNotice={tone:'error',title:normalizeError(error).message};this.render();},
       },node=>this.control(node,device)));
-      else view.append(this.control({name:'Power',props:{property,label,glyph:direction==='horizontal'?'swing-horizontal':'swing-vertical',className:`fan-swing${booleanValue(property)===true?' is-on':''}`,
+      else view.append(this.control({name:'Power',props:{property,label,glyph:direction==='horizontal'?'swing-horizontal':'swing-vertical',
         disabledReason:disabled?'风扇开启后可调节摆风。':undefined}},device));
     }
     return view;

@@ -567,7 +567,6 @@ button.detail-power-card:disabled .native-power { opacity:.5; }
 .fan-climate span { color:var(--text-secondary,#85878a); font-size: var(--device-label-size); margin-top: 7px; }
 .slider-fan .native-slider { height:42px; }
 .slider-fan,.slider-humidity { --adjustment-fill:var(--adjustment-accent); }
-.fan-swing.is-on > .icon { background:var(--adjustment-accent); }
 
 /* xiaomi.fan.p69 has a mode hero and four gear buttons, unlike p28. */
 :is(.page-fan-p69, .page-fan-standard) { color:var(--text-primary,#111); background:linear-gradient(var(--surface-disabled,#c4c4c8), var(--surface-page,#f5f5f5) 76%); }
