@@ -4,7 +4,7 @@ import {siteAsset} from './site-path';
 import './promo.css';
 const title = '米家Desktop · 在电脑上用米家';
 const description = '米家Desktop 是免费开源的 Windows 客户端，可管理米家设备、同屏查看多路监控，并通过 MCP 接入兼容的 AI 助手。';
-const siteUrl = new URL('https://alittlepandaman.github.io/mijia-desktop/');
+const siteUrl = new URL('https://mijia.panda626.site/');
 
 export const metadata: Metadata = {
  title,

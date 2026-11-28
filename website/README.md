@@ -1,6 +1,6 @@
 # 米家Desktop 宣传页
 
-[项目网站与交互演示](https://alittlepandaman.github.io/mijia-desktop/)使用 Next.js 静态导出。这里维护首页、MCP 介绍、设备界面演示和监控示例。设备演示使用模拟数据，监控演示使用与[主项目 README](../README.md#多路摄像机监控)相同的四幅合成场景。
+[项目官网](https://mijia.panda626.site/)和[交互演示](https://mijia.panda626.site/demo/)使用 Next.js 静态导出。这里维护首页、MCP 介绍、设备界面演示和监控示例。设备演示使用模拟数据，监控演示使用与[主项目 README](../README.md#多路摄像机监控)相同的四幅合成场景。
 
 ## 本地开发
 

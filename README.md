@@ -9,7 +9,8 @@
 
 <p align="center">
   <a href="https://github.com/ALittlePandaMan/mijia-desktop/releases/latest"><strong>下载 Windows 版</strong></a> ·
-  <a href="https://alittlepandaman.github.io/mijia-desktop/">官网</a> ·
+  <a href="https://mijia.panda626.site/">官网</a> ·
+  <a href="https://mijia.panda626.site/demo/">在线演示</a> ·
   <a href="docs/MCP.md">MCP 指南</a> ·
   <a href="https://github.com/ALittlePandaMan/mijia-desktop/issues">反馈</a>
 </p>
