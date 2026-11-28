@@ -127,7 +127,16 @@ try{
  await client.call('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'no-preference'}]});
  await client.evaluate("fixture.cards[0].gesture=null;fixture.cards[0].view.geometry.size='large';fixture.cards[0].width=612;fixture.cards[0].height=240;fixture.emit('desktop-widget-host-state',fixture.delta())");await delay(65);
  await check('large size uses a continuous width transition during the same gesture',"(()=>{const r=document.querySelector('[data-widget-id=a]').getBoundingClientRect();return r.width>300&&r.width<612;})()");
- await client.call('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});await delay(80);
+ await client.evaluate("fixture.beforeMotionCalls=fixture.calls.length");
+ await client.call('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});
+ await until(client,`(()=>{
+  const slot=document.querySelector('[data-widget-id=a]'),rect=slot.getBoundingClientRect();
+  const calls=fixture.calls.slice(fixture.beforeMotionCalls);
+  const last=calls.filter(c=>c.name==='desktop_widget_regions'&&c.args.widgetId==='a').at(-1);
+  return !slot.getAnimations().length && Math.abs(rect.width-612)<.1 && Math.abs(rect.height-240)<.1
+   && Math.abs(last?.args.presentation.width-rect.width)<.1 && Math.abs(last?.args.presentation.height-rect.height)<.1
+   && calls.some(c=>c.name==='desktop_widget_viewport'&&c.args.reducedMotion===true);
+ })()`,10);
  await client.evaluate("fixture.afterMotionCalls=fixture.calls.filter(c=>c.name==='desktop_widget_regions').length");await delay(100);
  await check('enabling reduced motion cancels animation and retires geometry sampling',"document.querySelector('[data-widget-id=a]').getAnimations().length===0&&fixture.calls.filter(c=>c.name==='desktop_widget_regions').length===fixture.afterMotionCalls");
  await client.call('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'no-preference'}]});
