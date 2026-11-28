@@ -94,6 +94,8 @@ const fixture={calls,controller,viewport,video,errors,seeks,get released(){retur
    tile.update({did:context.did,revision:1,state:'live',events:[]});
    if(reconnects||!tile.page.waitingForDecoder||!tile.root.textContent?.includes('等待视频解码资源')||
     errors.length!==failureCount||opens().length!==2||leases.size!==1||viewport.querySelectorAll('canvas').length!==1)return false;
+   // Only shorten the watchdog while the decoder is waiting for capacity.
+   window.setTimeout=originalTimeout;
    abandoned.destroy();
    detachSurface(first,started);
    for(let i=0;i<25&&(opens().length<3||tile.page.waitingForDecoder);i++)await delay();
